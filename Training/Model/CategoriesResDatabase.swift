@@ -27,3 +27,22 @@ class CategoriesResDatabase: Object {
     }
 }
 
+
+class CategoriesListAPI: APIMeetUpService<CategoriesData> {
+    init() {
+        super.init(request: APIMeetUpRequest(name: "API0003 ▶︎ Get categories", path: "listCategories", method: .get))
+    }
+}
+
+struct CategoriesData : MeetUpResponse {
+    var listCategories = [CategoriesResDatabase]()
+    init(json: JSON) {
+        let data = json["response"]["categories"].array
+        for item in data! {
+            let categories = CategoriesResDatabase(cate : item)
+            listCategories.append(categories)
+        }
+    }
+}
+
+

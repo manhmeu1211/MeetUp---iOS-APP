@@ -106,11 +106,11 @@ class EventDetailController: UIViewController {
     
     private func getDetailEvent(eventID : Int) {
         print("getData")
-        getDataService.getInstance.getEventDetail(idEvent: eventID, headers: self.headers) { (eventDetail, errcode) in
-            if errcode == 1 {
+        getDataService.getInstance.getEventDetail(eventID: eventID) { (eventDetail, errcode) in
+            if errcode == 0 {
                 ToastView.shared.short(self.view, txt_msg: "You need to login first")
                 self.alertLogin.createAlertLoading(target: self, isShowLoading: false)
-            } else if errcode == 2 {
+            } else if errcode == 1 {
                 self.eventDetail = eventDetail
                 self.detailTable.reloadData()
             } else {
@@ -121,13 +121,10 @@ class EventDetailController: UIViewController {
     
 
     private func getListEvent() {
-        let usertoken = UserDefaults.standard.string(forKey: "userToken")
-        let headers = [ "Authorization": "Bearer \(usertoken!)",
-        "Content-Type": "application/json"  ]
-        getDataService.getInstance.getListNearEvent(radius: 10, longitue: self.eventDetail.longValue, latitude: self.eventDetail.latValue, header: headers) { (eventsNear, anotionLC ,errcode) in
-            if errcode == 1 {
+        getDataService.getInstance.getListNearEvent(radius: 10, longitue: self.eventDetail.longValue, latitude: self.eventDetail.latValue) { (eventsNear, anotionLC ,errcode) in
+            if errcode == 0 {
                 print("Failed")
-            } else if errcode == 2 {
+            } else if errcode == 1 {
                 self.eventsNear = eventsNear
             } else {
                 print("Failed")
@@ -180,7 +177,7 @@ extension EventDetailController : UITableViewDelegate, UITableViewDataSource {
                     cell.status.textColor = UIColor(rgb: 0xC63636)
                     cell.backGroundStatus.backgroundColor = UIColor(rgb: 0xF9EBEB)
                 }
-             } else {
+             } else if eventDetail.mystatus == 2 {
                 DispatchQueue.main.async {
                     cell.imgStar.image = UIImage(named: "icon_starGreen")
                     cell.status.text = "Joined"

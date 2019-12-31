@@ -53,3 +53,35 @@ class MyPageWentResDatabase: Object {
         self.goingCount = goingEvents["going_count"].intValue
     }
 }
+
+
+class MyPageWentListAPI: APIMeetUpService<MyPageWentData> {
+    init(status: Int) {
+        let userToken = UserDefaults.standard.string(forKey: "userToken")
+        var headers = [String : String]()
+        if userToken != nil {
+            headers = [ "Authorization": "Bearer " + userToken! ]
+        } else {
+            headers = [ "Authorization": "No Auth" ]
+        }
+        super.init(request: APIMeetUpRequest(name: "API008 ▶︎ Get events wents", path: "listMyEvents", method: .get, header: headers, parameters: ["status" : "\(status)"]))
+    }
+}
+
+struct MyPageWentData : MeetUpResponse {
+    var listEventsWent = [MyPageWentResDatabase]()
+    var status : Int!
+    var errMessage : String!
+    init(json: JSON) {
+        status = json["status"].intValue
+        if status == 0 {
+            errMessage = json["error_message"].stringValue
+        } else {
+            let data = json["response"]["events"].array
+            for item in data! {
+                let events = MyPageWentResDatabase(goingEvents: item)
+                listEventsWent.append(events)
+            }
+        }
+    }
+}

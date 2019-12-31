@@ -101,7 +101,7 @@ class NearViewController: UIViewController, CLLocationManagerDelegate {
     
     private func updateObject() {
         let list = RealmDataBaseQuery.getInstance.getObjects(type: EventsNearResponse.self)!.sorted(byKeyPath: "goingCount", ascending: false).toArray(ofType: EventsNearResponse.self)
-        if list == [] {
+        if list.isEmpty {
             events.append(EventsNearResponse(id: 0, photo: "", name: "No event near you", descriptionHtml: "", scheduleStartDate: "", scheduleEndDate: "", scheduleStartTime: "", scheduleEndTime: "", schedulePermanent: "", goingCount: 0))
         } else {
             events = list
@@ -109,14 +109,8 @@ class NearViewController: UIViewController, CLLocationManagerDelegate {
     }
       
     private func getListEvent() {
-        let usertoken = UserDefaults.standard.string(forKey: "userToken")
-        let headers = [ "Authorization": "Bearer \(usertoken!)",
-        "Content-Type": "application/json"  ]
-        getDataService.getInstance.getListNearEvent(radius: 10, longitue: self.initLong!, latitude: self.initLat!, header: headers) { (eventsNear, anotionLC ,errcode) in
+        getDataService.getInstance.getListNearEvent(radius: 10, longitue: self.initLong!, latitude: self.initLat!) { (eventsNear, anotionLC ,errcode) in
             if errcode == 1 {
-                self.updateObject()
-                self.collectionVIew.reloadData()
-            } else if errcode == 2 {
                 self.events.removeAll()
                 _ = anotionLC?.array?.forEach({ (anotion) in
                     let anotionArt = Artwork(anotion: anotion, coordinate: CLLocationCoordinate2D(latitude: anotion["venue"]["geo_lat"].doubleValue, longitude: anotion["venue"]["geo_long"].doubleValue))
@@ -131,8 +125,8 @@ class NearViewController: UIViewController, CLLocationManagerDelegate {
                 self.updateObject()
                 self.collectionVIew.reloadData()
             }
-            self.loading.handleLoading(isLoading: false)
         }
+         self.loading.handleLoading(isLoading: false)
     }
     
     private func centerMapOnLocation(location: CLLocation) {

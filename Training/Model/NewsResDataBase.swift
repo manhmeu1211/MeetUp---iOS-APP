@@ -56,37 +56,6 @@ class NewsListAPI: APIMeetUpService<NewsData> {
         super.init(request: APIMeetUpRequest(name: "API0001 ▶︎ Get news", path: "listNews", method: .get, parameters: ["pageIndex": pageIndex, "pageSize": pageSize]))
     }
 }
-//
-//class saveNewsListData {
-//    init(isLoadMore : Bool, pageIndex : Int, pageSize : Int, completionHandler : @escaping ([NewsDataResponse], Int) -> ()) {
-//        if isLoadMore == false {
-//            RealmDataBaseQuery.getInstance.deleteListObject(object: NewsDataResponse.self)
-//            NewsListAPI.init(pageIndex: pageIndex, pageSize: pageSize).excute(completionHandler: { (response) in
-//                if response!.listNews.isEmpty {
-//                    completionHandler([], 0)
-//                }
-//                for item in response!.listNews {
-//                    RealmDataBaseQuery.getInstance.addData(object: item)
-//                }
-//                let newsLoaded = RealmDataBaseQuery.getInstance.getObjects(type: NewsDataResponse.self)?.toArray(ofType: NewsDataResponse.self)
-//                completionHandler(newsLoaded!, 1)
-//            }) { (err) in
-//                completionHandler([], 0)
-//            }
-//        } else {
-//            NewsListAPI.init(pageIndex: pageIndex, pageSize: pageSize).excute(completionHandler: { (response) in
-//                for item in response!.listNews {
-//                    RealmDataBaseQuery.getInstance.addData(object: item)
-//                }
-//                let newsLoaded = RealmDataBaseQuery.getInstance.getObjects(type: NewsDataResponse.self)?.toArray(ofType: NewsDataResponse.self)
-//                completionHandler(newsLoaded!, 1)
-//            }) { (err) in
-//                completionHandler([], 0)
-//            }
-//        }
-//    }
-//}
-
 
 struct NewsData : MeetUpResponse {
     var listNews = [NewsDataResponse]()

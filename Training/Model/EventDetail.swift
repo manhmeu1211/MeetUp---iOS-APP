@@ -102,3 +102,41 @@ class EventDetail: Object {
     }
 }
 
+
+class EventsDetailAPI: APIMeetUpService<EventDetailData> {
+    init(eventID: Int) {
+        let userToken = UserDefaults.standard.string(forKey: "userToken")
+        var headers = [String : String]()
+        if userToken != nil {
+            headers = [ "Authorization": "Bearer " + userToken! ]
+        } else {
+            headers = [ "Authorization": "No Auth" ]
+        }
+        super.init(request: APIMeetUpRequest(name: "API0009 ▶︎ Get events going", path: "getDetailEvent", method: .get, header: headers, parameters: ["event_id" : eventID]))
+    }
+}
+
+struct EventDetailData : MeetUpResponse {
+    var eventDetail = EventDetail()
+    var status : Int!
+    var errMessage : String!
+    init(json: JSON) {
+        status = json["status"].intValue
+        if status == 0 {
+            errMessage = json["error_message"].stringValue
+        } else {
+            let data = json["response"]["events"]
+            let detailVenue = data["venue"]
+            let detailGenre = data["category"]
+            eventDetail = EventDetail(detail: data, detailVenue: detailVenue, detailGenre: detailGenre)
+        }
+    }
+}
+
+
+
+
+
+
+
+

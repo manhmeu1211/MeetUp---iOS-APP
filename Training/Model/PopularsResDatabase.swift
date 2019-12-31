@@ -56,3 +56,28 @@ class PopularsResDatabase: Object {
         self.myStatus = populars["my_status"].intValue
     }
 }
+
+
+class EventsListAPI: APIMeetUpService<PopularsData> {
+    init(pageIndex: Int, pageSize : Int) {
+        let userToken = UserDefaults.standard.string(forKey: "userToken")
+        var headers = [String : String]()
+        if userToken != nil {
+            headers = [ "Authorization": "Bearer " + userToken! ]
+        } else {
+            headers = [ "Authorization": "No Auth" ]
+        }
+        super.init(request: APIMeetUpRequest(name: "API0002 ▶︎ Get events", path: "listPopularEvents", method: .get, header: headers, parameters: ["pageIndex" : pageIndex, "pageSize" : pageSize]))
+    }
+}
+
+struct PopularsData : MeetUpResponse {
+    var listNews = [PopularsResDatabase]()
+    init(json: JSON) {
+        let data = json["response"]["events"].array
+        for item in data! {
+            let populars = PopularsResDatabase(populars: item)
+            listNews.append(populars)
+        }
+    }
+}

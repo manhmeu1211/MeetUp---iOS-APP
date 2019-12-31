@@ -11,8 +11,6 @@ import Alamofire
 import SwiftyJSON
 
 
-
-
 class APIMeetUpService<T: MeetUpResponse> {
     
     var request: APIMeetUpRequest?

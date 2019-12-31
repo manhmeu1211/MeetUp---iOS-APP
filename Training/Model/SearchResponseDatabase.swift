@@ -54,3 +54,36 @@ class SearchResponseDatabase: Object {
         self.goingCount = search["going_count"].intValue
     }
 }
+
+
+class SearchListAPI: APIMeetUpService<SearchsData> {
+    init(pageIndex: Int, pageSize : Int, keyword : String) {
+        let userToken = UserDefaults.standard.string(forKey: "userToken")
+        var headers = [String : String]()
+        if userToken != nil {
+            headers = [ "Authorization": "Bearer " + userToken! ]
+        } else {
+            headers = [ "Authorization": "No Auth" ]
+        }
+        super.init(request: APIMeetUpRequest(name: "API0006 ▶︎ Search", path: "listPopularEvents", method: .get, header: headers, parameters: ["pageIndex" : pageIndex, "pageSize" : pageSize, "keyword" : keyword]))
+    }
+}
+
+struct SearchsData : MeetUpResponse {
+    var listSearch = [SearchResponseDatabase]()
+    var status : Int!
+    var errMessage : String!
+    init(json: JSON) {
+        status = json["status"].intValue
+        if status == 0 {
+            errMessage = json["error_message"].stringValue
+        } else {
+            let data = json["response"]["events"].array
+            for item in data! {
+                let events = SearchResponseDatabase(search: item)
+                listSearch.append(events)
+            }
+        }
+    }
+}
+

@@ -73,8 +73,8 @@ class NewsViewController: UIViewController {
         if userToken != nil {
             let headers = [ "Authorization": "Bearer \(userToken!)",
                         "Content-Type": "application/json"  ]
-            getDataService.getInstance.getMyEventGoing(status: 1, headers: headers) { (json, errCode) in
-                if errCode == 1 {
+            getDataService.getInstance.getMyEventGoing(status: 1) { (json, errCode) in
+                if errCode == 0 {
                     UserDefaults.standard.removeObject(forKey: "userToken")
                 } else {
                     print("Token is avaible")

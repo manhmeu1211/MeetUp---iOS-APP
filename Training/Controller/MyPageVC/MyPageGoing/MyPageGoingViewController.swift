@@ -61,17 +61,10 @@ class MyPageGoingViewController: UIViewController {
 
     
     private func getListGoingEvent() {
-       let usertoken = UserDefaults.standard.string(forKey: "userToken")
-       if usertoken == nil {
-           ToastView.shared.short(self.view, txt_msg: "Not need to login first !")
-       } else {
-           let headers = [ "Authorization": "Bearer \(usertoken!)",
-                           "Content-Type": "application/json"  ]
-         
-        getDataService.getInstance.getMyEventGoing(status: self.status, headers: headers) { (events, errCode) in
-                if errCode == 1 {
+        getDataService.getInstance.getMyEventGoing(status: self.status) { (events, errCode) in
+                if errCode == 0 {
                     ToastView.shared.short(self.view, txt_msg: "Cannot load data from server!")
-                } else if errCode == 2 {
+                } else if errCode == 1 {
                     self.goingEvents.removeAll()
                     let dateFormatter = Date()
                     for i in events {
@@ -93,7 +86,7 @@ class MyPageGoingViewController: UIViewController {
             }
         }
     }
-}
+
 
 extension MyPageGoingViewController : UITableViewDelegate, UITableViewDataSource {
     

@@ -52,4 +52,43 @@ class MyPageGoingResDatabase: Object {
         self.schedulePermanent = goingEvents["schedule_permanent"].stringValue
         self.goingCount = goingEvents["going_count"].intValue
     }
+    
 }
+
+
+class MyPageGoingsListAPI: APIMeetUpService<MyPageGoingsData> {
+    init(status: Int) {
+        let userToken = UserDefaults.standard.string(forKey: "userToken")
+        var headers = [String : String]()
+        if userToken != nil {
+            headers = [ "Authorization": "Bearer " + userToken! ]
+        } else {
+            headers = [ "Authorization": "No Auth" ]
+        }
+        super.init(request: APIMeetUpRequest(name: "API0007 ▶︎ Get events going", path: "listMyEvents", method: .get, header: headers, parameters: ["status" : "\(status)"]))
+    }
+}
+
+struct MyPageGoingsData : MeetUpResponse {
+    var listEventsGoings = [MyPageGoingResDatabase]()
+    var status : Int!
+    var errMessage : String!
+    init(json: JSON) {
+        status = json["status"].intValue
+        if status == 0 {
+            errMessage = json["error_message"].stringValue
+        } else {
+            let data = json["response"]["events"].array
+            for item in data! {
+                let events = MyPageGoingResDatabase(goingEvents: item)
+                listEventsGoings.append(events)
+            }
+        }
+    }
+}
+
+
+
+
+
+

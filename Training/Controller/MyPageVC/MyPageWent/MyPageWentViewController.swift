@@ -58,10 +58,10 @@ class MyPageWentViewController: UIViewController {
                let headers = [ "Authorization": "Bearer \(usertoken!)",
                                "Content-Type": "application/json"  ]
              
-            getDataService.getInstance.getMyEventWent(status: self.status, headers: headers) { (events, errCode) in
-                    if errCode == 1 {
+            getDataService.getInstance.getMyEventWent(status: self.status) { (events, errCode) in
+                    if errCode == 0 {
                         ToastView.shared.short(self.view, txt_msg: "Cannot load data from server!")
-                    } else if errCode == 2 {
+                    } else if errCode == 1 {
                         self.wentEvents.removeAll()
                     let dateFormatter = Date()
                         for i in events {

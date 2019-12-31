@@ -16,7 +16,6 @@ class PopularsViewController: UIViewController {
     @IBOutlet weak var popularsTable: UITableView!
     
     // MARK: - Varribles
-    private var alertLoading = UIAlertController()
     private let refreshControl = UIRefreshControl()
     private var popularResponse : [PopularsResDatabase] = []
     private var currentPage = 1
@@ -60,11 +59,9 @@ class PopularsViewController: UIViewController {
     
     private func getDataFirstLaunch() {
         if detechDailyFirstLaunch() == false {
-            alertLoading.createAlertLoading(target: self, isShowLoading: true)
             updateObject()
             popularsTable.reloadData()
         } else {
-            alertLoading.createAlertLoading(target: self, isShowLoading: true)
             upDateDataV2()
         }
     }
@@ -116,7 +113,6 @@ class PopularsViewController: UIViewController {
     
     private func updateObject() {
         self.popularResponse = RealmDataBaseQuery.getInstance.getObjects(type: PopularsResDatabase.self)!.sorted(byKeyPath: "goingCount", ascending: false).toArray(ofType: PopularsResDatabase.self)
-        alertLoading.createAlertLoading(target: self, isShowLoading: false)
     }
     
     
@@ -130,7 +126,6 @@ class PopularsViewController: UIViewController {
                     self.popularResponse = popularData
                 }
                 self.popularsTable.reloadData()
-                self.alertLoading.dismiss(animated: true, completion: nil)
             } else {
                 print("Failed to load Data")
                 self.dismiss(animated: true, completion: nil)
@@ -189,7 +184,6 @@ extension PopularsViewController : UITableViewDataSource, UITableViewDelegate {
   
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if indexPath.row == popularResponse.count - 2 && isLoadmore == true {
-            self.alertLoading.createAlertLoading(target: self, isShowLoading: true)
             self.getListPopularData(isLoadMore: true, page: self.currentPage + 1 )
             self.currentPage += 1
         } else {

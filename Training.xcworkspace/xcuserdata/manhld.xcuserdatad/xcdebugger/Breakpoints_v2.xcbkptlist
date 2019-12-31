@@ -1336,8 +1336,8 @@
             filePath = "Training/Controller/CateVC/EventsByCategories/EventsByCategoriesViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "131"
-            endingLineNumber = "131"
+            startingLineNumber = "129"
+            endingLineNumber = "129"
             landmarkName = "getDataEventsByCategories(isLoadMore:page:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1352,8 +1352,8 @@
             filePath = "Training/Controller/CateVC/EventsByCategories/EventsByCategoriesViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "124"
-            endingLineNumber = "124"
+            startingLineNumber = "122"
+            endingLineNumber = "122"
             landmarkName = "getDataEventsByCategories(isLoadMore:page:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1368,9 +1368,9 @@
             filePath = "Training/MyService/DataService.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "170"
-            endingLineNumber = "170"
-            landmarkName = "search(pageIndex:pageSize:keyword:header:isLoadMore:completionHandler:)"
+            startingLineNumber = "198"
+            endingLineNumber = "198"
+            landmarkName = "getListEventsByCategories(id:pageIndex:headers:isLoadMore:completionHandler:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1384,9 +1384,9 @@
             filePath = "Training/MyService/DataService.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "168"
-            endingLineNumber = "168"
-            landmarkName = "search(pageIndex:pageSize:keyword:header:isLoadMore:completionHandler:)"
+            startingLineNumber = "196"
+            endingLineNumber = "196"
+            landmarkName = "getListEventsByCategories(id:pageIndex:headers:isLoadMore:completionHandler:)"
             landmarkType = "7">
             <Locations>
                <Location
@@ -1432,9 +1432,9 @@
             filePath = "Training/MyService/DataService.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "170"
-            endingLineNumber = "170"
-            landmarkName = "search(pageIndex:pageSize:keyword:header:isLoadMore:completionHandler:)"
+            startingLineNumber = "198"
+            endingLineNumber = "198"
+            landmarkName = "getListEventsByCategories(id:pageIndex:headers:isLoadMore:completionHandler:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1448,9 +1448,9 @@
             filePath = "Training/MyService/DataService.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "249"
-            endingLineNumber = "249"
-            landmarkName = "getMyEventGoing(status:headers:completionHandler:)"
+            startingLineNumber = "277"
+            endingLineNumber = "277"
+            landmarkName = "getEventDetail(idEvent:headers:completionHandler:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1464,9 +1464,9 @@
             filePath = "Training/MyService/DataService.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "250"
-            endingLineNumber = "250"
-            landmarkName = "getMyEventGoing(status:headers:completionHandler:)"
+            startingLineNumber = "278"
+            endingLineNumber = "278"
+            landmarkName = "getEventDetail(idEvent:headers:completionHandler:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1480,8 +1480,8 @@
             filePath = "Training/Controller/EventDetailVC/EventDetailController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "133"
-            endingLineNumber = "133"
+            startingLineNumber = "131"
+            endingLineNumber = "131"
             landmarkName = "getListEvent()"
             landmarkType = "7">
          </BreakpointContent>

@@ -53,3 +53,37 @@ class EventsByCategoriesDatabase: Object {
         self.goingCount = event["going_count"].intValue
     }
 }
+
+
+
+class EventsByCategoriesListAPI: APIMeetUpService<EventsByCategoriesData> {
+    init(pageIndex: Int, pageSize : Int) {
+        let userToken = UserDefaults.standard.string(forKey: "userToken")
+        var headers = [String : String]()
+        if userToken != nil {
+            headers = [ "Authorization": "Bearer " + userToken! ]
+        } else {
+            headers = [ "Authorization": "No Auth" ]
+        }
+        super.init(request: APIMeetUpRequest(name: "API0005 ▶︎ Get events by categoris", path: "listEventsByCategory", method: .get, header: headers, parameters: ["pageIndex" : pageIndex, "pageSize" : pageSize]))
+    }
+}
+
+struct EventsByCategoriesData : MeetUpResponse {
+    var listEventsByCate = [EventsByCategoriesDatabase]()
+    var status : Int!
+    var errMessage : String!
+    init(json: JSON) {
+        status = json["status"].intValue
+        if status == 0 {
+            errMessage = json["error_message"].stringValue
+        } else {
+            let data = json["response"]["events"].array
+            for item in data! {
+                let events = EventsByCategoriesDatabase(event: item)
+                listEventsByCate.append(events)
+            }
+        }
+    }
+}
+

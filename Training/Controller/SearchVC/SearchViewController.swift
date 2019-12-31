@@ -84,16 +84,11 @@ class SearchViewController: UIViewController {
       
 
     private func handleSearch(isLoadMore : Bool, page : Int) {
-        
         let keyword = txtSearch.text!
-        let headers = [ "Authorization": "Bearer " + userToken!,
-                        "Content-Type": "application/json"  ]
-        
-        getDataService.getInstance.search(pageIndex: page, pageSize: 10, keyword: keyword, header: headers, isLoadMore: isLoadMore) { (result, errcode) in
-            if errcode == 1 {
+        getDataService.getInstance.search(pageIndex: page, pageSize: 10, keyword: keyword, isLoadMore: isLoadMore) { (result, errcode) in
+            if errcode == 0 {
                 self.noResults.text = "No results"
-                self.alertLoading.createAlertLoading(target: self, isShowLoading: true)
-            } else if errcode == 2 {
+            } else if errcode == 1 {
                 if isLoadMore == false {
                     self.searchResponse.removeAll()
                     self.searchResponse = result
@@ -107,9 +102,7 @@ class SearchViewController: UIViewController {
                 } else {
                     self.noResults.isHidden = true
                 }
-                self.dismiss(animated: true, completion: nil)
             } else {
-                self.dismiss(animated: true, completion: nil)
                 self.noResults.text = "Failed to load data !"
                 self.noResults.isHidden = false
             }
@@ -157,22 +150,20 @@ class SearchViewController: UIViewController {
 extension SearchViewController : UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        view.endEditing(true)
         if isHaveConnection == true {
             if userToken == nil {
                 alertLoading.createAlertWithHandle(target: self, title: "You need to login first", message: nil, titleBtn: "Login") {
                     self.handleLogin()
                 }
-                return true
+                return false
             } else {
-                alertLoading.createAlertLoading(target: self, isShowLoading: true)
                 handleSearch(isLoadMore: false, page: currentPage)
+                searchTable.reloadData()
                 return true
             }
         } else {
             view.endEditing(true)
-            dismiss(animated: true, completion: nil)
-            return true
+            return false
         }
     }
 }

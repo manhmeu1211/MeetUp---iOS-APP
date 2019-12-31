@@ -110,10 +110,8 @@ class EventsByCategoriesViewController: UIViewController {
 
     func getDataEventsByCategories(isLoadMore : Bool, page: Int) {
         let categoriesID = id!
-        let userToken = UserDefaults.standard.string(forKey: "userToken")
-        let headers = [ "Authorization": "Bearer " + userToken!,
-                    "Content-Type": "application/json"  ]
-        getDataService.getInstance.getListEventsByCategories(id: categoriesID, pageIndex: page, headers: headers, isLoadMore: isLoadMore) { (eventsCate, errcode) in
+   
+        getDataService.getInstance.getListEventsByCategories(id: categoriesID, pageIndex: page, isLoadMore: isLoadMore) { (eventsCate, errcode) in
             if errcode == 1 {
                 self.loading.handleLoading(isLoading: false)
                 self.updateObjectByPopulars()
