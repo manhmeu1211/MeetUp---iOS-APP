@@ -1,0 +1,101 @@
+//
+//  NewsResDataBase.swift
+//  Training
+//
+//  Created by ManhLD on 12/12/19.
+//  Copyright © 2019 ManhLD. All rights reserved.
+//
+//
+
+
+import Foundation
+import RealmSwift
+import SwiftyJSON
+
+class NewsDataResponse: Object {
+    @objc dynamic var id = 0
+    @objc dynamic var feed = ""
+    @objc dynamic var title = ""
+    @objc dynamic var thumbImg = Data()
+    @objc dynamic var author = ""
+    @objc dynamic var publishdate = ""
+    @objc dynamic var url = ""
+
+   
+    convenience init(news : JSON) {
+        self.init()
+        self.id = news["id"].intValue
+        self.feed = news["feed"].stringValue
+        self.title = news["title"].stringValue
+        var urlImg = URL(string: news["thumb_img"].stringValue)
+        let image = UIImage(named: "noImage.png")
+        if urlImg != nil {
+            do {
+                self.thumbImg = try Data(contentsOf: urlImg!)
+            } catch {
+                self.thumbImg = (image?.pngData())!
+            }
+        } else {
+            urlImg = URL(string: "https://agdetail.image-gmkt.com/105/092/472092105/img/cdn.shopify.com/s/files/1/0645/2551/files/qoo10_03ed8677a499a4fbc2e046a81ee99c7c.png")
+        }
+        do {
+            self.thumbImg = try Data(contentsOf: urlImg!)
+        } catch {
+            self.thumbImg = (image?.pngData())!
+        }
+        self.author = news["author"].stringValue
+        self.publishdate = news["publish_date"].stringValue
+        self.url = news["detail_url"].stringValue
+    }
+    
+    
+}
+
+class NewsListAPI: APIMeetUpService<NewsData> {
+    init(pageIndex: Int, pageSize : Int) {
+        super.init(request: APIMeetUpRequest(name: "API0001 ▶︎ Get news", path: "listNews", method: .get, parameters: ["pageIndex": pageIndex, "pageSize": pageSize]))
+    }
+}
+//
+//class saveNewsListData {
+//    init(isLoadMore : Bool, pageIndex : Int, pageSize : Int, completionHandler : @escaping ([NewsDataResponse], Int) -> ()) {
+//        if isLoadMore == false {
+//            RealmDataBaseQuery.getInstance.deleteListObject(object: NewsDataResponse.self)
+//            NewsListAPI.init(pageIndex: pageIndex, pageSize: pageSize).excute(completionHandler: { (response) in
+//                if response!.listNews.isEmpty {
+//                    completionHandler([], 0)
+//                }
+//                for item in response!.listNews {
+//                    RealmDataBaseQuery.getInstance.addData(object: item)
+//                }
+//                let newsLoaded = RealmDataBaseQuery.getInstance.getObjects(type: NewsDataResponse.self)?.toArray(ofType: NewsDataResponse.self)
+//                completionHandler(newsLoaded!, 1)
+//            }) { (err) in
+//                completionHandler([], 0)
+//            }
+//        } else {
+//            NewsListAPI.init(pageIndex: pageIndex, pageSize: pageSize).excute(completionHandler: { (response) in
+//                for item in response!.listNews {
+//                    RealmDataBaseQuery.getInstance.addData(object: item)
+//                }
+//                let newsLoaded = RealmDataBaseQuery.getInstance.getObjects(type: NewsDataResponse.self)?.toArray(ofType: NewsDataResponse.self)
+//                completionHandler(newsLoaded!, 1)
+//            }) { (err) in
+//                completionHandler([], 0)
+//            }
+//        }
+//    }
+//}
+
+
+struct NewsData : MeetUpResponse {
+    var listNews = [NewsDataResponse]()
+    init(json: JSON) {
+        let data = json["response"]["news"].array
+        for item in data! {
+            let news = NewsDataResponse(news: item)
+            listNews.append(news)
+        }
+    }
+    
+}
