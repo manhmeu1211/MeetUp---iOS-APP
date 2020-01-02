@@ -30,7 +30,7 @@ class CategoriesResDatabase: Object {
 
 class CategoriesListAPI: APIMeetUpService<CategoriesData> {
     init() {
-        super.init(request: APIMeetUpRequest(name: "API0003 ▶︎ Get categories", path: "listCategories", method: .get))
+        super.init(request: APIMeetUpRequest(name: "API0003  Get categories ", path: "listCategories", method: .get))
     }
 }
 

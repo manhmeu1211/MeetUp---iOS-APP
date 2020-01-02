@@ -53,7 +53,7 @@ class NewsDataResponse: Object {
 
 class NewsListAPI: APIMeetUpService<NewsData> {
     init(pageIndex: Int, pageSize : Int) {
-        super.init(request: APIMeetUpRequest(name: "API0001 ▶︎ Get news", path: "listNews", method: .get, parameters: ["pageIndex": pageIndex, "pageSize": pageSize]))
+        super.init(request: APIMeetUpRequest(name: "API0001  Get news ", path: "listNews", method: .get, parameters: ["pageIndex": pageIndex, "pageSize": pageSize]))
     }
 }
 

@@ -49,7 +49,7 @@ class ArtWorkListAPI: APIMeetUpService<ArtWorksData> {
         } else {
             headers = [ "Authorization": "No Auth" ]
         }
-        super.init(request: APIMeetUpRequest(name: "API0004 ▶︎ Get eventsNear", path: "listNearlyEvents", method: .get, header: headers, parameters: ["radius" : radius, "longitue" : longitue, "latitude" : latitude ]))
+        super.init(request: APIMeetUpRequest(name: "API0004  Get Events Near ", path: "listNearlyEvents", method: .get, header: headers, parameters: ["radius" : radius, "longitue" : longitue, "latitude" : latitude ]))
     }
 }
 

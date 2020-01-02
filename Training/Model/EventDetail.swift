@@ -112,7 +112,7 @@ class EventsDetailAPI: APIMeetUpService<EventDetailData> {
         } else {
             headers = [ "Authorization": "No Auth" ]
         }
-        super.init(request: APIMeetUpRequest(name: "API0009 ▶︎ Get events going", path: "getDetailEvent", method: .get, header: headers, parameters: ["event_id" : eventID]))
+        super.init(request: APIMeetUpRequest(name: "API0009  Get events going ", path: "getDetailEvent", method: .get, header: headers, parameters: ["event_id" : eventID]))
     }
 }
 

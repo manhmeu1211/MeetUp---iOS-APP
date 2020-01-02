@@ -111,7 +111,7 @@ class EventsByCategoriesViewController: UIViewController {
     func getDataEventsByCategories(isLoadMore : Bool, page: Int) {
         let categoriesID = id!
    
-        getDataService.getInstance.getListEventsByCategories(id: categoriesID, pageIndex: page, isLoadMore: isLoadMore) { (eventsCate, errcode) in
+        getDataService.getInstance.getListEventsByCategories(cateID: categoriesID, pageIndex: page, isLoadMore: isLoadMore) { (eventsCate, errcode) in
             if errcode == 1 {
                 self.loading.handleLoading(isLoading: false)
                 self.updateObjectByPopulars()

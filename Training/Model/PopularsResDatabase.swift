@@ -67,7 +67,7 @@ class EventsListAPI: APIMeetUpService<PopularsData> {
         } else {
             headers = [ "Authorization": "No Auth" ]
         }
-        super.init(request: APIMeetUpRequest(name: "API0002 ▶︎ Get events", path: "listPopularEvents", method: .get, header: headers, parameters: ["pageIndex" : pageIndex, "pageSize" : pageSize]))
+        super.init(request: APIMeetUpRequest(name: "API0002  Get events ", path: "listPopularEvents", method: .get, header: headers, parameters: ["pageIndex" : pageIndex, "pageSize" : pageSize]))
     }
 }
 

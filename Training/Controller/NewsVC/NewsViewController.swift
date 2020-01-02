@@ -25,15 +25,16 @@ class NewsViewController: UIViewController {
     private let dateformatted = DateFormatter()
     private let userToken = UserDefaults.standard.string(forKey: "userToken")
     private var isLoadmore : Bool!
+    private var alert = UIAlertController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpTable()
         checkFirstLaunchDaily()
-        checkTokenExpired()
         checkConnection()
+        checkTokenExpired()
     }
-
+    
     
     // MARK: - Function check before get data
     
@@ -71,10 +72,9 @@ class NewsViewController: UIViewController {
     
     private func checkTokenExpired() {
         if userToken != nil {
-            let headers = [ "Authorization": "Bearer \(userToken!)",
-                        "Content-Type": "application/json"  ]
             getDataService.getInstance.getMyEventGoing(status: 1) { (json, errCode) in
-                if errCode == 0 {
+                if errCode == 1 {
+                    self.alert.createAlert(target: self, title: "Your login has been expired", message: nil, titleBtn: "OK")
                     UserDefaults.standard.removeObject(forKey: "userToken")
                 } else {
                     print("Token is avaible")

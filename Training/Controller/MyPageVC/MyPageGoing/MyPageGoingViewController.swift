@@ -64,7 +64,7 @@ class MyPageGoingViewController: UIViewController {
         getDataService.getInstance.getMyEventGoing(status: self.status) { (events, errCode) in
                 if errCode == 0 {
                     ToastView.shared.short(self.view, txt_msg: "Cannot load data from server!")
-                } else if errCode == 1 {
+                } else if errCode == 2 {
                     self.goingEvents.removeAll()
                     let dateFormatter = Date()
                     for i in events {

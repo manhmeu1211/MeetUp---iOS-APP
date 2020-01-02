@@ -12,47 +12,37 @@ import UIKit
 class MyPageViewController: UIViewController {
 
     @IBOutlet weak var uiBtnLogOut: UIButton!
-    
-    
-    
     @IBOutlet weak var btnView: UIView!
-    
-    
     @IBOutlet weak var incaditorLeading: NSLayoutConstraint!
-    
-    
     @IBOutlet weak var going: UIButton!
-    
-    
     @IBOutlet weak var scrollView: UIScrollView!
-    
     @IBOutlet weak var leftView: UIView!
-    
-    
     @IBOutlet weak var rightView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpView()
     }
-      func setUpView() {
-          tabBarController?.tabBar.isHidden = true
-          scrollView.showsHorizontalScrollIndicator = false
-          scrollView.showsVerticalScrollIndicator = false
-          let vc1 = MyPageGoingViewController()
-          addChild(vc1)
-          self.leftView.addSubview(vc1.view)
-          vc1.view.frame = leftView.bounds
-          vc1.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-          vc1.didMove(toParent: self)
-          let vc2 = MyPageWentViewController()
-          addChild(vc2)
-          self.rightView.addSubview(vc2.view)
-          vc2.view.frame = rightView.bounds
-          vc2.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-          vc2.didMove(toParent: self)
-          scrollView.delegate = self
-      }
+    
+    
+    func setUpView() {
+      tabBarController?.tabBar.isHidden = true
+      scrollView.showsHorizontalScrollIndicator = false
+      scrollView.showsVerticalScrollIndicator = false
+      let vc1 = MyPageGoingViewController()
+      addChild(vc1)
+      self.leftView.addSubview(vc1.view)
+      vc1.view.frame = leftView.bounds
+      vc1.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+      vc1.didMove(toParent: self)
+      let vc2 = MyPageWentViewController()
+      addChild(vc2)
+      self.rightView.addSubview(vc2.view)
+      vc2.view.frame = rightView.bounds
+      vc2.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+      vc2.didMove(toParent: self)
+      scrollView.delegate = self
+    }
     
     func logOut() {
         deleteToken()
@@ -77,8 +67,8 @@ class MyPageViewController: UIViewController {
     
     @IBAction func backHome(_ sender: Any) {
         let vc = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(withIdentifier: "Home")
-                 UIApplication.shared.windows.first?.rootViewController = vc
-                 UIApplication.shared.windows.first?.makeKeyAndVisible()
+        UIApplication.shared.windows.first?.rootViewController = vc
+        UIApplication.shared.windows.first?.makeKeyAndVisible()
     }
 }
 

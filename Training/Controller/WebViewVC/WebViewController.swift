@@ -25,8 +25,6 @@ class WebViewController: UIViewController {
         let request = URLRequest(url: url!)
         webViewV2.load(request)
     }
-   
-
 }
 
 

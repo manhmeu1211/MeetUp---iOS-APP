@@ -64,7 +64,7 @@ class MyPageWentListAPI: APIMeetUpService<MyPageWentData> {
         } else {
             headers = [ "Authorization": "No Auth" ]
         }
-        super.init(request: APIMeetUpRequest(name: "API008 ▶︎ Get events wents", path: "listMyEvents", method: .get, header: headers, parameters: ["status" : "\(status)"]))
+        super.init(request: APIMeetUpRequest(name: "API008  Get events wents ", path: "listMyEvents", method: .get, header: headers, parameters: ["status" : "\(status)"]))
     }
 }
 

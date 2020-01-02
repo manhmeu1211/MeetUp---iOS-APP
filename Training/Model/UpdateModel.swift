@@ -18,7 +18,7 @@ struct UpDateModel {
 
 class UpdateEventStatusAPI: APIMeetUpService<UpDateEventsStatus> {
     init(status: Int, eventID : Int) {
-        super.init(request: APIMeetUpRequest(name: "API00010 ▶︎ Update status event", path: "doUpdateEvent", method: .post, parameters: ["status": 2, "event_id": eventID]))
+        super.init(request: APIMeetUpRequest(name: "API00010  Update status event ", path: "doUpdateEvent", method: .post, parameters: ["status": 2, "event_id": eventID]))
     }
 }
 

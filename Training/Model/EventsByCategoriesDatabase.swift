@@ -57,7 +57,7 @@ class EventsByCategoriesDatabase: Object {
 
 
 class EventsByCategoriesListAPI: APIMeetUpService<EventsByCategoriesData> {
-    init(pageIndex: Int, pageSize : Int) {
+    init(pageIndex: Int, pageSize : Int, categoriesID: Int) {
         let userToken = UserDefaults.standard.string(forKey: "userToken")
         var headers = [String : String]()
         if userToken != nil {
@@ -65,7 +65,7 @@ class EventsByCategoriesListAPI: APIMeetUpService<EventsByCategoriesData> {
         } else {
             headers = [ "Authorization": "No Auth" ]
         }
-        super.init(request: APIMeetUpRequest(name: "API0005 ▶︎ Get events by categoris", path: "listEventsByCategory", method: .get, header: headers, parameters: ["pageIndex" : pageIndex, "pageSize" : pageSize]))
+        super.init(request: APIMeetUpRequest(name: "API0005  Get events by categoris ", path: "listEventsByCategory", method: .get, header: headers, parameters: ["pageIndex" : pageIndex, "pageSize" : pageSize, "category_id" : categoriesID]))
     }
 }
 

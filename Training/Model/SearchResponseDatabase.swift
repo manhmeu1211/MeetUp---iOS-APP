@@ -65,7 +65,7 @@ class SearchListAPI: APIMeetUpService<SearchsData> {
         } else {
             headers = [ "Authorization": "No Auth" ]
         }
-        super.init(request: APIMeetUpRequest(name: "API0006 ▶︎ Search", path: "listPopularEvents", method: .get, header: headers, parameters: ["pageIndex" : pageIndex, "pageSize" : pageSize, "keyword" : keyword]))
+        super.init(request: APIMeetUpRequest(name: "API0006  Search ", path: "listPopularEvents", method: .get, header: headers, parameters: ["pageIndex" : pageIndex, "pageSize" : pageSize, "keyword" : keyword]))
     }
 }
 

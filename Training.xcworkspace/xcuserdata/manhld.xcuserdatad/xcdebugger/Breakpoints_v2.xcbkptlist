@@ -1320,8 +1320,8 @@
             filePath = "Training/Controller/NewsVC/NewsViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "124"
-            endingLineNumber = "124"
+            startingLineNumber = "127"
+            endingLineNumber = "127"
             landmarkName = "updateObject()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1496,8 +1496,8 @@
             filePath = "Training/Controller/NewsVC/NewsViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "76"
-            endingLineNumber = "76"
+            startingLineNumber = "78"
+            endingLineNumber = "78"
             landmarkName = "checkTokenExpired()"
             landmarkType = "7">
             <Locations>

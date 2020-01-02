@@ -65,7 +65,7 @@ class MyPageGoingsListAPI: APIMeetUpService<MyPageGoingsData> {
         } else {
             headers = [ "Authorization": "No Auth" ]
         }
-        super.init(request: APIMeetUpRequest(name: "API0007 ▶︎ Get events going", path: "listMyEvents", method: .get, header: headers, parameters: ["status" : "\(status)"]))
+        super.init(request: APIMeetUpRequest(name: "API0007  Get events going ", path: "listMyEvents", method: .get, header: headers, parameters: ["status" : "\(status)"]))
     }
 }
 
