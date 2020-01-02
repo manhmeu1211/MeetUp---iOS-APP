@@ -1,0 +1,45 @@
+
+/* Class = "UIButton"; normalTitle = "Log In"; ObjectID = "DWe-8C-FMs"; */
+"DWe-8C-FMs.normalTitle" = "Log In";
+
+/* Class = "UITabBarItem"; title = "Account"; ObjectID = "E2g-Z4-SH4"; */
+"E2g-Z4-SH4.title" = "Account";
+
+/* Class = "UILabel"; text = "Categories"; ObjectID = "EId-9g-3z9"; */
+"EId-9g-3z9.text" = "Categories";
+
+/* Class = "UIButton"; normalTitle = "Sign Up Now!"; ObjectID = "ETa-oU-mzg"; */
+"ETa-oU-mzg.normalTitle" = "Sign Up Now!";
+
+/* Class = "UILabel"; text = "You don't have an account?"; ObjectID = "GAp-KK-cwe"; */
+"GAp-KK-cwe.text" = "You don't have an account?";
+
+/* Class = "UITabBarItem"; title = "Browser"; ObjectID = "IBj-CP-lUQ"; */
+"IBj-CP-lUQ.title" = "Browser";
+
+/* Class = "UIButton"; normalTitle = "Tin tức"; ObjectID = "IQy-vk-Fjx"; */
+"IQy-vk-Fjx.normalTitle" = "Tin tức";
+
+/* Class = "UITabBarItem"; title = "Home"; ObjectID = "N6t-iC-Zid"; */
+"N6t-iC-Zid.title" = "Home";
+
+/* Class = "UILabel"; text = "Please log in to save and managed your events"; ObjectID = "QMl-DV-SbP"; */
+"QMl-DV-SbP.text" = "Please log in to save and managed your events";
+
+/* Class = "UILabel"; text = "Events Near"; ObjectID = "TQZ-GV-pqR"; */
+"TQZ-GV-pqR.text" = "Events Near";
+
+/* Class = "UILabel"; text = "News - Events"; ObjectID = "WsJ-lP-M3G"; */
+"WsJ-lP-M3G.text" = "News - Events";
+
+/* Class = "UITabBarItem"; title = "Near"; ObjectID = "bgk-AK-6cJ"; */
+"bgk-AK-6cJ.title" = "Near";
+
+/* Class = "UILabel"; text = "My Page"; ObjectID = "hUC-Ur-dDA"; */
+"hUC-Ur-dDA.text" = "My Page";
+
+/* Class = "UILabel"; text = "You have to login first"; ObjectID = "l8o-Tb-Grk"; */
+"l8o-Tb-Grk.text" = "You have to login first";
+
+/* Class = "UIButton"; normalTitle = "Sự kiện"; ObjectID = "yDg-k2-lkS"; */
+"yDg-k2-lkS.normalTitle" = "Sự kiện";

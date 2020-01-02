@@ -53,6 +53,7 @@
 		0D6C31CC23B058A7007605D2 /* EventDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D6C31CB23B058A7007605D2 /* EventDetail.swift */; };
 		0D8CCED823B3106F00EDE7F4 /* ExtensionColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D8CCED723B3106F00EDE7F4 /* ExtensionColor.swift */; };
 		0D8CCEDA23B310A100EDE7F4 /* ExtensionAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D8CCED923B310A100EDE7F4 /* ExtensionAlert.swift */; };
+		0D9DACB023BDDF74002253EA /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0D9DACB223BDDF74002253EA /* Home.storyboard */; };
 		0D9E385823B5AFB600363C8B /* ImageDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D9E385623B5AFB600363C8B /* ImageDetailCell.swift */; };
 		0D9E385923B5AFB600363C8B /* ImgDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D9E385723B5AFB600363C8B /* ImgDetailCell.xib */; };
 		0DA91BEC23BB03AE00515C7D /* UpdateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DA91BEB23BB03AE00515C7D /* UpdateModel.swift */; };
@@ -61,7 +62,6 @@
 		0DC433C3239F3BF1000C9505 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DC433C2239F3BF1000C9505 /* ViewController.swift */; };
 		0DC433C8239F3BF4000C9505 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0DC433C7239F3BF4000C9505 /* Assets.xcassets */; };
 		0DC433CB239F3BF4000C9505 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0DC433C9239F3BF4000C9505 /* LaunchScreen.storyboard */; };
-		0DC433D3239F3C1F000C9505 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0DC433D2239F3C1F000C9505 /* Home.storyboard */; };
 		0DC433DB239F3D67000C9505 /* ShowToastMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DC433DA239F3D67000C9505 /* ShowToastMessage.swift */; };
 		0DC433E2239F3FCC000C9505 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0DC433E1239F3FCB000C9505 /* Main.storyboard */; };
 		0DC433E8239F43F7000C9505 /* HomeNewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DC433E7239F43F7000C9505 /* HomeNewsViewController.swift */; };
@@ -139,7 +139,10 @@
 		0D6C31CB23B058A7007605D2 /* EventDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetail.swift; sourceTree = "<group>"; };
 		0D8CCED723B3106F00EDE7F4 /* ExtensionColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionColor.swift; sourceTree = "<group>"; };
 		0D8CCED923B310A100EDE7F4 /* ExtensionAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionAlert.swift; sourceTree = "<group>"; };
-		0D9DACAD23BDA358002253EA /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = vi; path = vi.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		0D9DACAE23BDDEEC002253EA /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = vi; path = vi.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		0D9DACB123BDDF74002253EA /* vi */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = vi; path = vi.lproj/Home.storyboard; sourceTree = "<group>"; };
+		0D9DACB323BDDFF0002253EA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Home.storyboard; sourceTree = "<group>"; };
+		0D9DACB523BDDFF3002253EA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Home.strings; sourceTree = "<group>"; };
 		0D9E385623B5AFB600363C8B /* ImageDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDetailCell.swift; sourceTree = "<group>"; };
 		0D9E385723B5AFB600363C8B /* ImgDetailCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImgDetailCell.xib; sourceTree = "<group>"; };
 		0DA91BEB23BB03AE00515C7D /* UpdateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateModel.swift; sourceTree = "<group>"; };
@@ -151,7 +154,6 @@
 		0DC433C7239F3BF4000C9505 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0DC433CA239F3BF4000C9505 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0DC433CC239F3BF4000C9505 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0DC433D2239F3C1F000C9505 /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		0DC433DA239F3D67000C9505 /* ShowToastMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowToastMessage.swift; sourceTree = "<group>"; };
 		0DC433E1239F3FCB000C9505 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		0DC433E7239F43F7000C9505 /* HomeNewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNewsViewController.swift; sourceTree = "<group>"; };
@@ -469,7 +471,7 @@
 			isa = PBXGroup;
 			children = (
 				0DC433ED239F4C25000C9505 /* Cell */,
-				0DC433D2239F3C1F000C9505 /* Home.storyboard */,
+				0D9DACB223BDDF74002253EA /* Home.storyboard */,
 				0DC433E7239F43F7000C9505 /* HomeNewsViewController.swift */,
 			);
 			path = Views;
@@ -615,7 +617,7 @@
 				0D45DC0123ACCCBB006C6CB7 /* DetailVenueCell.xib in Resources */,
 				0D44379423AC6AB0003A8D96 /* MyPageGoingViewController.xib in Resources */,
 				0DD8F5F423A23C4100C50F22 /* SearchView.xib in Resources */,
-				0DC433D3239F3C1F000C9505 /* Home.storyboard in Resources */,
+				0D9DACB023BDDF74002253EA /* Home.storyboard in Resources */,
 				0D44379E23AC7402003A8D96 /* TextAreaCell.xib in Resources */,
 				0D462B1523A734B4000332F4 /* MyPageView.xib in Resources */,
 				0DECAD9423AB2D10008BC805 /* EventsByCategoriesView.xib in Resources */,
@@ -746,12 +748,22 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		0D9DACB223BDDF74002253EA /* Home.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0D9DACB123BDDF74002253EA /* vi */,
+				0D9DACB323BDDFF0002253EA /* Base */,
+				0D9DACB523BDDFF3002253EA /* en */,
+			);
+			name = Home.storyboard;
+			sourceTree = "<group>";
+		};
 		0DC433C9239F3BF4000C9505 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				0DC433CA239F3BF4000C9505 /* Base */,
 				0DA91BEF23BB273700515C7D /* en */,
-				0D9DACAD23BDA358002253EA /* vi */,
+				0D9DACAE23BDDEEC002253EA /* vi */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";

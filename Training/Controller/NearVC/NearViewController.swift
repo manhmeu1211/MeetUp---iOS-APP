@@ -35,6 +35,7 @@ class NearViewController: UIViewController, CLLocationManagerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        map.delegate = self
         loading.handleLoading(isLoading: true)
         setUpCollectionView()
         getLocation()
@@ -67,14 +68,17 @@ class NearViewController: UIViewController, CLLocationManagerDelegate {
                  discipline: "My Location",
                  coordinate: CLLocationCoordinate2D(latitude: initLat!, longitude: initLong!))
           map.addAnnotation(artwork)
+        
     }
     
     // MARK: - Setup views
     
     private func setUpCollectionView() {
-          collectionVIew.dataSource = self
-          collectionVIew.delegate = self
-          collectionVIew.register(UINib(nibName: "EventsCell", bundle: nil), forCellWithReuseIdentifier: "EventsCell")
+        collectionVIew.dataSource = self
+        collectionVIew.delegate = self
+        collectionVIew.showsHorizontalScrollIndicator = false
+        collectionVIew.isPagingEnabled = true
+        collectionVIew.register(UINib(nibName: "EventsCell", bundle: nil), forCellWithReuseIdentifier: "EventsCell")
     }
     
 
@@ -153,7 +157,7 @@ class NearViewController: UIViewController, CLLocationManagerDelegate {
 
 // MARK: - Extension collection view
 
-extension NearViewController : UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+extension NearViewController : UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UIScrollViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return events.count
@@ -174,7 +178,7 @@ extension NearViewController : UICollectionViewDataSource, UICollectionViewDeleg
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: self.collectionVIew.frame.width, height: self.collectionVIew.frame.height)
+        return CGSize(width: self.collectionVIew.frame.width - 10, height: self.collectionVIew.frame.height)
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -182,13 +186,21 @@ extension NearViewController : UICollectionViewDataSource, UICollectionViewDeleg
         if userToken == nil {
             loading.handleLoading(isLoading: false)
         } else {
-            if eventLat == [] || eventLong == [] {
+            if eventLat.isEmpty || eventLong.isEmpty {
                 print("No event near")
             } else {
                 centerMapOnLocation(location: CLLocation(latitude: eventLat[indexPath.row], longitude: eventLong[indexPath.row]))
             }
         }
     }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        for cell in collectionVIew.visibleCells {
+            let indexPath = collectionVIew.indexPath(for: cell)
+            centerMapOnLocation(location: CLLocation(latitude: eventLat[indexPath!.row], longitude: eventLong[indexPath!.row]))
+        }
+    }
 }
+
 
 
