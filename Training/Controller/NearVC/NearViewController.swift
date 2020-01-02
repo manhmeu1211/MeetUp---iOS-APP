@@ -31,6 +31,7 @@ class NearViewController: UIViewController, CLLocationManagerDelegate {
     var initLong, initLat : Double?
     var eventLong : [Double] = []
     var eventLat : [Double] = []
+    var indexRow : Int!
     
     
     override func viewDidLoad() {
@@ -138,12 +139,7 @@ class NearViewController: UIViewController, CLLocationManagerDelegate {
         let coordinateRegion = MKCoordinateRegion(center: location.coordinate, latitudinalMeters: regionRadius, longitudinalMeters: regionRadius)
         map.setRegion(coordinateRegion, animated: true)
     }
-    
-    private func mapView(mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
-            let centralLocation = CLLocation(latitude: mapView.centerCoordinate.latitude, longitude:  mapView.centerCoordinate.longitude)
-            self.centralLocationCoordinate = mapView.centerCoordinate
-           print("Radius - \(self.getRadius(centralLocation: centralLocation))")
-    }
+
 
 
     private func getRadius(centralLocation: CLLocation) -> Double {
@@ -203,4 +199,16 @@ extension NearViewController : UICollectionViewDataSource, UICollectionViewDeleg
 }
 
 
-
+extension NearViewController : MKMapViewDelegate {
+    private func mapView(mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+        let centralLocation = CLLocation(latitude: mapView.centerCoordinate.latitude, longitude:  mapView.centerCoordinate.longitude)
+            self.centralLocationCoordinate = mapView.centerCoordinate
+           print("Radius - \(self.getRadius(centralLocation: centralLocation))")
+    }
+    
+    internal func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        let latValue = view.annotation?.coordinate.latitude
+        let longValue = view.annotation?.coordinate.longitude
+        centerMapOnLocation(location: CLLocation(latitude: latValue!, longitude: longValue!))
+    }
+}
