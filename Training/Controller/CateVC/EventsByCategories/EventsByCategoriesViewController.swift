@@ -189,18 +189,20 @@ extension EventsByCategoriesViewController : UITableViewDataSource, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-           if indexPath.row == eventsByCate.count - 2 {
-                self.getDataEventsByCategories(isLoadMore: true, page: self.currentPage + 1 )
-                self.currentPage += 1
-           }
+        let lastItem = eventsByCate.count - 1
+       if indexPath.row == lastItem {
+            currentPage += 1
+            loading.handleLoading(isLoading: true)
+            getDataEventsByCategories(isLoadMore: true, page: currentPage)
        }
+    }
        
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-           let name = eventsByCate[indexPath.row].name
-           print(name)
+       let name = eventsByCate[indexPath.row].name
+       print(name)
     }
        
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-               return UITableView.automaticDimension
+       return UITableView.automaticDimension
     }
 }

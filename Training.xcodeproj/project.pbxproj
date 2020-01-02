@@ -139,6 +139,7 @@
 		0D6C31CB23B058A7007605D2 /* EventDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetail.swift; sourceTree = "<group>"; };
 		0D8CCED723B3106F00EDE7F4 /* ExtensionColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionColor.swift; sourceTree = "<group>"; };
 		0D8CCED923B310A100EDE7F4 /* ExtensionAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionAlert.swift; sourceTree = "<group>"; };
+		0D9DACAD23BDA358002253EA /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = vi; path = vi.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		0D9E385623B5AFB600363C8B /* ImageDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDetailCell.swift; sourceTree = "<group>"; };
 		0D9E385723B5AFB600363C8B /* ImgDetailCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImgDetailCell.xib; sourceTree = "<group>"; };
 		0DA91BEB23BB03AE00515C7D /* UpdateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateModel.swift; sourceTree = "<group>"; };
@@ -178,7 +179,6 @@
 		0DECAD9123AB2D10008BC805 /* EventsByCategoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsByCategoriesViewController.swift; sourceTree = "<group>"; };
 		0DECAD9223AB2D10008BC805 /* EventsByCategoriesView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventsByCategoriesView.xib; sourceTree = "<group>"; };
 		0DECAD9523AB3221008BC805 /* EventsByCategoriesDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsByCategoriesDatabase.swift; sourceTree = "<group>"; };
-		0DFD357F23B60DEC007E0FBD /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = vi; path = vi.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		9FB1039C4756A8D4306BB05F /* Pods-Training.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Training.debug.xcconfig"; path = "Target Support Files/Pods-Training/Pods-Training.debug.xcconfig"; sourceTree = "<group>"; };
 		D23177220D1F7DC22C20C13C /* Pods_Training.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Training.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC13DD28AD10A91D83598B2A /* Pods-Training.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Training.release.xcconfig"; path = "Target Support Files/Pods-Training/Pods-Training.release.xcconfig"; sourceTree = "<group>"; };
@@ -199,12 +199,12 @@
 		0D478DF523AA12060061644E /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				0D020EF623B9D323007826FD /* APIRequest.swift */,
+				0D020EF823B9D649007826FD /* APIResponse.swift */,
 				0DE62E5323A3500700D927FA /* ExtensionView.swift */,
 				0D8CCED723B3106F00EDE7F4 /* ExtensionColor.swift */,
 				0DE3B8B523A0CCAF00843C80 /* ExtensionDate.swift */,
 				0D8CCED923B310A100EDE7F4 /* ExtensionAlert.swift */,
-				0D020EF623B9D323007826FD /* APIRequest.swift */,
-				0D020EF823B9D649007826FD /* APIResponse.swift */,
 				0DE3B8C923A0FB2800843C80 /* RealmDataBaseQuery.swift */,
 			);
 			path = Base;
@@ -750,8 +750,8 @@
 			isa = PBXVariantGroup;
 			children = (
 				0DC433CA239F3BF4000C9505 /* Base */,
-				0DFD357F23B60DEC007E0FBD /* vi */,
 				0DA91BEF23BB273700515C7D /* en */,
+				0D9DACAD23BDA358002253EA /* vi */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";

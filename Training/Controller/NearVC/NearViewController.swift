@@ -109,24 +109,25 @@ class NearViewController: UIViewController, CLLocationManagerDelegate {
     }
       
     private func getListEvent() {
-        getDataService.getInstance.getListNearEvent(radius: 10, longitue: self.initLong!, latitude: self.initLat!) { (eventsNear, anotionLC ,errcode) in
+        getDataService.getInstance.getListNearEvent(radius: 10, longitue: self.initLong!, latitude: self.initLat!) { [weak self] (eventsNear, anotionLC ,errcode) in
             if errcode == 1 {
-                self.events.removeAll()
+                self!.events.removeAll()
                 _ = anotionLC?.array?.forEach({ (anotion) in
                     let anotionArt = Artwork(anotion: anotion, coordinate: CLLocationCoordinate2D(latitude: anotion["venue"]["geo_lat"].doubleValue, longitude: anotion["venue"]["geo_long"].doubleValue))
-                    self.map.addAnnotation(anotionArt)
-                self.eventLong.append(anotion["venue"]["geo_long"].doubleValue)
-                    self.eventLat.append(anotion["venue"]["geo_lat"].doubleValue)
+                    self!.map.addAnnotation(anotionArt)
+                self!.eventLong.append(anotion["venue"]["geo_long"].doubleValue)
+                    self!.eventLat.append(anotion["venue"]["geo_lat"].doubleValue)
                 })
-                self.events = eventsNear
-                self.updateObject()
-                self.collectionVIew.reloadData()
+                self!.events = eventsNear
+                self!.updateObject()
+                self!.collectionVIew.reloadData()
+                self!.loading.handleLoading(isLoading: false)
             } else {
-                self.updateObject()
-                self.collectionVIew.reloadData()
+                self!.updateObject()
+                self!.collectionVIew.reloadData()
+                self!.loading.handleLoading(isLoading: false)
             }
         }
-         self.loading.handleLoading(isLoading: false)
     }
     
     private func centerMapOnLocation(location: CLLocation) {

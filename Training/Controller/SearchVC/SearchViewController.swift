@@ -17,6 +17,7 @@ class SearchViewController: UIViewController {
     @IBOutlet weak var incaditorView: UIView!
     @IBOutlet weak var incaditorLeading: NSLayoutConstraint!
     @IBOutlet weak var noResults: UILabel!
+    @IBOutlet weak var loading: UIActivityIndicatorView!
     
     private let refreshControl = UIRefreshControl()
     private let userToken = UserDefaults.standard.string(forKey: "userToken")
@@ -25,7 +26,7 @@ class SearchViewController: UIViewController {
     private let realm = try! Realm()
     private var alertLoading = UIAlertController()
     private var isHaveConnection : Bool!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpVỉew()
@@ -46,7 +47,7 @@ class SearchViewController: UIViewController {
             self.searchTable.addSubview(refreshControl)
         }
             self.refreshControl.addTarget(self, action: #selector(updateDataSeacrch), for: .valueChanged)
-        
+        loading.handleLoading(isLoading: false)
     }
     
     
@@ -88,6 +89,7 @@ class SearchViewController: UIViewController {
         getDataService.getInstance.search(pageIndex: page, pageSize: 10, keyword: keyword, isLoadMore: isLoadMore) { (result, errcode) in
             if errcode == 0 {
                 self.noResults.text = "No results"
+                self.loading.handleLoading(isLoading: false)
             } else if errcode == 1 {
                 if isLoadMore == false {
                     self.searchResponse.removeAll()
@@ -102,9 +104,11 @@ class SearchViewController: UIViewController {
                 } else {
                     self.noResults.isHidden = true
                 }
+                self.loading.handleLoading(isLoading: false)
             } else {
                 self.noResults.text = "Failed to load data !"
                 self.noResults.isHidden = false
+                self.loading.handleLoading(isLoading: false)
             }
         }
     }
@@ -157,8 +161,10 @@ extension SearchViewController : UITextFieldDelegate {
                 }
                 return false
             } else {
+                self.loading.handleLoading(isLoading: true)
                 handleSearch(isLoadMore: false, page: currentPage)
                 searchTable.reloadData()
+                view.endEditing(true)
                 return true
             }
         } else {
@@ -199,16 +205,12 @@ extension SearchViewController : UITableViewDelegate, UITableViewDataSource {
         }
       
       func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-          if indexPath.row == searchResponse.count - 2 {
-            self.handleSearch(isLoadMore: true, page: self.currentPage + 1)
-            self.currentPage += 1
-            self.noResults.isHidden = true
+        let lastItem = searchResponse.count - 1
+          if indexPath.row == lastItem {
+            noResults.isHidden = true
+            currentPage += 1
+            loading.handleLoading(isLoading: true)
+            handleSearch(isLoadMore: true, page: currentPage)
           }
       }
-      
-      func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-          let name = searchResponse[indexPath.row].name
-          print(name)
-      }
-    
 }

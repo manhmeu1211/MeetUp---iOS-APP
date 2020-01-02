@@ -14,12 +14,10 @@ class RealmDataBaseQuery {
    
     let realm = try! Realm()
     
-    class var getInstance: RealmDataBaseQuery {
-        struct Static {
-           static let instance: RealmDataBaseQuery = RealmDataBaseQuery()
-       }
-        return Static.instance
-    }
+    static let getInstance: RealmDataBaseQuery = {
+        let instance = RealmDataBaseQuery()
+        return instance
+    }()
     
     public func addData(object: Object) {
         try! self.realm.write {

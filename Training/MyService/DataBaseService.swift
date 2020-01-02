@@ -14,18 +14,15 @@ import RealmSwift
 
 class getDataService {
     
-   let baseURL = "http://meetup.rikkei.org/api/v0/"
-    
-    class var getInstance: getDataService {
-         struct Static {
-             static let instance: getDataService = getDataService()
-         }
-         return Static.instance
-     }
-    
     let realm = try! Realm()
-  
+    let baseURL = "http://meetup.rikkei.org/api/v0/"
     
+    static let getInstance: getDataService = {
+        let instance = getDataService()
+        return instance
+    }()
+    
+
     private func deleteObject(object : Object.Type) {
            let list = realm.objects(object).toArray(ofType: object)
            try! realm.write {
@@ -42,10 +39,10 @@ class getDataService {
     func getListNews(pageIndex : Int, pageSize : Int, shoudLoadmore: Bool, completionHandler: @escaping ([NewsDataResponse], Int) -> ()) {
         if shoudLoadmore == false {
             self.deleteObject(object: NewsDataResponse.self)
-            NewsListAPI(pageIndex: pageIndex, pageSize: pageSize).excute(completionHandler: { (response) in
+            NewsListAPI(pageIndex: pageIndex, pageSize: pageSize).excute(completionHandler: { [weak self] (response) in
                let data = response!.listNews
                 _ = data.forEach({ (news) in
-                    self.addListObject(object: news)
+                    self!.addListObject(object: news)
                 })
                 let dataLoaded = RealmDataBaseQuery.getInstance.getObjects(type: NewsDataResponse.self)?.toArray(ofType: NewsDataResponse.self)
                 completionHandler(dataLoaded!, 1)
@@ -72,10 +69,10 @@ class getDataService {
     func getListPopular(pageIndex: Int, pageSize: Int, headers: HTTPHeaders, isLoadmore : Bool, completionHandler : @escaping ([PopularsResDatabase], Int) -> ()) {
         if isLoadmore == false {
             self.deleteObject(object: PopularsResDatabase.self)
-            EventsListAPI(pageIndex: pageIndex, pageSize: pageSize).excute(completionHandler: { (response) in
+            EventsListAPI(pageIndex: pageIndex, pageSize: pageSize).excute(completionHandler: { [weak self] (response) in
                let data = response!.listNews
                 _ = data.forEach({ (events) in
-                    self.addListObject(object: events)
+                    self!.addListObject(object: events)
                 })
                 let dataLoaded = RealmDataBaseQuery.getInstance.getObjects(type: PopularsResDatabase.self)?.toArray(ofType: PopularsResDatabase.self)
                 completionHandler(dataLoaded!, 1)
@@ -84,10 +81,10 @@ class getDataService {
                 print(err!)
             }
         } else {
-            EventsListAPI(pageIndex: pageIndex, pageSize: pageSize).excute(completionHandler: { (response) in
+            EventsListAPI(pageIndex: pageIndex, pageSize: pageSize).excute(completionHandler: { [weak self] (response) in
                let data = response!.listNews
                 _ = data.forEach({ (events) in
-                    self.addListObject(object: events)
+                    self!.addListObject(object: events)
                 })
                 let dataLoaded = RealmDataBaseQuery.getInstance.getObjects(type: PopularsResDatabase.self)?.toArray(ofType: PopularsResDatabase.self)
                 completionHandler(dataLoaded!, 1)
@@ -101,11 +98,11 @@ class getDataService {
     
     
     func getListCategories(completionHandler : @escaping ([CategoriesResDatabase], Int) -> ()) {
-        CategoriesListAPI().excute(completionHandler: { (response) in
+        CategoriesListAPI().excute(completionHandler: { [weak self] (response) in
             let data = response!.listCategories
-            self.deleteObject(object: CategoriesResDatabase.self)
+            self!.deleteObject(object: CategoriesResDatabase.self)
             _ = data.forEach({ (cate) in
-                self.addListObject(object: cate)
+                self!.addListObject(object: cate)
             })
             let dataLoaded = RealmDataBaseQuery.getInstance.getObjects(type: CategoriesResDatabase.self)?.toArray(ofType: CategoriesResDatabase.self)
             completionHandler(dataLoaded!, 1)
@@ -117,15 +114,15 @@ class getDataService {
     
     
     func getListNearEvent(radius: Double, longitue : Double, latitude : Double, completionHandler : @escaping ([EventsNearResponse], JSON?, Int) ->()) {
-        ArtWorkListAPI(radius: radius, longitue: longitue, latitude: latitude).excute(completionHandler: { (response) in
-            self.deleteObject(object: EventsNearResponse.self)
+        ArtWorkListAPI(radius: radius, longitue: longitue, latitude: latitude).excute(completionHandler: { [weak self] (response) in
+            self!.deleteObject(object: EventsNearResponse.self)
             if response!.statusCode == 0 {
                 print(response!.anotion ?? "Lỗi hệ thống")
                 completionHandler([], nil, 0)
             } else {
                 let data = response!.listEventsNear
                 _ = data.forEach({ (eventsNear) in
-                    self.addListObject(object: eventsNear)
+                    self!.addListObject(object: eventsNear)
                 })
                 let anotion = response!.anotion
                 let dataLoaded = RealmDataBaseQuery.getInstance.getObjects(type: EventsNearResponse.self)?.toArray(ofType: EventsNearResponse.self)
@@ -138,7 +135,7 @@ class getDataService {
     
     
     func search(pageIndex: Int, pageSize : Int, keyword : String, isLoadMore : Bool, completionHandler: @escaping ([SearchResponseDatabase], Int) -> ()) {
-        SearchListAPI(pageIndex: pageIndex, pageSize: pageSize, keyword: keyword).excute(completionHandler: { (response) in
+        SearchListAPI(pageIndex: pageIndex, pageSize: pageSize, keyword: keyword).excute(completionHandler: { [weak self] (response) in
             let status = response!.status
             if status == 0 {
                 print(response?.errMessage ?? "Lỗi hệ thống")
@@ -146,13 +143,13 @@ class getDataService {
             } else {
                 let data = response!.listSearch
                 if isLoadMore == false {
-                    self.deleteObject(object: SearchResponseDatabase.self)
+                    self!.deleteObject(object: SearchResponseDatabase.self)
                     for item in data {
-                        self.addListObject(object: item)
+                        self!.addListObject(object: item)
                     }
                 } else {
                     for item in data {
-                        self.addListObject(object: item)
+                        self!.addListObject(object: item)
                     }
                 }
                 let searchResult = RealmDataBaseQuery.getInstance.getObjects(type: SearchResponseDatabase.self)?.toArray(ofType: SearchResponseDatabase.self)
@@ -166,20 +163,20 @@ class getDataService {
     
     
     func getListEventsByCategories(cateID: Int, pageIndex : Int, isLoadMore : Bool, completionHandler : @escaping ([EventsByCategoriesDatabase], Int) ->()) {
-        EventsByCategoriesListAPI(pageIndex: pageIndex, pageSize: 10, categoriesID: cateID).excute(completionHandler: { (response) in
+        EventsByCategoriesListAPI(pageIndex: pageIndex, pageSize: 10, categoriesID: cateID).excute(completionHandler: { [weak self] (response) in
             if response?.status == 0 {
                 print(response?.errMessage ?? "Lỗi hệ thống")
                 completionHandler([], 0)
             } else {
                 let data = response!.listEventsByCate
                 if isLoadMore == false {
-                    self.deleteObject(object: EventsByCategoriesDatabase.self)
+                    self!.deleteObject(object: EventsByCategoriesDatabase.self)
                     _ = data.forEach({ (event) in
-                        self.addListObject(object: event)
+                        self!.addListObject(object: event)
                     })
                 } else {
                     _ = data.forEach({ (event) in
-                        self.addListObject(object: event)
+                        self!.addListObject(object: event)
                     })
                 }
                 let eventByCate = RealmDataBaseQuery.getInstance.getObjects(type: EventsByCategoriesDatabase.self)?.toArray(ofType: EventsByCategoriesDatabase.self)
@@ -192,15 +189,15 @@ class getDataService {
     }
     
    func getMyEventGoing(status : Int, completionHandler : @escaping([MyPageGoingResDatabase], Int) -> ()) {
-        MyPageGoingsListAPI(status: status).excute(completionHandler: { (response) in
+        MyPageGoingsListAPI(status: status).excute(completionHandler: { [weak self] (response) in
             if response?.status == 0 {
                 print(response?.errMessage ?? "Lỗi hệ thống")
                 completionHandler([], 1)
             } else {
-                self.deleteObject(object: MyPageGoingResDatabase.self)
+                self!.deleteObject(object: MyPageGoingResDatabase.self)
                 let data = response!.listEventsGoings
                 _ = data.forEach({ (event) in
-                    self.addListObject(object: event)
+                    self!.addListObject(object: event)
                 })
                 let eventsGoing = RealmDataBaseQuery.getInstance.getObjects(type: MyPageGoingResDatabase.self)?.toArray(ofType: MyPageGoingResDatabase.self)
                 completionHandler(eventsGoing!, 2)
@@ -213,15 +210,15 @@ class getDataService {
     
 
    func getMyEventWent(status : Int, completionHandler : @escaping([MyPageWentResDatabase], Int) -> ()) {
-        MyPageWentListAPI(status: status).excute(completionHandler: { (response) in
+        MyPageWentListAPI(status: status).excute(completionHandler: { [weak self] (response) in
             if response?.status == 0 {
                 print(response?.errMessage ?? "Lỗi hệ thống")
                 completionHandler([], 0)
             } else {
                 let data = response!.listEventsWent
-                self.deleteObject(object: MyPageWentResDatabase.self)
+                self!.deleteObject(object: MyPageWentResDatabase.self)
                 _ = data.forEach({ (event) in
-                    self.addListObject(object: event)
+                    self!.addListObject(object: event)
                 })
                 let eventsWent = RealmDataBaseQuery.getInstance.getObjects(type: MyPageWentResDatabase.self)?.toArray(ofType: MyPageWentResDatabase.self)
                 completionHandler(eventsWent!, 1)
@@ -327,8 +324,8 @@ class getDataService {
         print("Request name : \(name)")
         print("Request url : \(url)")
         print("Request method : \(method)")
-        print("Request header : \(header)")
-        print("Request params :", parameters)
+        print("Request header : \(String(describing: header))")
+        print("Request params :", parameters!)
         print("Request keyValue : \(keyValue)")
     }
 }

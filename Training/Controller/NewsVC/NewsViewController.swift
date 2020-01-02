@@ -126,21 +126,19 @@ class NewsViewController: UIViewController {
     }
     
     private func getNewsData(shoudLoadmore: Bool, page: Int) {
-        getDataService.getInstance.getListNews(pageIndex: page, pageSize: 10, shoudLoadmore: shoudLoadmore) { (news, errCode) in
+        getDataService.getInstance.getListNews(pageIndex: page, pageSize: 10, shoudLoadmore: shoudLoadmore) { [weak self] (news, errCode) in
             if errCode == 1 {
                 if shoudLoadmore == false {
-                    self.newsResponse.removeAll()
-                    self.newsResponse = news
+                    self!.newsResponse.removeAll()
+                    self!.newsResponse = news
                 } else {
-                    self.newsResponse = news
+                    self!.newsResponse = news
                 }
-                self.newsTable.reloadData()
-                self.dismiss(animated: true, completion: nil)
+                self!.newsTable.reloadData()
             } else {
                 print("No data")
-                self.isLoadmore = false
-                self.updateObject()
-                self.dismiss(animated: true, completion: nil)
+                self!.isLoadmore = false
+                self!.updateObject()
             }
         }
     }
@@ -172,10 +170,11 @@ extension NewsViewController: UITableViewDataSource, UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if indexPath.row == newsResponse.count - 2 && isLoadmore == true {
+        let lastItem = newsResponse.count - 1
+        if indexPath.row == lastItem && isLoadmore == true {
             loading.handleLoading(isLoading: true)
             currentPage += 1
-            self.getNewsData(shoudLoadmore: true, page: currentPage)
+            getNewsData(shoudLoadmore: true, page: currentPage)
         } else {
             loading.handleLoading(isLoading: false)
         }

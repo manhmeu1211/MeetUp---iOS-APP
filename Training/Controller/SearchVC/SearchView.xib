@@ -11,6 +11,7 @@
             <connections>
                 <outlet property="incaditorLeading" destination="569-z1-H4u" id="ioF-jP-GzM"/>
                 <outlet property="incaditorView" destination="y6Q-mq-ZnP" id="b1s-z1-UgP"/>
+                <outlet property="loading" destination="mlK-d3-crp" id="uTa-wW-F5U"/>
                 <outlet property="noResults" destination="c25-XC-O2L" id="OJ5-ra-5nX"/>
                 <outlet property="searchTable" destination="cHz-Sr-6kK" id="hBL-Dp-jZF"/>
                 <outlet property="txtSearch" destination="z7a-xK-UnQ" id="S2V-wn-Nj3"/>
@@ -123,6 +124,14 @@
                         <action selector="clearText:" destination="-1" eventType="touchUpInside" id="g88-Jd-dkO"/>
                     </connections>
                 </button>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="mlK-d3-crp">
+                    <rect key="frame" x="187" y="433" width="40" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="40" id="fV3-Lm-yOg"/>
+                        <constraint firstAttribute="height" constant="40" id="khb-dz-9fs"/>
+                    </constraints>
+                    <color key="color" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                </activityIndicatorView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <gestureRecognizers/>
@@ -137,6 +146,7 @@
                 <constraint firstItem="z7a-xK-UnQ" firstAttribute="centerY" secondItem="5Kk-0T-aIA" secondAttribute="centerY" id="BnN-15-42L"/>
                 <constraint firstItem="24V-NA-Jww" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="0.18" id="EPw-nK-scc"/>
                 <constraint firstItem="z7a-xK-UnQ" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="17" id="Ja9-ie-Hxf"/>
+                <constraint firstItem="mlK-d3-crp" firstAttribute="centerY" secondItem="fnl-2z-Ty3" secondAttribute="centerY" id="MkS-Im-ale"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="24V-NA-Jww" secondAttribute="trailing" id="Scz-BV-jR4"/>
                 <constraint firstItem="cHz-Sr-6kK" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="VnH-mf-K1Z"/>
                 <constraint firstItem="jT9-MV-jZ0" firstAttribute="centerY" secondItem="z7a-xK-UnQ" secondAttribute="centerY" id="WaR-Ac-1WG"/>
@@ -148,6 +158,7 @@
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="WOj-lG-9ui" secondAttribute="trailing" id="e24-T6-Xy2"/>
                 <constraint firstItem="z7a-xK-UnQ" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="0.8" id="sD5-qb-Jde"/>
                 <constraint firstItem="jT9-MV-jZ0" firstAttribute="height" secondItem="z7a-xK-UnQ" secondAttribute="height" id="tkh-Ea-ydO"/>
+                <constraint firstItem="mlK-d3-crp" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="uOm-f3-fcx"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <connections>

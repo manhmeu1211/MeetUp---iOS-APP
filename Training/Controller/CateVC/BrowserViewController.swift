@@ -75,16 +75,16 @@ class BrowserViewController: UIViewController {
     
     
     private func getListCategories() {
-        getDataService.getInstance.getListCategories { (cateData, errcode) in
+        getDataService.getInstance.getListCategories { [weak self] (cateData, errcode) in
             if errcode == 1 {
-                self.cateList.removeAll()
-                self.cateList = cateData
-                self.categoriesTable.reloadData()
-                self.dismiss(animated: true, completion: nil)
+                self!.cateList.removeAll()
+                self!.cateList = cateData
+                self!.categoriesTable.reloadData()
+                self!.dismiss(animated: true, completion: nil)
             } else {
                 print("Failed")
-                self.dismiss(animated: true, completion: nil)
-                ToastView.shared.short(self.view, txt_msg: "Failed to load data from server")
+                self!.dismiss(animated: true, completion: nil)
+                ToastView.shared.short(self!.view, txt_msg: "Failed to load data from server")
             }
         }
         self.dismiss(animated: true, completion: nil)

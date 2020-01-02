@@ -9,6 +9,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PopularsViewController" customModule="Training" customModuleProvider="target">
             <connections>
+                <outlet property="loading" destination="xUT-jz-zvI" id="UHm-WM-EEi"/>
                 <outlet property="popularsTable" destination="Oa9-rt-nOh" id="9yM-pO-qcG"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -23,6 +24,14 @@
                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                     <color key="separatorColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </tableView>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="xUT-jz-zvI">
+                    <rect key="frame" x="187" y="433" width="40" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="40" id="8nc-03-lpl"/>
+                        <constraint firstAttribute="height" constant="40" id="y35-lH-4kh"/>
+                    </constraints>
+                    <color key="color" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                </activityIndicatorView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
@@ -30,6 +39,8 @@
                 <constraint firstItem="Oa9-rt-nOh" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="XWA-8h-ho2"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Oa9-rt-nOh" secondAttribute="trailing" constant="10" id="gbH-wf-Fct"/>
                 <constraint firstItem="Oa9-rt-nOh" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="10" id="jek-iT-kcM"/>
+                <constraint firstItem="xUT-jz-zvI" firstAttribute="centerY" secondItem="fnl-2z-Ty3" secondAttribute="centerY" id="l7T-eL-sgz"/>
+                <constraint firstItem="xUT-jz-zvI" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="w7f-Jh-TWM"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="133" y="141"/>

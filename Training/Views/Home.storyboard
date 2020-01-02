@@ -44,6 +44,7 @@
                                     <constraint firstAttribute="height" constant="40" id="Gdu-Ej-Nhg"/>
                                     <constraint firstAttribute="width" constant="40" id="Mwz-OC-hRD"/>
                                 </constraints>
+                                <color key="color" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>

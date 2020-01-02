@@ -55,9 +55,6 @@ class MyPageWentViewController: UIViewController {
            if usertoken == nil {
                ToastView.shared.short(self.view, txt_msg: "Not need to login first !")
            } else {
-               let headers = [ "Authorization": "Bearer \(usertoken!)",
-                               "Content-Type": "application/json"  ]
-             
             getDataService.getInstance.getMyEventWent(status: self.status) { (events, errCode) in
                     if errCode == 0 {
                         ToastView.shared.short(self.view, txt_msg: "Cannot load data from server!")

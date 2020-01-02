@@ -66,6 +66,7 @@ class MyPageViewController: UIViewController {
     }
     
     @IBAction func backHome(_ sender: Any) {
+        isLoginVC = false
         let vc = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(withIdentifier: "Home")
         UIApplication.shared.windows.first?.rootViewController = vc
         UIApplication.shared.windows.first?.makeKeyAndVisible()

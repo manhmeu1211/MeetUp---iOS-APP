@@ -16,6 +16,7 @@ class PopularsViewController: UIViewController {
     @IBOutlet weak var popularsTable: UITableView!
     
     // MARK: - Varribles
+    @IBOutlet weak var loading: UIActivityIndicatorView!
     private let refreshControl = UIRefreshControl()
     private var popularResponse : [PopularsResDatabase] = []
     private var currentPage = 1
@@ -117,18 +118,17 @@ class PopularsViewController: UIViewController {
     
     
     private func getListPopularData(isLoadMore : Bool, page : Int) {
-        getDataService.getInstance.getListPopular(pageIndex: page, pageSize : 10, headers: headers, isLoadmore: isLoadMore) { (popularData, isSuccess) in
+        getDataService.getInstance.getListPopular(pageIndex: page, pageSize : 10, headers: headers, isLoadmore: isLoadMore) { [weak self] (popularData, isSuccess) in
             if isSuccess == 1 {
                 if isLoadMore == false {
-                    self.popularResponse.removeAll()
-                    self.popularResponse = popularData
+                    self!.popularResponse.removeAll()
+                    self!.popularResponse = popularData
                 } else {
-                    self.popularResponse = popularData
+                    self!.popularResponse = popularData
                 }
-                self.popularsTable.reloadData()
+                self!.popularsTable.reloadData()
             } else {
                 print("Failed to load Data")
-                self.dismiss(animated: true, completion: nil)
             }
         }
     }
@@ -157,25 +157,31 @@ extension PopularsViewController : UITableViewDataSource, UITableViewDelegate {
         cell.lblDes.text = popularResponse[indexPath.row].descriptionHtml
         switch popularResponse[indexPath.row].myStatus {
         case 1:
-            DispatchQueue.main.async {
-                cell.statusImage.image = UIImage(named: "icon_starRed")
-                cell.statusLabel.text = "Can participate"
-                cell.statusLabel.textColor = UIColor(rgb: 0xC63636)
-                cell.backgroundStatusView.backgroundColor = UIColor(rgb: 0xF9EBEB)
+            queue.async {
+                DispatchQueue.main.async {
+                    cell.statusImage.image = UIImage(named: "icon_starRed")
+                    cell.statusLabel.text = "Can participate"
+                    cell.statusLabel.textColor = UIColor(rgb: 0xC63636)
+                    cell.backgroundStatusView.backgroundColor = UIColor(rgb: 0xF9EBEB)
+                }
             }
         case 2:
-            DispatchQueue.main.async {
-                cell.statusImage.image = UIImage(named: "icon_starGreen")
-                cell.statusLabel.text = "Joined"
-                cell.backgroundStatusView.backgroundColor = UIColor(rgb: 0xE5F9F4)
-                cell.statusLabel.textColor = UIColor(rgb: 0x00C491)
+            queue.async {
+                DispatchQueue.main.async {
+                    cell.statusImage.image = UIImage(named: "icon_starGreen")
+                    cell.statusLabel.text = "Joined"
+                    cell.backgroundStatusView.backgroundColor = UIColor(rgb: 0xE5F9F4)
+                    cell.statusLabel.textColor = UIColor(rgb: 0x00C491)
+                }         
             }
         default:
-            DispatchQueue.main.async {
-                cell.statusImage.image = UIImage(named: "icon_star")
-                cell.statusLabel.text = "Tham gia"
-                cell.backgroundStatusView.backgroundColor = UIColor.systemGray6
-                cell.statusLabel.textColor = UIColor.systemGray
+            queue.async {
+                DispatchQueue.main.async {
+                    cell.statusImage.image = UIImage(named: "icon_star")
+                    cell.statusLabel.text = "Tham gia"
+                    cell.backgroundStatusView.backgroundColor = UIColor.systemGray6
+                    cell.statusLabel.textColor = UIColor.systemGray
+                }
             }
         }
         return cell
@@ -183,11 +189,13 @@ extension PopularsViewController : UITableViewDataSource, UITableViewDelegate {
     
   
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if indexPath.row == popularResponse.count - 2 && isLoadmore == true {
-            self.getListPopularData(isLoadMore: true, page: self.currentPage + 1 )
-            self.currentPage += 1
+        let lastItem = popularResponse.count - 1
+        if indexPath.row == lastItem && isLoadmore == true {
+            currentPage += 1
+            loading.handleLoading(isLoading: true)
+            getListPopularData(isLoadMore: true, page: currentPage)
         } else {
-            dismiss(animated: true, completion: nil)
+            loading.handleLoading(isLoading: false)
         }
     }
     
@@ -199,6 +207,6 @@ extension PopularsViewController : UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-            return UITableView.automaticDimension
-        }
+        return UITableView.automaticDimension
+    }
 }
