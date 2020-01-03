@@ -7,14 +7,27 @@
 //
 
 import UIKit
+import Localize_Swift
 
 class MyPageMainViewController: UIViewController {
 
     @IBOutlet weak var btnLoginUI: UIButton!
     
+    @IBOutlet weak var lblMyPage: UILabel!
+    
+    @IBOutlet weak var lblHaveToLogin: UILabel!
+    
+    @IBOutlet weak var lblPleaseLogin: UILabel!
+    
+    
+    @IBOutlet weak var lblDontHaveAccount: UILabel!
+    
+    
+    @IBOutlet weak var btnSignUpNow: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        btnLoginUI.roundedButton()
+        setUpView()
         if UserDefaults.standard.string(forKey: "userToken") != nil {
             handleMypage()
         } else {
@@ -22,18 +35,29 @@ class MyPageMainViewController: UIViewController {
         }
     }
     
-
     
     override func viewWillAppear(_ animated: Bool) {
         tabBarController?.tabBar.isHidden = false
     }
     
-    func handleMypage() {
+    
+    private func setUpView() {
+        btnLoginUI.setTitle("Login".localized(using: "LaunchScreen"), for: .normal)
+        btnLoginUI.roundedButton()
+//        btnSignUpNow.setTitle("SignUpNow".localized(using: "LaunchScreen"), for: .normal)
+//        lblMyPage.text = "MyPage".localized()
+//        lblHaveToLogin.text = "HaveToLogin".localized(using: "LaunchScreen")
+//        lblPleaseLogin.text = "PleaseLogin".localized(using: "LaunchScreen")
+//        lblDontHaveAccount.text = "DontHaveAccount".localized(using: "LaunchScreen")
+    }
+    
+    
+    private func handleMypage() {
         let myPage = MyPageViewController()
         navigationController?.pushViewController(myPage, animated: true)
     }
     
-    func handleMainSignUp() {
+    private func handleMainSignUp() {
         let mainSUp = SignUpMainViewController()
         navigationController?.pushViewController(mainSUp, animated: true)
     }

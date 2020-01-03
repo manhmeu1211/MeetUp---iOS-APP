@@ -178,7 +178,7 @@ extension PopularsViewController : UITableViewDataSource, UITableViewDelegate {
             queue.async {
                 DispatchQueue.main.async {
                     cell.statusImage.image = UIImage(named: "icon_star")
-                    cell.statusLabel.text = "Tham gia"
+                    cell.statusLabel.text = "Join"
                     cell.backgroundStatusView.backgroundColor = UIColor.systemGray6
                     cell.statusLabel.textColor = UIColor.systemGray
                 }

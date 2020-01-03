@@ -19,7 +19,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nIf-QQ-kJB">
                         <rect key="frame" x="0.0" y="5" width="545" height="273"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="noImage.png" translatesAutoresizingMaskIntoConstraints="NO" id="8kL-KK-EA4">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="noImage" translatesAutoresizingMaskIntoConstraints="NO" id="8kL-KK-EA4">
                                 <rect key="frame" x="0.0" y="0.0" width="545" height="180"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="180" id="0JG-Ad-wQu"/>
@@ -75,7 +75,6 @@
                             <constraint firstItem="Y9K-5e-W6N" firstAttribute="leading" secondItem="nIf-QQ-kJB" secondAttribute="leading" constant="10" id="3uB-ct-uXQ"/>
                             <constraint firstItem="DE8-MO-f6I" firstAttribute="leading" secondItem="nIf-QQ-kJB" secondAttribute="leading" constant="10" id="7N0-AB-Q7B"/>
                             <constraint firstItem="urS-by-Q7D" firstAttribute="top" secondItem="blm-kh-oNL" secondAttribute="top" constant="-5" id="8xf-8s-U5F"/>
-                            <constraint firstItem="Y9K-5e-W6N" firstAttribute="top" secondItem="8kL-KK-EA4" secondAttribute="bottom" constant="10" id="9Xt-wz-gyP"/>
                             <constraint firstItem="59M-ut-zgA" firstAttribute="leading" secondItem="Y9K-5e-W6N" secondAttribute="trailing" constant="2" id="AgE-Bc-qTA"/>
                             <constraint firstAttribute="trailing" secondItem="DE8-MO-f6I" secondAttribute="trailing" constant="20" id="Aug-Ao-8ux"/>
                             <constraint firstItem="urS-by-Q7D" firstAttribute="bottom" secondItem="blm-kh-oNL" secondAttribute="bottom" constant="5" id="Dag-CR-iHf"/>
@@ -122,7 +121,7 @@
     </objects>
     <resources>
         <image name="icon_star" width="14" height="14"/>
-        <image name="noImage.png" width="200" height="200"/>
+        <image name="noImage" width="66.666664123535156" height="66.666664123535156"/>
         <image name="timer" catalog="system" width="64" height="60"/>
     </resources>
 </document>

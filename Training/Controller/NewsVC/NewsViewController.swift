@@ -154,18 +154,18 @@ extension NewsViewController: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = newsTable.dequeueReusableCell(withIdentifier: "NewsCell", for: indexPath) as! NewsCell
-        let queue = DispatchQueue(label: "loadImageNews")
-        queue.async {
-             DispatchQueue.main.async {
-                cell.imgNews.image = UIImage(data: self.newsResponse[indexPath.row].thumbImg)
-            }
-        }
         cell.lblDes.text = "By \(newsResponse[indexPath.row].author) - From \(newsResponse[indexPath.row].feed)"
         cell.title.text = newsResponse[indexPath.row].title
         cell.date.text = "\(newsResponse[indexPath.row].publishdate)"
         cell.backgroundStatusView.isHidden = true
         cell.statusImage.isHidden = true
         cell.statusLabel.isHidden = true
+        let queue = DispatchQueue(label: "loadImageNews")
+        queue.async {
+             DispatchQueue.main.async {
+                cell.imgNews.image = UIImage(data: self.newsResponse[indexPath.row].thumbImg)
+            }
+        }
         return cell
     }
 

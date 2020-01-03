@@ -10,6 +10,7 @@ import UIKit
 
 class ImageDetailCell: UITableViewCell {
 
+    @IBOutlet weak var locationEvent: UILabel!
     @IBOutlet weak var backGroundStatus: UIView!
     @IBOutlet weak var status: UILabel!
     @IBOutlet weak var imgStar: UIImageView!

@@ -40,36 +40,25 @@ extension UIView {
         layer.borderWidth = 1
         layer.borderColor = UIColor.white.cgColor
     }
-}
-
-
-extension UIActivityIndicatorView {
-    func handleLoading(isLoading : Bool) {
-        if isLoading == true {
-            isHidden = false
-            startAnimating()
-        } else {
-            stopAnimating()
-            isHidden = true
-        }
-    }
-}
-
-
-extension UIButton {
-    func setUpButton() {
-          layer.borderWidth = 0.5
-          layer.cornerRadius = 5
-      }
     
-    func roundedButton() {
-        let maskPath1 = UIBezierPath(roundedRect: bounds, byRoundingCorners: [.topLeft , .topRight], cornerRadii: CGSize(width: 25, height: 25))
-        let maskLayer1 = CAShapeLayer()
-        maskLayer1.frame = bounds
-        maskLayer1.path = maskPath1.cgPath
-        layer.mask = maskLayer1
-    }
+    
 }
+
+extension UIViewController {
+    func showAlert(message : String, completion : @escaping () -> Void) {
+        let alert = CustomAlertViewController()
+        alert.modalPresentationStyle = .overCurrentContext
+        alert.handle = {
+            completion()
+        }
+        alert.titleAlert = message
+        present(alert, animated: false, completion: nil)
+    }
+    
+}
+
+
+
 
 extension UIImageView {
     public func roundCorners() {

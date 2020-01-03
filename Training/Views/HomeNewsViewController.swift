@@ -13,6 +13,10 @@ import Alamofire
 class HomeNewsViewController: UIViewController {
     
 
+    @IBOutlet weak var btnNews: UIButton!
+    
+    @IBOutlet weak var btnEvents: UIButton!
+    
     @IBOutlet weak var titleHeader: UILabel!
     
     @IBOutlet weak var leadingIncaditor: NSLayoutConstraint!
@@ -33,6 +37,8 @@ class HomeNewsViewController: UIViewController {
     }
     
     func setUpView() {
+        btnNews.setTitle("News", for: .normal)
+        btnEvents.setTitle("Events", for: .normal)
         scrollView.showsHorizontalScrollIndicator = false
         scrollView.showsVerticalScrollIndicator = false
         let vc1 = NewsViewController()

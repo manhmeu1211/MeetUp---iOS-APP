@@ -53,6 +53,9 @@
 		0D6C31CC23B058A7007605D2 /* EventDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D6C31CB23B058A7007605D2 /* EventDetail.swift */; };
 		0D8CCED823B3106F00EDE7F4 /* ExtensionColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D8CCED723B3106F00EDE7F4 /* ExtensionColor.swift */; };
 		0D8CCEDA23B310A100EDE7F4 /* ExtensionAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D8CCED923B310A100EDE7F4 /* ExtensionAlert.swift */; };
+		0D9C320A23BF37A600F1726E /* CustomAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D9C320823BF37A600F1726E /* CustomAlertViewController.swift */; };
+		0D9C320B23BF37A600F1726E /* CustomAlertViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D9C320923BF37A600F1726E /* CustomAlertViewController.xib */; };
+		0D9C320D23BF3F5000F1726E /* ExtensionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D9C320C23BF3F5000F1726E /* ExtensionButton.swift */; };
 		0D9DACB023BDDF74002253EA /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0D9DACB223BDDF74002253EA /* Home.storyboard */; };
 		0D9E385823B5AFB600363C8B /* ImageDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D9E385623B5AFB600363C8B /* ImageDetailCell.swift */; };
 		0D9E385923B5AFB600363C8B /* ImgDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D9E385723B5AFB600363C8B /* ImgDetailCell.xib */; };
@@ -139,6 +142,9 @@
 		0D6C31CB23B058A7007605D2 /* EventDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetail.swift; sourceTree = "<group>"; };
 		0D8CCED723B3106F00EDE7F4 /* ExtensionColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionColor.swift; sourceTree = "<group>"; };
 		0D8CCED923B310A100EDE7F4 /* ExtensionAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionAlert.swift; sourceTree = "<group>"; };
+		0D9C320823BF37A600F1726E /* CustomAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlertViewController.swift; sourceTree = "<group>"; };
+		0D9C320923BF37A600F1726E /* CustomAlertViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomAlertViewController.xib; sourceTree = "<group>"; };
+		0D9C320C23BF3F5000F1726E /* ExtensionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionButton.swift; sourceTree = "<group>"; };
 		0D9DACAE23BDDEEC002253EA /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = vi; path = vi.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		0D9DACB123BDDF74002253EA /* vi */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = vi; path = vi.lproj/Home.storyboard; sourceTree = "<group>"; };
 		0D9DACB323BDDFF0002253EA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Home.storyboard; sourceTree = "<group>"; };
@@ -207,6 +213,7 @@
 				0D8CCED723B3106F00EDE7F4 /* ExtensionColor.swift */,
 				0DE3B8B523A0CCAF00843C80 /* ExtensionDate.swift */,
 				0D8CCED923B310A100EDE7F4 /* ExtensionAlert.swift */,
+				0D9C320C23BF3F5000F1726E /* ExtensionButton.swift */,
 				0DE3B8C923A0FB2800843C80 /* RealmDataBaseQuery.swift */,
 			);
 			path = Base;
@@ -473,6 +480,8 @@
 				0DC433ED239F4C25000C9505 /* Cell */,
 				0D9DACB223BDDF74002253EA /* Home.storyboard */,
 				0DC433E7239F43F7000C9505 /* HomeNewsViewController.swift */,
+				0D9C320823BF37A600F1726E /* CustomAlertViewController.swift */,
+				0D9C320923BF37A600F1726E /* CustomAlertViewController.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -618,6 +627,7 @@
 				0D44379423AC6AB0003A8D96 /* MyPageGoingViewController.xib in Resources */,
 				0DD8F5F423A23C4100C50F22 /* SearchView.xib in Resources */,
 				0D9DACB023BDDF74002253EA /* Home.storyboard in Resources */,
+				0D9C320B23BF37A600F1726E /* CustomAlertViewController.xib in Resources */,
 				0D44379E23AC7402003A8D96 /* TextAreaCell.xib in Resources */,
 				0D462B1523A734B4000332F4 /* MyPageView.xib in Resources */,
 				0DECAD9423AB2D10008BC805 /* EventsByCategoriesView.xib in Resources */,
@@ -691,6 +701,7 @@
 			files = (
 				0DE62E5C23A37BBB00D927FA /* Artwork.swift in Sources */,
 				0D59676423A07D690060015E /* PopularsViewController.swift in Sources */,
+				0D9C320A23BF37A600F1726E /* CustomAlertViewController.swift in Sources */,
 				0D478DF223A9CFD70061644E /* TabbarViewController.swift in Sources */,
 				0DE3B8CA23A0FB2800843C80 /* RealmDataBaseQuery.swift in Sources */,
 				0D5E459023A875BA0029CE1A /* NewsCell.swift in Sources */,
@@ -712,6 +723,7 @@
 				0D45DC1023ACD951006C6CB7 /* EventDetailController.swift in Sources */,
 				0D44379323AC6AB0003A8D96 /* MyPageGoingViewController.swift in Sources */,
 				0DE62E5723A370CF00D927FA /* ResetPassViewController.swift in Sources */,
+				0D9C320D23BF3F5000F1726E /* ExtensionButton.swift in Sources */,
 				0DE3B8C323A0F05E00843C80 /* CategoriesTableViewCell.swift in Sources */,
 				0D51DD2023A8B36000544A1B /* MyPageMainViewController.swift in Sources */,
 				0DC433E8239F43F7000C9505 /* HomeNewsViewController.swift in Sources */,

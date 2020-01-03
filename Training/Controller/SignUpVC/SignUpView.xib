@@ -12,6 +12,7 @@
                 <outlet property="email" destination="syr-uN-RLQ" id="cwZ-6f-h4D"/>
                 <outlet property="emailView" destination="Kuu-gj-K0Z" id="juq-VM-RFn"/>
                 <outlet property="fullName" destination="k2U-HL-itZ" id="Kmi-fO-w89"/>
+                <outlet property="loading" destination="R37-qJ-Soi" id="jF3-9n-Irf"/>
                 <outlet property="nameView" destination="wcl-Ag-FsL" id="AeW-la-at9"/>
                 <outlet property="password" destination="Ndf-Ls-aYf" id="ITA-rF-GRw"/>
                 <outlet property="passwordView" destination="X4e-gA-AE6" id="z1i-E4-QKQ"/>
@@ -201,6 +202,14 @@
                         <constraint firstItem="wWQ-Bd-5Tg" firstAttribute="top" secondItem="X4e-gA-AE6" secondAttribute="top" constant="5" id="zUK-KU-1Kh"/>
                     </constraints>
                 </view>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="R37-qJ-Soi">
+                    <rect key="frame" x="187" y="523.5" width="40" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="40" id="Fe3-jQ-9oB"/>
+                        <constraint firstAttribute="height" constant="40" id="s5C-yJ-bgW"/>
+                    </constraints>
+                    <color key="color" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                </activityIndicatorView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <gestureRecognizers/>
@@ -210,6 +219,7 @@
                 <constraint firstItem="Q8k-eq-NHQ" firstAttribute="top" secondItem="Xrq-l9-C53" secondAttribute="bottom" id="AMO-qk-g7f"/>
                 <constraint firstItem="Kuu-gj-K0Z" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="40" id="DEi-eB-6jC"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Kuu-gj-K0Z" secondAttribute="trailing" constant="40" id="KDf-J7-4ra"/>
+                <constraint firstItem="R37-qJ-Soi" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="KQm-aU-Zjp"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="Xrq-l9-C53" secondAttribute="bottom" constant="50" id="R6C-ib-mUW"/>
                 <constraint firstItem="wcl-Ag-FsL" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="40" id="RtR-cE-wFq"/>
                 <constraint firstItem="wcl-Ag-FsL" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" multiplier="0.9" id="VWM-fO-CGC"/>
@@ -218,6 +228,7 @@
                 <constraint firstItem="Xrq-l9-C53" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="i4t-kU-Gkf"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="X4e-gA-AE6" secondAttribute="trailing" constant="40" id="mHR-st-Nq3"/>
                 <constraint firstItem="X4e-gA-AE6" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="40" id="qFg-Fv-ac9"/>
+                <constraint firstItem="R37-qJ-Soi" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" multiplier="1.2" id="qTh-ow-A9Q"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="wcl-Ag-FsL" secondAttribute="trailing" constant="40" id="zqD-QS-4bV"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>

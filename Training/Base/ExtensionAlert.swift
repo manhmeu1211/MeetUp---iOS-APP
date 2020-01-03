@@ -40,3 +40,16 @@ extension UIAlertController {
     }
 }
 
+
+
+extension UIActivityIndicatorView {
+    func handleLoading(isLoading : Bool) {
+        if isLoading == true {
+            isHidden = false
+            startAnimating()
+        } else {
+            stopAnimating()
+            isHidden = true
+        }
+    }
+}

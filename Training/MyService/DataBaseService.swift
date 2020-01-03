@@ -232,14 +232,14 @@ class getDataService {
     func getEventDetail(eventID : Int, completionHandler : @escaping(EventDetail, Int) -> () ) {
         EventsDetailAPI(eventID: eventID).excute(completionHandler: { (response) in
             if response!.status == 0 {
-                completionHandler(EventDetail(id: 0, photo: "", name: "Failed to load", descriptionHtml: "", scheduleStartDate: "", scheduleEndDate: "", scheduleStartTime: "", scheduleEndTime: "", schedulePermanent: "", goingCount: 0, nameGenre: "", vnLocation: "", vnContact: "", vnName: ""), 0)
+                completionHandler(EventDetail(id: 0, photo: "", name: "Failed to load", descriptionHtml: "", scheduleStartDate: "", scheduleEndDate: "", scheduleStartTime: "", scheduleEndTime: "", schedulePermanent: "", goingCount: 0, nameGenre: "", vnLocation: "", vnContact: "", vnName: "", locationEvent: ""), 0)
             } else {
                 let data = response?.eventDetail
                 completionHandler(data!, 1)
             }
            
         }) { (err) in
-                completionHandler(EventDetail(id: 0, photo: "", name: "Failed to load", descriptionHtml: "", scheduleStartDate: "", scheduleEndDate: "", scheduleStartTime: "", scheduleEndTime: "", schedulePermanent: "", goingCount: 0, nameGenre: "", vnLocation: "", vnContact: "", vnName: ""), 0)
+                completionHandler(EventDetail(id: 0, photo: "", name: "Failed to load", descriptionHtml: "", scheduleStartDate: "", scheduleEndDate: "", scheduleStartTime: "", scheduleEndTime: "", schedulePermanent: "", goingCount: 0, nameGenre: "", vnLocation: "", vnContact: "", vnName: "", locationEvent: ""), 0)
             print(err!)
         }
     }

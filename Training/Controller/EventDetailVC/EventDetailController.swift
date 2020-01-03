@@ -156,6 +156,8 @@ extension EventDetailController : UITableViewDelegate, UITableViewDataSource {
         switch indexPath.row {
         case 0:
              let cell = detailTable.dequeueReusableCell(withIdentifier: "ImgDetailCell", for: indexPath) as! ImageDetailCell
+             cell.detailTitle.text = eventDetail.name
+             cell.locationEvent.text = eventDetail.locationEvent
              let queue = DispatchQueue(label: "loadImageDetail")
              queue.async {
                  DispatchQueue.main.async {
@@ -163,7 +165,6 @@ extension EventDetailController : UITableViewDelegate, UITableViewDataSource {
                  }
              }
             
-             cell.detailTitle.text = eventDetail.name
              if eventDetail.goingCount == 0 {
                  cell.detailDate.text = "\(eventDetail.scheduleStartDate) "
              } else {

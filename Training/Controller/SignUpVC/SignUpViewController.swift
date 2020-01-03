@@ -20,7 +20,7 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var emailView: UIView!
     @IBOutlet weak var passwordView: UIView!
     
-    private var alert = UIAlertController()
+    @IBOutlet weak var loading: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,11 +32,11 @@ class SignUpViewController: UIViewController {
     // MARK: - Function setup view
     
     private func setUpView() {
+        loading.handleLoading(isLoading: false)
         nameView.setUpBorderView()
         emailView.setUpBorderView()
         passwordView.setUpBorderView()
         uiBtn.roundedButton()
-        alert.createAlertLoading(target: self, isShowLoading: false)
         fullName.delegate = self
         password.delegate = self
         email.delegate = self
@@ -64,16 +64,14 @@ class SignUpViewController: UIViewController {
     
     private func handleLogged() {
         let token = UserDefaults.standard.string(forKey: "userToken")
-           if token != nil {
-               let vc = MyPageViewController()
-               navigationController?.pushViewController(vc, animated: false)
-           } else {
-                      
-           }
-       }
+        if token != nil {
+            let vc = MyPageViewController()
+            navigationController?.pushViewController(vc, animated: false)
+        }
+    }
     
     private func handleLoginView() {
-        navigationController?.popToRootViewController(animated: true)
+        navigationController?.popViewController(animated: true)
     }
        
     
@@ -86,19 +84,20 @@ class SignUpViewController: UIViewController {
     
     
     @IBAction func signUp(_ sender: Any) {
-        alert.createAlertLoading(target: self, isShowLoading: true)
+        loading.handleLoading(isLoading: true)
         guard let mail = email.text , let name = fullName.text, let pass = password.text else { return }
         if ValidatedString.getInstance.isValidEmail(stringEmail: mail) == false {
             ToastView.shared.short(self.view, txt_msg: "Email is not correct, Try again!")
             email.text = ""
-            alert.createAlertLoading(target: self, isShowLoading: false)
+            loading.handleLoading(isLoading: false)
+
         } else if ValidatedString.getInstance.isValidPassword(stringPassword: pass) == false {
                         ToastView.shared.short(self.view, txt_msg: "Password must be 6-16 character, Try again!")
                         password.text = ""
-                        alert.createAlertLoading(target: self, isShowLoading: false)
+            loading.handleLoading(isLoading: false)
         } else if email.text!.isEmpty || password.text!.isEmpty || fullName.text!.isEmpty {
                         ToastView.shared.long(self.view, txt_msg: "Please fill your infomation")
-                        alert.createAlertLoading(target: self, isShowLoading: false)
+            loading.handleLoading(isLoading: false)
         } else {
             let params = [
                 "name": name,
@@ -109,12 +108,16 @@ class SignUpViewController: UIViewController {
             queue.async {
                 getDataService.getInstance.register(params: params) { (json, errcode) in
                     if errcode == 1 {
-                        ToastView.shared.short(self.view, txt_msg: "Register Success")
-                        self.handleLoginView()
-                        self.alert.createAlertLoading(target: self, isShowLoading: false)
+                        self.showAlert(message: "Register Success") {
+                             self.handleLoginView()
+                        }
+                       
+                        self.loading.handleLoading(isLoading: false)
                     } else {
-                        self.alert.createAlertLoading(target: self, isShowLoading: false)
-                        ToastView.shared.short(self.view, txt_msg: "Register Failed, Check your network")
+                         self.showAlert(message: "Register Failed") {
+                                self.handleLoginView()
+                        }
+                        self.loading.handleLoading(isLoading: false)
                     }
                 }
             }

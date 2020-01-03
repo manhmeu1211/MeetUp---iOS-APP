@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Localize_Swift
 
 class LoginViewController: UIViewController {
 
@@ -108,7 +109,7 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func login(_ sender: Any) {
-       login()
+        login()
     }
     
   

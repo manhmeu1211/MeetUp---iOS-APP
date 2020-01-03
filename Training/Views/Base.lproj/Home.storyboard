@@ -182,6 +182,11 @@
                     <navigationItem key="navigationItem" id="l1H-fl-9w5"/>
                     <connections>
                         <outlet property="btnLoginUI" destination="DWe-8C-FMs" id="cIY-yH-FRH"/>
+                        <outlet property="btnSignUpNow" destination="ETa-oU-mzg" id="fLS-IT-BAX"/>
+                        <outlet property="lblDontHaveAccount" destination="GAp-KK-cwe" id="yqS-Wl-ZU2"/>
+                        <outlet property="lblHaveToLogin" destination="l8o-Tb-Grk" id="MWH-bP-dFb"/>
+                        <outlet property="lblMyPage" destination="hUC-Ur-dDA" id="eeB-oN-rcb"/>
+                        <outlet property="lblPleaseLogin" destination="QMl-DV-SbP" id="VkW-fi-URj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zof-90-GgI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -271,7 +276,7 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IQy-vk-Fjx">
                                         <rect key="frame" x="0.0" y="0.0" width="187.66666666666666" height="40"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="21"/>
-                                        <state key="normal" title="Tin tức">
+                                        <state key="normal" title="News">
                                             <color key="titleColor" systemColor="systemPurpleColor" red="0.68627450980000004" green="0.32156862749999998" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
@@ -281,7 +286,7 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yDg-k2-lkS">
                                         <rect key="frame" x="187.66666666666663" y="0.0" width="187.33333333333337" height="40"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
-                                        <state key="normal" title="Sự kiện">
+                                        <state key="normal" title="Events">
                                             <color key="titleColor" systemColor="systemPurpleColor" red="0.68627450980000004" green="0.32156862749999998" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
@@ -392,6 +397,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="rCc-Kf-qo3"/>
                     <connections>
+                        <outlet property="btnEvents" destination="yDg-k2-lkS" id="NOR-IH-xxG"/>
+                        <outlet property="btnNews" destination="IQy-vk-Fjx" id="2SH-q5-qh8"/>
                         <outlet property="imgHeader" destination="XpG-oW-Ieb" id="YhB-sG-ZY4"/>
                         <outlet property="incaditor" destination="QmG-So-KJB" id="Xfr-d5-gNS"/>
                         <outlet property="leadingIncaditor" destination="Rvi-wh-FcM" id="NDl-fe-kAa"/>

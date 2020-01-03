@@ -10,4 +10,5 @@ target 'Training' do
   pod 'SwiftyJSON', '~> 4.0'
   pod 'RealmSwift'
 pod 'SwiftLint'
+pod 'Localize-Swift', '~> 2.0'
 end
