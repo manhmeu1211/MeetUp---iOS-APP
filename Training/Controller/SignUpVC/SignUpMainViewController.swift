@@ -29,19 +29,10 @@ class SignUpMainViewController: UIViewController {
         tabBarController?.tabBar.isHidden = true
         scrollView.showsHorizontalScrollIndicator = false
         scrollView.showsVerticalScrollIndicator = false
-        let vc1 = LoginViewController()
-        addChild(vc1)
-        self.leftView.addSubview(vc1.view)
-        vc1.view.frame = leftView.bounds
-        vc1.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        vc1.didMove(toParent: self)
-        let vc2 = SignUpViewController()
-        addChild(vc2)
-        self.rightView.addSubview(vc2.view)
-        vc2.view.frame = rightView.bounds
-        vc2.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        vc2.didMove(toParent: self)
         scrollView.delegate = self
+        let loginVC = LoginViewController()
+        let signUpVC = SignUpViewController()
+        setUpTabLayout(vc1: loginVC, vc2: signUpVC, leftViewInput: leftView, rightViewInput: rightView)
     }
     
     // MARK: - Actions

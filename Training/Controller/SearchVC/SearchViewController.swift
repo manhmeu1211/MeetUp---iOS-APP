@@ -114,11 +114,12 @@ class SearchViewController: UIViewController {
     }
     
     private func handleLogin() {
-        isLoginVC = true
-        let vc = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(withIdentifier: "Home")
-        UIApplication.shared.windows.first?.rootViewController = vc
+        let tabbarController = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(withIdentifier: "Home") as! TabbarViewController
+        tabbarController.isLoginVC = true
+        UIApplication.shared.windows.first?.rootViewController = tabbarController
         UIApplication.shared.windows.first?.makeKeyAndVisible()
     }
+
     
     @objc func updateDataSeacrch() {
         handleSearch(isLoadMore: false, page: currentPage)

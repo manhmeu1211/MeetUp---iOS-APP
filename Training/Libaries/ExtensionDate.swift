@@ -45,6 +45,7 @@ extension Date {
         return date
     }
 }
+
 extension NSDate {
      var formatted: String {
      let formatter = DateFormatter()

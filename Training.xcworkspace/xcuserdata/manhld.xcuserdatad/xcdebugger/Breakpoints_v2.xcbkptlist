@@ -1176,10 +1176,10 @@
             filePath = "Training/Controller/EventDetailVC/EventDetailController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "106"
-            endingLineNumber = "106"
-            landmarkName = "EventDetailController"
-            landmarkType = "3">
+            startingLineNumber = "109"
+            endingLineNumber = "109"
+            landmarkName = "wentEvent()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1192,9 +1192,9 @@
             filePath = "Training/Controller/EventDetailVC/EventDetailController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "111"
-            endingLineNumber = "111"
-            landmarkName = "getDetailEvent(eventID:)"
+            startingLineNumber = "114"
+            endingLineNumber = "114"
+            landmarkName = "wentEvent()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1480,8 +1480,8 @@
             filePath = "Training/Controller/EventDetailVC/EventDetailController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "131"
-            endingLineNumber = "131"
+            startingLineNumber = "134"
+            endingLineNumber = "134"
             landmarkName = "getListEvent()"
             landmarkType = "7">
          </BreakpointContent>

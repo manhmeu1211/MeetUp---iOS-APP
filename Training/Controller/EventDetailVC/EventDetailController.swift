@@ -70,19 +70,24 @@ class EventDetailController: UIViewController {
 
     
     private func handleLoginView() {
-         isLoginVC = true
-         let vc = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(withIdentifier: "Home")
-         UIApplication.shared.windows.first?.rootViewController = vc
+         let tabbarController = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(withIdentifier: "Home") as! TabbarViewController
+         tabbarController.isLoginVC = true
+         UIApplication.shared.windows.first?.rootViewController = tabbarController
          UIApplication.shared.windows.first?.makeKeyAndVisible()
-     }
+    }
     
+
     private func goingEvent() {
         let params = ["status": 1, "event_id": id! ]
         getDataService.getInstance.doUpdateEvent(params: params, headers: headers) { (json, errcode) in
             if errcode == 1 {
-                self.alertLogin.createAlert(target: self, title: "Success", message: "Error, please re-login", titleBtn: "OK")
+                self.showAlert(message: "Please re-login", titleBtn: "OK") {
+                    print("Login expired")
+                }
             } else if errcode == 2 {
-                self.alertLogin.createAlert(target: self, title: "Success", message: "You're going this event", titleBtn: "OK")
+                self.showAlert(message: "Success - You're going this event", titleBtn: "OK") {
+                    print("success")
+                }
                  self.getDetailEvent(eventID: self.id!)
             } else {
                 ToastView.shared.short(self.view, txt_msg: "Check your connection")
@@ -91,12 +96,16 @@ class EventDetailController: UIViewController {
     }
     
     private func wentEvent() {
-        let params = ["status": 2, "event_id": id! ]
+        let params = ["status": 2, "event_id": id!]
         getDataService.getInstance.doUpdateEvent(params: params, headers: headers) { (json, errcode) in
             if errcode == 1 {
-                self.alertLogin.createAlert(target: self, title: "Success", message: "Error, please re-login", titleBtn: "OK")
+                self.showAlert(message: "Please re-login", titleBtn: "OK") {
+                    print("Login expired")
+                }
             } else if errcode == 2 {
-                self.alertLogin.createAlert(target: self, title: "Success", message: "You went this event", titleBtn: "OK")
+                self.showAlert(message: "Success - You went this event", titleBtn: "OK") {
+                    print("success")
+                }
                 self.getDetailEvent(eventID: self.id!)
             } else {
                 ToastView.shared.short(self.view, txt_msg: "Check your connection")
@@ -106,26 +115,28 @@ class EventDetailController: UIViewController {
     
     private func getDetailEvent(eventID : Int) {
         print("getData")
-        getDataService.getInstance.getEventDetail(eventID: eventID) { (eventDetail, errcode) in
+        getDataService.getInstance.getEventDetail(eventID: eventID) { [weak self] (eventDetail, errcode) in
             if errcode == 0 {
-                ToastView.shared.short(self.view, txt_msg: "You need to login first")
-                self.alertLogin.createAlertLoading(target: self, isShowLoading: false)
+                ToastView.shared.short(self!.view, txt_msg: "You need to login first")
+                self!.alertLogin.createAlertLoading(target: self!, isShowLoading: false)
             } else if errcode == 1 {
-                self.eventDetail = eventDetail
-                self.detailTable.reloadData()
+                self!.eventDetail = eventDetail
+                self!.detailTable.reloadData()
             } else {
-                self.alertLogin.createAlert(target: self, title: "No internet connection", message: nil, titleBtn: "OK")
+                self!.showAlert(message: "No internet connection", titleBtn: "OK") {
+                    print("No connection")
+                }
             }
         }
     }
     
 
     private func getListEvent() {
-        getDataService.getInstance.getListNearEvent(radius: 10, longitue: self.eventDetail.longValue, latitude: self.eventDetail.latValue) { (eventsNear, anotionLC ,errcode) in
+        getDataService.getInstance.getListNearEvent(radius: 10, longitue: self.eventDetail.longValue, latitude: self.eventDetail.latValue) { [weak self] (eventsNear, anotionLC ,errcode) in
             if errcode == 0 {
                 print("Failed")
             } else if errcode == 1 {
-                self.eventsNear = eventsNear
+                self!.eventsNear = eventsNear
             } else {
                 print("Failed")
             }

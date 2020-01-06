@@ -37,24 +37,12 @@ class HomeNewsViewController: UIViewController {
     }
     
     func setUpView() {
-        btnNews.setTitle("News", for: .normal)
-        btnEvents.setTitle("Events", for: .normal)
+        scrollView.delegate = self
         scrollView.showsHorizontalScrollIndicator = false
         scrollView.showsVerticalScrollIndicator = false
         let vc1 = NewsViewController()
-        addChild(vc1)
-        self.leftView.addSubview(vc1.view)
-        vc1.view.frame = leftView.bounds
-        vc1.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        vc1.didMove(toParent: self)
         let vc2 = PopularsViewController()
-        addChild(vc2)
-        self.rightView.addSubview(vc2.view)
-        vc2.view.frame = rightView.bounds
-        vc2.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        vc2.didMove(toParent: self)
-        scrollView.delegate = self
-        titleHeader.text = "Home"
+        setUpTabLayout(vc1: vc1, vc2: vc2, leftViewInput: leftView, rightViewInput: rightView)
     }
     
     

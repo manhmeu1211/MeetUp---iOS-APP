@@ -9,10 +9,10 @@
 import UIKit
 
 
-var isLoginVC = false
 
 class TabbarViewController: UITabBarController {
     // MARK: - Check index tabbar view
+    var isLoginVC = false
     override func viewDidLoad() {
         super.viewDidLoad()
         if isLoginVC == true {

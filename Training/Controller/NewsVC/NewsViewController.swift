@@ -136,9 +136,12 @@ class NewsViewController: UIViewController {
                 }
                 self!.newsTable.reloadData()
             } else {
-                print("No data")
                 self!.isLoadmore = false
-                self!.updateObject()
+                self?.showAlert(message: "Cannot load data from sever", titleBtn: "OK", completion: {
+                    print("Failed to load Data")
+                    self!.updateObject()
+                    self?.loading.handleLoading(isLoading: false)
+                })
             }
         }
     }

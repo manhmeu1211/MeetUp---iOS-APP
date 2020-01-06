@@ -88,7 +88,7 @@ class NearViewController: UIViewController, CLLocationManagerDelegate {
         if token != nil {
             getListEvent()
         } else {
-            alert.createAlertWithHandle(target: self, title: "Not logged in", message: "You must to login", titleBtn: "Login") {
+            showAlert(message: "You have to login first", titleBtn: "LOGIN") {
                 self.handleLoginView()
             }
         }
@@ -96,12 +96,12 @@ class NearViewController: UIViewController, CLLocationManagerDelegate {
     
     
     @objc func handleLoginView() {
-        isLoginVC = true
-        let vc = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(withIdentifier: "Home")
-        UIApplication.shared.windows.first?.rootViewController = vc
+        let tabbarController = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(withIdentifier: "Home") as! TabbarViewController
+        tabbarController.isLoginVC = true
+        UIApplication.shared.windows.first?.rootViewController = tabbarController
         UIApplication.shared.windows.first?.makeKeyAndVisible()
     }
-
+    
   // MARK: - getData
     
     private func updateObject() {

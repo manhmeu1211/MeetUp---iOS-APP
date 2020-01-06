@@ -133,10 +133,10 @@
                 <constraint firstItem="xEO-9t-np6" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="gsW-zZ-Ge9"/>
                 <constraint firstItem="Iqg-G2-Rz7" firstAttribute="top" secondItem="wcV-vv-aQT" secondAttribute="bottom" id="mZ1-9d-NSI"/>
                 <constraint firstItem="Iqg-G2-Rz7" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="omx-Yl-4x3"/>
+                <constraint firstItem="xEO-9t-np6" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="0.25" id="qvX-mE-Opm"/>
                 <constraint firstItem="Tv2-Vw-QrF" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" multiplier="0.25" id="sp6-zG-sRT"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="Iqg-G2-Rz7" secondAttribute="bottom" id="vCL-3e-OLo"/>
                 <constraint firstItem="wcV-vv-aQT" firstAttribute="top" secondItem="xEO-9t-np6" secondAttribute="bottom" id="weh-xi-uFS"/>
-                <constraint firstItem="xEO-9t-np6" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="0.25" id="zoO-q3-3lc"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <point key="canvasLocation" x="131.8840579710145" y="122.54464285714285"/>

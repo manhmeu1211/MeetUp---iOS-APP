@@ -127,14 +127,14 @@ extension MyPageGoingViewController : UITableViewDelegate, UITableViewDataSource
             queue.async {
                 DispatchQueue.main.async {
                     cell.statusImage.image = UIImage(named: "icon_starRed")
-                    cell.statusLabel.text = "Can participate"
-                    cell.statusLabel.textColor = UIColor(rgb: 0xC63636)
-                    cell.backgroundStatusView.backgroundColor = UIColor(rgb: 0xF9EBEB)
                     cell.imgTimer.image = UIImage(named: "Group15")
-                    cell.date.textColor = UIColor(rgb: 0x5D20CD)
                     cell.imgNews.image = UIImage(data: self.goingEvents[indexPath.row].photo)
                 }
             }
+            cell.statusLabel.text = "Can participate"
+            cell.statusLabel.textColor = UIColor(rgb: 0xC63636)
+            cell.date.textColor = UIColor(rgb: 0x5D20CD)
+            cell.backgroundStatusView.backgroundColor = UIColor(rgb: 0xF9EBEB)
             cell.date.text = "\(goingEvents[indexPath.row].scheduleStartDate) - \(goingEvents[indexPath.row].goingCount) people going"
             cell.title.text = goingEvents[indexPath.row].name
             cell.lblDes.text = goingEvents[indexPath.row].descriptionHtml
@@ -145,14 +145,14 @@ extension MyPageGoingViewController : UITableViewDelegate, UITableViewDataSource
             queue.async {
                 DispatchQueue.main.async {
                     cell.statusImage.image = UIImage(named: "icon_starRed")
-                    cell.statusLabel.text = "Can participate"
-                    cell.statusLabel.textColor = UIColor(rgb: 0xC63636)
-                    cell.backgroundStatusView.backgroundColor = UIColor(rgb: 0xF9EBEB)
                     cell.imgTimer.image = UIImage(named: "Group15")
-                    cell.date.textColor = UIColor(rgb: 0x5D20CD)
                     cell.imgNews.image = UIImage(data: self.goingEventsEnd[indexPath.row].photo)
                 }
             }
+            cell.backgroundStatusView.backgroundColor = UIColor(rgb: 0xF9EBEB)
+            cell.date.textColor = UIColor(rgb: 0x5D20CD)
+            cell.statusLabel.text = "Can participate"
+            cell.statusLabel.textColor = UIColor(rgb: 0xC63636)
             cell.date.text = "\(goingEventsEnd[indexPath.row].scheduleStartDate) - \(goingEventsEnd[indexPath.row].goingCount) people going"
             cell.title.text = goingEventsEnd[indexPath.row].name
             cell.lblDes.text = goingEventsEnd[indexPath.row].descriptionHtml

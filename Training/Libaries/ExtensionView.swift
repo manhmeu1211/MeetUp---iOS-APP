@@ -40,6 +40,8 @@ extension UIView {
         layer.borderWidth = 1
         layer.borderColor = UIColor.white.cgColor
     }
+    
+
 }
 
 extension UIViewController {
@@ -53,9 +55,25 @@ extension UIViewController {
         alert.titleBtn = titleBtn
         present(alert, animated: false, completion: nil)
     }
+    
+    func setUpTabLayout(vc1 : UIViewController, vc2 : UIViewController, leftViewInput : UIView, rightViewInput : UIView) {
+        let leftView = leftViewInput
+        let rightView = rightViewInput
+          let vc1 = vc1
+          addChild(vc1)
+          leftView.addSubview(vc1.view)
+          vc1.view.frame = leftView.bounds
+          vc1.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+          vc1.didMove(toParent: self)
+          let vc2 = vc2
+          addChild(vc2)
+          rightView.addSubview(vc2.view)
+          vc2.view.frame = rightView.bounds
+          vc2.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+          vc2.didMove(toParent: self)
+    }
+
 }
-
-
 
 
 extension UIImageView {

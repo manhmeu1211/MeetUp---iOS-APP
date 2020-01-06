@@ -26,23 +26,15 @@ class MyPageViewController: UIViewController {
     
     
     func setUpView() {
-      tabBarController?.tabBar.isHidden = true
-      scrollView.showsHorizontalScrollIndicator = false
-      scrollView.showsVerticalScrollIndicator = false
-      let vc1 = MyPageGoingViewController()
-      addChild(vc1)
-      self.leftView.addSubview(vc1.view)
-      vc1.view.frame = leftView.bounds
-      vc1.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-      vc1.didMove(toParent: self)
-      let vc2 = MyPageWentViewController()
-      addChild(vc2)
-      self.rightView.addSubview(vc2.view)
-      vc2.view.frame = rightView.bounds
-      vc2.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-      vc2.didMove(toParent: self)
-      scrollView.delegate = self
+        tabBarController?.tabBar.isHidden = true
+        scrollView.showsHorizontalScrollIndicator = false
+        scrollView.showsVerticalScrollIndicator = false
+        scrollView.delegate = self
+        let myPageGoingVC = MyPageGoingViewController()
+        let myPageWentVC = MyPageWentViewController()
+        setUpTabLayout(vc1: myPageGoingVC, vc2: myPageWentVC, leftViewInput: leftView, rightViewInput: rightView)
     }
+    
     
     func logOut() {
         deleteToken()
@@ -66,11 +58,13 @@ class MyPageViewController: UIViewController {
     }
     
     @IBAction func backHome(_ sender: Any) {
-        isLoginVC = false
-        let vc = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(withIdentifier: "Home")
-        UIApplication.shared.windows.first?.rootViewController = vc
+        let tabbarController = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(withIdentifier: "Home") as! TabbarViewController
+        tabbarController.isLoginVC = true
+        UIApplication.shared.windows.first?.rootViewController = tabbarController
         UIApplication.shared.windows.first?.makeKeyAndVisible()
     }
+    
+
 }
 
 extension MyPageViewController: UIScrollViewDelegate {

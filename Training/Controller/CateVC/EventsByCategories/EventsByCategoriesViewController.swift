@@ -111,22 +111,22 @@ class EventsByCategoriesViewController: UIViewController {
     func getDataEventsByCategories(isLoadMore : Bool, page: Int) {
         let categoriesID = id!
    
-        getDataService.getInstance.getListEventsByCategories(cateID: categoriesID, pageIndex: page, isLoadMore: isLoadMore) { (eventsCate, errcode) in
+        getDataService.getInstance.getListEventsByCategories(cateID: categoriesID, pageIndex: page, isLoadMore: isLoadMore) { [weak self] (eventsCate, errcode) in
             if errcode == 1 {
-                self.loading.handleLoading(isLoading: false)
-                self.updateObjectByPopulars()
+                self!.loading.handleLoading(isLoading: false)
+                self!.updateObjectByPopulars()
             } else if errcode == 2 {
                 if isLoadMore == false {
-                    self.eventsByCate.removeAll()
-                    self.eventsByCate = eventsCate
+                    self!.eventsByCate.removeAll()
+                    self!.eventsByCate = eventsCate
                 } else {
-                    self.eventsByCate = eventsCate
+                    self!.eventsByCate = eventsCate
                 }
-                self.eventTable.reloadData()
-                self.loading.handleLoading(isLoading: false)
+                self!.eventTable.reloadData()
+                self!.loading.handleLoading(isLoading: false)
             } else {
-                self.updateObjectByPopulars()
-                self.loading.handleLoading(isLoading: false)
+                self!.updateObjectByPopulars()
+                self!.loading.handleLoading(isLoading: false)
             }
         }
     }

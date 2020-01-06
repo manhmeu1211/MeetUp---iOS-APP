@@ -108,13 +108,13 @@ class SignUpViewController: UIViewController {
             queue.async {
                 getDataService.getInstance.register(params: params) { (json, errcode) in
                     if errcode == 1 {
-                        self.showAlert(message: "Register Success") {
+                        self.showAlert(message: "Register Success", titleBtn: "OK") {
                              self.handleLoginView()
                         }
                        
                         self.loading.handleLoading(isLoading: false)
                     } else {
-                         self.showAlert(message: "Register Failed") {
+                         self.showAlert(message: "Register Failed", titleBtn: "OK") {
                                 self.handleLoginView()
                         }
                         self.loading.handleLoading(isLoading: false)

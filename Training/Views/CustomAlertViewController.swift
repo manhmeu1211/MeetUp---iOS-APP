@@ -20,10 +20,12 @@ class CustomAlertViewController: UIViewController {
     
     var handle: (()-> Void)?
     var titleAlert: String?
+    var titleBtn : String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         alertMessage.text = titleAlert!
+        btnAlert.setTitle(titleBtn!, for: .normal)
         containerView.layer.cornerRadius = 10
         backgroundTitleView.layer.cornerRadius = 10
     }

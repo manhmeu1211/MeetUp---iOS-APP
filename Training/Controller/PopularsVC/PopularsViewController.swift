@@ -30,6 +30,7 @@ class PopularsViewController: UIViewController {
         super.viewDidLoad()
         setUpTable()
         setHeaders()
+        checkData()
         getDataFirstLaunch()
         checkConnection()
     }
@@ -56,6 +57,14 @@ class PopularsViewController: UIViewController {
                 case .online(.wiFi):
                     isLoadmore = true
             }
+    }
+    
+    private func checkData() {
+        if popularResponse.isEmpty {
+            upDateDataV2()
+        } else {
+            updateObject()
+        }
     }
     
     private func getDataFirstLaunch() {
@@ -128,7 +137,11 @@ class PopularsViewController: UIViewController {
                 }
                 self!.popularsTable.reloadData()
             } else {
-                print("Failed to load Data")
+                self!.loading.handleLoading(isLoading: false)
+                self?.showAlert(message: "Cannot load data from sever", titleBtn: "OK", completion: {
+                    print("Failed to load Data")
+                    self?.updateObject()
+                })
             }
         }
     }

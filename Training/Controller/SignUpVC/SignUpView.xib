@@ -32,7 +32,7 @@
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <state key="normal" title="Bỏ qua">
-                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="titleColor" red="0.36470588240000001" green="0.12549019610000001" blue="0.80392156859999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
                     <connections>
                         <action selector="btnIgnore:" destination="-1" eventType="touchUpInside" id="Jk4-tH-vyf"/>
@@ -54,7 +54,7 @@
                     </connections>
                 </button>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wcl-Ag-FsL">
-                    <rect key="frame" x="40" y="377.5" width="334" height="60"/>
+                    <rect key="frame" x="40" y="423" width="334" height="60"/>
                     <subviews>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-lock-filled" translatesAutoresizingMaskIntoConstraints="NO" id="7MM-fF-gdZ">
                             <rect key="frame" x="10" y="20" width="30" height="20"/>
@@ -103,7 +103,7 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kuu-gj-K0Z">
-                    <rect key="frame" x="40" y="307.5" width="334" height="60"/>
+                    <rect key="frame" x="40" y="353" width="334" height="60"/>
                     <subviews>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-email-filled" translatesAutoresizingMaskIntoConstraints="NO" id="BSx-ob-FBy">
                             <rect key="frame" x="10" y="20" width="30" height="20"/>
@@ -152,7 +152,7 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X4e-gA-AE6">
-                    <rect key="frame" x="40" y="237.5" width="334" height="60"/>
+                    <rect key="frame" x="40" y="283" width="334" height="60"/>
                     <subviews>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-profile-filled" translatesAutoresizingMaskIntoConstraints="NO" id="8JA-XV-R5S">
                             <rect key="frame" x="10" y="20" width="30" height="20"/>
@@ -222,7 +222,7 @@
                 <constraint firstItem="R37-qJ-Soi" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="KQm-aU-Zjp"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="Xrq-l9-C53" secondAttribute="bottom" constant="50" id="R6C-ib-mUW"/>
                 <constraint firstItem="wcl-Ag-FsL" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="40" id="RtR-cE-wFq"/>
-                <constraint firstItem="wcl-Ag-FsL" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" multiplier="0.9" id="VWM-fO-CGC"/>
+                <constraint firstItem="wcl-Ag-FsL" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" id="VWM-fO-CGC"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Q8k-eq-NHQ" secondAttribute="trailing" constant="55" id="Xas-yT-uZr"/>
                 <constraint firstItem="wcl-Ag-FsL" firstAttribute="top" secondItem="Kuu-gj-K0Z" secondAttribute="bottom" constant="10" id="YR6-Mg-5Rr"/>
                 <constraint firstItem="Xrq-l9-C53" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="i4t-kU-Gkf"/>
