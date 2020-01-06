@@ -230,7 +230,7 @@ class getDataService {
     }
     
     func getEventDetail(eventID : Int, completionHandler : @escaping(EventDetail, Int) -> () ) {
-        EventsDetailAPI(eventID: eventID).excute(completionHandler: { (response) in
+        EventsDetailAPI(eventID: eventID).excute(completionHandler: { [weak self] (response) in
             if response!.status == 0 {
                 completionHandler(EventDetail(id: 0, photo: "", name: "Failed to load", descriptionHtml: "", scheduleStartDate: "", scheduleEndDate: "", scheduleStartTime: "", scheduleEndTime: "", schedulePermanent: "", goingCount: 0, nameGenre: "", vnLocation: "", vnContact: "", vnName: "", locationEvent: ""), 0)
             } else {
@@ -264,7 +264,7 @@ class getDataService {
             switch response.result {
             case .success(let value):
             let response = JSON(value)
-            let status = response["status"]
+            let status = response["status"].intValue
             var data = response["response"]
             if status == 0 {
                 data = response["error_message"]

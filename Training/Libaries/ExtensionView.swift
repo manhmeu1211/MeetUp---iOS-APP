@@ -40,21 +40,19 @@ extension UIView {
         layer.borderWidth = 1
         layer.borderColor = UIColor.white.cgColor
     }
-    
-    
 }
 
 extension UIViewController {
-    func showAlert(message : String, completion : @escaping () -> Void) {
+    func showAlert(message : String, titleBtn : String, completion : @escaping () -> Void) {
         let alert = CustomAlertViewController()
         alert.modalPresentationStyle = .overCurrentContext
         alert.handle = {
             completion()
         }
         alert.titleAlert = message
+        alert.titleBtn = titleBtn
         present(alert, animated: false, completion: nil)
     }
-    
 }
 
 
@@ -68,7 +66,6 @@ extension UIImageView {
         maskLayer1.path = maskPath1.cgPath
         layer.mask = maskLayer1
     }
-    
 }
 
 
