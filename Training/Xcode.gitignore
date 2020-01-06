@@ -40,7 +40,7 @@ DerivedData/
 Podfile.lock
 Pods
 *.xcworkspace
-# *.xcworkspace
+
 
 # Carthage
 #
