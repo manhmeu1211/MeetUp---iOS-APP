@@ -16,7 +16,7 @@ class EventDetailController: UIViewController {
     
     private let realm = try! Realm()
     private var eventDetail = EventDetail()
-    private var eventsNear : [EventsNearResponse] = []
+    private var eventsNear = [EventsNearResponse]()
     var id : Int?
     private let userToken = UserDefaults.standard.string(forKey: "userToken")
     private var alertLogin = UIAlertController()
@@ -234,8 +234,8 @@ extension EventDetailController : UITableViewDelegate, UITableViewDataSource {
             cell.btnWent.addTarget(self, action: #selector(handleWent), for: UIControl.Event.touchUpInside)
             cell.btnGoing.addTarget(self, action: #selector(handleGoing), for: UIControl.Event.touchUpInside)
             if checkLoggedIn() == false {
-                cell.btnGoing.backgroundColor = UIColor.systemGray6
-                cell.btnWent.backgroundColor = UIColor.systemGray6
+                cell.btnGoing.backgroundColor = UIColor(rgb: 0xF6F6F6)
+                cell.btnWent.backgroundColor = UIColor(rgb: 0xF6F6F6)
             } else {
                 if eventDetail.mystatus == 1 {
                     cell.btnGoing.backgroundColor = UIColor.red

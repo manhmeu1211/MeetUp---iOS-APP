@@ -11,9 +11,6 @@ import SwiftyJSON
 import Alamofire
 
 
-protocol MeetUpResponse {
-    init(json: JSON)
-}
 
 struct APIMeetUpRequest {
     var name: String

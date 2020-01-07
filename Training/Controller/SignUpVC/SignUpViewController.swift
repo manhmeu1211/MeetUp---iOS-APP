@@ -65,8 +65,8 @@ class SignUpViewController: UIViewController {
     private func handleLogged() {
         let token = UserDefaults.standard.string(forKey: "userToken")
         if token != nil {
-            let vc = MyPageViewController()
-            navigationController?.pushViewController(vc, animated: false)
+            let myPageViewVC = MyPageViewController()
+            navigationController?.pushViewController(myPageViewVC, animated: false)
         }
     }
     
@@ -90,7 +90,6 @@ class SignUpViewController: UIViewController {
             ToastView.shared.short(self.view, txt_msg: "Email is not correct, Try again!")
             email.text = ""
             loading.handleLoading(isLoading: false)
-
         } else if ValidatedString.getInstance.isValidPassword(stringPassword: pass) == false {
                         ToastView.shared.short(self.view, txt_msg: "Password must be 6-16 character, Try again!")
                         password.text = ""

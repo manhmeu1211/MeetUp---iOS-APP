@@ -32,7 +32,7 @@ class SignUpMainViewController: UIViewController {
         scrollView.delegate = self
         let loginVC = LoginViewController()
         let signUpVC = SignUpViewController()
-        setUpTabLayout(vc1: loginVC, vc2: signUpVC, leftViewInput: leftView, rightViewInput: rightView)
+        setUpTabLayout(viewControllerLeft: loginVC, viewControllerRight: signUpVC, leftViewInput: leftView, rightViewInput: rightView)
     }
     
     // MARK: - Actions

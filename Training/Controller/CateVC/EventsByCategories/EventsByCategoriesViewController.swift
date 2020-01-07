@@ -26,9 +26,7 @@ class EventsByCategoriesViewController: UIViewController {
     var id : Int?
     var headerTitle : String?
     private var currentPage = 1
-    private var eventsByCate : [EventsByCategoriesDatabase] = []
-    private let alert = UIAlertController(title: nil, message: "Please wait...", preferredStyle: .alert)
-    private let realm = try! Realm()
+    private var eventsByCate = [EventsByCategoriesDatabase]()
     private let token = UserDefaults.standard.string(forKey: "userToken")
     
     
@@ -92,7 +90,7 @@ class EventsByCategoriesViewController: UIViewController {
     }
     
     private func checkEvent() {
-        if eventsByCate == [] {
+        if eventsByCate.isEmpty {
             noResults.isHidden = false
             noResults.text = "No events"
         } else {
@@ -102,10 +100,7 @@ class EventsByCategoriesViewController: UIViewController {
     
         
     private func deleteObject() {
-        let list = realm.objects(EventsByCategoriesDatabase.self).toArray(ofType: EventsByCategoriesDatabase.self)
-        try! realm.write {
-            realm.delete(list)
-        }
+        RealmDataBaseQuery.getInstance.deleteListObject(object: EventsByCategoriesDatabase.self)
     }
 
     func getDataEventsByCategories(isLoadMore : Bool, page: Int) {

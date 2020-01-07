@@ -22,15 +22,15 @@ class NearViewController: UIViewController, CLLocationManagerDelegate {
     
     // MARK: - Varribles
     let realm = try! Realm()
-    var events : [EventsNearResponse] = []
-    var anotion : [Artwork] = []
+    var events = [EventsNearResponse]()
+    var anotion = [Artwork]()
     let locationManager = CLLocationManager()
     let regionRadius: CLLocationDistance = 1000
     var centralLocationCoordinate : CLLocationCoordinate2D!
     var currentLocation: CLLocation!
     var initLong, initLat : Double?
-    var eventLong : [Double] = []
-    var eventLat : [Double] = []
+    var eventLong = [Double]()
+    var eventLat = [Double]()
     var indexRow : Int!
     
     

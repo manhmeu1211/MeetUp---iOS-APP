@@ -29,7 +29,7 @@ extension UIView {
     func setUpBorderView() {
         layer.masksToBounds = false
         layer.cornerRadius = 5.0
-        layer.borderColor = UIColor.systemGray6.cgColor
+        layer.borderColor = UIColor(rgb: 0xF6F6F6).cgColor
         layer.shadowColor = UIColor.black.cgColor
         layer.shadowRadius = 2.0
         layer.borderWidth = 0.5
@@ -56,35 +56,22 @@ extension UIViewController {
         present(alert, animated: false, completion: nil)
     }
     
-    func setUpTabLayout(vc1 : UIViewController, vc2 : UIViewController, leftViewInput : UIView, rightViewInput : UIView) {
+    func setUpTabLayout(viewControllerLeft : UIViewController, viewControllerRight : UIViewController, leftViewInput : UIView, rightViewInput : UIView) {
         let leftView = leftViewInput
         let rightView = rightViewInput
-          let vc1 = vc1
-          addChild(vc1)
-          leftView.addSubview(vc1.view)
-          vc1.view.frame = leftView.bounds
-          vc1.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-          vc1.didMove(toParent: self)
-          let vc2 = vc2
-          addChild(vc2)
-          rightView.addSubview(vc2.view)
-          vc2.view.frame = rightView.bounds
-          vc2.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-          vc2.didMove(toParent: self)
+          let vcLeft = viewControllerLeft
+          addChild(vcLeft)
+          leftView.addSubview(vcLeft.view)
+          vcLeft.view.frame = leftView.bounds
+          vcLeft.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+          vcLeft.didMove(toParent: self)
+          let vcRight = viewControllerRight
+          addChild(vcRight)
+          rightView.addSubview(vcRight.view)
+          vcRight.view.frame = rightView.bounds
+          vcRight.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+          vcRight.didMove(toParent: self)
     }
 
 }
-
-
-extension UIImageView {
-    public func roundCorners() {
-        let maskPath1 = UIBezierPath(roundedRect: bounds, byRoundingCorners: [.topLeft , .topRight], cornerRadii: CGSize(width: 20, height: 20))
-        let maskLayer1 = CAShapeLayer()
-        maskLayer1.frame = bounds
-        maskLayer1.path = maskPath1.cgPath
-        layer.mask = maskLayer1
-    }
-}
-
-
 

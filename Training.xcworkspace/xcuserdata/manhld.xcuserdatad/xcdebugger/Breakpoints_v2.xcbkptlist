@@ -1338,8 +1338,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "129"
             endingLineNumber = "129"
-            landmarkName = "getDataEventsByCategories(isLoadMore:page:)"
-            landmarkType = "7">
+            landmarkName = "EventsByCategoriesViewController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy

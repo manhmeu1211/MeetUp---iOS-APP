@@ -40,9 +40,9 @@ class HomeNewsViewController: UIViewController {
         scrollView.delegate = self
         scrollView.showsHorizontalScrollIndicator = false
         scrollView.showsVerticalScrollIndicator = false
-        let vc1 = NewsViewController()
-        let vc2 = PopularsViewController()
-        setUpTabLayout(vc1: vc1, vc2: vc2, leftViewInput: leftView, rightViewInput: rightView)
+        let newsView = NewsViewController()
+        let popularsView = PopularsViewController()
+        setUpTabLayout(viewControllerLeft: newsView, viewControllerRight: popularsView, leftViewInput: leftView, rightViewInput: rightView)
     }
     
     

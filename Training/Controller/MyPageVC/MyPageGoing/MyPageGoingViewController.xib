@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -21,7 +22,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="zB9-xo-ZeH">
-                    <rect key="frame" x="10" y="54" width="394" height="808"/>
+                    <rect key="frame" x="16" y="54" width="382" height="808"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                 </tableView>
                 <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No events " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fTp-mq-ATd">
@@ -43,12 +44,12 @@
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="zB9-xo-ZeH" secondAttribute="trailing" constant="10" id="49r-dS-hsZ"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="zB9-xo-ZeH" secondAttribute="trailing" constant="16" id="49r-dS-hsZ"/>
                 <constraint firstItem="fTp-mq-ATd" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="59A-xe-jN4"/>
                 <constraint firstItem="fTp-mq-ATd" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="Ish-yV-BOQ"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="fTp-mq-ATd" secondAttribute="trailing" constant="20" id="JGy-aB-gkI"/>
                 <constraint firstItem="1Mf-hN-Diz" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="JIC-OW-9ey"/>
-                <constraint firstItem="zB9-xo-ZeH" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="10" id="PQu-DL-49b"/>
+                <constraint firstItem="zB9-xo-ZeH" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="PQu-DL-49b"/>
                 <constraint firstItem="1Mf-hN-Diz" firstAttribute="centerY" secondItem="fnl-2z-Ty3" secondAttribute="centerY" id="XWi-nJ-jOc"/>
                 <constraint firstItem="fTp-mq-ATd" firstAttribute="centerY" secondItem="fnl-2z-Ty3" secondAttribute="centerY" id="aPU-Ya-Jim"/>
                 <constraint firstItem="zB9-xo-ZeH" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="10" id="cp1-qB-49y"/>

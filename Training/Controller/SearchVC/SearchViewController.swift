@@ -22,8 +22,7 @@ class SearchViewController: UIViewController {
     private let refreshControl = UIRefreshControl()
     private let userToken = UserDefaults.standard.string(forKey: "userToken")
     private var currentPage = 1
-    private var searchResponse : [SearchResponseDatabase] = []
-    private let realm = try! Realm()
+    private var searchResponse = [SearchResponseDatabase]()
     private var alertLoading = UIAlertController()
     private var isHaveConnection : Bool!
 

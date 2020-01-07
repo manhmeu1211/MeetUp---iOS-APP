@@ -17,7 +17,6 @@ class BrowserViewController: UIViewController {
     private var alertLoading = UIAlertController()
     private let refreshControl = UIRefreshControl()
     private var cateList = [CategoriesResDatabase]()
-    private let realm = try! Realm()
     private let userToken = UserDefaults.standard.string(forKey: "userToken")
     
     override func viewDidLoad() {
@@ -27,19 +26,21 @@ class BrowserViewController: UIViewController {
         setupTable()
         getCateGories()
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         tabBarController?.tabBar.isHidden = false
     }
     
      // MARK: - setup View
     private func getCateGories() {
-        let list = realm.objects(CategoriesResDatabase.self).toArray(ofType: CategoriesResDatabase.self)
-        if list == [] {
+        let list = RealmDataBaseQuery.getInstance.getObjects(type: CategoriesResDatabase.self)?.toArray(ofType: CategoriesResDatabase.self)
+        if list!.isEmpty {
             getListCategories()
         } else {
             updateObject()
         }
     }
+    
     private func setUpBarButton() {
         self.title = "Categories"
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.search,
@@ -84,7 +85,9 @@ class BrowserViewController: UIViewController {
             } else {
                 print("Failed")
                 self!.dismiss(animated: true, completion: nil)
-                ToastView.shared.short(self!.view, txt_msg: "Failed to load data from server")
+                self!.showAlert(message: "Cannot get data from sever", titleBtn: "OK") {
+                    print("Can't get data")
+                }
             }
         }
         self.dismiss(animated: true, completion: nil)
@@ -116,12 +119,12 @@ extension BrowserViewController : UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let id = cateList[indexPath.row].id
-        let title = cateList[indexPath.row].name
-        let vc = EventsByCategoriesViewController()
-        vc.id = id
-        vc.headerTitle = title
-        navigationController?.pushViewController(vc, animated: true)
+        let idCategories = cateList[indexPath.row].id
+        let titleCategories = cateList[indexPath.row].name
+        let eventByCateVC = EventsByCategoriesViewController()
+        eventByCateVC.id = idCategories
+        eventByCateVC.headerTitle = titleCategories
+        navigationController?.pushViewController(eventByCateVC, animated: true)
     }
 
 }

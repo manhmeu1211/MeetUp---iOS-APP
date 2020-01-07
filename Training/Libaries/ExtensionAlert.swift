@@ -30,7 +30,6 @@ extension UIAlertController {
             alert.view.tintColor = UIColor.black
             let loadingIndicator: UIActivityIndicatorView = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50)) as UIActivityIndicatorView
                 loadingIndicator.hidesWhenStopped = true
-                loadingIndicator.style = UIActivityIndicatorView.Style.medium
             loadingIndicator.startAnimating();
             alert.view.addSubview(loadingIndicator)
             target.present(alert, animated: true, completion: nil)

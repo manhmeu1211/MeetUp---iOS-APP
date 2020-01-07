@@ -16,8 +16,8 @@ class MyPageWentViewController: UIViewController {
     let userToken = UserDefaults.standard.string(forKey: "userToken")
     private let status = 2
     private let realm = try! Realm()
-    private var wentEvents : [MyPageWentResDatabase] = []
-    private var wentEventsEnd : [MyPageWentResDatabase] = []
+    private var wentEvents = [MyPageWentResDatabase]()
+    private var wentEventsEnd = [MyPageWentResDatabase]()
     private let today = Date()
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,7 +37,7 @@ class MyPageWentViewController: UIViewController {
     }
     
     private func checkEvent() {
-         if wentEvents == [] && wentEventsEnd == [] {
+        if wentEvents.isEmpty  && wentEventsEnd.isEmpty {
              noEvents.isHidden = false
          } else {
              noEvents.isHidden = true
@@ -160,14 +160,14 @@ extension MyPageWentViewController : UITableViewDelegate, UITableViewDataSource 
     }
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        let vc = EventDetailController(nibName: "EventDetailView", bundle: nil)
+        let eventDetailVC = EventDetailController(nibName: "EventDetailView", bundle: nil)
         switch indexPath.section {
         case 0:
-            vc.id = wentEvents[indexPath.row].id
+            eventDetailVC.id = wentEvents[indexPath.row].id
         default:
-            vc.id = wentEventsEnd[indexPath.row].id
+            eventDetailVC.id = wentEventsEnd[indexPath.row].id
         }
-        present(vc, animated: true, completion: nil)
+        present(eventDetailVC, animated: true, completion: nil)
     }
 
 }

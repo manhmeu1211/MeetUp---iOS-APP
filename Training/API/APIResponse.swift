@@ -10,6 +10,9 @@ import Foundation
 import Alamofire
 import SwiftyJSON
 
+protocol MeetUpResponse {
+    init(json: JSON)
+}
 
 class APIMeetUpService<T: MeetUpResponse> {
     

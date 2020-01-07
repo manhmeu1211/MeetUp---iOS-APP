@@ -42,13 +42,13 @@ class MyPageMainViewController: UIViewController {
     
     
     private func setUpView() {
-        btnLoginUI.setTitle("Login".localized(using: "LaunchScreen"), for: .normal)
+        btnLoginUI.setTitle("Login".localized, for: .normal)
         btnLoginUI.roundedButton()
-//        btnSignUpNow.setTitle("SignUpNow".localized(using: "LaunchScreen"), for: .normal)
-//        lblMyPage.text = "MyPage".localized()
-//        lblHaveToLogin.text = "HaveToLogin".localized(using: "LaunchScreen")
-//        lblPleaseLogin.text = "PleaseLogin".localized(using: "LaunchScreen")
-//        lblDontHaveAccount.text = "DontHaveAccount".localized(using: "LaunchScreen")
+        btnSignUpNow.setTitle("SignUpNow".localized, for: .normal)
+        lblMyPage.text = "MyPage".localized
+        lblHaveToLogin.text = "HaveToLogin".localized
+        lblPleaseLogin.text = "PleaseLogin".localized
+        lblDontHaveAccount.text = NSLocalizedString("DontHaveAccount", comment: "")
     }
     
     

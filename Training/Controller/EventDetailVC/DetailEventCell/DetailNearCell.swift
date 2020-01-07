@@ -12,7 +12,7 @@ class DetailNearCell: UITableViewCell {
 
     @IBOutlet weak var nearCollection: UICollectionView!
     
-    var events : [EventsNearResponse] = []
+    var events = [EventsNearResponse]()
     
 
     override func awakeFromNib() {
@@ -22,7 +22,7 @@ class DetailNearCell: UITableViewCell {
     
     
     func updateData(eventLoaded : [EventsNearResponse]) {
-        if eventLoaded == [] {
+        if eventLoaded.isEmpty {
             events.append(EventsNearResponse(id: 0, photo: "", name: "No data", descriptionHtml: "", scheduleStartDate: "", scheduleEndDate: "", scheduleStartTime: "", scheduleEndTime: "", schedulePermanent: "", goingCount: 0))
         } else {
             events = eventLoaded

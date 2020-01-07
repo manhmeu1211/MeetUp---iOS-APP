@@ -21,8 +21,8 @@ class MyPageGoingViewController: UIViewController {
     
     private var alertLoading = UIAlertController()
     private let status = 1
-    private var goingEvents : [MyPageGoingResDatabase] = []
-    private var goingEventsEnd : [MyPageGoingResDatabase] = []
+    private var goingEvents = [MyPageGoingResDatabase]()
+    private var goingEventsEnd = [MyPageGoingResDatabase]()
     private let userToken = UserDefaults.standard.string(forKey: "userToken")
     private let today = Date()
     
@@ -33,7 +33,7 @@ class MyPageGoingViewController: UIViewController {
     }
 
     private func checkEvent() {
-        if goingEvents == [] && goingEventsEnd == [] {
+        if goingEvents.isEmpty && goingEventsEnd.isEmpty {
             noEvents.isHidden = false
         } else {
             noEvents.isHidden = true
@@ -161,14 +161,14 @@ extension MyPageGoingViewController : UITableViewDelegate, UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        let vc = EventDetailController(nibName: "EventDetailView", bundle: nil)
+        let eventDetailVC = EventDetailController(nibName: "EventDetailView", bundle: nil)
         switch indexPath.section {
         case 0:
-            vc.id = goingEvents[indexPath.row].id
+            eventDetailVC.id = goingEvents[indexPath.row].id
         default:
-            vc.id = goingEventsEnd[indexPath.row].id
+            eventDetailVC.id = goingEventsEnd[indexPath.row].id
         }
-        present(vc, animated: true, completion: nil)
+        present(eventDetailVC, animated: true, completion: nil)
     }
     
 }

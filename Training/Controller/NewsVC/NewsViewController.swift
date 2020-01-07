@@ -184,9 +184,9 @@ extension NewsViewController: UITableViewDataSource, UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        let vc = WebViewController()
-        vc.urlToOpen = newsResponse[indexPath.row + 1].url
-        present(vc, animated: true, completion: nil)
+        let webViewVC = WebViewController()
+        webViewVC.urlToOpen = newsResponse[indexPath.row + 1].url
+        present(webViewVC, animated: true, completion: nil)
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

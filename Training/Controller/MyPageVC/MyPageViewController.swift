@@ -32,7 +32,7 @@ class MyPageViewController: UIViewController {
         scrollView.delegate = self
         let myPageGoingVC = MyPageGoingViewController()
         let myPageWentVC = MyPageWentViewController()
-        setUpTabLayout(vc1: myPageGoingVC, vc2: myPageWentVC, leftViewInput: leftView, rightViewInput: rightView)
+        setUpTabLayout(viewControllerLeft: myPageGoingVC, viewControllerRight: myPageWentVC, leftViewInput: leftView, rightViewInput: rightView)
     }
     
     

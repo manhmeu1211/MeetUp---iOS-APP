@@ -18,7 +18,7 @@ class PopularsViewController: UIViewController {
     // MARK: - Varribles
     @IBOutlet weak var loading: UIActivityIndicatorView!
     private let refreshControl = UIRefreshControl()
-    private var popularResponse : [PopularsResDatabase] = []
+    private var popularResponse = [PopularsResDatabase]()
     private var currentPage = 1
     private var isLoadmore : Bool!
     private var changeColor : Int!
@@ -30,7 +30,6 @@ class PopularsViewController: UIViewController {
         super.viewDidLoad()
         setUpTable()
         setHeaders()
-        checkData()
         getDataFirstLaunch()
         checkConnection()
     }
@@ -59,13 +58,6 @@ class PopularsViewController: UIViewController {
             }
     }
     
-    private func checkData() {
-        if popularResponse.isEmpty {
-            upDateDataV2()
-        } else {
-            updateObject()
-        }
-    }
     
     private func getDataFirstLaunch() {
         if detechDailyFirstLaunch() == false {
@@ -192,7 +184,8 @@ extension PopularsViewController : UITableViewDataSource, UITableViewDelegate {
                 DispatchQueue.main.async {
                     cell.statusImage.image = UIImage(named: "icon_star")
                     cell.statusLabel.text = "Join"
-                    cell.backgroundStatusView.backgroundColor = UIColor.systemGray6
+
+                    cell.backgroundStatusView.backgroundColor = UIColor(rgb: 0xF6F6F6)
                     cell.statusLabel.textColor = UIColor.systemGray
                 }
             }
@@ -214,9 +207,9 @@ extension PopularsViewController : UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let id = popularResponse[indexPath.row].id
-        let vc = EventDetailController(nibName: "EventDetailView", bundle: nil)
-        vc.id = id
-        present(vc, animated: true, completion: nil)
+        let EventDetailVC = EventDetailController(nibName: "EventDetailView", bundle: nil)
+        EventDetailVC.id = id
+        present(EventDetailVC, animated: true, completion: nil)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
