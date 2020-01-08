@@ -43,7 +43,8 @@ class MyPageWentViewController: UIViewController {
     }
     
     @objc private func updateData() {
-        getListGoingWent()
+        updateObject()
+        wentTable.reloadData()
         refreshControl.endRefreshing()
     }
     

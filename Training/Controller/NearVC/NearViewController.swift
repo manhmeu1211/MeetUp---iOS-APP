@@ -9,7 +9,6 @@
 import UIKit
 import MapKit
 import CoreLocation
-import Alamofire
 import RealmSwift
 
 class NearViewController: UIViewController, CLLocationManagerDelegate {
@@ -222,9 +221,13 @@ extension NearViewController : UICollectionViewDataSource, UICollectionViewDeleg
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         if isConnected {
-            for cell in collectionVIew.visibleCells {
-                let indexPath = collectionVIew.indexPath(for: cell)
-                centerMapOnLocation(location: CLLocation(latitude: eventLat[indexPath!.row], longitude: eventLong[indexPath!.row]))
+            if eventLat.isEmpty || eventLong.isEmpty {
+                print(eventLat, eventLong)
+            } else {
+                for cell in collectionVIew.visibleCells {
+                    let indexPath = collectionVIew.indexPath(for: cell)
+                    centerMapOnLocation(location: CLLocation(latitude: eventLat[indexPath!.row], longitude: eventLong[indexPath!.row]))
+                }
             }
         }
     }
@@ -245,6 +248,11 @@ extension NearViewController : MKMapViewDelegate {
             let latValue = view.annotation?.coordinate.latitude
             let longValue = view.annotation?.coordinate.longitude
             centerMapOnLocation(location: CLLocation(latitude: latValue!, longitude: longValue!))
+            for i in eventLat {
+                if latValue == i {
+                    print(i)
+                }
+            }
         }
     }
 }

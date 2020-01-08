@@ -69,18 +69,19 @@ class SearchViewController: UIViewController {
             print(statusConnect)
         }
         let status = Reach().connectionStatus()
-            switch status {
-                case .unknown, .offline:
-                    self.noResults.text = "No internet connection"
-                    self.noResults.isHidden = false
-                    isHaveConnection = false
-                case .online(.wwan):
-                    self.noResults.isHidden = true
-                    isHaveConnection = true
-                case .online(.wiFi):
-                    self.noResults.isHidden = true
-                    isHaveConnection = true
-            }
+        switch status {
+            case .unknown, .offline:
+                self.noResults.text = "alert.connectFailed.text".localized
+                self.noResults.isHidden = false
+                self.imgNoResult.isHidden = false
+                isHaveConnection = false
+            case .online(.wwan):
+                self.noResults.isHidden = true
+                isHaveConnection = true
+            case .online(.wiFi):
+                self.noResults.isHidden = true
+                isHaveConnection = true
+        }
         print(isHaveConnection!)
      }
 
@@ -90,7 +91,8 @@ class SearchViewController: UIViewController {
         let keyword = txtSearch.text!
         getDataService.getInstance.search(pageIndex: page, pageSize: 10, keyword: keyword, isLoadMore: isLoadMore) { [weak self] (result, errcode) in
             if errcode == 0 {
-                self?.noResults.text = "No results"
+                self?.noResults.isHidden = false
+                self?.imgNoResult.isHidden = false
                 self?.loading.handleLoading(isLoading: false)
             } else if errcode == 1 {
                 if isLoadMore == false {
@@ -261,7 +263,6 @@ extension SearchViewController : UITableViewDelegate, UITableViewDataSource {
             cell.date.textColor = UIColor(rgb: 0x5D20CD)
             cell.title.text = searchResultPast[indexPath.row].name
             cell.lblDes.text = searchResultPast[indexPath.row].descriptionHtml.replacingOccurrences(of: "[|<>/]", with: "", options: [.regularExpression])
-                   
             if searchResultPast[indexPath.row].goingCount == 0 {
                 cell.date.text = "\(searchResultPast[indexPath.row].scheduleStartDate) "
             } else {

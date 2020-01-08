@@ -7,20 +7,10 @@
 //
 
 import UIKit
-import Localize_Swift
 
 class MyPageMainViewController: UIViewController {
 
     @IBOutlet weak var btnLoginUI: UIButton!
-    
-    @IBOutlet weak var lblMyPage: UILabel!
-    
-    @IBOutlet weak var lblHaveToLogin: UILabel!
-    
-    @IBOutlet weak var lblPleaseLogin: UILabel!
-    
-    
-    @IBOutlet weak var lblDontHaveAccount: UILabel!
     
     
     @IBOutlet weak var btnSignUpNow: UIButton!

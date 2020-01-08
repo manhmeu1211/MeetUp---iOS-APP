@@ -39,27 +39,6 @@ class Artwork: NSObject, MKAnnotation {
     
 }
 
-class ArtWordLongValue : Object {
-    @objc dynamic var longValue = 0.0
-    @objc dynamic var latValue = 0.0
-    
-    convenience init(longValue: Double) {
-          self.init()
-          self.longValue = longValue
-      }
-}
-
-
-
-class ArtWordLatValue : Object {
-    @objc dynamic var latValue = 0.0
-    
-    convenience init(latValue: Double) {
-          self.init()
-          self.latValue = latValue
-      }
-}
-
 
 
 class ArtWorkListAPI: APIMeetUpService<ArtWorksData> {

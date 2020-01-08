@@ -213,7 +213,7 @@ class getDataService {
         MyPageWentListAPI(status: status).excute(completionHandler: { [weak self] (response) in
             if response?.status == 0 {
                 print(response?.errMessage ?? "Lỗi hệ thống")
-                completionHandler([], 0)
+                completionHandler([], 1)
             } else {
                 let data = response!.listEventsWent
                 self?.deleteObject(object: MyPageWentResDatabase.self)
@@ -221,7 +221,7 @@ class getDataService {
                     self?.addListObject(object: event)
                 })
                 let eventsWent = RealmDataBaseQuery.getInstance.getObjects(type: MyPageWentResDatabase.self)?.toArray(ofType: MyPageWentResDatabase.self)
-                completionHandler(eventsWent!, 1)
+                completionHandler(eventsWent!, 2)
             }
         }) { (err) in
             print(err!)

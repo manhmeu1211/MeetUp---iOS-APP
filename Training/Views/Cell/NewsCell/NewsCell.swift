@@ -37,6 +37,7 @@ class NewsCell: UITableViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         containerView.layoutIfNeeded()
+        imgNews.roundCorners()
         containerView.roundCornersView(corners: [.topLeft, .topRight], radius: 30)
         backgroundStatusView.setUpBGView()
     }

@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -19,23 +20,36 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Dn-hX-7iV">
-                    <rect key="frame" x="0.0" y="94" width="414" height="768"/>
+                    <rect key="frame" x="0.0" y="144" width="414" height="718"/>
                     <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <wkWebViewConfiguration key="configuration">
                         <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
                         <wkPreferences key="preferences"/>
                     </wkWebViewConfiguration>
                 </wkWebView>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Mask Group" translatesAutoresizingMaskIntoConstraints="NO" id="axp-ZR-7pa">
+                    <rect key="frame" x="0.0" y="94" width="414" height="50"/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="t5r-ek-B1t"/>
+                    </constraints>
+                </imageView>
             </subviews>
             <color key="backgroundColor" white="0.66666666666666663" alpha="0.023740096830985914" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="1Dn-hX-7iV" secondAttribute="bottom" id="5Vt-au-k50"/>
-                <constraint firstItem="1Dn-hX-7iV" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="50" id="OuN-D9-cha"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="axp-ZR-7pa" secondAttribute="trailing" id="Npm-OU-toq"/>
+                <constraint firstItem="1Dn-hX-7iV" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="100" id="OuN-D9-cha"/>
+                <constraint firstItem="axp-ZR-7pa" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="TNF-jr-VZf"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="1Dn-hX-7iV" secondAttribute="trailing" id="rmp-zT-0b6"/>
                 <constraint firstItem="1Dn-hX-7iV" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="vqg-BQ-Ytg"/>
+                <constraint firstItem="1Dn-hX-7iV" firstAttribute="top" secondItem="axp-ZR-7pa" secondAttribute="bottom" id="xFp-q5-Ipi"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <point key="canvasLocation" x="133" y="112"/>
+            <point key="canvasLocation" x="131.8840579710145" y="111.83035714285714"/>
         </view>
     </objects>
+    <resources>
+        <image name="Mask Group" width="375" height="132"/>
+    </resources>
 </document>

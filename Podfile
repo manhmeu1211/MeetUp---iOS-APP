@@ -7,8 +7,7 @@ target 'Training' do
 
   # Pods for Training
 	pod 'Alamofire', '~> 4.6'
-  pod 'SwiftyJSON', '~> 4.0'
-  pod 'RealmSwift'
-pod 'SwiftLint'
-pod 'Localize-Swift', '~> 2.0'
+ 	pod 'SwiftyJSON', '~> 4.0'
+  	pod 'RealmSwift'
+	pod 'SwiftLint'
 end

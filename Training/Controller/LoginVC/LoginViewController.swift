@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Localize_Swift
 
 class LoginViewController: UIViewController {
 
