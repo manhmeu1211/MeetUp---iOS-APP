@@ -1,0 +1,99 @@
+
+// MARK: - Home VỉewController
+"btnNews.title" = "Tin tức";
+"btnEvents.title" = "Sự kiện";
+"header.label.text" = "Trang chủ";
+
+
+// MARK: - News VỉewController
+
+"alert.message.loginExpired" = "Phiên đăng nhập hết hạn";
+"alert.token.avaible" = "Token khả dụng";
+"alert.detechlaunched.already" = "Đã chạy";
+"alert.detechlaunched.first" = "Lần đầu mở app trong ngày";
+"alert.cannotLoadData" = "Không thể tải dữ liệu từ sever";
+"alert.titleBtn.OK" = "Đồng ý";
+"alert.titleBtn.login" = "Đăng nhập";
+"alert.checkConnection" = "Kiểm tra kết nối mạng !" ;
+
+
+
+// MARK: - Populars VỉewController
+
+"join.label.text.canParticipate" = "Có thể tham gia";
+"join.label.text.joined" = "Đã tham gia";
+"join.label.text.join" = "Tham gia";
+
+
+
+// MARK: -  Near VỉewController
+
+"anootation.title" = "Địa điểm của tôi";
+"anootation.name" = "Địa điểm của tôi";
+"anootation.discipline" = "Discipline của tôi";
+"alert.titleBtn.login" = "Đăng nhập";
+"noEvent.label.text" = "Không có sự kiện gần bạn";
+"peopleGoing.text" = "người tham gia";
+
+
+
+// MARK: -  My Page Main ViewController
+"btnLogin.tilte" = "Đăng nhập";
+"btnSignUpNow.tilte" = "Đăng ký ngay !";
+"myPage.label.text" = "Trang của tôi";
+"haveToLogin.label.text" = "Bạn cần đăng nhập trước";
+"dontHaveAccount.label.text" = "Không có tài khoản?";
+"Not logged in" = "Chưa đăng nhập";
+"pleaseLogin.label.text" = "Đăng nhập để quản lý sự kiện của bạn";
+"not logged in" = "Chưa đăng nhập";
+"eventsGoing.text" = "Đang diễn ra";
+"eventsEnd.text" = "Đã kết thúc";
+
+
+
+
+// MARK: -  Categories - Event by Cate ViewController
+
+"categories.title" = "Danh mục";
+"refreshingData.text" = "Làm mới dữ liệu";
+"noEvents.text" = "Không có sự kiện";
+
+
+// MARK: -  Login ViewController
+
+
+"login.title.text" = "Đăng nhập";
+"signUp.title.barButtonItem" = "Đăng ký";
+"alert.fillInfomation.text" = "Vui lòng điền đầy đủ thông tin ";
+"alert.validPassword.text" = "Mật khẩu phải có độ dài 6- 16 kí tự";
+"alert.validEmail.text" = "Email không đúng định dạng";
+"alert.wrongInfomation.text" = "Đăng nhập thất bại, sai tên tài khoản hoặc mật khẩu";
+"alert.connectFailed.text" = "Kết nối thất bại, vui lòng thử lại !";
+
+// MARK: -  Label, button, ...
+
+"login.email.text" = "Email";
+"login.password.text" = "Mật khẩu";
+"login.forgotPass.btnTitle" = "Quên mật khẩu";
+"login.loginBtn.title" = "Đăng nhập";
+"login.skipBtn.title" = "Bỏ qua";
+"login.signUp.title" = "Đăng ký";
+"signUp.fullName.title" = "Tên đầy đủ";
+"signUp.passWord.title" = "Mật khẩu";
+"signUp.fullName.placeholder" = "Nhập tên đầy đủ của bạn";
+"categories.btnByPopulars.text" = "Phổ biến";
+"categories.btnByDate.text" = "Theo thời gian";
+"search.searclPlaceholeder.text" = "Tìm kiếm tại đây...";
+"search.noResult.text" = "Chúng tôi không tìm thấy bất kì sự kiện nào :'(";
+"resetPass.title" = "Quên mật khẩu?";
+"resetPass.inputInformation.text" = "Vui lòng nhập email để lấy lại mật khẩu";
+"eventDetai.title" = "Chi tiết sự kiện";
+"eventNear.title" = "Sự kiện gần tôi";
+"Please wait..." = "Vui lòng đợi chút...";
+"myEvents.title" = "Sự kiện của tôi";
+"myEvents.logOut.title" = "Đăng xuất";
+"search.noResultIncoming.text" = "Không có sự kiện nào đang diễn ra...:'(";
+"search.noResultPast.text" = "Không có sự kiện nào đã diễn ra...:'(";
+
+
+

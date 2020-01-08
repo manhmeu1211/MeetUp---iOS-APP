@@ -40,6 +40,9 @@ class HomeNewsViewController: UIViewController {
         scrollView.delegate = self
         scrollView.showsHorizontalScrollIndicator = false
         scrollView.showsVerticalScrollIndicator = false
+        btnNews.setTitle("btnNews.title".localized, for: .normal)
+        btnEvents.setTitle("btnEvents.title".localized, for: .normal)
+        titleHeader.text = "header.label.text".localized
         let newsView = NewsViewController()
         let popularsView = PopularsViewController()
         setUpTabLayout(viewControllerLeft: newsView, viewControllerRight: popularsView, leftViewInput: leftView, rightViewInput: rightView)

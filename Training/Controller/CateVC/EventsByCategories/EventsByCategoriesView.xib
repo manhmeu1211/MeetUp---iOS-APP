@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -41,6 +42,9 @@
                             <state key="normal" title="By Populars">
                                 <color key="titleColor" red="0.36470588240000001" green="0.12549019610000001" blue="0.80392156859999997" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                             </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="localizeTitle" value="categories.btnByPopulars.text"/>
+                            </userDefinedRuntimeAttributes>
                             <connections>
                                 <action selector="byPopulars:" destination="-1" eventType="touchUpInside" id="JkT-ry-eQz"/>
                             </connections>
@@ -51,6 +55,9 @@
                             <state key="normal" title="By Date">
                                 <color key="titleColor" red="0.36470588240000001" green="0.12549019610000001" blue="0.80392156859999997" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                             </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="localizeTitle" value="categories.btnByDate.text"/>
+                            </userDefinedRuntimeAttributes>
                             <connections>
                                 <action selector="byDate:" destination="-1" eventType="touchUpInside" id="7ra-fJ-qOb"/>
                             </connections>
@@ -107,6 +114,9 @@
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="localizeText" value="haveToLogin.label.text"/>
+                    </userDefinedRuntimeAttributes>
                 </label>
                 <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="K49-dM-han">
                     <rect key="frame" x="187" y="478.5" width="40" height="40"/>

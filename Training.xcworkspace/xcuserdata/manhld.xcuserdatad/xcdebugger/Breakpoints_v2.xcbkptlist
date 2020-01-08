@@ -1320,10 +1320,10 @@
             filePath = "Training/Controller/NewsVC/NewsViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "127"
-            endingLineNumber = "127"
-            landmarkName = "NewsViewController"
-            landmarkType = "3">
+            startingLineNumber = "104"
+            endingLineNumber = "104"
+            landmarkName = "updateData()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1338,8 +1338,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "129"
             endingLineNumber = "129"
-            landmarkName = "EventsByCategoriesViewController"
-            landmarkType = "3">
+            landmarkName = "getDataEventsByCategories(isLoadMore:page:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1489,54 +1489,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "E499F93D-7A38-48B4-BE4F-75FCC538255C"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Training/Controller/NewsVC/NewsViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "78"
-            endingLineNumber = "78"
-            landmarkName = "checkTokenExpired()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "E499F93D-7A38-48B4-BE4F-75FCC538255C - a35a18e0b70bc2cc"
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Training.NewsViewController.(checkTokenExpired in _F00BFBA32933A52D32F0CFA9215A13FD)() -&gt; ()"
-                  moduleName = "Training"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/manhld/Desktop/Training/Training/Controller/NewsVC/NewsViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "78"
-                  endingLineNumber = "78"
-                  offsetFromSymbolStart = "928">
-               </Location>
-               <Location
-                  uuid = "E499F93D-7A38-48B4-BE4F-75FCC538255C - 531a462a6d60b73"
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Array&lt;Training.MyPageGoingResDatabase&gt;, Swift.Int) -&gt; () in Training.NewsViewController.(checkTokenExpired in _F00BFBA32933A52D32F0CFA9215A13FD)() -&gt; ()"
-                  moduleName = "Training"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/manhld/Desktop/Training/Training/Controller/NewsVC/NewsViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "79"
-                  endingLineNumber = "79"
-                  offsetFromSymbolStart = "82">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "317881B5-E177-4830-BF1A-05D7669B715B"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -1569,22 +1521,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "9AB3F9BE-888F-4E10-AB14-F78653703656"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Training/Controller/MyPageVC/MyPageMainViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "34"
-            endingLineNumber = "34"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "96A47B31-B7C8-43C4-B309-21EB8FB4E771"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -1595,6 +1531,100 @@
             startingLineNumber = "37"
             endingLineNumber = "37"
             landmarkName = "setUpView()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "09B57D44-2BD0-4CD9-BB80-29DDE3F9573B"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Training/Model/MyPageGoingResDatabase.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "59"
+            endingLineNumber = "59"
+            landmarkName = "MyPageGoingsListAPI"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  uuid = "09B57D44-2BD0-4CD9-BB80-29DDE3F9573B - a5ac4caa102ae20c"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Training.MyPageGoingsListAPI.__allocating_init(request: Training.APIMeetUpRequest) -&gt; Training.MyPageGoingsListAPI"
+                  moduleName = "Training"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/manhld/Desktop/MeetUpV2/Training/Model/MyPageGoingResDatabase.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "18">
+               </Location>
+               <Location
+                  uuid = "09B57D44-2BD0-4CD9-BB80-29DDE3F9573B - 436efd511c5d53a7"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Training.MyPageGoingsListAPI.init(request: Training.APIMeetUpRequest) -&gt; Training.MyPageGoingsListAPI"
+                  moduleName = "Training"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/manhld/Desktop/MeetUpV2/Training/Model/MyPageGoingResDatabase.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "59"
+                  endingLineNumber = "59"
+                  offsetFromSymbolStart = "85">
+               </Location>
+               <Location
+                  uuid = "09B57D44-2BD0-4CD9-BB80-29DDE3F9573B - d3859f9a14333154"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Training.MyPageGoingsListAPI.deinit"
+                  moduleName = "Training"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/manhld/Desktop/MeetUpV2/Training/Model/MyPageGoingResDatabase.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "16">
+               </Location>
+               <Location
+                  uuid = "09B57D44-2BD0-4CD9-BB80-29DDE3F9573B - 7c4105842d09bb27"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Training.MyPageGoingsListAPI.__deallocating_deinit"
+                  moduleName = "Training"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/manhld/Desktop/MeetUpV2/Training/Model/MyPageGoingResDatabase.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "16">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F458E5BF-BE51-4567-ADEA-1103929C01F6"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Training/Model/MyPageGoingResDatabase.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "68"
+            endingLineNumber = "68"
+            landmarkName = "init(status:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

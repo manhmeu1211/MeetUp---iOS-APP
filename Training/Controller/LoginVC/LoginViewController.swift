@@ -36,7 +36,7 @@ class LoginViewController: UIViewController {
     }
     
     func setUpItemBar() {
-        self.title = "Login"
+        self.title = "login.title.text".localized
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "SignUp", style: UIBarButtonItem.Style.plain, target: self, action: #selector(toRegister))
     }
     
@@ -91,7 +91,9 @@ class LoginViewController: UIViewController {
             queue.async {
                 getDataService.getInstance.login(params: params) { (json, errcode) in
                     if errcode == 1 {
-                        self.alertLoginFailed.createAlert(target: self, title: "Login failed", message: "Wrong password or email!", titleBtn: "OK")
+                        self.showAlert(message: "alert.wrongInfomation.text".localized, titleBtn: "alert.titleBtn.OK".localized) {
+                            print("Login failed, wrong email or password ")
+                        }
                         self.loading.handleLoading(isLoading: false)
                         self.txtPassword.text = ""
                     } else if errcode == 2 {
@@ -100,7 +102,9 @@ class LoginViewController: UIViewController {
                         self.saveToken(token: token)
                         self.handleMyPage()
                     } else {
-                        self.alertLoginFailed.createAlert(target: self, title: "Login failed", message: "Check your internet connection !", titleBtn: "OK")
+                        self.showAlert(message: "alert.connectFailed.text".localized, titleBtn: "alert.titleBtn.OK".localized) {
+                            print("No internet")
+                        }
                         self.loading.handleLoading(isLoading: false)
                     }
                 }

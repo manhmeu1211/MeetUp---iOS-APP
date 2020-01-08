@@ -28,33 +28,28 @@ class MyPageMainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpView()
-        if UserDefaults.standard.string(forKey: "userToken") != nil {
-            handleMypage()
-        } else {
-             print("Not logged in")
-        }
+
     }
     
     
     override func viewWillAppear(_ animated: Bool) {
         tabBarController?.tabBar.isHidden = false
+        if UserDefaults.standard.string(forKey: "userToken") != nil {
+            handleMypage()
+        } else {
+            print("Not logged in".localized)
+        }
     }
     
     
     private func setUpView() {
-        btnLoginUI.setTitle("Login".localized, for: .normal)
         btnLoginUI.roundedButton()
-        btnSignUpNow.setTitle("SignUpNow".localized, for: .normal)
-        lblMyPage.text = "MyPage".localized
-        lblHaveToLogin.text = "HaveToLogin".localized
-        lblPleaseLogin.text = "PleaseLogin".localized
-        lblDontHaveAccount.text = NSLocalizedString("DontHaveAccount", comment: "")
     }
     
     
     private func handleMypage() {
         let myPage = MyPageViewController()
-        navigationController?.pushViewController(myPage, animated: true)
+        navigationController?.pushViewController(myPage, animated: false)
     }
     
     private func handleMainSignUp() {

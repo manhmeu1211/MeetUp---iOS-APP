@@ -32,9 +32,9 @@ class NewsViewController: UIViewController {
         setUpTable()
         checkFirstLaunchDaily()
         checkConnection()
-        checkTokenExpired()
     }
     
+
     
     // MARK: - Function check before get data
     
@@ -61,7 +61,6 @@ class NewsViewController: UIViewController {
     
     private func checkFirstLaunchDaily() {
         if detechDailyFirstLaunch() == false {
-            checkTokenExpired()
             updateObject()
             loading.handleLoading(isLoading: false)
         } else {
@@ -70,35 +69,20 @@ class NewsViewController: UIViewController {
         }
     }
     
-    private func checkTokenExpired() {
-        if userToken != nil {
-            getDataService.getInstance.getMyEventGoing(status: 1) { (json, errCode) in
-                if errCode == 1 {
-                    self.alert.createAlert(target: self, title: "Your login has been expired", message: nil, titleBtn: "OK")
-                    UserDefaults.standard.removeObject(forKey: "userToken")
-                } else {
-                    print("Token is avaible")
-                }
-            }
-        } else {
-            print("Not logged in")
-        }
-    }
-    
 
   
     private func detechDailyFirstLaunch() -> Bool {
          let today = NSDate().formatted
          if (UserDefaults.standard.string(forKey: "FIRSTLAUNCHNEWS") == today) {
-             print("already launched")
+            print("alert.detechlaunched.already".localized)
              return false
          } else {
-             print("first launch")
+            print("alert.detechlaunched.first".localized)
              UserDefaults.standard.setValue(today, forKey:"FIRSTLAUNCHNEWS")
              return true
          }
      }
-    
+
     // MARK: - Function set up table and get data
     
     private func setUpTable() {
@@ -137,7 +121,7 @@ class NewsViewController: UIViewController {
                 self!.newsTable.reloadData()
             } else {
                 self!.isLoadmore = false
-                self?.showAlert(message: "Cannot load data from sever", titleBtn: "OK", completion: {
+                self?.showAlert(message: "alert.cannotLoadData".localized, titleBtn: "alert.titleBtn".localized, completion: {
                     print("Failed to load Data")
                     self!.updateObject()
                     self?.loading.handleLoading(isLoading: false)

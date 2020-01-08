@@ -48,16 +48,28 @@ class MyPageWentViewController: UIViewController {
     private func updateObject() {
         self.wentEvents = RealmDataBaseQuery.getInstance.getObjects(type: MyPageWentResDatabase.self)!.sorted(byKeyPath: "goingCount", ascending: false).toArray(ofType: MyPageWentResDatabase.self)
     }
+    
+    
+    private func handleLogin() {
+        let tabbarController = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(withIdentifier: "Home") as! TabbarViewController
+        tabbarController.isLoginVC = true
+        UIApplication.shared.windows.first?.rootViewController = tabbarController
+        UIApplication.shared.windows.first?.makeKeyAndVisible()
+    }
          
 
     private func getListGoingWent() {
            let usertoken = UserDefaults.standard.string(forKey: "userToken")
            if usertoken == nil {
-               ToastView.shared.short(self.view, txt_msg: "Not need to login first !")
+            showAlert(message: "haveToLogin.label.text".localized, titleBtn: "alert.titleBtn.login".localized) {
+                self.handleLogin()
+            }
            } else {
             getDataService.getInstance.getMyEventWent(status: self.status) { (events, errCode) in
                     if errCode == 0 {
-                        ToastView.shared.short(self.view, txt_msg: "Cannot load data from server!")
+                        self.showAlert(message: "alert.cannotLoadData".localized, titleBtn: "alert.titleBtn.OK".localized) {
+                            print("Can't get data")
+                        }
                     } else if errCode == 1 {
                         self.wentEvents.removeAll()
                     let dateFormatter = Date()
@@ -74,7 +86,7 @@ class MyPageWentViewController: UIViewController {
                     }  else {
                         self.updateObject()
                         self.wentTable.reloadData()
-                        ToastView.shared.short(self.view, txt_msg: "Check your connetion !")
+                        ToastView.shared.short(self.view, txt_msg: "alert.checkConnection".localized)
                     }
                 }
             }
@@ -103,12 +115,12 @@ extension MyPageWentViewController : UITableViewDelegate, UITableViewDataSource 
             if wentEvents.count == 0 {
                   return ""
             }
-            return "Events is going"
+            return "eventsGoing.text".localized
         default:
             if wentEventsEnd.count == 0 {
                   return ""
             }
-            return "Events end"
+            return "eventsEnd.text".localized
         }
     }
     
@@ -126,12 +138,12 @@ extension MyPageWentViewController : UITableViewDelegate, UITableViewDataSource 
                     cell.imgNews.image = UIImage(data: self.wentEvents[indexPath.row].photo)
                 }
             }
-            cell.date.text = "\(wentEvents[indexPath.row].scheduleStartDate) - \(wentEvents[indexPath.row].goingCount) people going"
+            cell.date.text = "\(wentEvents[indexPath.row].scheduleStartDate) - \(wentEvents[indexPath.row].goingCount) " + "peopleGoing.text".localized
             cell.title.text = wentEvents[indexPath.row].name
             cell.lblDes.text = wentEvents[indexPath.row].descriptionHtml
             DispatchQueue.main.async {
                 cell.statusImage.image = UIImage(named: "icon_starGreen")
-                cell.statusLabel.text = "Joined"
+                cell.statusLabel.text = "join.label.text.joined".localized
                 cell.backgroundStatusView.backgroundColor = UIColor(rgb: 0xE5F9F4)
                 cell.statusLabel.textColor = UIColor(rgb: 0x00C491)
             }
@@ -146,12 +158,12 @@ extension MyPageWentViewController : UITableViewDelegate, UITableViewDataSource 
                     cell.imgNews.image = UIImage(data: self.wentEventsEnd[indexPath.row].photo)
                 }
             }
-            cell.date.text = "\(wentEventsEnd[indexPath.row].scheduleStartDate) - \(wentEventsEnd[indexPath.row].goingCount) people going"
+            cell.date.text = "\(wentEventsEnd[indexPath.row].scheduleStartDate) - \(wentEventsEnd[indexPath.row].goingCount) " + "peopleGoing.text".localized
             cell.title.text = wentEventsEnd[indexPath.row].name
             cell.lblDes.text = wentEventsEnd[indexPath.row].descriptionHtml
             DispatchQueue.main.async {
                 cell.statusImage.image = UIImage(named: "icon_starGreen")
-                cell.statusLabel.text = "Joined"
+                cell.statusLabel.text = "join.label.text.joined".localized
                 cell.backgroundStatusView.backgroundColor = UIColor(rgb: 0xE5F9F4)
                 cell.statusLabel.textColor = UIColor(rgb: 0x00C491)
             }

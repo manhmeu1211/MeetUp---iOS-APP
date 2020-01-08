@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -44,6 +45,9 @@
                             <state key="normal" title="Bỏ qua">
                                 <color key="titleColor" red="0.36470588240000001" green="0.12549019610000001" blue="0.80392156859999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="localizeTitle" value="login.skipBtn.title"/>
+                            </userDefinedRuntimeAttributes>
                             <connections>
                                 <action selector="ignore:" destination="-1" eventType="touchUpInside" id="ncB-tg-tbQ"/>
                             </connections>
@@ -60,6 +64,9 @@
                             <state key="normal" title="Log In">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="localizeTitle" value="login.loginBtn.title"/>
+                            </userDefinedRuntimeAttributes>
                             <connections>
                                 <action selector="login:" destination="-1" eventType="touchUpInside" id="iTc-Fh-HTj"/>
                             </connections>
@@ -89,11 +96,17 @@
                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                     <color key="textColor" white="0.67000000000000004" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="localizeText" value="login.password.text"/>
+                                    </userDefinedRuntimeAttributes>
                                 </label>
                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password must be 6-16 characters" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YJl-Bj-N8o">
                                     <rect key="frame" x="60.5" y="33" width="283.5" height="17"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="localizePlaceholder" value="alert.validPassword.text"/>
+                                    </userDefinedRuntimeAttributes>
                                 </textField>
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -123,6 +136,9 @@
                             <state key="normal" title="Forgot password?">
                                 <color key="titleColor" red="0.36470588240000001" green="0.12549019610000001" blue="0.80392156859999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="localizeTitle" value="login.forgotPass.btnTitle"/>
+                            </userDefinedRuntimeAttributes>
                             <connections>
                                 <action selector="forgotPass:" destination="-1" eventType="touchUpInside" id="LTs-rF-axE"/>
                             </connections>
@@ -152,6 +168,9 @@
                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                     <color key="textColor" white="0.67000000000000004" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="localizeText" value="login.email.text"/>
+                                    </userDefinedRuntimeAttributes>
                                 </label>
                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email@rikkeisoft.com" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="u01-m7-XL4">
                                     <rect key="frame" x="60.5" y="33" width="283.5" height="17"/>

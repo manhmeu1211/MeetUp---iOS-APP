@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -53,7 +54,7 @@
                                 <action selector="backToLogin:" destination="-1" eventType="touchUpInside" id="Mfd-n5-fWl"/>
                             </connections>
                         </button>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Khóa" translatesAutoresizingMaskIntoConstraints="NO" id="XwF-46-HMU">
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Lock" translatesAutoresizingMaskIntoConstraints="NO" id="XwF-46-HMU">
                             <rect key="frame" x="107" y="14" width="200" height="200"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="200" id="XJ1-oD-Ks8"/>
@@ -65,12 +66,18 @@
                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="localizeText" value="resetPass.title"/>
+                            </userDefinedRuntimeAttributes>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please input your email to reset password !" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5zW-Il-2Tr">
                             <rect key="frame" x="20" y="258" width="374" height="20.5"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="localizeText" value="resetPass.inputInformation.text"/>
+                            </userDefinedRuntimeAttributes>
                         </label>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="89s-Kq-stB">
                             <rect key="frame" x="40" y="288.5" width="334" height="60"/>
@@ -181,7 +188,7 @@
         </tapGestureRecognizer>
     </objects>
     <resources>
-        <image name="Khóa" width="147.5" height="141"/>
+        <image name="Lock" width="148" height="141"/>
         <image name="Mask Group" width="375" height="132"/>
         <image name="icon-email-filled" width="20" height="20"/>
     </resources>

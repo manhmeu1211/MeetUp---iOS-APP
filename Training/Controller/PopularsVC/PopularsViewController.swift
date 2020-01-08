@@ -29,7 +29,6 @@ class PopularsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpTable()
-        setHeaders()
         getDataFirstLaunch()
         checkConnection()
     }
@@ -71,24 +70,15 @@ class PopularsViewController: UIViewController {
     private func detechDailyFirstLaunch() -> Bool {
            let today = NSDate().formatted
            if (UserDefaults.standard.string(forKey: "FIRSTLAUNCHPOPULARS") == today) {
-               print("already launched")
+            print("alert.detechlaunched.already".localized)
                return false
            } else {
-               print("first launch")
+            print("alert.detechlaunched.first".localized)
                UserDefaults.standard.setValue(today, forKey:"FIRSTLAUNCHPOPULARS")
                return true
            }
     }
     
-    private func setHeaders() {
-        if userToken == nil {
-            headers = [ "Authorization": "No Auth",
-                         "Content-Type": "application/json"  ]
-         } else {
-             headers = [ "Authorization": "Bearer " + userToken!,
-                         "Content-Type": "application/json"  ]
-         }
-    }
     
     // MARK: - Function set up table and get data
  
@@ -130,7 +120,7 @@ class PopularsViewController: UIViewController {
                 self!.popularsTable.reloadData()
             } else {
                 self!.loading.handleLoading(isLoading: false)
-                self?.showAlert(message: "Cannot load data from sever", titleBtn: "OK", completion: {
+                self?.showAlert(message: "alert.cannotLoadData".localized, titleBtn: "alert.titleBtn".localized, completion: {
                     print("Failed to load Data")
                     self?.updateObject()
                 })
@@ -157,7 +147,7 @@ extension PopularsViewController : UITableViewDataSource, UITableViewDelegate {
             }
         }
         cell.date.textColor = UIColor(rgb: 0x5D20CD)
-        cell.date.text = "\(popularResponse[indexPath.row].scheduleStartDate) - \(popularResponse[indexPath.row].goingCount) people going"
+        cell.date.text = "\(popularResponse[indexPath.row].scheduleStartDate) - \(popularResponse[indexPath.row].goingCount) " + "peopleGoing.text".localized
         cell.title.text = popularResponse[indexPath.row].name
         cell.lblDes.text = popularResponse[indexPath.row].descriptionHtml
         switch popularResponse[indexPath.row].myStatus {
@@ -165,7 +155,7 @@ extension PopularsViewController : UITableViewDataSource, UITableViewDelegate {
             queue.async {
                 DispatchQueue.main.async {
                     cell.statusImage.image = UIImage(named: "icon_starRed")
-                    cell.statusLabel.text = "Can participate"
+                    cell.statusLabel.text = "join.label.text.canParticipate".localized
                     cell.statusLabel.textColor = UIColor(rgb: 0xC63636)
                     cell.backgroundStatusView.backgroundColor = UIColor(rgb: 0xF9EBEB)
                 }
@@ -174,7 +164,7 @@ extension PopularsViewController : UITableViewDataSource, UITableViewDelegate {
             queue.async {
                 DispatchQueue.main.async {
                     cell.statusImage.image = UIImage(named: "icon_starGreen")
-                    cell.statusLabel.text = "Joined"
+                    cell.statusLabel.text = "join.label.text.joined".localized
                     cell.backgroundStatusView.backgroundColor = UIColor(rgb: 0xE5F9F4)
                     cell.statusLabel.textColor = UIColor(rgb: 0x00C491)
                 }         
@@ -183,7 +173,7 @@ extension PopularsViewController : UITableViewDataSource, UITableViewDelegate {
             queue.async {
                 DispatchQueue.main.async {
                     cell.statusImage.image = UIImage(named: "icon_star")
-                    cell.statusLabel.text = "Join"
+                    cell.statusLabel.text = "join.label.text.join".localized
 
                     cell.backgroundStatusView.backgroundColor = UIColor(rgb: 0xF6F6F6)
                     cell.statusLabel.textColor = UIColor.systemGray

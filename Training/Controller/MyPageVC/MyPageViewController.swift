@@ -26,7 +26,6 @@ class MyPageViewController: UIViewController {
     
     
     func setUpView() {
-        tabBarController?.tabBar.isHidden = true
         scrollView.showsHorizontalScrollIndicator = false
         scrollView.showsVerticalScrollIndicator = false
         scrollView.delegate = self
@@ -59,7 +58,6 @@ class MyPageViewController: UIViewController {
     
     @IBAction func backHome(_ sender: Any) {
         let tabbarController = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(withIdentifier: "Home") as! TabbarViewController
-        tabbarController.isLoginVC = true
         UIApplication.shared.windows.first?.rootViewController = tabbarController
         UIApplication.shared.windows.first?.makeKeyAndVisible()
     }

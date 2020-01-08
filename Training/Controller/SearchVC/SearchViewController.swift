@@ -19,12 +19,17 @@ class SearchViewController: UIViewController {
     @IBOutlet weak var noResults: UILabel!
     @IBOutlet weak var loading: UIActivityIndicatorView!
     
+    @IBOutlet weak var imgNoResult: UIImageView!
     private let refreshControl = UIRefreshControl()
     private let userToken = UserDefaults.standard.string(forKey: "userToken")
     private var currentPage = 1
-    private var searchResponse = [SearchResponseDatabase]()
+    private var searchResultPast = [SearchResponseDatabase]()
+    private var searchResultInComing = [SearchResponseDatabase]()
     private var alertLoading = UIAlertController()
     private var isHaveConnection : Bool!
+    private var today = Date()
+    private let dateFormatter = Date()
+    private var isToggleResult = true
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,11 +40,12 @@ class SearchViewController: UIViewController {
     private func setUpVỉew() {
         self.tabBarController?.tabBar.isHidden = true
         noResults.isHidden = true
+        imgNoResult.isHidden = true
         txtSearch.delegate = self
         searchTable.dataSource = self
         searchTable.delegate = self
         searchTable.rowHeight = UITableView.automaticDimension
-        searchTable.register(UINib(nibName: "PopularsTableViewCell", bundle: nil), forCellReuseIdentifier: "PopularsTableViewCell")
+        searchTable.register(UINib(nibName: "NewsCell", bundle: nil), forCellReuseIdentifier: "NewsCell")
         if #available(iOS 10.0, *) {
             self.searchTable.refreshControl = refreshControl
         } else {
@@ -54,6 +60,7 @@ class SearchViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(NewsViewController.networkStatusChanged(_:)), name: Notification.Name(rawValue: ReachabilityStatusChangedNotification), object: nil)
        Reach().monitorReachabilityChanges()
     }
+
     
     
       @objc func networkStatusChanged(_ notification: Notification) {
@@ -77,37 +84,50 @@ class SearchViewController: UIViewController {
         print(isHaveConnection!)
      }
 
-    
-    private func updateObject() {
-          self.searchResponse = RealmDataBaseQuery.getInstance.getObjects(type: SearchResponseDatabase.self)!.sorted(byKeyPath: "goingCount", ascending: false).toArray(ofType: SearchResponseDatabase.self)
-      }
-      
+
 
     private func handleSearch(isLoadMore : Bool, page : Int) {
         let keyword = txtSearch.text!
-        getDataService.getInstance.search(pageIndex: page, pageSize: 10, keyword: keyword, isLoadMore: isLoadMore) { (result, errcode) in
+        getDataService.getInstance.search(pageIndex: page, pageSize: 10, keyword: keyword, isLoadMore: isLoadMore) { [weak self] (result, errcode) in
             if errcode == 0 {
-                self.noResults.text = "No results"
-                self.loading.handleLoading(isLoading: false)
+                self?.noResults.text = "No results"
+                self?.loading.handleLoading(isLoading: false)
             } else if errcode == 1 {
                 if isLoadMore == false {
-                    self.searchResponse.removeAll()
-                    self.searchResponse = result
+                    for i in result {
+                        self?.searchResultInComing.removeAll()
+                        self?.searchResultPast.removeAll()
+                        let date = self?.dateFormatter.converStringToDate(formatter: Date.StyleDate.dateOnly, dateString: i.scheduleStartDate)
+                        if date! < self!.today {
+                            self?.searchResultPast.append(i)
+                         } else {
+                            self?.searchResultInComing.append(i)
+                        }
+                    }
                 } else {
-                    self.searchResponse = result
+                    for i in result {
+                        let date = self?.dateFormatter.converStringToDate(formatter: Date.StyleDate.dateOnly, dateString: i.scheduleStartDate)
+                        if date! < self!.today {
+                            self?.searchResultPast.append(i)
+                         } else {
+                            self?.searchResultInComing.append(i)
+                        }
+                    }
                 }
-                self.updateObject()
-                self.searchTable.reloadData()
-                if self.searchResponse.isEmpty {
-                    self.noResults.isHidden = false
+                self?.searchTable.reloadData()
+                if self!.searchResultInComing.isEmpty && self!.isToggleResult {
+                    self?.noResults.isHidden = false
+                    self?.imgNoResult.isHidden = false
+                    self?.noResults.text = "search.noResultIncoming.text".localized
                 } else {
-                    self.noResults.isHidden = true
+                    self?.noResults.isHidden = true
+                    self?.imgNoResult.isHidden = true
                 }
-                self.loading.handleLoading(isLoading: false)
+                self?.loading.handleLoading(isLoading: false)
             } else {
-                self.noResults.text = "Failed to load data !"
-                self.noResults.isHidden = false
-                self.loading.handleLoading(isLoading: false)
+                self?.noResults.text = "alert.cannotLoadData".localized
+                self?.noResults.isHidden = false
+                self?.loading.handleLoading(isLoading: false)
             }
         }
     }
@@ -141,11 +161,31 @@ class SearchViewController: UIViewController {
     
     @IBAction func incomingBtn(_ sender: Any) {
         incaditorLeading.constant = 0
+        isToggleResult = true
+        if searchResultInComing.isEmpty {
+            noResults.isHidden = false
+            noResults.text = "search.noResultIncoming.text".localized
+            imgNoResult.isHidden = false
+         } else {
+            noResults.isHidden = true
+            imgNoResult.isHidden = true
+         }
+        searchTable.reloadData()
     }
     
     
     @IBAction func pastBtn(_ sender: Any) {
         incaditorLeading.constant = viewBtn.frame.width/2
+        isToggleResult = false
+        if searchResultPast.isEmpty {
+            noResults.isHidden = false
+            imgNoResult.isHidden = false
+            noResults.text = "search.noResultPast.text".localized
+        } else {
+            noResults.isHidden = true
+            imgNoResult.isHidden = true
+        }
+        searchTable.reloadData()
     }
 }
 
@@ -168,6 +208,9 @@ extension SearchViewController : UITextFieldDelegate {
                 return true
             }
         } else {
+            showAlert(message: "alert.checkConnection".localized, titleBtn: "alert.titleBtn.OK".localized) {
+                print("No Internet")
+            }
             view.endEditing(true)
             return false
         }
@@ -178,24 +221,52 @@ extension SearchViewController : UITextFieldDelegate {
 
 extension SearchViewController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return searchResponse.count
+        switch isToggleResult {
+        case true:
+            return searchResultInComing.count
+        default:
+            return searchResultPast.count
+        }
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = searchTable.dequeueReusableCell(withIdentifier: "PopularsTableViewCell", for: indexPath) as! PopularsTableViewCell
-        let queue = DispatchQueue(label: "loadImageSearch")
-        queue.async {
-            DispatchQueue.main.async {
-                cell.imgPopulars.image = UIImage(data: self.searchResponse[indexPath.row].photo)
+        let cell = searchTable.dequeueReusableCell(withIdentifier: "NewsCell", for: indexPath) as! NewsCell
+        switch isToggleResult {
+        case true:
+            let queue = DispatchQueue(label: "loadImageSearch")
+            queue.async {
+                DispatchQueue.main.async {
+                    cell.imgTimer.image = UIImage(named: "Group15")
+                    cell.imgNews.image = UIImage(data: self.searchResultInComing[indexPath.row].photo)
+                }
             }
-        }
-        cell.eventsName.text = searchResponse[indexPath.row].name
-        cell.desHTML.text = searchResponse[indexPath.row].descriptionHtml.replacingOccurrences(of: "[|<>/]", with: "", options: [.regularExpression])
-               
-        if searchResponse[indexPath.row].goingCount == 0 {
-            cell.dateAndCount.text = "\(searchResponse[indexPath.row].scheduleStartDate) "
-        } else {
-            cell.dateAndCount.text = "\(searchResponse[indexPath.row].scheduleStartDate) - \(searchResponse[indexPath.row].goingCount) people going"
+            cell.date.textColor = UIColor(rgb: 0x5D20CD)
+            cell.title.text = searchResultInComing[indexPath.row].name
+            cell.lblDes.text = searchResultInComing[indexPath.row].descriptionHtml.replacingOccurrences(of: "[|<>/]", with: "", options: [.regularExpression])
+                   
+            if searchResultInComing[indexPath.row].goingCount == 0 {
+                cell.date.text = "\(searchResultInComing[indexPath.row].scheduleStartDate) "
+            } else {
+                cell.date.text = "\(searchResultInComing[indexPath.row].scheduleStartDate) - \(searchResultInComing[indexPath.row].goingCount) " + "peopleGoing.text".localized
+            }
+        default:
+            let queue = DispatchQueue(label: "loadImageSearch")
+            queue.async {
+                DispatchQueue.main.async {
+                    cell.imgTimer.image = UIImage(named: "Group15")
+                    cell.imgNews.image = UIImage(data: self.searchResultPast[indexPath.row].photo)
+                }
+            }
+            cell.date.textColor = UIColor(rgb: 0x5D20CD)
+            cell.title.text = searchResultPast[indexPath.row].name
+            cell.lblDes.text = searchResultPast[indexPath.row].descriptionHtml.replacingOccurrences(of: "[|<>/]", with: "", options: [.regularExpression])
+                   
+            if searchResultPast[indexPath.row].goingCount == 0 {
+                cell.date.text = "\(searchResultPast[indexPath.row].scheduleStartDate) "
+            } else {
+                cell.date.text = "\(searchResultPast[indexPath.row].scheduleStartDate) - \(searchResultPast[indexPath.row].goingCount) " + "peopleGoing.text".localized
+            }
         }
         return cell
     }
@@ -205,12 +276,24 @@ extension SearchViewController : UITableViewDelegate, UITableViewDataSource {
         }
       
       func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        let lastItem = searchResponse.count - 1
-          if indexPath.row == lastItem {
-            noResults.isHidden = true
-            currentPage += 1
-            loading.handleLoading(isLoading: true)
-            handleSearch(isLoadMore: true, page: currentPage)
-          }
+            switch isToggleResult {
+            case true:
+                let lastItem = searchResultInComing.count - 1
+                  if indexPath.row == lastItem {
+                    noResults.isHidden = true
+                    currentPage += 1
+                    loading.handleLoading(isLoading: true)
+                    handleSearch(isLoadMore: true, page: currentPage)
+                  }
+            default:
+                let lastItem = searchResultPast.count - 1
+                  if indexPath.row == lastItem {
+                    noResults.isHidden = true
+                    currentPage += 1
+                    loading.handleLoading(isLoading: true)
+                    handleSearch(isLoadMore: true, page: currentPage)
+                  }
+
+            }
       }
 }

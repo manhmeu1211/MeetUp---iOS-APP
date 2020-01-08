@@ -56,14 +56,17 @@ class MyPageGoingViewController: UIViewController {
        
     
     private func handleLogOut() {
+        UserDefaults.standard.removeObject(forKey: "userToken")
         navigationController?.popToRootViewController(animated: true)
     }
-
+    
     
     private func getListGoingEvent() {
         getDataService.getInstance.getMyEventGoing(status: self.status) { (events, errCode) in
-                if errCode == 0 {
-                    ToastView.shared.short(self.view, txt_msg: "Cannot load data from server!")
+                if errCode == 1 {
+                    self.showAlert(message: "alert.message.loginExpired".localized, titleBtn: "alert.titleBtn.OK".localized) {
+                        self.handleLogOut()
+                    }
                 } else if errCode == 2 {
                     self.goingEvents.removeAll()
                     let dateFormatter = Date()
@@ -80,7 +83,7 @@ class MyPageGoingViewController: UIViewController {
                 }  else {
                     self.updateObject()
                     self.goingTable.reloadData()
-                    ToastView.shared.short(self.view, txt_msg: "Check your connetion !")
+                        ToastView.shared.short(self.view, txt_msg: "alert.checkConnection".localized)
                 }
              self.loading.handleLoading(isLoading: false)
             }

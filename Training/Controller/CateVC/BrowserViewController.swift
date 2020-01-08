@@ -42,7 +42,7 @@ class BrowserViewController: UIViewController {
     }
     
     private func setUpBarButton() {
-        self.title = "Categories"
+        self.title = "categories.title".localized
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.search,
         target: self, action: #selector(handleSearchViewController))
           self.tabBarController?.tabBar.isHidden = false
@@ -85,7 +85,7 @@ class BrowserViewController: UIViewController {
             } else {
                 print("Failed")
                 self!.dismiss(animated: true, completion: nil)
-                self!.showAlert(message: "Cannot get data from sever", titleBtn: "OK") {
+                self!.showAlert(message: "alert.cannotLoadData".localized, titleBtn: "alert.titleBtn.OK".localized) {
                     print("Can't get data")
                 }
             }

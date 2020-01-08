@@ -64,9 +64,9 @@ class NearViewController: UIViewController, CLLocationManagerDelegate {
     
     private func addArtwork() {
           map.mapType = MKMapType.standard
-          let artwork = Artwork(title: "My Location",
-                 locationName: "My Location",
-                 discipline: "My Location",
+        let artwork = Artwork(title: "anootation.title".localized,
+                              locationName: "My Location".localized,
+                              discipline: "My Location".localized,
                  coordinate: CLLocationCoordinate2D(latitude: initLat!, longitude: initLong!))
           map.addAnnotation(artwork)
         
@@ -88,7 +88,7 @@ class NearViewController: UIViewController, CLLocationManagerDelegate {
         if token != nil {
             getListEvent()
         } else {
-            showAlert(message: "You have to login first", titleBtn: "LOGIN") {
+            showAlert(message: "haveToLogin.label.text".localized, titleBtn: "alert.titleBtn.login".localized) {
                 self.handleLoginView()
             }
         }
@@ -107,7 +107,7 @@ class NearViewController: UIViewController, CLLocationManagerDelegate {
     private func updateObject() {
         let list = RealmDataBaseQuery.getInstance.getObjects(type: EventsNearResponse.self)!.sorted(byKeyPath: "goingCount", ascending: false).toArray(ofType: EventsNearResponse.self)
         if list.isEmpty {
-            events.append(EventsNearResponse(id: 0, photo: "", name: "No event near you", descriptionHtml: "", scheduleStartDate: "", scheduleEndDate: "", scheduleStartTime: "", scheduleEndTime: "", schedulePermanent: "", goingCount: 0))
+            events.append(EventsNearResponse(id: 0, photo: "", name: "noEvent.label.text".localized, descriptionHtml: "", scheduleStartDate: "", scheduleEndDate: "", scheduleStartTime: "", scheduleEndTime: "", schedulePermanent: "", goingCount: 0))
         } else {
             events = list
         }
@@ -169,7 +169,7 @@ extension NearViewController : UICollectionViewDataSource, UICollectionViewDeleg
         }
         cell.eventName.text = events[indexPath.row].name
         cell.eventDes.text = events[indexPath.row].descriptionHtml
-        cell.eventCount.text = "\(events[indexPath.row].scheduleStartDate) - \(events[indexPath.row].goingCount) people going"
+        cell.eventCount.text = "\(events[indexPath.row].scheduleStartDate) - \(events[indexPath.row].goingCount) " + "peopleGoing.text".localized
         return cell
     }
     

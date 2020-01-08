@@ -1,6 +1,92 @@
-"Login" = "Login";
-"SignUpNow" = "Đăng ký ngay !";
-"MyPage"  = "Trang của tôi";
-"HaveToLogin" = "Bạn cần đăng nhập trước";
-"PleaseLogin" = "Đăng nhập và quản lý sự kiện của bạn";
-"DontHaveAccount" = "Chưa có tài khoản?";
+
+// MARK: - Home VỉewController
+"btnNews.title" = "News";
+"btnEvents.title" = "Events";
+"header.label.text" = "Home";
+
+
+// MARK: - News VỉewController
+
+"alert.message.loginExpired" = "Your login has been expired";
+"alert.token.avaible" = "Token is avaible";
+"alert.detechlaunched.already" = "Already launched in day";
+"alert.detechlaunched.first" = "First launch in day";
+"alert.cannotLoadData" = "Cannot load data from sever";
+"alert.titleBtn.OK" = "OK";
+"alert.titleBtn.login" = "LOGIN";
+"alert.checkConnection" = "Check your connetion !" ;
+
+
+
+// MARK: - Populars VỉewController
+
+"join.label.text.canParticipate" = "Can participate";
+"join.label.text.joined" = "Joined";
+"join.label.text.join" = "Join";
+
+
+
+// MARK: -  Near VỉewController
+
+"anootation.title" = "My Location";
+"anootation.name" = "My Location";
+"anootation.discipline" = "My discipline";
+"noEvent.label.text" = "No event near you";
+"peopleGoing.text" = "people going";
+
+
+
+// MARK: -  My Page Main ViewController
+"btnLogin.tilte" = "Login";
+"btnSignUpNow.tilte" = "Sign Up Now !";
+"myPage.label.text" = "My page";
+"haveToLogin.label.text" = "You have to login first";
+"dontHaveAccount.label.text" = "Don't have an account?";
+"pleaseLogin.label.text" = "Login to management your events";
+"Not logged in" = "Not logged in";
+"eventsGoing.text" = "Events is going";
+"eventsEnd.text" = "Events end";
+
+
+
+// MARK: -  Categories - Event by Cate ViewController
+
+"categories.title" = "Categories";
+"refreshingData.text" = "Refreshing data";
+"noEvents.text" = "No Events";
+
+
+// MARK: -  Login ViewController
+
+
+"login.title.text" = "Login";
+"signUp.title.barButtonItem" = "SignUp";
+"alert.fillInfomation.text" = "Please fill your infomation";
+"alert.validPassword.text" = "Password must be 6-16 character, Try again!";
+"alert.validEmail.text" = "Email is not correct, Try again!";
+"alert.wrongInfomation.text" = "Login failed, wrong email or password !";
+"alert.connectFailed.text" = "Connect failed, Check your internet connection !";
+
+// MARK: -  Label, button, ...
+
+"login.email.text" = "Email";
+"login.password.text" = "Password";
+"login.forgotPass.btnTitle" = "Forgot password";
+"login.loginBtn.title" = "Login";
+"login.skipBtn.title" = "Skip";
+"login.signUp.title" = "Sign Up";
+"signUp.fullName.title" = "Fullname";
+"signUp.passWord.title" = "Password";
+"signUp.fullName.placeholder" = "Type your fullname...";
+"categories.btnByPopulars.text" = "By Populars";
+"categories.btnByDate.text" = "By Date";
+"search.searclPlaceholeder.text" = "Search here...";
+"search.noResult.text" = "We didn't find any events :'(";
+"resetPass.title" = "Forgot password?";
+"resetPass.inputInformation.text" = "Please input your email to reset password";
+"eventDetai.title" = "Event detail";
+"eventNear.title" = "Events Near";
+"Please wait..." = "Please wait...";
+"search.noResultIncoming.text" = "No events is coming...:'(";
+"search.noResultPast.text" = "We didn't find any events... :'(";
+

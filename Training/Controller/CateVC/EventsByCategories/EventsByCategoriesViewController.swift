@@ -48,7 +48,9 @@ class EventsByCategoriesViewController: UIViewController {
         } else {
             noResults.isHidden = false
             loading.handleLoading(isLoading: false)
-            ToastView.shared.long(self.view, txt_msg: "Not logged in")
+            showAlert(message: "Not logged in".localized, titleBtn: "alert.titleBtn.OK".localized) {
+                
+            }
         }
     }
     
@@ -65,7 +67,7 @@ class EventsByCategoriesViewController: UIViewController {
         } else {
             self.eventTable.addSubview(refreshControl)
         }
-        refreshControl.attributedTitle = NSAttributedString(string: "Refreshing data")
+        refreshControl.attributedTitle = NSAttributedString(string: "refreshingData.text".localized)
         refreshControl.addTarget(self, action: #selector(upDateData), for: .valueChanged)
     }
     
@@ -92,7 +94,7 @@ class EventsByCategoriesViewController: UIViewController {
     private func checkEvent() {
         if eventsByCate.isEmpty {
             noResults.isHidden = false
-            noResults.text = "No events"
+            noResults.text = "noEvents.text".localized
         } else {
             noResults.isHidden = true
         }
@@ -174,7 +176,7 @@ extension EventsByCategoriesViewController : UITableViewDataSource, UITableViewD
             }
         }
         cell.date.textColor = UIColor(rgb: 0x5D20CD)
-        cell.date.text = "\(eventsByCate[indexPath.row].scheduleStartDate) - \(eventsByCate[indexPath.row].goingCount) people going"
+        cell.date.text = "\(eventsByCate[indexPath.row].scheduleStartDate) - \(eventsByCate[indexPath.row].goingCount) " + "peopleGoing.text".localized
         cell.title.text = eventsByCate[indexPath.row].name
         cell.lblDes.text = eventsByCate[indexPath.row].descriptionHtml
         cell.backgroundStatusView.isHidden = true
