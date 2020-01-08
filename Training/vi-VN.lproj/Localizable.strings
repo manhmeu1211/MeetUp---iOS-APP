@@ -46,8 +46,8 @@
 "Not logged in" = "Chưa đăng nhập";
 "pleaseLogin.label.text" = "Đăng nhập để quản lý sự kiện của bạn";
 "not logged in" = "Chưa đăng nhập";
-"eventsGoing.text" = "Đang diễn ra";
-"eventsEnd.text" = "Đã kết thúc";
+"eventsGoing.text" = "Có thể tham gia";
+"eventsEnd.text" = "Đã đi";
 
 
 
@@ -69,6 +69,8 @@
 "alert.validEmail.text" = "Email không đúng định dạng";
 "alert.wrongInfomation.text" = "Đăng nhập thất bại, sai tên tài khoản hoặc mật khẩu";
 "alert.connectFailed.text" = "Kết nối thất bại, vui lòng thử lại !";
+"alert.needPermissionLocation.text" = "Vui lòng cấp quyền vị trí !";
+"alert.Settings" = "Cài đặt";
 
 // MARK: -  Label, button, ...
 

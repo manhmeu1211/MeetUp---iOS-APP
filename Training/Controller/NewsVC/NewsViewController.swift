@@ -21,6 +21,7 @@ class NewsViewController: UIViewController {
     
 
     private var currentPage = 1
+    private var pageIndex : Int!
     private var newsResponse = [NewsDataResponse]()
     private let dateformatted = DateFormatter()
     private let userToken = UserDefaults.standard.string(forKey: "userToken")
@@ -120,7 +121,6 @@ class NewsViewController: UIViewController {
                 }
                 self!.newsTable.reloadData()
             } else {
-                self!.isLoadmore = false
                 self?.showAlert(message: "alert.cannotLoadData".localized, titleBtn: "alert.titleBtn.OK".localized, completion: {
                     print("Failed to load Data")
                     self!.updateObject()
@@ -161,6 +161,7 @@ extension NewsViewController: UITableViewDataSource, UITableViewDelegate {
         if indexPath.row == lastItem && isLoadmore == true {
             loading.handleLoading(isLoading: true)
             currentPage += 1
+            pageIndex = currentPage
             getNewsData(shoudLoadmore: true, page: currentPage)
         } else {
             loading.handleLoading(isLoading: false)

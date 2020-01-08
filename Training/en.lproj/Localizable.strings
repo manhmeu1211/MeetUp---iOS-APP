@@ -66,6 +66,8 @@
 "alert.validEmail.text" = "Email is not correct, Try again!";
 "alert.wrongInfomation.text" = "Login failed, wrong email or password !";
 "alert.connectFailed.text" = "Connect failed, Check your internet connection !";
+"alert.needPermissionLocation.text" = "Please turn on location services !";
+"alert.Settings" = "Setting";
 
 // MARK: -  Label, button, ...
 

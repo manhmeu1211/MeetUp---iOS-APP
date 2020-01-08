@@ -45,6 +45,29 @@ class NearViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     
+    override func viewDidAppear(_ animated: Bool) {
+        if CLLocationManager.locationServicesEnabled() {
+            switch CLLocationManager.authorizationStatus() {
+                case .notDetermined, .restricted, .denied:
+                    showAlert(message: "alert.needPermissionLocation.text".localized, titleBtn: "alert.Settings".localized) {
+                        if let url = URL(string: "App-Prefs:root=Privacy&path=LOCATION") {
+                             // If general location settings are disabled then open general location settings
+                            UIApplication.shared.openURL(url)
+                        }
+                    }
+                case .authorizedAlways, .authorizedWhenInUse:
+                    currentLocation = locationManager.location
+                    initLong = currentLocation.coordinate.longitude
+                    initLat = currentLocation.coordinate.latitude
+                    centerMapOnLocation(location: CLLocation(latitude: initLat!, longitude: initLong!))
+                @unknown default:
+                break
+            }
+            } else {
+                print("Location services are not enabled")
+        }
+    }
+    
     // MARK: - Setup Location - MapView
    
     
