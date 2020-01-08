@@ -18,27 +18,28 @@ class NearViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var collectionVIew: UICollectionView!
     @IBOutlet weak var map: MKMapView!
     @IBOutlet weak var loading: UIActivityIndicatorView!
-    var alert = UIAlertController()
+    private var alert = UIAlertController()
     
     // MARK: - Varribles
-    let realm = try! Realm()
-    var events = [EventsNearResponse]()
-    var anotion = [Artwork]()
-    let locationManager = CLLocationManager()
-    let regionRadius: CLLocationDistance = 1000
-    var centralLocationCoordinate : CLLocationCoordinate2D!
-    var currentLocation: CLLocation!
-    var initLong, initLat : Double?
-    var eventLong = [Double]()
-    var eventLat = [Double]()
-    var indexRow : Int!
+    private let realm = try! Realm()
+    private var events = [EventsNearResponse]()
+    private var anotion = [Artwork]()
+    private let locationManager = CLLocationManager()
+    private let regionRadius: CLLocationDistance = 1000
+    private var centralLocationCoordinate : CLLocationCoordinate2D!
+    private var currentLocation: CLLocation!
+    private var initLong, initLat : Double?
+    private var eventLong = [Double]()
+    private var eventLat = [Double]()
+    private var indexRow : Int!
+    private var isConnected : Bool!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        map.delegate = self
         loading.handleLoading(isLoading: true)
         setUpCollectionView()
+        checkConnection()
         getLocation()
         getListEventV2()
         updateObject()
@@ -46,6 +47,8 @@ class NearViewController: UIViewController, CLLocationManagerDelegate {
     
     
     // MARK: - Setup Location - MapView
+   
+    
     
     private func getLocation() {
         locationManager.requestWhenInUseAuthorization()
@@ -69,12 +72,37 @@ class NearViewController: UIViewController, CLLocationManagerDelegate {
                               discipline: "My Location".localized,
                  coordinate: CLLocationCoordinate2D(latitude: initLat!, longitude: initLong!))
           map.addAnnotation(artwork)
-        
     }
+    
+    private func checkConnection() {
+           NotificationCenter.default.addObserver(self, selector: #selector(NewsViewController.networkStatusChanged(_:)), name: Notification.Name(rawValue: ReachabilityStatusChangedNotification), object: nil)
+          Reach().monitorReachabilityChanges()
+       }
+       
+       @objc func networkStatusChanged(_ notification: Notification) {
+           if let userInfo = notification.userInfo {
+               let statusConnect = userInfo["Status"] as! String
+               print(statusConnect)
+           }
+           let status = Reach().connectionStatus()
+               switch status {
+                   case .unknown, .offline:
+                       isConnected = false
+                   case .online(.wwan):
+                       isConnected = true
+                       loading.handleLoading(isLoading: true)
+                       getListEventV2()
+                   case .online(.wiFi):
+                       isConnected = true
+                       loading.handleLoading(isLoading: true)
+                       getListEventV2()
+               }
+        }
     
     // MARK: - Setup views
     
     private func setUpCollectionView() {
+        map.delegate = self
         collectionVIew.dataSource = self
         collectionVIew.delegate = self
         collectionVIew.showsHorizontalScrollIndicator = false
@@ -185,15 +213,19 @@ extension NearViewController : UICollectionViewDataSource, UICollectionViewDeleg
             if eventLat.isEmpty || eventLong.isEmpty {
                 print("No event near")
             } else {
+                if isConnected {
                 centerMapOnLocation(location: CLLocation(latitude: eventLat[indexPath.row], longitude: eventLong[indexPath.row]))
+                }
             }
         }
     }
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        for cell in collectionVIew.visibleCells {
-            let indexPath = collectionVIew.indexPath(for: cell)
-            centerMapOnLocation(location: CLLocation(latitude: eventLat[indexPath!.row], longitude: eventLong[indexPath!.row]))
+        if isConnected {
+            for cell in collectionVIew.visibleCells {
+                let indexPath = collectionVIew.indexPath(for: cell)
+                centerMapOnLocation(location: CLLocation(latitude: eventLat[indexPath!.row], longitude: eventLong[indexPath!.row]))
+            }
         }
     }
 }
@@ -201,14 +233,18 @@ extension NearViewController : UICollectionViewDataSource, UICollectionViewDeleg
 
 extension NearViewController : MKMapViewDelegate {
     private func mapView(mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
-        let centralLocation = CLLocation(latitude: mapView.centerCoordinate.latitude, longitude:  mapView.centerCoordinate.longitude)
-            self.centralLocationCoordinate = mapView.centerCoordinate
-           print("Radius - \(self.getRadius(centralLocation: centralLocation))")
+        if isConnected {
+            let centralLocation = CLLocation(latitude: mapView.centerCoordinate.latitude, longitude:  mapView.centerCoordinate.longitude)
+                self.centralLocationCoordinate = mapView.centerCoordinate
+               print("Radius - \(self.getRadius(centralLocation: centralLocation))")
+        }
     }
     
     internal func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        let latValue = view.annotation?.coordinate.latitude
-        let longValue = view.annotation?.coordinate.longitude
-        centerMapOnLocation(location: CLLocation(latitude: latValue!, longitude: longValue!))
+        if isConnected {
+            let latValue = view.annotation?.coordinate.latitude
+            let longValue = view.annotation?.coordinate.longitude
+            centerMapOnLocation(location: CLLocation(latitude: latValue!, longitude: longValue!))
+        }
     }
 }

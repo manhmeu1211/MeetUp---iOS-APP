@@ -13,12 +13,16 @@ class MyPageWentViewController: UIViewController {
 
     @IBOutlet weak var noEvents: UILabel!
     @IBOutlet weak var wentTable: UITableView!
+    
+    
     let userToken = UserDefaults.standard.string(forKey: "userToken")
     private let status = 2
     private let realm = try! Realm()
     private var wentEvents = [MyPageWentResDatabase]()
     private var wentEventsEnd = [MyPageWentResDatabase]()
     private let today = Date()
+    private let refreshControl = UIRefreshControl()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
@@ -30,7 +34,20 @@ class MyPageWentViewController: UIViewController {
         wentTable.dataSource = self
         wentTable.register(UINib(nibName: "NewsCell", bundle: nil), forCellReuseIdentifier: "NewsCell")
         noEvents.isHidden = true
+        if #available(iOS 10.0, *) {
+             self.wentTable.refreshControl = refreshControl
+         } else {
+             self.wentTable.addSubview(refreshControl)
+         }
+        refreshControl.addTarget(self, action: #selector(updateData), for: .valueChanged)
     }
+    
+    @objc private func updateData() {
+        getListGoingWent()
+        refreshControl.endRefreshing()
+    }
+    
+    
     
     private func checkEvent() {
         if wentEvents.isEmpty  && wentEventsEnd.isEmpty {

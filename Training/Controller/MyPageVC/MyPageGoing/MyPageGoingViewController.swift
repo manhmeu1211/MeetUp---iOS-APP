@@ -46,7 +46,17 @@ class MyPageGoingViewController: UIViewController {
         goingTable.delegate = self
         goingTable.dataSource = self
         goingTable.register(UINib(nibName: "NewsCell", bundle: nil), forCellReuseIdentifier: "NewsCell")
-
+        if #available(iOS 10.0, *) {
+             self.goingTable.refreshControl = refreshControl
+         } else {
+             self.goingTable.addSubview(refreshControl)
+         }
+        refreshControl.addTarget(self, action: #selector(updateData), for: .valueChanged)
+    }
+    
+    @objc private func updateData() {
+        getListGoingEvent()
+        refreshControl.endRefreshing()
     }
     
     private func updateObject() {

@@ -87,12 +87,11 @@ class PopularsViewController: UIViewController {
         popularsTable.delegate = self
         popularsTable.rowHeight = UITableView.automaticDimension
         popularsTable.register(UINib(nibName: "NewsCell", bundle: nil), forCellReuseIdentifier: "NewsCell")
-          if #available(iOS 10.0, *) {
-                 self.popularsTable.refreshControl = refreshControl
-             } else {
-                 self.popularsTable.addSubview(refreshControl)
-             }
-        refreshControl.attributedTitle = NSAttributedString(string: "Refreshing data")
+        if #available(iOS 10.0, *) {
+             self.popularsTable.refreshControl = refreshControl
+         } else {
+             self.popularsTable.addSubview(refreshControl)
+         }
         refreshControl.addTarget(self, action: #selector(upDateDataV2), for: .valueChanged)
     }
     
