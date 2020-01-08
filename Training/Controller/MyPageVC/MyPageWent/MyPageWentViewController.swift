@@ -22,11 +22,7 @@ class MyPageWentViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
-        if userToken != nil {
-            getListGoingWent()
-        } else {
-            print("data loaded")
-        }
+        getListGoingWent()
     }
     
     private func setupView() {
@@ -46,7 +42,8 @@ class MyPageWentViewController: UIViewController {
      
     
     private func updateObject() {
-        self.wentEvents = RealmDataBaseQuery.getInstance.getObjects(type: MyPageWentResDatabase.self)!.sorted(byKeyPath: "goingCount", ascending: false).toArray(ofType: MyPageWentResDatabase.self)
+        let list = RealmDataBaseQuery.getInstance.getObjects(type: MyPageWentResDatabase.self)!.sorted(byKeyPath: "goingCount", ascending: false).toArray(ofType: MyPageWentResDatabase.self)
+        wentEvents = list
     }
     
     
@@ -59,35 +56,28 @@ class MyPageWentViewController: UIViewController {
          
 
     private func getListGoingWent() {
-           let usertoken = UserDefaults.standard.string(forKey: "userToken")
-           if usertoken == nil {
-            showAlert(message: "haveToLogin.label.text".localized, titleBtn: "alert.titleBtn.login".localized) {
-                self.handleLogin()
-            }
-           } else {
-            getDataService.getInstance.getMyEventWent(status: self.status) { (events, errCode) in
-                    if errCode == 0 {
-                        self.showAlert(message: "alert.cannotLoadData".localized, titleBtn: "alert.titleBtn.OK".localized) {
-                            print("Can't get data")
-                        }
-                    } else if errCode == 1 {
-                        self.wentEvents.removeAll()
-                    let dateFormatter = Date()
-                        for i in events {
-                             let date = dateFormatter.converStringToDate(formatter: Date.StyleDate.dateOnly, dateString: i.scheduleStartDate)
-                             if date! < self.today {
-                                self.wentEventsEnd.append(i)
-                             } else {
-                                self.wentEvents.append(i)
-                            }
-                         }
-                        self.wentTable.reloadData()
-                        self.checkEvent()
-                    }  else {
-                        self.updateObject()
-                        self.wentTable.reloadData()
-                        ToastView.shared.short(self.view, txt_msg: "alert.checkConnection".localized)
+        getDataService.getInstance.getMyEventWent(status: self.status) { (events, errCode) in
+                if errCode == 1 {
+                    self.showAlert(message: "alert.cannotLoadData".localized, titleBtn: "alert.titleBtn.OK".localized) {
+                        print("Can't get data")
                     }
+                } else if errCode == 2 {
+                    self.wentEvents.removeAll()
+                let dateFormatter = Date()
+                    for i in events {
+                         let date = dateFormatter.converStringToDate(formatter: Date.StyleDate.dateOnly, dateString: i.scheduleStartDate)
+                         if date! < self.today {
+                            self.wentEventsEnd.append(i)
+                         } else {
+                            self.wentEvents.append(i)
+                        }
+                     }
+                    self.wentTable.reloadData()
+                    self.checkEvent()
+                }  else {
+                    self.updateObject()
+                    self.wentTable.reloadData()
+                    ToastView.shared.short(self.view, txt_msg: "alert.checkConnection".localized)
                 }
             }
         }
