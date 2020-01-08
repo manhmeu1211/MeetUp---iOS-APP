@@ -120,7 +120,7 @@ class PopularsViewController: UIViewController {
                 self!.popularsTable.reloadData()
             } else {
                 self!.loading.handleLoading(isLoading: false)
-                self?.showAlert(message: "alert.cannotLoadData".localized, titleBtn: "alert.titleBtn".localized, completion: {
+                self?.showAlert(message: "alert.cannotLoadData".localized, titleBtn: "alert.titleBtn.OK".localized, completion: {
                     print("Failed to load Data")
                     self?.updateObject()
                 })

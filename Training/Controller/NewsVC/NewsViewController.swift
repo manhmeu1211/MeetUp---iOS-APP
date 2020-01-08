@@ -121,7 +121,7 @@ class NewsViewController: UIViewController {
                 self!.newsTable.reloadData()
             } else {
                 self!.isLoadmore = false
-                self?.showAlert(message: "alert.cannotLoadData".localized, titleBtn: "alert.titleBtn".localized, completion: {
+                self?.showAlert(message: "alert.cannotLoadData".localized, titleBtn: "alert.titleBtn.OK".localized, completion: {
                     print("Failed to load Data")
                     self!.updateObject()
                     self?.loading.handleLoading(isLoading: false)

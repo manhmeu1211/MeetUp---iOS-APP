@@ -13,12 +13,18 @@ import UIKit
 class TabbarViewController: UITabBarController {
     // MARK: - Check index tabbar view
     var isLoginVC = false
+    private let userToken = UserDefaults.standard.string(forKey: "userToken")
     override func viewDidLoad() {
         super.viewDidLoad()
+        isLoginView()
+        
+    }
+    private func isLoginView() {
         if isLoginVC == true {
             self.selectedIndex = 3
         } else {
             self.selectedIndex = 0
         }
     }
+
 }

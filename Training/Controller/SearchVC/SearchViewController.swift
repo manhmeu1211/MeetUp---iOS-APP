@@ -196,7 +196,7 @@ extension SearchViewController : UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if isHaveConnection == true {
             if userToken == nil {
-                alertLoading.createAlertWithHandle(target: self, title: "You need to login first", message: nil, titleBtn: "Login") {
+                showAlert(message: "haveToLogin.label.text".localized, titleBtn: "alert.titleBtn.login".localized) {
                     self.handleLogin()
                 }
                 return false
