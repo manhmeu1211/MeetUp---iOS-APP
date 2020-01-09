@@ -14,7 +14,7 @@ import SwiftyJSON
 class EventsNearResponse: Object {
     
     @objc dynamic var id = 0
-    @objc dynamic var photo = Data()
+    @objc dynamic var photo = ""
     @objc dynamic var name = ""
     @objc dynamic var descriptionHtml = ""
     @objc dynamic var scheduleStartDate = ""
@@ -27,24 +27,7 @@ class EventsNearResponse: Object {
    convenience init(id: Int, photo :String , name: String, descriptionHtml : String, scheduleStartDate : String, scheduleEndDate : String, scheduleStartTime: String, scheduleEndTime : String, schedulePermanent : String, goingCount: Int ) {
         self.init()
         self.id = id
-        var url = URL(string: photo)
-        let image = UIImage(named: "noImage.png")
-        if url != nil {
-            do {
-                self.photo = try Data(contentsOf: url!)
-            } catch {
-                self.photo = (image?.pngData())!
-            }
-        } else {
-            url = URL(string: "https://agdetail.image-gmkt.com/105/092/472092105/img/cdn.shopify.com/s/files/1/0645/2551/files/qoo10_03ed8677a499a4fbc2e046a81ee99c7c.png")
-        }
-        
-        do {
-            self.photo = try Data(contentsOf: url!)
-        } catch {
-        self.photo = (image?.pngData())!
-        }
-        
+        self.photo = photo
         self.name = name
         self.descriptionHtml = descriptionHtml
         self.scheduleStartDate = scheduleStartDate
@@ -58,24 +41,7 @@ class EventsNearResponse: Object {
     convenience init(events : JSON) {
         self.init()
         self.id = events["id"].intValue
-        var url = URL(string: events["photo"].stringValue)
-        let image = UIImage(named: "noImage.png")
-        if url != nil {
-            do {
-                self.photo = try Data(contentsOf: url!)
-            } catch {
-                self.photo = (image?.pngData())!
-            }
-        } else {
-            url = URL(string: "https://agdetail.image-gmkt.com/105/092/472092105/img/cdn.shopify.com/s/files/1/0645/2551/files/qoo10_03ed8677a499a4fbc2e046a81ee99c7c.png")
-        }
-        
-        do {
-            self.photo = try Data(contentsOf: url!)
-        } catch {
-            self.photo = (image?.pngData())!
-        }
-        
+        self.photo = events["photo"].stringValue
         self.name = events["name"].stringValue
         self.descriptionHtml = events["description_html"].stringValue
         self.scheduleStartDate = events["schedule_start_date"].stringValue

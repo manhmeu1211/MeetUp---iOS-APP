@@ -168,13 +168,9 @@ extension EventsByCategoriesViewController : UITableViewDataSource, UITableViewD
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = eventTable.dequeueReusableCell(withIdentifier: "NewsCell", for: indexPath) as! NewsCell
-        let queue = DispatchQueue(label: "loadImageEventByCate")
-        queue.async {
-            DispatchQueue.main.async {
-                cell.imgTimer.image = UIImage(named: "Group15")
-                cell.imgNews.image = UIImage(data: self.eventsByCate[indexPath.row].photo)
-            }
-        }
+        let url = URL(string: eventsByCate[indexPath.row].photo)
+        cell.imgTimer.image = UIImage(named: "Group15")
+        cell.imgNews.sd_setImage(with: url, completed: nil)
         cell.date.textColor = UIColor(rgb: 0x5D20CD)
         cell.date.text = "\(eventsByCate[indexPath.row].scheduleStartDate) - \(eventsByCate[indexPath.row].goingCount) " + "peopleGoing.text".localized
         cell.title.text = eventsByCate[indexPath.row].name
@@ -189,7 +185,7 @@ extension EventsByCategoriesViewController : UITableViewDataSource, UITableViewD
         let lastItem = eventsByCate.count - 1
        if indexPath.row == lastItem {
             currentPage += 1
-            loading.handleLoading(isLoading: true)
+            loading.handleLoading(isLoading: false)
             getDataEventsByCategories(isLoadMore: true, page: currentPage)
        }
     }

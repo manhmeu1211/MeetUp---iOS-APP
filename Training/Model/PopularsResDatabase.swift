@@ -14,7 +14,7 @@ import SwiftyJSON
 class PopularsResDatabase: Object {
     
     @objc dynamic var id = 0
-    @objc dynamic var photo = Data()
+    @objc dynamic var photo = ""
     @objc dynamic var name = ""
     @objc dynamic var descriptionHtml = ""
     @objc dynamic var scheduleStartDate = ""
@@ -29,22 +29,7 @@ class PopularsResDatabase: Object {
     convenience init(populars : JSON) {
         self.init()
         self.id = populars["id"].intValue
-        var url = URL(string: populars["photo"].stringValue)
-        let image = UIImage(named: "noImage.png")
-        if url != nil {
-            do {
-                self.photo = try Data(contentsOf: url!)
-            } catch {
-                self.photo = (image?.pngData())!
-            }
-        } else {
-            url = URL(string: "https://agdetail.image-gmkt.com/105/092/472092105/img/cdn.shopify.com/s/files/1/0645/2551/files/qoo10_03ed8677a499a4fbc2e046a81ee99c7c.png")
-        }
-        do {
-            self.photo = try Data(contentsOf: url!)
-        } catch {
-            self.photo = (image?.pngData())!
-        }
+        self.photo = populars["photo"].stringValue
         self.name = populars["name"].stringValue
         self.descriptionHtml = populars["description_html"].stringValue
         self.scheduleStartDate = populars["schedule_start_date"].stringValue

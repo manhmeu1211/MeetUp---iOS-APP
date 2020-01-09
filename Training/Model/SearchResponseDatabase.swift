@@ -13,7 +13,7 @@ import SwiftyJSON
 class SearchResponseDatabase: Object {
     
     @objc dynamic var id = 0
-    @objc dynamic var photo = Data()
+    @objc dynamic var photo = ""
     @objc dynamic var name = ""
     @objc dynamic var descriptionHtml = ""
     @objc dynamic var scheduleStartDate = ""
@@ -23,27 +23,10 @@ class SearchResponseDatabase: Object {
     @objc dynamic var schedulePermanent = ""
     @objc dynamic var goingCount = 0
     
-    convenience init(search : JSON ) {
+    convenience init(search : JSON) {
         self.init()
         self.id = search["id"].intValue
-        var url = URL(string: search["photo"].stringValue)
-        let image = UIImage(named: "noImage.png")
-        if url != nil {
-            do {
-                self.photo = try Data(contentsOf: url!)
-            } catch {
-                self.photo = (image?.pngData())!
-            }
-        } else {
-            url = URL(string: "https://agdetail.image-gmkt.com/105/092/472092105/img/cdn.shopify.com/s/files/1/0645/2551/files/qoo10_03ed8677a499a4fbc2e046a81ee99c7c.png")
-        }
-        
-        do {
-            self.photo = try Data(contentsOf: url!)
-        } catch {
-        self.photo = (image?.pngData())!
-        }
-        
+        self.photo = search["photo"].stringValue
         self.name = search["name"].stringValue
         self.descriptionHtml = search["description_html"].stringValue
         self.scheduleStartDate = search["schedule_start_date"].stringValue

@@ -8,6 +8,7 @@
 
 import UIKit
 import RealmSwift
+import SDWebImage
 
 
 class NewsViewController: UIViewController {
@@ -147,19 +148,14 @@ extension NewsViewController: UITableViewDataSource, UITableViewDelegate {
         cell.backgroundStatusView.isHidden = true
         cell.statusImage.isHidden = true
         cell.statusLabel.isHidden = true
-        let queue = DispatchQueue(label: "loadImageNews")
-        queue.async {
-             DispatchQueue.main.async {
-                cell.imgNews.image = UIImage(data: self.newsResponse[indexPath.row].thumbImg)
-            }
-        }
+        cell.imgNews!.sd_setImage(with: URL(string: newsResponse[indexPath.row].thumbImg), placeholderImage: UIImage(named: "noImage"), completed: nil)
         return cell
     }
 
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let lastItem = newsResponse.count - 1
         if indexPath.row == lastItem && isLoadmore == true {
-            loading.handleLoading(isLoading: true)
+            loading.handleLoading(isLoading: false)
             currentPage += 1
             pageIndex = currentPage
             getNewsData(shoudLoadmore: true, page: currentPage)

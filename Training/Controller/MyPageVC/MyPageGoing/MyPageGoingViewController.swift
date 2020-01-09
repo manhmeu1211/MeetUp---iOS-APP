@@ -136,14 +136,10 @@ extension MyPageGoingViewController : UITableViewDelegate, UITableViewDataSource
         switch indexPath.section {
         case 0:
             let cell = goingTable.dequeueReusableCell(withIdentifier: "NewsCell", for: indexPath) as! NewsCell
-            let queue = DispatchQueue(label: "loadImageGoing")
-            queue.async {
-                DispatchQueue.main.async {
-                    cell.statusImage.image = UIImage(named: "icon_starRed")
-                    cell.imgTimer.image = UIImage(named: "Group15")
-                    cell.imgNews.image = UIImage(data: self.goingEvents[indexPath.row].photo)
-                }
-            }
+            let url = URL(string: goingEvents[indexPath.row].photo)
+            cell.statusImage.image = UIImage(named: "icon_starRed")
+            cell.imgTimer.image = UIImage(named: "Group15")
+            cell.imgNews.sd_setImage(with: url, completed: nil)
             cell.statusLabel.text = "Can participate"
             cell.statusLabel.textColor = UIColor(rgb: 0xC63636)
             cell.date.textColor = UIColor(rgb: 0x5D20CD)
@@ -154,14 +150,10 @@ extension MyPageGoingViewController : UITableViewDelegate, UITableViewDataSource
             return cell
         default:
             let cell = goingTable.dequeueReusableCell(withIdentifier: "NewsCell", for: indexPath) as! NewsCell
-            let queue = DispatchQueue(label: "loadImageGoing")
-            queue.async {
-                DispatchQueue.main.async {
-                    cell.statusImage.image = UIImage(named: "icon_starRed")
-                    cell.imgTimer.image = UIImage(named: "Group15")
-                    cell.imgNews.image = UIImage(data: self.goingEventsEnd[indexPath.row].photo)
-                }
-            }
+            let url = URL(string: goingEventsEnd[indexPath.row].photo)
+            cell.statusImage.image = UIImage(named: "icon_starRed")
+            cell.imgTimer.image = UIImage(named: "Group15")
+            cell.imgNews.sd_setImage(with: url, completed: nil)
             cell.backgroundStatusView.backgroundColor = UIColor(rgb: 0xF9EBEB)
             cell.date.textColor = UIColor(rgb: 0x5D20CD)
             cell.statusLabel.text = "Can participate"

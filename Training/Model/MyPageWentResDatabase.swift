@@ -14,7 +14,7 @@ import SwiftyJSON
 class MyPageWentResDatabase: Object {
     
     @objc dynamic var id = 0
-    @objc dynamic var photo = Data()
+    @objc dynamic var photo = ""
     @objc dynamic var name = ""
     @objc dynamic var descriptionHtml = ""
     @objc dynamic var scheduleStartDate = ""
@@ -27,22 +27,7 @@ class MyPageWentResDatabase: Object {
     convenience init(goingEvents : JSON) {
         self.init()
         self.id = goingEvents["id"].intValue
-        var url = URL(string: goingEvents["photo"].stringValue)
-        let image = UIImage(named: "noImage.png")
-        if url != nil {
-            do {
-                self.photo = try Data(contentsOf: url!)
-            } catch {
-                self.photo = (image?.pngData())!
-            }
-        } else {
-            url = URL(string: "https://agdetail.image-gmkt.com/105/092/472092105/img/cdn.shopify.com/s/files/1/0645/2551/files/qoo10_03ed8677a499a4fbc2e046a81ee99c7c.png")
-        }
-        do {
-            self.photo = try Data(contentsOf: url!)
-        } catch {
-            self.photo = (image?.pngData())!
-        }
+        self.photo = goingEvents["photo"].stringValue
         self.name = goingEvents["name"].stringValue
         self.descriptionHtml = goingEvents["description_html"].stringValue
         self.scheduleStartDate = goingEvents["schedule_start_date"].stringValue

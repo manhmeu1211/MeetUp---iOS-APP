@@ -138,47 +138,30 @@ extension PopularsViewController : UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "NewsCell", for: indexPath) as! NewsCell
-        let queue = DispatchQueue(label: "loadImagePop")
-        queue.async {
-            DispatchQueue.main.async {
-                cell.imgTimer.image = UIImage(named: "Group15")
-                cell.imgNews.image = UIImage(data: self.popularResponse[indexPath.row].photo)
-            }
-        }
+        let url = URL(string: popularResponse[indexPath.row].photo)
+        cell.imgNews.sd_setImage(with: url, placeholderImage: UIImage(named: "noImage"), completed: nil)
         cell.date.textColor = UIColor(rgb: 0x5D20CD)
         cell.date.text = "\(popularResponse[indexPath.row].scheduleStartDate) - \(popularResponse[indexPath.row].goingCount) " + "peopleGoing.text".localized
         cell.title.text = popularResponse[indexPath.row].name
         cell.lblDes.text = popularResponse[indexPath.row].descriptionHtml
         switch popularResponse[indexPath.row].myStatus {
-        case 1:
-            queue.async {
-                DispatchQueue.main.async {
-                    cell.statusImage.image = UIImage(named: "icon_starRed")
-                    cell.statusLabel.text = "join.label.text.canParticipate".localized
-                    cell.statusLabel.textColor = UIColor(rgb: 0xC63636)
-                    cell.backgroundStatusView.backgroundColor = UIColor(rgb: 0xF9EBEB)
-                }
+            case 1:
+                cell.statusImage.image = UIImage(named: "icon_starRed")
+                cell.statusLabel.text = "join.label.text.canParticipate".localized
+                cell.statusLabel.textColor = UIColor(rgb: 0xC63636)
+                cell.backgroundStatusView.backgroundColor = UIColor(rgb: 0xF9EBEB)
+     
+            case 2:
+                cell.statusImage.image = UIImage(named: "icon_starGreen")
+                cell.statusLabel.text = "join.label.text.joined".localized
+                cell.backgroundStatusView.backgroundColor = UIColor(rgb: 0xE5F9F4)
+                cell.statusLabel.textColor = UIColor(rgb: 0x00C491)
+            default:
+                cell.statusImage.image = UIImage(named: "icon_star")
+                cell.statusLabel.text = "join.label.text.join".localized
+                cell.backgroundStatusView.backgroundColor = UIColor(rgb: 0xF6F6F6)
+                cell.statusLabel.textColor = UIColor.systemGray
             }
-        case 2:
-            queue.async {
-                DispatchQueue.main.async {
-                    cell.statusImage.image = UIImage(named: "icon_starGreen")
-                    cell.statusLabel.text = "join.label.text.joined".localized
-                    cell.backgroundStatusView.backgroundColor = UIColor(rgb: 0xE5F9F4)
-                    cell.statusLabel.textColor = UIColor(rgb: 0x00C491)
-                }         
-            }
-        default:
-            queue.async {
-                DispatchQueue.main.async {
-                    cell.statusImage.image = UIImage(named: "icon_star")
-                    cell.statusLabel.text = "join.label.text.join".localized
-
-                    cell.backgroundStatusView.backgroundColor = UIColor(rgb: 0xF6F6F6)
-                    cell.statusLabel.textColor = UIColor.systemGray
-                }
-            }
-        }
         return cell
     }
     
@@ -187,7 +170,7 @@ extension PopularsViewController : UITableViewDataSource, UITableViewDelegate {
         let lastItem = popularResponse.count - 1
         if indexPath.row == lastItem && isLoadmore == true {
             currentPage += 1
-            loading.handleLoading(isLoading: true)
+            loading.handleLoading(isLoading: false)
             getListPopularData(isLoadMore: true, page: currentPage)
         } else {
             loading.handleLoading(isLoading: false)

@@ -14,7 +14,7 @@ import SwiftyJSON
 class EventDetail: Object {
     
     @objc dynamic var id = 0
-    @objc dynamic var photo = Data()
+    @objc dynamic var photo = ""
     @objc dynamic var name = ""
     @objc dynamic var descriptionHtml = ""
     @objc dynamic var scheduleStartDate = ""
@@ -35,22 +35,7 @@ class EventDetail: Object {
     convenience init(id: Int, photo :String , name: String, descriptionHtml : String, scheduleStartDate : String, scheduleEndDate : String, scheduleStartTime: String, scheduleEndTime : String, schedulePermanent : String, goingCount: Int, nameGenre : String, vnLocation : String, vnContact : String, vnName : String, locationEvent : String ) {
         self.init()
         self.id = id
-        var url = URL(string: photo)
-        let image = UIImage(named: "noImage.png")
-        if url != nil {
-            do {
-                self.photo = try Data(contentsOf: url!)
-            } catch {
-                self.photo = (image?.pngData())!
-            }
-        } else {
-            url = URL(string: "https://agdetail.image-gmkt.com/105/092/472092105/img/cdn.shopify.com/s/files/1/0645/2551/files/qoo10_03ed8677a499a4fbc2e046a81ee99c7c.png")
-        }
-        do {
-            self.photo = try Data(contentsOf: url!)
-        } catch {
-            self.photo = (image?.pngData())!
-        }
+        self.photo = photo
         self.name = name
         self.descriptionHtml = descriptionHtml
         self.scheduleStartDate = scheduleStartDate
@@ -70,22 +55,7 @@ class EventDetail: Object {
     convenience init(detail : JSON, detailVenue : JSON, detailGenre : JSON) {
         self.init()
         self.id = detail["id"].intValue
-        var url = URL(string: detail["photo"].stringValue)
-        let image = UIImage(named: "noImage.png")
-        if url != nil {
-            do {
-                self.photo = try Data(contentsOf: url!)
-            } catch {
-                self.photo = (image?.pngData())!
-            }
-        } else {
-            url = URL(string: "https://agdetail.image-gmkt.com/105/092/472092105/img/cdn.shopify.com/s/files/1/0645/2551/files/qoo10_03ed8677a499a4fbc2e046a81ee99c7c.png")
-        }
-        do {
-            self.photo = try Data(contentsOf: url!)
-        } catch {
-            self.photo = (image?.pngData())!
-        }
+        self.photo = detail["photo"].stringValue
         self.name = detail["name"].stringValue
         self.descriptionHtml = detail["description_html"].stringValue
         self.scheduleStartDate = detail["schedule_start_date"].stringValue

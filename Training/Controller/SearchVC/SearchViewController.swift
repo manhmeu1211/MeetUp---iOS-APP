@@ -236,13 +236,10 @@ extension SearchViewController : UITableViewDelegate, UITableViewDataSource {
         let cell = searchTable.dequeueReusableCell(withIdentifier: "NewsCell", for: indexPath) as! NewsCell
         switch isToggleResult {
         case true:
-            let queue = DispatchQueue(label: "loadImageSearch")
-            queue.async {
-                DispatchQueue.main.async {
-                    cell.imgTimer.image = UIImage(named: "Group15")
-                    cell.imgNews.image = UIImage(data: self.searchResultInComing[indexPath.row].photo)
-                }
-            }
+            let url = URL(string: searchResultInComing[indexPath.row].photo)
+            cell.imgTimer.image = UIImage(named: "Group15")
+            cell.imgNews.sd_setImage(with: url, completed: nil)
+
             cell.date.textColor = UIColor(rgb: 0x5D20CD)
             cell.title.text = searchResultInComing[indexPath.row].name
             cell.lblDes.text = searchResultInComing[indexPath.row].descriptionHtml.replacingOccurrences(of: "[|<>/]", with: "", options: [.regularExpression])
@@ -253,13 +250,9 @@ extension SearchViewController : UITableViewDelegate, UITableViewDataSource {
                 cell.date.text = "\(searchResultInComing[indexPath.row].scheduleStartDate) - \(searchResultInComing[indexPath.row].goingCount) " + "peopleGoing.text".localized
             }
         default:
-            let queue = DispatchQueue(label: "loadImageSearch")
-            queue.async {
-                DispatchQueue.main.async {
-                    cell.imgTimer.image = UIImage(named: "Group15")
-                    cell.imgNews.image = UIImage(data: self.searchResultPast[indexPath.row].photo)
-                }
-            }
+            let url = URL(string: searchResultPast[indexPath.row].photo)
+            cell.imgTimer.image = UIImage(named: "Group15")
+            cell.imgNews.sd_setImage(with: url, completed: nil)
             cell.date.textColor = UIColor(rgb: 0x5D20CD)
             cell.title.text = searchResultPast[indexPath.row].name
             cell.lblDes.text = searchResultPast[indexPath.row].descriptionHtml.replacingOccurrences(of: "[|<>/]", with: "", options: [.regularExpression])

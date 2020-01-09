@@ -211,12 +211,8 @@ extension NearViewController : UICollectionViewDataSource, UICollectionViewDeleg
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "EventsCell", for: indexPath) as! EventsCell
-        let queue = DispatchQueue(label: "loadImageNear")
-        queue.async {
-            DispatchQueue.main.async {
-                cell.imgEvent.image = UIImage(data: self.events[indexPath.row].photo)
-            }
-        }
+        let url = URL(string: self.events[indexPath.row].photo)
+        cell.imgEvent.sd_setImage(with: url, placeholderImage: UIImage(named: "noImage"), completed: nil)
         cell.eventName.text = events[indexPath.row].name
         cell.eventDes.text = events[indexPath.row].descriptionHtml
         cell.eventCount.text = "\(events[indexPath.row].scheduleStartDate) - \(events[indexPath.row].goingCount) " + "peopleGoing.text".localized
@@ -273,7 +269,8 @@ extension NearViewController : MKMapViewDelegate {
             centerMapOnLocation(location: CLLocation(latitude: latValue!, longitude: longValue!))
             for i in eventLat {
                 if latValue == i {
-                    print(i)
+                    print(eventLat.firstIndex(of: i)!)
+                    collectionVIew.scrollToItem(at: IndexPath(row: eventLat.firstIndex(of: i)!, section: 0), at: .right, animated: true)
                 }
             }
         }

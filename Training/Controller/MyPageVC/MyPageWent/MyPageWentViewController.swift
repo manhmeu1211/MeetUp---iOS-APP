@@ -138,14 +138,10 @@ extension MyPageWentViewController : UITableViewDelegate, UITableViewDataSource 
         switch indexPath.section {
         case 0:
             let cell = wentTable.dequeueReusableCell(withIdentifier: "NewsCell", for: indexPath) as! NewsCell
-            let queue = DispatchQueue(label: "getListGoingEvent")
-            queue.async {
-                DispatchQueue.main.async {
-                    cell.imgTimer.image = UIImage(named: "Group15")
-                    cell.date.textColor = UIColor(rgb: 0x5D20CD)
-                    cell.imgNews.image = UIImage(data: self.wentEvents[indexPath.row].photo)
-                }
-            }
+            let url = URL(string: wentEvents[indexPath.row].photo)
+            cell.imgTimer.image = UIImage(named: "Group15")
+            cell.date.textColor = UIColor(rgb: 0x5D20CD)
+            cell.imgNews.sd_setImage(with: url, completed: nil)
             cell.date.text = "\(wentEvents[indexPath.row].scheduleStartDate) - \(wentEvents[indexPath.row].goingCount) " + "peopleGoing.text".localized
             cell.title.text = wentEvents[indexPath.row].name
             cell.lblDes.text = wentEvents[indexPath.row].descriptionHtml
@@ -158,14 +154,10 @@ extension MyPageWentViewController : UITableViewDelegate, UITableViewDataSource 
             return cell
         default:
             let cell = wentTable.dequeueReusableCell(withIdentifier: "NewsCell", for: indexPath) as! NewsCell
-            let queue = DispatchQueue(label: "getListGoingEvent")
-            queue.async {
-                DispatchQueue.main.async {
-                    cell.imgTimer.image = UIImage(named: "Group15")
-                    cell.date.textColor = UIColor(rgb: 0x5D20CD)
-                    cell.imgNews.image = UIImage(data: self.wentEventsEnd[indexPath.row].photo)
-                }
-            }
+            let url = URL(string: wentEventsEnd[indexPath.row].photo)
+            cell.imgTimer.image = UIImage(named: "Group15")
+            cell.date.textColor = UIColor(rgb: 0x5D20CD)
+            cell.imgNews.sd_setImage(with: url, completed: nil)
             cell.date.text = "\(wentEventsEnd[indexPath.row].scheduleStartDate) - \(wentEventsEnd[indexPath.row].goingCount) " + "peopleGoing.text".localized
             cell.title.text = wentEventsEnd[indexPath.row].name
             cell.lblDes.text = wentEventsEnd[indexPath.row].descriptionHtml

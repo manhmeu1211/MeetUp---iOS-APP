@@ -10,4 +10,5 @@ target 'Training' do
  	pod 'SwiftyJSON', '~> 4.0'
   	pod 'RealmSwift'
 	pod 'SwiftLint'
+	pod 'SDWebImage', '~> 5.0'
 end
