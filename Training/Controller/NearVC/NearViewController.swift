@@ -88,11 +88,12 @@ class NearViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     private func addArtwork() {
-          map.mapType = MKMapType.standard
+        map.mapType = MKMapType.standard
         let artwork = Artwork(title: "anootation.title".localized,
                               locationName: "My Location".localized,
                               discipline: "My Location".localized,
-                 coordinate: CLLocationCoordinate2D(latitude: initLat!, longitude: initLong!))
+                 coordinate: CLLocationCoordinate2D(latitude: initLat!, longitude: initLong!),
+                 myStatus: 0)
           map.addAnnotation(artwork)
     }
     
@@ -124,12 +125,15 @@ class NearViewController: UIViewController, CLLocationManagerDelegate {
     // MARK: - Setup views
     
     private func setUpCollectionView() {
+        self.title = "near.title".localized
         map.delegate = self
         collectionVIew.dataSource = self
         collectionVIew.delegate = self
         collectionVIew.showsHorizontalScrollIndicator = false
         collectionVIew.isPagingEnabled = true
         collectionVIew.register(UINib(nibName: "EventsCell", bundle: nil), forCellWithReuseIdentifier: "EventsCell")
+        map.register(ArtworkMarkerView.self,
+        forAnnotationViewWithReuseIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier)
     }
     
 
@@ -155,33 +159,63 @@ class NearViewController: UIViewController, CLLocationManagerDelegate {
   // MARK: - getData
     
     private func updateObject() {
-        let list = RealmDataBaseQuery.getInstance.getObjects(type: EventsNearResponse.self)!.sorted(byKeyPath: "goingCount", ascending: false).toArray(ofType: EventsNearResponse.self)
+        let list = realm.objects(EventsNearResponse.self).sorted(byKeyPath: "goingCount", ascending: false).toArray(ofType: EventsNearResponse.self)
         if list.isEmpty {
             events.append(EventsNearResponse(id: 0, photo: "", name: "noEvent.label.text".localized, descriptionHtml: "", scheduleStartDate: "", scheduleEndDate: "", scheduleStartTime: "", scheduleEndTime: "", schedulePermanent: "", goingCount: 0))
         } else {
             events = list
         }
     }
+    
+ 
+     private func deleteObject() {
+        let object = realm.objects(EventDetail.self)
+          try! realm.write {
+            realm.delete(object)
+         }
+     }
+     
+    private func deleteListNear() {
+        let listNear = realm.objects(EventsNearResponse.self).toArray(ofType: EventsNearResponse.self)
+            try! realm.write {
+              realm.delete(listNear)
+           }
+    }
+     private func addObject(object : Object) {
+         try! realm.write {
+             realm.add(object)
+         }
+     }
       
     private func getListEvent() {
-        getDataService.getInstance.getListNearEvent(radius: 10, longitue: self.initLong!, latitude: self.initLat!) { [weak self] (eventsNear, anotionLC ,errcode) in
-            if errcode == 1 {
-                self!.events.removeAll()
-                _ = anotionLC?.array?.forEach({ (anotion) in
-                    let anotionArt = Artwork(anotion: anotion, coordinate: CLLocationCoordinate2D(latitude: anotion["venue"]["geo_lat"].doubleValue, longitude: anotion["venue"]["geo_long"].doubleValue))
-                    self!.map.addAnnotation(anotionArt)
-                self!.eventLong.append(anotion["venue"]["geo_long"].doubleValue)
-                    self!.eventLat.append(anotion["venue"]["geo_lat"].doubleValue)
+        ArtWorkListAPI(radius: 10, longitue: self.initLong!, latitude: self.initLat!).excute(completionHandler: { [weak self] (response) in
+            if response?.statusCode == 0 {
+                self?.showAlert(message: response!.errMessage, titleBtn: "alert.titleBtn.OK".localized, completion: {
+                    print(response!.errMessage!)
                 })
-                self!.events = eventsNear
-                self!.updateObject()
-                self!.collectionVIew.reloadData()
-                self!.loading.handleLoading(isLoading: false)
             } else {
-                self!.updateObject()
-                self!.collectionVIew.reloadData()
-                self!.loading.handleLoading(isLoading: false)
+                self?.deleteListNear()
+                self?.events.removeAll()
+                let anotionLC = response?.anotion
+                _ = anotionLC?.array?.forEach({ (anotion) in
+                     let anotionArt = Artwork(anotion: anotion, coordinate: CLLocationCoordinate2D(latitude: anotion["venue"]["geo_lat"].doubleValue, longitude: anotion["venue"]["geo_long"].doubleValue))
+                     self?.anotion.append(anotionArt)
+                   
+                     self?.eventLong.append(anotion["venue"]["geo_long"].doubleValue)
+                     self?.eventLat.append(anotion["venue"]["geo_lat"].doubleValue)
+                 })
+                self?.map.addAnnotations(self!.anotion)
+                self?.events = response!.listEventsNear
+                self?.updateObject()
+                self?.collectionVIew.reloadData()
+                self?.loading.handleLoading(isLoading: false)
             }
+        }) { (err) in
+            self.updateObject()
+            self.showAlert(message: "", titleBtn: "alert.titleBtn.OK".localized) {
+                 self.collectionVIew.reloadData()
+            }
+            self.loading.handleLoading(isLoading: false)
         }
     }
     
@@ -254,6 +288,7 @@ extension NearViewController : UICollectionViewDataSource, UICollectionViewDeleg
 
 
 extension NearViewController : MKMapViewDelegate {
+    
     private func mapView(mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
         if isConnected {
             let centralLocation = CLLocation(latitude: mapView.centerCoordinate.latitude, longitude:  mapView.centerCoordinate.longitude)
@@ -261,6 +296,7 @@ extension NearViewController : MKMapViewDelegate {
                print("Radius - \(self.getRadius(centralLocation: centralLocation))")
         }
     }
+  
     
     internal func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         if isConnected {

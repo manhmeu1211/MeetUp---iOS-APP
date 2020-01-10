@@ -3,6 +3,8 @@
 "btnNews.title" = "News";
 "btnEvents.title" = "Events";
 "header.label.text" = "Home";
+"near.title" = "Near";
+"mypage.title" = "My page";
 
 
 // MARK: - News VỉewController
@@ -54,6 +56,9 @@
 "categories.title" = "Categories";
 "refreshingData.text" = "Refreshing data";
 "noEvents.text" = "No Events";
+"myEvents.title" = "My events";
+"myEvents.logOut.title" = "Log out";
+
 
 
 // MARK: -  Login ViewController

@@ -24,6 +24,7 @@ class MyPageMainViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         tabBarController?.tabBar.isHidden = false
+        self.title = "mypage.title".localized
         if UserDefaults.standard.string(forKey: "userToken") != nil {
             handleMypage()
         } else {

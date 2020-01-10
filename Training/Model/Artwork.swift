@@ -17,20 +17,63 @@ class Artwork: NSObject, MKAnnotation {
     let locationName: String
     let discipline: String
     let coordinate: CLLocationCoordinate2D
+    let myStatus : Int
+    
+    var markerTintColor: UIColor  {
+      switch discipline {
+      case "red":
+        return .red
+      case "Mural":
+        return .cyan
+      case "yellow":
+        return .yellow
+      case "Sculpture":
+        return .purple
+      default:
+        return .green
+      }
+    }
+    var imageName: String? {
+        switch discipline {
+        case "yellow" :
+            return "Flag"
+        case "Sculpture" :
+            return "X"
+        default:
+            return "yellowMarker"
+        }
+    }
 
     init(anotion : JSON, coordinate: CLLocationCoordinate2D) {
         self.title = anotion["venue"]["name"].stringValue
         self.locationName = anotion["venue"]["name"].stringValue
-        self.discipline = anotion["venue"]["description"].stringValue
         self.coordinate = coordinate
+        self.myStatus = anotion["my_status"].intValue
+        switch anotion["my_status"].intValue {
+        case 1:
+            self.discipline = "red"
+        case 2:
+            self.discipline = "yellow"
+        default:
+            self.discipline = "Sculpture"
+        }
+  
         super.init()
   }
-    init(title: String, locationName: String, discipline: String, coordinate: CLLocationCoordinate2D) {
-       self.title = title
-       self.locationName = locationName
-       self.discipline = discipline
-       self.coordinate = coordinate
-       super.init()
+    init(title: String, locationName: String, discipline: String, coordinate: CLLocationCoordinate2D, myStatus : Int) {
+        self.title = title
+        self.locationName = locationName
+        switch myStatus {
+          case 1:
+              self.discipline = "red"
+          case 2:
+              self.discipline = "yellow"
+          default:
+              self.discipline = "Sculpture"
+          }
+        self.coordinate = coordinate
+        self.myStatus = myStatus
+        super.init()
     }
   
   var subtitle: String? {
@@ -58,11 +101,13 @@ struct ArtWorksData : MeetUpResponse {
     var listEventsNear = [EventsNearResponse]()
     var anotion : JSON!
     var statusCode : Int!
+    var errMessage : String!
+
     init(json: JSON) {
         let status = json["status"]
         statusCode = status.intValue
         if statusCode == 0 {
-            anotion = status
+            errMessage = json["error_message"].stringValue
         } else {
             anotion = json["response"]["events"]
             let events = json["response"]["events"].array
@@ -73,6 +118,7 @@ struct ArtWorksData : MeetUpResponse {
         }
     }
 }
+
 
 
 

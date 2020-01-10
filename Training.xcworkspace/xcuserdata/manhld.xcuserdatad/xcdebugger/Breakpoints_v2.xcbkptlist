@@ -1240,8 +1240,8 @@
             filePath = "Training/Controller/CateVC/EventsByCategories/EventsByCategoriesViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "129"
-            endingLineNumber = "129"
+            startingLineNumber = "152"
+            endingLineNumber = "152"
             landmarkName = "getDataEventsByCategories(isLoadMore:page:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1256,8 +1256,8 @@
             filePath = "Training/Controller/CateVC/EventsByCategories/EventsByCategoriesViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "122"
-            endingLineNumber = "122"
+            startingLineNumber = "151"
+            endingLineNumber = "151"
             landmarkName = "getDataEventsByCategories(isLoadMore:page:)"
             landmarkType = "7">
          </BreakpointContent>

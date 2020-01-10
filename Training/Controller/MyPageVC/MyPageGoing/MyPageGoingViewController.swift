@@ -25,6 +25,7 @@ class MyPageGoingViewController: UIViewController {
     private var goingEventsEnd = [MyPageGoingResDatabase]()
     private let userToken = UserDefaults.standard.string(forKey: "userToken")
     private let today = Date()
+    private let realm = try! Realm()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,8 +61,21 @@ class MyPageGoingViewController: UIViewController {
     }
     
     private func updateObject() {
-        let list = RealmDataBaseQuery.getInstance.getObjects(type: MyPageGoingResDatabase.self)!.toArray(ofType: MyPageGoingResDatabase.self)
+        let list = realm.objects(MyPageGoingResDatabase.self).toArray(ofType: MyPageGoingResDatabase.self)
         goingEvents = list
+    }
+    
+    private func deleteObject() {
+       let list = realm.objects(MyPageGoingResDatabase.self).toArray(ofType: MyPageGoingResDatabase.self)
+         try! realm.write {
+             realm.delete(list)
+        }
+    }
+    
+    private func addObject(object : Object) {
+        try! realm.write {
+            realm.add(object)
+        }
     }
        
     
@@ -72,33 +86,32 @@ class MyPageGoingViewController: UIViewController {
     
     
     private func getListGoingEvent() {
-        getDataService.getInstance.getMyEventGoing(status: self.status) { (events, errCode) in
-                if errCode == 1 {
-                    self.showAlert(message: "alert.message.loginExpired".localized, titleBtn: "alert.titleBtn.OK".localized) {
-                        self.handleLogOut()
-                    }
-                } else if errCode == 2 {
-                    self.goingEvents.removeAll()
-                    let dateFormatter = Date()
-                    for i in events {
-                         let date = dateFormatter.converStringToDate(formatter: Date.StyleDate.dateOnly, dateString: i.scheduleStartDate)
-                         if date! < self.today {
-                            self.goingEventsEnd.append(i)
-                         } else {
-                            self.goingEvents.append(i)
-                        }
-                     }
-                    self.goingTable.reloadData()
-                    self.checkEvent()
-                }  else {
-                    self.updateObject()
-                    self.goingTable.reloadData()
-                        ToastView.shared.short(self.view, txt_msg: "alert.checkConnection".localized)
+        MyPageGoingsListAPI(status: self.status).excute(completionHandler: { [weak self] (response) in
+             if response?.status == 0 {
+                self!.showAlert(message: "alert.cannotLoadData".localized, titleBtn: "OK", completion: {
+                    print(response?.errMessage ?? "Token expired")
+                })
+             } else {
+                self?.deleteObject()
+                self?.goingEvents.removeAll()
+                let data = response?.listEventsGoings
+                self?.goingEvents = data!
+                for eventGoing in self!.goingEvents {
+                    self?.addObject(object: eventGoing)
                 }
-             self.loading.handleLoading(isLoading: false)
+                self?.goingTable.reloadData()
             }
+        }) { (err) in
+            self.showAlert(message: "alert.cannotLoadData".localized, titleBtn: "OK", completion: {
+                print(err!)
+            })
+            self.updateObject()
+            self.goingTable.reloadData()
+            
         }
+         self.loading.handleLoading(isLoading: false)
     }
+}
 
 
 extension MyPageGoingViewController : UITableViewDelegate, UITableViewDataSource {

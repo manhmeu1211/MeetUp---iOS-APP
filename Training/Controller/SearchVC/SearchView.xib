@@ -85,7 +85,7 @@
                                 <color key="titleColor" red="0.36470588240000001" green="0.12549019610000001" blue="0.80392156859999997" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                             </state>
                             <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="string" keyPath="localizeTitle" value="eventsGoing.text"/>
+                                <userDefinedRuntimeAttribute type="string" keyPath="localizeTitle" value="eventsIncoming.text"/>
                             </userDefinedRuntimeAttributes>
                             <connections>
                                 <action selector="incomingBtn:" destination="-1" eventType="touchUpInside" id="78Q-5g-Ty9"/>
@@ -98,7 +98,7 @@
                                 <color key="titleColor" red="0.36470588240000001" green="0.12549019610000001" blue="0.80392156859999997" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                             </state>
                             <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="string" keyPath="localizeTitle" value="eventsEnd.text"/>
+                                <userDefinedRuntimeAttribute type="string" keyPath="localizeTitle" value="eventsPast.text"/>
                             </userDefinedRuntimeAttributes>
                             <connections>
                                 <action selector="pastBtn:" destination="-1" eventType="touchUpInside" id="30F-uX-5yu"/>

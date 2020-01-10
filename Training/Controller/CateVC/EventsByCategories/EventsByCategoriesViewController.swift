@@ -23,37 +23,39 @@ class EventsByCategoriesViewController: UIViewController {
     
     // MARK: - Varribles
     
-    var id : Int?
+    var categoriesID : Int?
     var headerTitle : String?
     private var currentPage = 1
     private var eventsByCate = [EventsByCategoriesDatabase]()
     private let token = UserDefaults.standard.string(forKey: "userToken")
+    private var isLoadmore = true
+    private let realm = try! Realm()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupVỉew()
         loading.handleLoading(isLoading: true)
-        getDataEventV2()
+        getDataEventsByCategories(isLoadMore: false, page: currentPage)
     }
     
     
     
     // MARK: - Function setup views and data
     
-    private func getDataEventV2() {
-        if token != nil {
-            getDataEventsByCategories(isLoadMore: false, page: currentPage)
-            noResults.isHidden = true
-        } else {
-            noResults.isHidden = false
-            loading.handleLoading(isLoading: false)
-            showAlert(message: "Not logged in".localized, titleBtn: "alert.titleBtn.OK".localized) {
-                
-            }
-        }
-    }
-    
+//    private func getDataEventV2() {
+//        if token != nil {
+//            getDataEventsByCategories(isLoadMore: false, page: currentPage)
+//            noResults.isHidden = true
+//        } else {
+//            noResults.isHidden = false
+//            loading.handleLoading(isLoading: false)
+//            showAlert(message: "Not logged in".localized, titleBtn: "alert.titleBtn.OK".localized) {
+//
+//            }
+//        }
+//    }
+//
 
     private func setupVỉew() {
         noResults.isHidden = true
@@ -78,14 +80,8 @@ class EventsByCategoriesViewController: UIViewController {
       }
   
     private func updateObjectByPopulars() {
-        self.eventsByCate = RealmDataBaseQuery.getInstance.getObjects(type: EventsByCategoriesDatabase.self)!.sorted(byKeyPath: "goingCount", ascending: false).toArray(ofType: EventsByCategoriesDatabase.self)
-        checkEvent()
-        eventTable.reloadData()
-        self.titleCategories.text = "\(self.headerTitle!)(\(self.eventsByCate.count))"
-    }
-    
-    private func updateObjectByDate() {
-        self.eventsByCate = RealmDataBaseQuery.getInstance.getObjects(type: EventsByCategoriesDatabase.self)!.sorted(byKeyPath: "scheduleStartDate", ascending: false).toArray(ofType: EventsByCategoriesDatabase.self)
+        let listEventByGoingCount = realm.objects(EventsByCategoriesDatabase.self).sorted(byKeyPath: "goingCount", ascending: false).toArray(ofType: EventsByCategoriesDatabase.self)
+        self.eventsByCate = listEventByGoingCount
         checkEvent()
         eventTable.reloadData()
         self.titleCategories.text = "\(self.headerTitle!)(\(self.eventsByCate.count))"
@@ -100,32 +96,59 @@ class EventsByCategoriesViewController: UIViewController {
         }
     }
     
-        
-    private func deleteObject() {
-        RealmDataBaseQuery.getInstance.deleteListObject(object: EventsByCategoriesDatabase.self)
+    private func updateObjectByDate() {
+        let listEventByDate = realm.objects(EventsByCategoriesDatabase.self).sorted(byKeyPath: "scheduleStartDate", ascending: false).toArray(ofType: EventsByCategoriesDatabase.self)
+        eventsByCate = listEventByDate
+        checkEvent()
+        eventTable.reloadData()
+        self.titleCategories.text = "\(self.headerTitle!)(\(self.eventsByCate.count))"
     }
 
+    private func deleteObject() {
+       let list = realm.objects(EventsByCategoriesDatabase.self).toArray(ofType: EventsByCategoriesDatabase.self)
+         try! realm.write {
+             realm.delete(list)
+         }
+     }
+    
+     private func addObject(object : Object) {
+         try! realm.write {
+            realm.add(object)
+         }
+     }
+
     func getDataEventsByCategories(isLoadMore : Bool, page: Int) {
-        let categoriesID = id!
-   
-        getDataService.getInstance.getListEventsByCategories(cateID: categoriesID, pageIndex: page, isLoadMore: isLoadMore) { [weak self] (eventsCate, errcode) in
-            if errcode == 1 {
-                self!.loading.handleLoading(isLoading: false)
-                self!.updateObjectByPopulars()
-            } else if errcode == 2 {
-                if isLoadMore == false {
-                    self!.eventsByCate.removeAll()
-                    self!.eventsByCate = eventsCate
-                } else {
-                    self!.eventsByCate = eventsCate
-                }
-                self!.eventTable.reloadData()
-                self!.loading.handleLoading(isLoading: false)
+        EventsByCategoriesListAPI(pageIndex: page, pageSize: 10, categoriesID: categoriesID!).excute(completionHandler: { [weak self] (response) in
+            if response?.status == 0 {
+                self?.showAlert(message: response!.errMessage, titleBtn: "alert.titleBtn.OK".localized, completion: {
+                    self?.loading.handleLoading(isLoading: false)
+                })
             } else {
-                self!.updateObjectByPopulars()
-                self!.loading.handleLoading(isLoading: false)
+                if isLoadMore == false {
+                    self?.eventsByCate.removeAll()
+                    self?.deleteObject()
+                    for eventByCate in response!.listEventsByCate {
+                        self?.addObject(object: eventByCate)
+                    }
+                    self?.updateObjectByDate()
+                    self?.eventTable.reloadData()
+                } else {
+                    for eventByCate in response!.listEventsByCate {
+                        self?.addObject(object: eventByCate)
+                    }
+                    self?.updateObjectByDate()
+                    self?.eventTable.reloadData()
+                }
+                self?.loading.handleLoading(isLoading: false)
+            }
+        }) { (err) in
+                self.loading.handleLoading(isLoading: false)
+                self.showAlert(message: "alert.cannotLoadData".localized, titleBtn: "alert.titleBtn.OK".localized) {
+                self.isLoadmore = false
+                print("Can't get data")
             }
         }
+
     }
     
     
@@ -183,11 +206,10 @@ extension EventsByCategoriesViewController : UITableViewDataSource, UITableViewD
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let lastItem = eventsByCate.count - 1
-       if indexPath.row == lastItem {
+        if indexPath.row == lastItem && isLoadmore == true {
             currentPage += 1
-            loading.handleLoading(isLoading: false)
             getDataEventsByCategories(isLoadMore: true, page: currentPage)
-       }
+        }
     }
        
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

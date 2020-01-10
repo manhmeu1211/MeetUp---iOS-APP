@@ -22,12 +22,12 @@ class NewsViewController: UIViewController {
     
 
     private var currentPage = 1
-    private var pageIndex : Int!
     private var newsResponse = [NewsDataResponse]()
     private let dateformatted = DateFormatter()
     private let userToken = UserDefaults.standard.string(forKey: "userToken")
     private var isLoadmore : Bool!
     private var alert = UIAlertController()
+    private let realm = try! Realm()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -107,27 +107,56 @@ class NewsViewController: UIViewController {
     }
 
     private func updateObject() {
-        let list = RealmDataBaseQuery.getInstance.getObjects(type: NewsDataResponse.self)!.toArray(ofType: NewsDataResponse.self)
+        newsResponse.removeAll()
+        let list = realm.objects(NewsDataResponse.self).toArray(ofType: NewsDataResponse.self)
         newsResponse = list
+        newsTable.reloadData()
     }
     
+      
+      private func deleteObject() {
+         let list = realm.objects(NewsDataResponse.self).toArray(ofType: NewsDataResponse.self)
+           try! realm.write {
+               realm.delete(list)
+          }
+      }
+      
+      private func addObject(object : Object) {
+          try! realm.write {
+              realm.add(object)
+          }
+      }
+         
+    
     private func getNewsData(shoudLoadmore: Bool, page: Int) {
-        getDataService.getInstance.getListNews(pageIndex: page, pageSize: 10, shoudLoadmore: shoudLoadmore) { [weak self] (news, errCode) in
-            if errCode == 1 {
-                if shoudLoadmore == false {
-                    self!.newsResponse.removeAll()
-                    self!.newsResponse = news
-                } else {
-                    self!.newsResponse = news
-                }
-                self!.newsTable.reloadData()
-            } else {
-                self?.showAlert(message: "alert.cannotLoadData".localized, titleBtn: "alert.titleBtn.OK".localized, completion: {
-                    print("Failed to load Data")
-                    self!.updateObject()
-                    self?.loading.handleLoading(isLoading: false)
+        NewsListAPI(pageIndex: page, pageSize: 10).excute(completionHandler: { [weak self] (response) in
+            if response?.status == 0 {
+                self?.showAlert(message: response!.errMessage, titleBtn: "OK", completion: {
+                    print(response!.errMessage!)
                 })
+            } else {
+                if shoudLoadmore == false {
+                    self?.newsResponse.removeAll()
+                    self?.deleteObject()
+                    for news in response!.listNews {
+                        self?.addObject(object: news)
+                    }
+                    self?.updateObject()
+                } else {
+                    for news in response!.listNews {
+                        self?.addObject(object: news)
+                    }
+                    self?.updateObject()
+                    self?.newsTable.reloadData()
+                }
             }
+        }) { (err) in
+                self.showAlert(message: "alert.cannotLoadData".localized, titleBtn: "alert.titleBtn.OK".localized, completion: {
+                print("Failed to load Data")
+                self.isLoadmore = false
+                self.updateObject()
+                self.loading.handleLoading(isLoading: false)
+            })
         }
     }
 }
@@ -155,9 +184,7 @@ extension NewsViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let lastItem = newsResponse.count - 1
         if indexPath.row == lastItem && isLoadmore == true {
-            loading.handleLoading(isLoading: false)
             currentPage += 1
-            pageIndex = currentPage
             getNewsData(shoudLoadmore: true, page: currentPage)
         } else {
             loading.handleLoading(isLoading: false)

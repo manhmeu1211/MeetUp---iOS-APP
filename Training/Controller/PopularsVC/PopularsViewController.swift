@@ -23,7 +23,8 @@ class PopularsViewController: UIViewController {
     private var isLoadmore : Bool!
     private var changeColor : Int!
     private var userToken = UserDefaults.standard.string(forKey: "userToken")
-    private var headers : [String : String] = [:]
+    private var headers = [String : String]()
+    private let realm = try! Realm()
     
     
     override func viewDidLoad() {
@@ -83,6 +84,7 @@ class PopularsViewController: UIViewController {
     // MARK: - Function set up table and get data
  
     private func setUpTable() {
+        loading.handleLoading(isLoading: false)
         popularsTable.dataSource = self
         popularsTable.delegate = self
         popularsTable.rowHeight = UITableView.automaticDimension
@@ -103,27 +105,53 @@ class PopularsViewController: UIViewController {
     
     
     private func updateObject() {
-        self.popularResponse = RealmDataBaseQuery.getInstance.getObjects(type: PopularsResDatabase.self)!.sorted(byKeyPath: "goingCount", ascending: false).toArray(ofType: PopularsResDatabase.self)
+        let list = realm.objects(PopularsResDatabase.self).sorted(byKeyPath: "goingCount", ascending: false).toArray(ofType: PopularsResDatabase.self)
+        self.popularResponse = list
     }
     
+    private func deleteObject() {
+       let list = realm.objects(PopularsResDatabase.self).toArray(ofType: PopularsResDatabase.self)
+         try! realm.write {
+             realm.delete(list)
+        }
+    }
     
+    private func addObject(object : Object) {
+        try! realm.write {
+            realm.add(object)
+        }
+    }
+      
     private func getListPopularData(isLoadMore : Bool, page : Int) {
-        getDataService.getInstance.getListPopular(pageIndex: page, pageSize : 10, headers: headers, isLoadmore: isLoadMore) { [weak self] (popularData, isSuccess) in
-            if isSuccess == 1 {
-                if isLoadMore == false {
-                    self!.popularResponse.removeAll()
-                    self!.popularResponse = popularData
-                } else {
-                    self!.popularResponse = popularData
-                }
-                self!.popularsTable.reloadData()
-            } else {
-                self!.loading.handleLoading(isLoading: false)
-                self?.showAlert(message: "alert.cannotLoadData".localized, titleBtn: "alert.titleBtn.OK".localized, completion: {
-                    print("Failed to load Data")
-                    self?.updateObject()
+        EventsListAPI(pageIndex: page, pageSize: 10).excute(completionHandler: { [weak self] (response) in
+            if response?.status == 0 {
+                self?.showAlert(message: response!.errMessage, titleBtn: "OK", completion: {
+                    print(response!.errMessage!)
                 })
+            } else {
+                if isLoadMore == false {
+                    self?.popularResponse.removeAll()
+                    self?.deleteObject()
+                    for events in response!.listPopulars {
+                        self?.addObject(object: events)
+                    }
+                    self?.updateObject()
+                    self?.popularsTable.reloadData()
+                } else {
+                    for events in response!.listPopulars {
+                        self?.addObject(object: events)
+                    }
+                    self?.updateObject()
+                    self?.popularsTable.reloadData()
+                }
             }
+        }) { (err) in
+            self.showAlert(message: "alert.cannotLoadData".localized, titleBtn: "alert.titleBtn.OK".localized, completion: {
+            print("Failed to load Data")
+            self.isLoadmore = false
+            self.updateObject()
+            self.loading.handleLoading(isLoading: false)
+            })
         }
     }
 }

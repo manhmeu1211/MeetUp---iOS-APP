@@ -37,6 +37,7 @@ class HomeNewsViewController: UIViewController {
     }
     
     func setUpView() {
+        self.title = "header.label.text".localized
         scrollView.delegate = self
         scrollView.showsHorizontalScrollIndicator = false
         scrollView.showsVerticalScrollIndicator = false

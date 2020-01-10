@@ -45,11 +45,18 @@ class NewsListAPI: APIMeetUpService<NewsData> {
 
 struct NewsData : MeetUpResponse {
     var listNews = [NewsDataResponse]()
+    var status : Int!
+    var errMessage : String!
     init(json: JSON) {
-        let data = json["response"]["news"].array
-        for item in data! {
-            let news = NewsDataResponse(news: item)
-            listNews.append(news)
+        status = json["status"].intValue
+        if status == 1 {
+            let data = json["response"]["news"].array
+            for item in data! {
+                let news = NewsDataResponse(news: item)
+                listNews.append(news)
+            }
+        } else {
+            errMessage = json["error_message"].stringValue
         }
     }
     

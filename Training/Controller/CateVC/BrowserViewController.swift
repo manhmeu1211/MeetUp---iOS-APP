@@ -18,6 +18,7 @@ class BrowserViewController: UIViewController {
     private let refreshControl = UIRefreshControl()
     private var cateList = [CategoriesResDatabase]()
     private let userToken = UserDefaults.standard.string(forKey: "userToken")
+    private let realm = try! Realm()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,8 +34,8 @@ class BrowserViewController: UIViewController {
     
      // MARK: - setup View
     private func getCateGories() {
-        let list = RealmDataBaseQuery.getInstance.getObjects(type: CategoriesResDatabase.self)?.toArray(ofType: CategoriesResDatabase.self)
-        if list!.isEmpty {
+        let list = realm.objects(CategoriesResDatabase.self).toArray(ofType: CategoriesResDatabase.self)
+        if list.isEmpty {
             getListCategories()
         } else {
             updateObject()
@@ -54,11 +55,11 @@ class BrowserViewController: UIViewController {
         categoriesTable.dataSource = self
         categoriesTable.register(UINib(nibName: "CategoriesTableViewCell", bundle: nil), forCellReuseIdentifier: "CategoriesTableViewCell")
         if #available(iOS 10.0, *) {
-                   self.categoriesTable.refreshControl = refreshControl
-               } else {
-                   self.categoriesTable.addSubview(refreshControl)
-               }
-               self.refreshControl.addTarget(self, action: #selector(updateData), for: .valueChanged)
+            self.categoriesTable.refreshControl = refreshControl
+        } else {
+            self.categoriesTable.addSubview(refreshControl)
+        }
+            self.refreshControl.addTarget(self, action: #selector(updateData), for: .valueChanged)
     }
     
      // MARK: - getData
@@ -69,28 +70,52 @@ class BrowserViewController: UIViewController {
     }
     
     private func updateObject() {
-        let list = (RealmDataBaseQuery.getInstance.getObjects(type: CategoriesResDatabase.self)?.toArray(ofType: CategoriesResDatabase.self))!
+        cateList.removeAll()
+        let list = realm.objects(CategoriesResDatabase.self).toArray(ofType: CategoriesResDatabase.self)
         cateList = list
+        categoriesTable.reloadData()
         dismiss(animated: true, completion: nil)
     }
     
+       
+    private func deleteObject() {
+      let list = realm.objects(CategoriesResDatabase.self).toArray(ofType: CategoriesResDatabase.self)
+        try! realm.write {
+            realm.delete(list)
+        }
+    }
+   
+    private func addObject(object : Object) {
+        try! realm.write {
+           realm.add(object)
+        }
+    }
+          
     
     private func getListCategories() {
-        getDataService.getInstance.getListCategories { [weak self] (cateData, errcode) in
-            if errcode == 1 {
-                self!.cateList.removeAll()
-                self!.cateList = cateData
-                self!.categoriesTable.reloadData()
-                self!.dismiss(animated: true, completion: nil)
-            } else {
-                print("Failed")
-                self!.dismiss(animated: true, completion: nil)
-                self!.showAlert(message: "alert.cannotLoadData".localized, titleBtn: "alert.titleBtn.OK".localized) {
-                    print("Can't get data")
+        CategoriesListAPI().excute(completionHandler: { [weak self] (response) in
+            if response?.status == 0 {
+                self?.dismiss(animated: true, completion: nil)
+                self?.showAlert(message: response!.errMessage, titleBtn: "alert.titleBtn.OK".localized) {
+                    print(response!.errMessage!)
                 }
+            } else {
+                self?.cateList.removeAll()
+                self?.deleteObject()
+                for categories in response!.listCategories {
+                    self?.addObject(object: categories)
+                }
+                self?.updateObject()
+                self?.categoriesTable.reloadData()
+                self?.dismiss(animated: true, completion: nil)
+            }
+        }) { (err) in
+                self.dismiss(animated: true, completion: nil)
+                self.showAlert(message: "alert.cannotLoadData".localized, titleBtn: "alert.titleBtn.OK".localized) {
+                print("Can't get data")
             }
         }
-        self.dismiss(animated: true, completion: nil)
+
     }
     
     @objc func handleSearchViewController() {
@@ -122,7 +147,7 @@ extension BrowserViewController : UITableViewDelegate, UITableViewDataSource {
         let idCategories = cateList[indexPath.row].id
         let titleCategories = cateList[indexPath.row].name
         let eventByCateVC = EventsByCategoriesViewController()
-        eventByCateVC.id = idCategories
+        eventByCateVC.categoriesID = idCategories
         eventByCateVC.headerTitle = titleCategories
         navigationController?.pushViewController(eventByCateVC, animated: true)
     }

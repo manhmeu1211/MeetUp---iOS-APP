@@ -132,14 +132,19 @@ class EventDetailController: UIViewController {
     
 
     private func getListEvent() {
-        getDataService.getInstance.getListNearEvent(radius: 10, longitue: self.eventDetail.longValue, latitude: self.eventDetail.latValue) { [weak self] (eventsNear, anotionLC ,errcode) in
-            if errcode == 0 {
-                print("Failed")
-            } else if errcode == 1 {
-                self!.eventsNear = eventsNear
+        ArtWorkListAPI(radius: 10, longitue: self.eventDetail.longValue, latitude: self.eventDetail.latValue).excute(completionHandler: { [weak self] (response) in
+            if response?.statusCode == 0 {
+                self?.showAlert(message: response!.errMessage, titleBtn: "alert.titleBtn.OK".localized) {
+                    print(response!.errMessage!)
+                }
             } else {
-                print("Failed")
+                self?.eventsNear.removeAll()
+                self?.eventsNear = response!.listEventsNear
             }
+        }) { (err) in
+            self.showAlert(message: "alert.cannotLoadData".localized, titleBtn: "alert.titleBtn.OK".localized) {
+                   print("Can't get data")
+               }
         }
     }
     
@@ -180,19 +185,18 @@ extension EventDetailController : UITableViewDelegate, UITableViewDataSource {
              if eventDetail.mystatus == 1 {
                 DispatchQueue.main.async {
                     cell.imgStar.image = UIImage(named: "icon_starRed")
-                    cell.status.text = "Can participate"
+                    cell.status.text = "join.label.text.canParticipate".localized
                     cell.status.textColor = UIColor(rgb: 0xC63636)
                     cell.backGroundStatus.backgroundColor = UIColor(rgb: 0xF9EBEB)
                 }
              } else if eventDetail.mystatus == 2 {
                 DispatchQueue.main.async {
                     cell.imgStar.image = UIImage(named: "icon_starGreen")
-                    cell.status.text = "Joined"
-                    cell.status.textColor = UIColor(rgb: 0xE5F9F4)
-                    cell.backGroundStatus.backgroundColor = UIColor(rgb: 0x00C491)
+                    cell.status.text = "join.label.text.joined".localized
+                    cell.status.textColor = UIColor(rgb: 0x00C491)
+                    cell.backGroundStatus.backgroundColor = UIColor(rgb: 0xE5F9F4)
                 }
              }
-
              return cell
         case 1:
             let cell = detailTable.dequeueReusableCell(withIdentifier: "TextAreaCell", for: indexPath) as! TextAreaCell

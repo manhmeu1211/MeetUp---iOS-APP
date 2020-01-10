@@ -32,6 +32,7 @@ class LoginViewController: UIViewController {
         uiBtnLogin.roundedButton()
         emailView.setUpBorderView()
         passwordView.setUpBorderView()
+        uiBtnLogin.layoutIfNeeded()
     }
     
     func setUpItemBar() {

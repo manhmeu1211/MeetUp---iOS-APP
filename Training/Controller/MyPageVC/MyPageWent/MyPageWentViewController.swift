@@ -29,6 +29,7 @@ class MyPageWentViewController: UIViewController {
         getListGoingWent()
     }
     
+
     private func setupView() {
         wentTable.delegate = self
         wentTable.dataSource = self
@@ -43,7 +44,7 @@ class MyPageWentViewController: UIViewController {
     }
     
     @objc private func updateData() {
-        updateObject()
+        getListGoingWent()
         wentTable.reloadData()
         refreshControl.endRefreshing()
     }
@@ -60,7 +61,7 @@ class MyPageWentViewController: UIViewController {
      
     
     private func updateObject() {
-        let list = RealmDataBaseQuery.getInstance.getObjects(type: MyPageWentResDatabase.self)!.sorted(byKeyPath: "goingCount", ascending: false).toArray(ofType: MyPageWentResDatabase.self)
+        let list = realm.objects(MyPageWentResDatabase.self).sorted(byKeyPath: "goingCount", ascending: false).toArray(ofType: MyPageWentResDatabase.self)
         wentEvents = list
     }
     
@@ -74,32 +75,35 @@ class MyPageWentViewController: UIViewController {
          
 
     private func getListGoingWent() {
-        getDataService.getInstance.getMyEventWent(status: self.status) { (events, errCode) in
-                if errCode == 1 {
-                    self.showAlert(message: "alert.cannotLoadData".localized, titleBtn: "alert.titleBtn.OK".localized) {
-                        print("Can't get data")
-                    }
-                } else if errCode == 2 {
-                    self.wentEvents.removeAll()
-                let dateFormatter = Date()
-                    for i in events {
-                         let date = dateFormatter.converStringToDate(formatter: Date.StyleDate.dateOnly, dateString: i.scheduleStartDate)
-                         if date! < self.today {
-                            self.wentEventsEnd.append(i)
-                         } else {
-                            self.wentEvents.append(i)
-                        }
-                     }
-                    self.wentTable.reloadData()
-                    self.checkEvent()
-                }  else {
-                    self.updateObject()
-                    self.wentTable.reloadData()
-                    ToastView.shared.short(self.view, txt_msg: "alert.checkConnection".localized)
+        MyPageWentListAPI(status: status).excute(completionHandler: { [weak self] (response) in
+            if response?.status == 0 {
+                self?.showAlert(message: "alert.cannotLoadData".localized, titleBtn: "OK", completion: {
+                    print(response?.errMessage ?? "Token expired")
+                })
+            } else {
+                let list = self?.realm.objects(MyPageWentResDatabase.self).toArray(ofType: MyPageWentResDatabase.self)
+                try! self?.realm.write {
+                    self?.realm.delete(list!)
                 }
+                self?.wentEvents.removeAll()
+                let data = response?.listEventsWent
+                self?.wentEvents = data!
+                for eventWent in self!.wentEvents {
+                    try! self?.realm.write {
+                        self?.realm.add(eventWent)
+                    }
+                }
+                self?.wentTable.reloadData()
             }
+        }) { (err) in
+            self.showAlert(message: "alert.cannotLoadData".localized, titleBtn: "OK", completion: {
+                print(err!)
+            })
+            self.updateObject()
+            self.wentTable.reloadData()
         }
     }
+}
 
 
 extension MyPageWentViewController : UITableViewDelegate, UITableViewDataSource {

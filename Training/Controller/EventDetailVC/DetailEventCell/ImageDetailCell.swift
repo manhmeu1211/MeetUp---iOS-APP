@@ -26,6 +26,7 @@ class ImageDetailCell: UITableViewCell {
         imgDetail.layoutIfNeeded()
         imgDetail.roundCorners()
         backGroundStatus.setUpBGView()
+        backGroundStatus.layoutIfNeeded()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

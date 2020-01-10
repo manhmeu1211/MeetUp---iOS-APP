@@ -36,11 +36,18 @@ class CategoriesListAPI: APIMeetUpService<CategoriesData> {
 
 struct CategoriesData : MeetUpResponse {
     var listCategories = [CategoriesResDatabase]()
+    var status : Int!
+    var errMessage : String!
     init(json: JSON) {
-        let data = json["response"]["categories"].array
-        for item in data! {
-            let categories = CategoriesResDatabase(cate : item)
-            listCategories.append(categories)
+        status = json["status"].intValue
+        if status == 0 {
+            errMessage = json["error_mesage"].stringValue
+        } else {
+            let data = json["response"]["categories"].array
+            for item in data! {
+                let categories = CategoriesResDatabase(cate : item)
+                listCategories.append(categories)
+            }
         }
     }
 }

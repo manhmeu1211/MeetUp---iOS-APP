@@ -57,12 +57,19 @@ class EventsListAPI: APIMeetUpService<PopularsData> {
 }
 
 struct PopularsData : MeetUpResponse {
-    var listNews = [PopularsResDatabase]()
+    var listPopulars = [PopularsResDatabase]()
+    var errMessage : String!
+    var status : Int!
     init(json: JSON) {
         let data = json["response"]["events"].array
-        for item in data! {
-            let populars = PopularsResDatabase(populars: item)
-            listNews.append(populars)
+        status = json["status"].intValue
+        if status == 1 {
+            for item in data! {
+                let populars = PopularsResDatabase(populars: item)
+                listPopulars.append(populars)
+            }
+        } else {
+            errMessage = json["error_message"].stringValue
         }
     }
 }

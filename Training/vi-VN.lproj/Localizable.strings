@@ -3,6 +3,8 @@
 "btnNews.title" = "Tin tức";
 "btnEvents.title" = "Sự kiện";
 "header.label.text" = "Trang chủ";
+"near.title" = "Gần tôi";
+"mypage.title" = "Trang của tôi";
 
 
 // MARK: - News VỉewController
@@ -96,6 +98,8 @@
 "myEvents.logOut.title" = "Đăng xuất";
 "search.noResultIncoming.text" = "Không có sự kiện nào đang diễn ra...:'(";
 "search.noResultPast.text" = "Không có sự kiện nào đã diễn ra...:'(";
+"eventsPast.text" = "Đã diễn ra";
+"eventsIncoming.text" = "Sắp diễn ra" ;
 
 
 

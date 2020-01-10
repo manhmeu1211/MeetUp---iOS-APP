@@ -40,6 +40,7 @@ class NewsCell: UITableViewCell {
         imgNews.roundCorners()
         containerView.roundCornersView(corners: [.topLeft, .topRight], radius: 30)
         backgroundStatusView.setUpBGView()
+        backgroundStatusView.layoutIfNeeded()
     }
    
     override func setSelected(_ selected: Bool, animated: Bool) {

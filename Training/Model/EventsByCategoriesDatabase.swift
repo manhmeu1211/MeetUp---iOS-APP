@@ -64,9 +64,13 @@ struct EventsByCategoriesData : MeetUpResponse {
             errMessage = json["error_message"].stringValue
         } else {
             let data = json["response"]["events"].array
-            for item in data! {
-                let events = EventsByCategoriesDatabase(event: item)
-                listEventsByCate.append(events)
+            if data!.isEmpty {
+                errMessage = "Empty"
+            } else {
+                for item in data! {
+                    let events = EventsByCategoriesDatabase(event: item)
+                    listEventsByCate.append(events)
+                }
             }
         }
     }

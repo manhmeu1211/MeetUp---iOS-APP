@@ -54,7 +54,7 @@ extension DetailNearCell : UICollectionViewDelegate, UICollectionViewDataSource 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "EventsCell", for: indexPath) as! EventsCell
             let url = URL(string: events[indexPath.row].photo)
-            cell.imgEvent.sd_setImage(with: url, completed: nil)
+            cell.imgEvent!.sd_setImage(with: url, placeholderImage: UIImage(named: "noImage"), completed: nil)
             cell.eventName.text = events[indexPath.row].name
             cell.eventDes.text = events[indexPath.row].descriptionHtml
             cell.eventCount.text = "\(events[indexPath.row].scheduleStartDate) - \(events[indexPath.row].goingCount) people going"
