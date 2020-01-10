@@ -67,7 +67,7 @@
 		0DC433C8239F3BF4000C9505 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0DC433C7239F3BF4000C9505 /* Assets.xcassets */; };
 		0DC433DB239F3D67000C9505 /* ShowToastMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DC433DA239F3D67000C9505 /* ShowToastMessage.swift */; };
 		0DC433E8239F43F7000C9505 /* HomeNewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DC433E7239F43F7000C9505 /* HomeNewsViewController.swift */; };
-		0DC433EF239F5388000C9505 /* DataBaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DC433EE239F5388000C9505 /* DataBaseService.swift */; };
+		0DC433EF239F5388000C9505 /* APIPostReques.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DC433EE239F5388000C9505 /* APIPostReques.swift */; };
 		0DCE199423C837EB005BEDE3 /* ArtworkViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DCE199323C837EB005BEDE3 /* ArtworkViews.swift */; };
 		0DD8F5EA23A235BB00C50F22 /* CategoriesResDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DD8F5E923A235BB00C50F22 /* CategoriesResDatabase.swift */; };
 		0DD8F5F323A23C4100C50F22 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DD8F5F123A23C4100C50F22 /* SearchViewController.swift */; };
@@ -156,7 +156,7 @@
 		0DC433CC239F3BF4000C9505 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0DC433DA239F3D67000C9505 /* ShowToastMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowToastMessage.swift; sourceTree = "<group>"; };
 		0DC433E7239F43F7000C9505 /* HomeNewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNewsViewController.swift; sourceTree = "<group>"; };
-		0DC433EE239F5388000C9505 /* DataBaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBaseService.swift; sourceTree = "<group>"; };
+		0DC433EE239F5388000C9505 /* APIPostReques.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIPostReques.swift; sourceTree = "<group>"; };
 		0DCE199323C837EB005BEDE3 /* ArtworkViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtworkViews.swift; sourceTree = "<group>"; };
 		0DD8F5E923A235BB00C50F22 /* CategoriesResDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesResDatabase.swift; sourceTree = "<group>"; };
 		0DD8F5F123A23C4100C50F22 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
@@ -496,6 +496,7 @@
 			children = (
 				0D020EF623B9D323007826FD /* APIRequest.swift */,
 				0D020EF823B9D649007826FD /* APIResponse.swift */,
+				0DC433EE239F5388000C9505 /* APIPostReques.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -504,7 +505,6 @@
 			isa = PBXGroup;
 			children = (
 				0DE3B8C923A0FB2800843C80 /* RealmDataBaseQuery.swift */,
-				0DC433EE239F5388000C9505 /* DataBaseService.swift */,
 			);
 			path = Realmdatabase;
 			sourceTree = "<group>";
@@ -725,7 +725,7 @@
 				0DE62E5423A3500700D927FA /* ExtensionView.swift in Sources */,
 				0DD8F5F323A23C4100C50F22 /* SearchViewController.swift in Sources */,
 				0D462B1A23A76319000332F4 /* EventsCell.swift in Sources */,
-				0DC433EF239F5388000C9505 /* DataBaseService.swift in Sources */,
+				0DC433EF239F5388000C9505 /* APIPostReques.swift in Sources */,
 				0D8CCEDA23B310A100EDE7F4 /* ExtensionAlert.swift in Sources */,
 				0D45DC0023ACCCBB006C6CB7 /* DetailVenueCell.swift in Sources */,
 				0DC433DB239F3D67000C9505 /* ShowToastMessage.swift in Sources */,

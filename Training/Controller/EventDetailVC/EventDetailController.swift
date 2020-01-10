@@ -114,18 +114,17 @@ class EventDetailController: UIViewController {
     }
     
     private func getDetailEvent(eventID : Int) {
-        print("getData")
-        getDataService.getInstance.getEventDetail(eventID: eventID) { [weak self] (eventDetail, errcode) in
-            if errcode == 0 {
-                ToastView.shared.short(self!.view, txt_msg: "You need to login first")
-                self!.alertLogin.createAlertLoading(target: self!, isShowLoading: false)
-            } else if errcode == 1 {
-                self!.eventDetail = eventDetail
-                self!.detailTable.reloadData()
+        EventsDetailAPI(eventID: eventID).excute(completionHandler: { [weak self] (response) in
+            if response?.status == 0 {
+                let event = EventDetail(id: 0, photo: "", name: "Failed to load", descriptionHtml: "", scheduleStartDate: "", scheduleEndDate: "", scheduleStartTime: "", scheduleEndTime: "", schedulePermanent: "", goingCount: 0, nameGenre: "", vnLocation: "", vnContact: "", vnName: "", locationEvent: "")
+                self?.eventDetail = event
             } else {
-                self!.showAlert(message: "No internet connection", titleBtn: "OK") {
-                    print("No connection")
-                }
+                self?.eventDetail = response!.eventDetail
+            }
+            self?.detailTable.reloadData()
+        }) { (err) in
+            self.showAlert(message: "No internet connection", titleBtn: "OK") {
+                print("No connection")
             }
         }
     }

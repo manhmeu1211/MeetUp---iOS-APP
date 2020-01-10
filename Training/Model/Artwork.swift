@@ -102,7 +102,6 @@ struct ArtWorksData : MeetUpResponse {
     var anotion : JSON!
     var statusCode : Int!
     var errMessage : String!
-
     init(json: JSON) {
         let status = json["status"]
         statusCode = status.intValue

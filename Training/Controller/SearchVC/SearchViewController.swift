@@ -84,35 +84,38 @@ class SearchViewController: UIViewController {
         }
         print(isHaveConnection!)
      }
-
+    
 
 
     private func handleSearch(isLoadMore : Bool, page : Int) {
         let keyword = txtSearch.text!
-        getDataService.getInstance.search(pageIndex: page, pageSize: 10, keyword: keyword, isLoadMore: isLoadMore) { [weak self] (result, errcode) in
-            if errcode == 0 {
-                self?.noResults.isHidden = false
-                self?.imgNoResult.isHidden = false
+        
+        SearchListAPI(pageIndex: page, pageSize: 10, keyword: keyword).excute(completionHandler: { [weak self] (response) in
+            if response?.status == 0 {
                 self?.loading.handleLoading(isLoading: false)
-            } else if errcode == 1 {
+                self?.showAlert(message: response!.errMessage, titleBtn: "alert.titleBtn.OK".localized, completion: {
+                    self?.noResults.isHidden = false
+                    self?.imgNoResult.isHidden = false
+                })
+            } else {
                 if isLoadMore == false {
-                    for i in result {
-                        self?.searchResultInComing.removeAll()
-                        self?.searchResultPast.removeAll()
-                        let date = self?.dateFormatter.converStringToDate(formatter: Date.StyleDate.dateOnly, dateString: i.scheduleStartDate)
+                    self?.searchResultPast.removeAll()
+                    self?.searchResultInComing.removeAll()
+                    for item in response!.listSearch {
+                        let date = self?.dateFormatter.converStringToDate(formatter: Date.StyleDate.dateOnly, dateString: item.scheduleStartDate)
                         if date! < self!.today {
-                            self?.searchResultPast.append(i)
+                            self?.searchResultPast.append(item)
                          } else {
-                            self?.searchResultInComing.append(i)
+                            self?.searchResultInComing.append(item)
                         }
                     }
                 } else {
-                    for i in result {
-                        let date = self?.dateFormatter.converStringToDate(formatter: Date.StyleDate.dateOnly, dateString: i.scheduleStartDate)
+                    for item in response!.listSearch {
+                        let date = self?.dateFormatter.converStringToDate(formatter: Date.StyleDate.dateOnly, dateString: item.scheduleStartDate)
                         if date! < self!.today {
-                            self?.searchResultPast.append(i)
+                            self?.searchResultPast.append(item)
                          } else {
-                            self?.searchResultInComing.append(i)
+                            self?.searchResultInComing.append(item)
                         }
                     }
                 }
@@ -126,10 +129,11 @@ class SearchViewController: UIViewController {
                     self?.imgNoResult.isHidden = true
                 }
                 self?.loading.handleLoading(isLoading: false)
-            } else {
-                self?.noResults.text = "alert.cannotLoadData".localized
-                self?.noResults.isHidden = false
-                self?.loading.handleLoading(isLoading: false)
+            }
+        }) { (err) in
+            self.loading.handleLoading(isLoading: false)
+
+            self.showAlert(message: "alert.cannotLoadData".localized, titleBtn:  "alert.titleBtn.OK".localized) {
             }
         }
     }
