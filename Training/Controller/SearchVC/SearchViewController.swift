@@ -280,7 +280,6 @@ extension SearchViewController : UITableViewDelegate, UITableViewDataSource {
                   if indexPath.row == lastItem {
                     noResults.isHidden = true
                     currentPage += 1
-                    loading.handleLoading(isLoading: true)
                     handleSearch(isLoadMore: true, page: currentPage)
                   }
             default:
@@ -288,7 +287,6 @@ extension SearchViewController : UITableViewDelegate, UITableViewDataSource {
                   if indexPath.row == lastItem {
                     noResults.isHidden = true
                     currentPage += 1
-                    loading.handleLoading(isLoading: true)
                     handleSearch(isLoadMore: true, page: currentPage)
                   }
 

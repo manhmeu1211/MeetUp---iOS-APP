@@ -172,6 +172,7 @@ extension PopularsViewController : UITableViewDataSource, UITableViewDelegate {
         cell.date.text = "\(popularResponse[indexPath.row].scheduleStartDate) - \(popularResponse[indexPath.row].goingCount) " + "peopleGoing.text".localized
         cell.title.text = popularResponse[indexPath.row].name
         cell.lblDes.text = popularResponse[indexPath.row].descriptionHtml
+        cell.imgTimer.image = UIImage(named: "Group15")
         switch popularResponse[indexPath.row].myStatus {
             case 1:
                 cell.statusImage.image = UIImage(named: "icon_starRed")
