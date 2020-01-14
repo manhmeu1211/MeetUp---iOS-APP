@@ -421,6 +421,24 @@
 			path = Common;
 			sourceTree = "<group>";
 		};
+		0DB2FA6323CDA1FB00ABFD47 /* AlertView */ = {
+			isa = PBXGroup;
+			children = (
+				0D9C320823BF37A600F1726E /* CustomAlertViewController.swift */,
+				0D9C320923BF37A600F1726E /* CustomAlertViewController.xib */,
+			);
+			path = AlertView;
+			sourceTree = "<group>";
+		};
+		0DB2FA6423CDA20900ABFD47 /* HomeView */ = {
+			isa = PBXGroup;
+			children = (
+				0DAFD8A023C4372E00828323 /* Home.storyboard */,
+				0DC433E7239F43F7000C9505 /* HomeNewsViewController.swift */,
+			);
+			path = HomeView;
+			sourceTree = "<group>";
+		};
 		0DC433B2239F3BF1000C9505 = {
 			isa = PBXGroup;
 			children = (
@@ -462,11 +480,9 @@
 		0DC433D4239F3C79000C9505 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				0DB2FA6423CDA20900ABFD47 /* HomeView */,
+				0DB2FA6323CDA1FB00ABFD47 /* AlertView */,
 				0DC433ED239F4C25000C9505 /* Cell */,
-				0DC433E7239F43F7000C9505 /* HomeNewsViewController.swift */,
-				0DAFD8A023C4372E00828323 /* Home.storyboard */,
-				0D9C320823BF37A600F1726E /* CustomAlertViewController.swift */,
-				0D9C320923BF37A600F1726E /* CustomAlertViewController.xib */,
 			);
 			name = Views;
 			path = Libaries/Views;

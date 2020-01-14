@@ -248,7 +248,7 @@ extension NearViewController : UICollectionViewDataSource, UICollectionViewDeleg
         let url = URL(string: self.events[indexPath.row].photo)
         cell.imgEvent.sd_setImage(with: url, placeholderImage: UIImage(named: "noImage"), completed: nil)
         cell.eventName.text = events[indexPath.row].name
-        cell.eventDes.text = events[indexPath.row].descriptionHtml
+        cell.eventDes.attributedText = events[indexPath.row].descriptionHtml.htmlToAttributedString
         cell.eventCount.text = "\(events[indexPath.row].scheduleStartDate) - \(events[indexPath.row].goingCount) " + "peopleGoing.text".localized
         return cell
     }

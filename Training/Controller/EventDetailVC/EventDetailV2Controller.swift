@@ -48,6 +48,7 @@ class EventDetailV2Controller: UIViewController {
          return false
      }
     
+    
     private func setUpCollectionView() {
         eventCollection.delegate = self
         eventCollection.dataSource = self
@@ -64,14 +65,30 @@ class EventDetailV2Controller: UIViewController {
             btnWent.backgroundColor = UIColor(rgb: 0xF6F6F6)
             btnFollow.backgroundColor = UIColor(rgb: 0xF6F6F6)
         }
+        let swipeRight = UISwipeGestureRecognizer(target: self, action:  #selector(swiped))
+        swipeRight.direction = UISwipeGestureRecognizer.Direction.right
+        self.view.addGestureRecognizer(swipeRight)
+        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(swiped))
+        swipeLeft.direction = UISwipeGestureRecognizer.Direction.left
+        self.view.addGestureRecognizer(swipeLeft)
+    }
+    
+    @objc func swiped(_ gesture: UISwipeGestureRecognizer) {
+        if gesture.direction == .left {
+            id! += 1
+            getDetailEvent(eventID: id!)
+        } else if gesture.direction == .right {
+            id! -= 1
+            getDetailEvent(eventID: id!)
+        }
     }
     
     
     private func setUpDataForView() {
         let url = URL(string: eventDetail.photo)
-        imgDetail.sd_setImage(with: url!, placeholderImage: UIImage(named: "noImage"), completed: nil)
+        imgDetail.sd_setImage(with: url, placeholderImage: UIImage(named: "noImage"), completed: nil)
         nameDetail.text = eventDetail.name
-        detailDate.text = "\(eventDetail.scheduleStartDate) - \(eventDetail.goingCount) people going"
+        detailDate.text = "\(eventDetail.scheduleStartDate) - \(eventDetail.goingCount) " + "peopleGoing.text".localized
         locationDetail.text = eventDetail.locationEvent
         desDetail.attributedText = eventDetail.descriptionHtml.htmlToAttributedString
         venueName.text = eventDetail.vnName
@@ -122,8 +139,8 @@ class EventDetailV2Controller: UIViewController {
                       print(response!.errMessage!)
                   }
               } else {
-                  self?.eventsNear.removeAll()
-                  self?.eventsNear = response!.listEventsNear
+                self?.eventsNear.removeAll()
+                self?.eventsNear = response!.listEventsNear
                 self?.eventCollection.reloadData()
               }
           }) { (err) in
@@ -241,13 +258,13 @@ extension EventDetailV2Controller : UICollectionViewDataSource, UICollectionView
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-          let cell = eventCollection.dequeueReusableCell(withReuseIdentifier: "EventsCell", for: indexPath) as! EventsCell
-          let url = URL(string: eventsNear[indexPath.row].photo)
-          cell.imgEvent!.sd_setImage(with: url, placeholderImage: UIImage(named: "noImage"), completed: nil)
-          cell.eventName.text = eventsNear[indexPath.row].name
-          cell.eventDes.text = eventsNear[indexPath.row].descriptionHtml
-          cell.eventCount.text = "\(eventsNear[indexPath.row].scheduleStartDate) - \(eventsNear[indexPath.row].goingCount) people going"
-          return cell
+        let cell = eventCollection.dequeueReusableCell(withReuseIdentifier: "EventsCell", for: indexPath) as! EventsCell
+        let url = URL(string: eventsNear[indexPath.row].photo)
+        cell.imgEvent!.sd_setImage(with: url, placeholderImage: UIImage(named: "noImage"), completed: nil)
+        cell.eventName.text = eventsNear[indexPath.row].name
+        cell.eventDes.attributedText = eventsNear[indexPath.row].descriptionHtml.htmlToAttributedString
+        cell.eventCount.text = "\(eventsNear[indexPath.row].scheduleStartDate) - \(eventsNear[indexPath.row].goingCount) people going"
+        return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

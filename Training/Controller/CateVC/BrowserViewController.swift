@@ -19,6 +19,7 @@ class BrowserViewController: UIViewController {
     private var cateList = [CategoriesResDatabase]()
     private let userToken = UserDefaults.standard.string(forKey: "userToken")
     private let realm = try! Realm()
+    private let listIcon = ["fan", "bag", "car", "grow", "dance", "mortarboard", "woman"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -140,6 +141,7 @@ extension BrowserViewController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = categoriesTable.dequeueReusableCell(withIdentifier: "CategoriesTableViewCell", for: indexPath) as! CategoriesTableViewCell
         cell.lblName.text = cateList[indexPath.row].name
+        cell.imgIcon.image = UIImage(named: cateList[indexPath.row].icon)
         return cell
     }
     

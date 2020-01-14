@@ -15,7 +15,6 @@ extension String {
         return NSLocalizedString(self, comment: self)
     }
     
-    
     var htmlToAttributedString: NSAttributedString? {
         guard let data = data(using: .utf8) else { return NSAttributedString() }
         do {
@@ -24,9 +23,11 @@ extension String {
             return NSAttributedString()
         }
     }
+    
     var htmlToString: String {
         return htmlToAttributedString?.string ?? ""
     }
+    
 }
 
 

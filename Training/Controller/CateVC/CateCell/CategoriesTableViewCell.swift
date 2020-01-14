@@ -12,8 +12,9 @@ class CategoriesTableViewCell: UITableViewCell {
 
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var lblName: UILabel!
-    
+    @IBOutlet weak var imgIcon: UIImageView!
     @IBOutlet weak var imgLogo: UIImageView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         containerView.setUpCardView()
