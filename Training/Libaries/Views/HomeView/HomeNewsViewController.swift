@@ -12,24 +12,17 @@ import Alamofire
 
 class HomeNewsViewController: UIViewController {
     
-
     @IBOutlet weak var btnNews: UIButton!
-    
     @IBOutlet weak var btnEvents: UIButton!
-    
     @IBOutlet weak var titleHeader: UILabel!
-    
     @IBOutlet weak var leadingIncaditor: NSLayoutConstraint!
-    
     @IBOutlet weak var imgHeader: UIImageView!
-    
     @IBOutlet weak var incaditor: UIView!
-    
     @IBOutlet weak var scrollView: UIScrollView!
-    
     @IBOutlet weak var leftView: UIView!
-    
     @IBOutlet weak var rightView: UIView!
+    let newsView = NewsViewController()
+    let popularsView = PopularsViewController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,15 +30,12 @@ class HomeNewsViewController: UIViewController {
     }
     
     func setUpView() {
-        self.title = "header.label.text".localized
         scrollView.delegate = self
         scrollView.showsHorizontalScrollIndicator = false
         scrollView.showsVerticalScrollIndicator = false
         btnNews.setTitle("btnNews.title".localized, for: .normal)
         btnEvents.setTitle("btnEvents.title".localized, for: .normal)
         titleHeader.text = "header.label.text".localized
-        let newsView = NewsViewController()
-        let popularsView = PopularsViewController()
         setUpTabLayout(viewControllerLeft: newsView, viewControllerRight: popularsView, leftViewInput: leftView, rightViewInput: rightView)
     }
     

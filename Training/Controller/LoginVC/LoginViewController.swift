@@ -53,9 +53,8 @@ class LoginViewController: UIViewController {
     }
 
     private func handleForgotPass() {
-        let resetPassVC = EventDetailV2Controller()
+        let resetPassVC = ResetPassViewController()
         present(resetPassVC, animated: true, completion: nil)
-//        navigationController?.pushViewController(resetPassVC, animated: true)
     }
     
     private func handleMyPage() {

@@ -22,7 +22,6 @@ class SignUpMainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpView()
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -61,7 +60,6 @@ class SignUpMainViewController: UIViewController {
     @IBAction func signUpBtn(_ sender: Any) {
         scrollView.setContentOffset(CGPoint(x: scrollView.frame.width , y: scrollView.contentOffset.y), animated: true)
     }
-    
 }
 
 // MARK: - Extension scrollview

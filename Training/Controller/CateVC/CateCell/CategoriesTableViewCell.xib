@@ -21,7 +21,7 @@
                         <rect key="frame" x="5" y="5" width="396" height="40"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CMq-Gq-dWs">
-                                <rect key="frame" x="80" y="10" width="266" height="20"/>
+                                <rect key="frame" x="100" y="10" width="246" height="20"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -34,13 +34,13 @@
                                 </constraints>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Rectangle 279" translatesAutoresizingMaskIntoConstraints="NO" id="VWW-It-cWr">
-                                <rect key="frame" x="5" y="5" width="70" height="30"/>
+                                <rect key="frame" x="5" y="5" width="90" height="30"/>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Group" translatesAutoresizingMaskIntoConstraints="NO" id="eXo-rm-BTM">
-                                <rect key="frame" x="26" y="10" width="20" height="20"/>
+                                <rect key="frame" x="33" y="8" width="24" height="24"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="20" id="FdN-FM-9fo"/>
-                                    <constraint firstAttribute="height" constant="20" id="SNP-QR-TJH"/>
+                                    <constraint firstAttribute="width" constant="24" id="FdN-FM-9fo"/>
+                                    <constraint firstAttribute="height" constant="24" id="SNP-QR-TJH"/>
                                 </constraints>
                             </imageView>
                         </subviews>
@@ -55,7 +55,7 @@
                             <constraint firstItem="VWW-It-cWr" firstAttribute="top" secondItem="SEo-By-A7G" secondAttribute="top" constant="5" id="Nlb-1G-9Mk"/>
                             <constraint firstItem="VWW-It-cWr" firstAttribute="leading" secondItem="SEo-By-A7G" secondAttribute="leading" constant="5" id="UER-VA-Ohq"/>
                             <constraint firstItem="CMq-Gq-dWs" firstAttribute="leading" secondItem="VWW-It-cWr" secondAttribute="trailing" constant="5" id="XWS-iD-G30"/>
-                            <constraint firstItem="CMq-Gq-dWs" firstAttribute="leading" secondItem="SEo-By-A7G" secondAttribute="leading" constant="80" id="ltE-un-pXZ"/>
+                            <constraint firstItem="CMq-Gq-dWs" firstAttribute="leading" secondItem="SEo-By-A7G" secondAttribute="leading" constant="100" id="ltE-un-pXZ"/>
                             <constraint firstAttribute="trailing" secondItem="CMq-Gq-dWs" secondAttribute="trailing" constant="50" id="rAk-p2-hwd"/>
                             <constraint firstItem="VWW-It-cWr" firstAttribute="centerY" secondItem="CMq-Gq-dWs" secondAttribute="centerY" id="t4c-cK-Eoh"/>
                             <constraint firstAttribute="bottom" secondItem="CMq-Gq-dWs" secondAttribute="bottom" constant="10" id="ydX-tB-F8h"/>

@@ -11,9 +11,7 @@ import UIKit
 
 class ValidatedString {
      class var getInstance: ValidatedString {
-     
-         struct Static {
-         
+        struct Static {
             static let instance: ValidatedString = ValidatedString()
         }
          return Static.instance

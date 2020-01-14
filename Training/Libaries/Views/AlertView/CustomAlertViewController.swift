@@ -11,11 +11,8 @@ import UIKit
 class CustomAlertViewController: UIViewController {
 
     @IBOutlet weak var alertMessage: UILabel!
-    
     @IBOutlet weak var btnAlert: UIButton!
-    
     @IBOutlet weak var backgroundTitleView: UIView!
-    
     @IBOutlet weak var containerView: UIView!
     
     var handle: (()-> Void)?
@@ -24,13 +21,15 @@ class CustomAlertViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUpView()
+    }
+    
+    private func setUpView() {
         alertMessage.text = titleAlert!
         btnAlert.setTitle(titleBtn!, for: .normal)
         containerView.layer.cornerRadius = 10
         backgroundTitleView.layer.cornerRadius = 10
     }
-
-
 
     @IBAction func handleAlert(_ sender: Any) {
         handle?()

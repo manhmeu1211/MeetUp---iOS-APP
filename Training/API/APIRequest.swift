@@ -29,13 +29,14 @@ struct APIMeetUpRequest {
          header: HTTPHeaders = [:],
          parameters: [String: Any] = [:],
          keyValue: String = "response") {
+        
         self.name = name
         self.path = path
         self.method = method
         self.header = header
         self.parameters = parameters
         self.keyValue = keyValue
-        }
+    }
     
     func printInfomationRequest() {
         print("Request name : \(name)")

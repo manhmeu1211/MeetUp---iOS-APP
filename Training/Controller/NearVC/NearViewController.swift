@@ -125,7 +125,6 @@ class NearViewController: UIViewController, CLLocationManagerDelegate {
     // MARK: - Setup views
     
     private func setUpCollectionView() {
-        self.title = "near.title".localized
         map.delegate = self
         collectionVIew.dataSource = self
         collectionVIew.delegate = self

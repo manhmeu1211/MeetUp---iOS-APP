@@ -12,7 +12,7 @@ class UpdateEventStatusAPI: APIMeetUpService<UpDateEventsStatusResponse> {
         } else {
             headers = [ "Authorization": "No Auth" ]
         }
-        super.init(request: APIMeetUpRequest(name: "API00010  Update status event ", path: "doUpdateEvent", method: .post, header: headers ,parameters: ["status": status, "event_id": eventID]))
+        super.init(request: APIMeetUpRequest(name: "API00011  Update status event ", path: "doUpdateEvent", method: .post, header: headers ,parameters: ["status": status, "event_id": eventID]))
     }
 }
 

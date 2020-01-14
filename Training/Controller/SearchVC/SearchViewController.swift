@@ -51,7 +51,7 @@ class SearchViewController: UIViewController {
         } else {
             self.searchTable.addSubview(refreshControl)
         }
-            self.refreshControl.addTarget(self, action: #selector(updateDataSeacrch), for: .valueChanged)
+        self.refreshControl.addTarget(self, action: #selector(updateDataSeacrch), for: .valueChanged)
         loading.handleLoading(isLoading: false)
     }
     
@@ -89,7 +89,6 @@ class SearchViewController: UIViewController {
 
     private func handleSearch(isLoadMore : Bool, page : Int) {
         let keyword = txtSearch.text!
-        
         SearchListAPI(pageIndex: page, pageSize: 10, keyword: keyword).excute(completionHandler: { [weak self] (response) in
             if response?.status == 0 {
                 self?.loading.handleLoading(isLoading: false)
@@ -242,12 +241,10 @@ extension SearchViewController : UITableViewDelegate, UITableViewDataSource {
         case true:
             let url = URL(string: searchResultInComing[indexPath.row].photo)
             cell.imgTimer.image = UIImage(named: "Group15")
-            cell.imgNews.sd_setImage(with: url, completed: nil)
-
+            cell.imgNews.sd_setImage(with: url, placeholderImage: UIImage(named: "noImage"), completed: nil)
             cell.date.textColor = UIColor(rgb: 0x5D20CD)
             cell.title.text = searchResultInComing[indexPath.row].name
             cell.lblDes.text = searchResultInComing[indexPath.row].descriptionHtml.replacingOccurrences(of: "[|<>/]", with: "", options: [.regularExpression])
-                   
             if searchResultInComing[indexPath.row].goingCount == 0 {
                 cell.date.text = "\(searchResultInComing[indexPath.row].scheduleStartDate) "
             } else {
@@ -273,23 +270,22 @@ extension SearchViewController : UITableViewDelegate, UITableViewDataSource {
             return UITableView.automaticDimension
         }
       
-      func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-            switch isToggleResult {
-            case true:
-                let lastItem = searchResultInComing.count - 1
-                  if indexPath.row == lastItem {
-                    noResults.isHidden = true
-                    currentPage += 1
-                    handleSearch(isLoadMore: true, page: currentPage)
-                  }
-            default:
-                let lastItem = searchResultPast.count - 1
-                  if indexPath.row == lastItem {
-                    noResults.isHidden = true
-                    currentPage += 1
-                    handleSearch(isLoadMore: true, page: currentPage)
-                  }
-
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        switch isToggleResult {
+        case true:
+            let lastItem = searchResultInComing.count - 1
+            if indexPath.row == lastItem {
+                noResults.isHidden = true
+                currentPage += 1
+                handleSearch(isLoadMore: true, page: currentPage)
             }
-      }
+        default:
+            let lastItem = searchResultPast.count - 1
+            if indexPath.row == lastItem {
+                noResults.isHidden = true
+                currentPage += 1
+                handleSearch(isLoadMore: true, page: currentPage)
+            }
+        }
+    }
 }

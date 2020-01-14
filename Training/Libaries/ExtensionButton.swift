@@ -22,4 +22,15 @@ extension UIButton {
         maskLayer1.path = maskPath1.cgPath
         layer.mask = maskLayer1
     }
+    
+    @IBInspectable var localizeTitle: String {
+        set(value) {
+            self.setTitle(NSLocalizedString(value, comment: ""), for: .normal)
+        }
+        get {
+            return ""
+        }
+    }
 }
+
+

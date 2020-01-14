@@ -1434,8 +1434,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "59"
             endingLineNumber = "59"
-            landmarkName = "MyPageGoingsListAPI"
-            landmarkType = "3">
+            landmarkName = "MyPageGoingsData"
+            landmarkType = "14">
             <Locations>
                <Location
                   uuid = "09B57D44-2BD0-4CD9-BB80-29DDE3F9573B - a5ac4caa102ae20c"
@@ -1512,56 +1512,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "68"
             endingLineNumber = "68"
-            landmarkName = "init(status:)"
+            landmarkName = "init(json:)"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "86664436-C4B6-43E2-9326-1E54D403A23D"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Training/Libaries/ExtensionUIImageVIew.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "90"
-            endingLineNumber = "90"
-            landmarkName = "imageForUrl(urlString:completionHandler:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "86664436-C4B6-43E2-9326-1E54D403A23D - f889beb22b702300"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Training.ImageLoader.imageForUrl(urlString: Swift.String, completionHandler: (Swift.Optional&lt;__C.UIImage&gt;, Swift.String) -&gt; ()) -&gt; ()"
-                  moduleName = "Training"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/manhld/Desktop/MeetUpV2%20github/Training/Libaries/ExtensionUIImageVIew.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "90"
-                  endingLineNumber = "90"
-                  offsetFromSymbolStart = "1467">
-               </Location>
-               <Location
-                  uuid = "86664436-C4B6-43E2-9326-1E54D403A23D - f2f9404348514561"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #2 (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Training.ImageLoader.imageForUrl(urlString: Swift.String, completionHandler: (Swift.Optional&lt;__C.UIImage&gt;, Swift.String) -&gt; ()) -&gt; ()"
-                  moduleName = "Training"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/manhld/Desktop/MeetUpV2%20github/Training/Libaries/ExtensionUIImageVIew.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "90"
-                  endingLineNumber = "90"
-                  offsetFromSymbolStart = "304">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy

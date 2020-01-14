@@ -20,27 +20,27 @@ class Artwork: NSObject, MKAnnotation {
     let myStatus : Int
     
     var markerTintColor: UIColor  {
-      switch discipline {
-      case "red":
-        return .red
-      case "Mural":
-        return .cyan
-      case "yellow":
-        return .yellow
-      case "Sculpture":
-        return .purple
-      default:
-        return .green
-      }
+        switch discipline {
+            case "red":
+                return .red
+            case "Mural":
+                return .cyan
+            case "yellow":
+                return .yellow
+            case "Sculpture":
+                return .purple
+            default:
+                return .green
+        }
     }
     var imageName: String? {
         switch discipline {
-        case "yellow" :
-            return "Flag"
-        case "Sculpture" :
-            return "X"
-        default:
-            return "yellowMarker"
+            case "yellow":
+                return "Flag"
+            case "Sculpture":
+                return "X"
+            default:
+                return "yellowMarker"
         }
     }
 
@@ -57,9 +57,9 @@ class Artwork: NSObject, MKAnnotation {
         default:
             self.discipline = "Sculpture"
         }
-  
         super.init()
   }
+    
     init(title: String, locationName: String, discipline: String, coordinate: CLLocationCoordinate2D, myStatus : Int) {
         self.title = title
         self.locationName = locationName
@@ -76,10 +76,9 @@ class Artwork: NSObject, MKAnnotation {
         super.init()
     }
   
-  var subtitle: String? {
-    return locationName
-  }
-    
+    var subtitle: String? {
+        return locationName
+    }
 }
 
 

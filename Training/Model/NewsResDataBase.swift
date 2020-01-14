@@ -33,8 +33,6 @@ class NewsDataResponse: Object {
         self.publishdate = news["publish_date"].stringValue
         self.url = news["detail_url"].stringValue
     }
-    
-    
 }
 
 class NewsListAPI: APIMeetUpService<NewsData> {
@@ -59,5 +57,4 @@ struct NewsData : MeetUpResponse {
             errMessage = json["error_message"].stringValue
         }
     }
-    
 }

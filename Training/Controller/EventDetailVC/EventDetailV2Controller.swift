@@ -27,6 +27,8 @@ class EventDetailV2Controller: UIViewController {
     @IBOutlet weak var starStatus: UIImageView!
     @IBOutlet weak var status: UILabel!
     @IBOutlet weak var btnReadmore: UIButton!
+    
+    
     private var eventsNear = [EventsNearResponse]()
     private var eventDetail = EventDetail()
     var id : Int?
@@ -111,7 +113,6 @@ class EventDetailV2Controller: UIViewController {
             btnGoing.isEnabled = false
             btnFollow.setTitle("Followed", for: .normal)
         }
-
     }
     
     
@@ -144,10 +145,10 @@ class EventDetailV2Controller: UIViewController {
                 self?.eventCollection.reloadData()
               }
           }) { (err) in
-              self.showAlert(message: "alert.cannotLoadData".localized, titleBtn: "alert.titleBtn.OK".localized) {
-                     print("Can't get data")
-                 }
-          }
+            self.showAlert(message: "alert.cannotLoadData".localized, titleBtn: "alert.titleBtn.OK".localized) {
+                print("Can't get data")
+            }
+        }
     }
     
     private func handleLoginView() {
@@ -245,7 +246,6 @@ class EventDetailV2Controller: UIViewController {
             }
         }
     }
-    
 }
 
 
@@ -270,6 +270,4 @@ extension EventDetailV2Controller : UICollectionViewDataSource, UICollectionView
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: eventCollection.frame.width, height: eventCollection.frame.height)
     }
-    
-    
 }

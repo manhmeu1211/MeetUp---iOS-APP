@@ -477,11 +477,11 @@
             </objects>
             <point key="canvasLocation" x="-1" y="-333"/>
         </scene>
-        <!--Home-->
+        <!--Navigation Controller-->
         <scene sceneID="Rlv-Sn-8Bi">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="Yj3-Hn-bgT" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Home" image="icon-home" selectedImage="icon-home" id="N6t-iC-Zid"/>
+                    <tabBarItem key="tabBarItem" title="" image="icon-home" selectedImage="icon-home" id="N6t-iC-Zid"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" hidden="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="BV6-78-hpt">
                         <autoresizingMask key="autoresizingMask"/>
@@ -495,11 +495,11 @@
             </objects>
             <point key="canvasLocation" x="-1500.0000000000002" y="579.91071428571422"/>
         </scene>
-        <!--Near-->
+        <!--Navigation Controller-->
         <scene sceneID="oZT-cC-p7k">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="Bag-JH-lsu" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Near" image="icon-located" selectedImage="icon-located" id="bgk-AK-6cJ"/>
+                    <tabBarItem key="tabBarItem" title="" image="icon-located" selectedImage="icon-located" id="bgk-AK-6cJ"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" hidden="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="t5s-jc-t1u">
                         <autoresizingMask key="autoresizingMask"/>
@@ -513,11 +513,11 @@
             </objects>
             <point key="canvasLocation" x="-500" y="583"/>
         </scene>
-        <!--Account-->
+        <!--Navigation Controller-->
         <scene sceneID="mAB-ea-mW5">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="dDy-aZ-G3d" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Account" image="icon-profile" id="E2g-Z4-SH4"/>
+                    <tabBarItem key="tabBarItem" title="" image="icon-profile" id="E2g-Z4-SH4"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" hidden="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="PZR-aG-VHo">
                         <autoresizingMask key="autoresizingMask"/>
@@ -531,11 +531,11 @@
             </objects>
             <point key="canvasLocation" x="458" y="583"/>
         </scene>
-        <!--Browser-->
+        <!--Navigation Controller-->
         <scene sceneID="4Tf-oM-JMk">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="TLB-TO-rGO" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Browser" image="icon-browse" id="IBj-CP-lUQ"/>
+                    <tabBarItem key="tabBarItem" title="" image="icon-browse" id="IBj-CP-lUQ"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="rVn-pb-s65">
                         <autoresizingMask key="autoresizingMask"/>

@@ -11,6 +11,7 @@ import UIKit
 
 
 extension String {
+    
     var localized : String {
         return NSLocalizedString(self, comment: self)
     }
@@ -43,16 +44,6 @@ extension UILabel {
 
 }
 
-extension UIButton {
-    @IBInspectable var localizeTitle: String {
-        set(value) {
-            self.setTitle(NSLocalizedString(value, comment: ""), for: .normal)
-        }
-        get {
-            return ""
-        }
-    }
-}
 
 extension UITextField {
     @IBInspectable var localizePlaceholder: String {

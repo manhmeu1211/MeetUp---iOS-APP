@@ -36,7 +36,7 @@ class ResetPassViewController: UIViewController {
     
     @objc func handleKeyBoardShow(notification: Notification) {
         if view.frame.origin.y == 0 {
-             view.frame.origin.y -= 100
+            view.frame.origin.y -= 100
         }
     }
     

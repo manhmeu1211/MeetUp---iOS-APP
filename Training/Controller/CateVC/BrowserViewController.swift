@@ -19,7 +19,7 @@ class BrowserViewController: UIViewController {
     private var cateList = [CategoriesResDatabase]()
     private let userToken = UserDefaults.standard.string(forKey: "userToken")
     private let realm = try! Realm()
-    private let listIcon = ["fan", "bag", "car", "grow", "dance", "mortarboard", "woman"]
+    private let listIcon = ["fan", "bag", "car", "grow", "dance", "mortarboard", "woman", "love", "food", "politics", "heart", "politics", "politics", "politics", "politics", "politics", "politics", "politics", "politics", "politics", "politics", "politics", "politics", "politics", "politics", "politics", "politics", "politics", "politics", "politics", "politics", "politics", "politics", "politics", "politics", "politics",]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,7 +44,6 @@ class BrowserViewController: UIViewController {
     }
     
     private func setUpBarButton() {
-        self.title = "categories.title".localized
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.search,
         target: self, action: #selector(handleSearchViewController))
           self.tabBarController?.tabBar.isHidden = false
@@ -116,7 +115,6 @@ class BrowserViewController: UIViewController {
                 print("Can't get data")
             }
         }
-
     }
     
     @objc func handleSearchViewController() {
@@ -134,6 +132,7 @@ class BrowserViewController: UIViewController {
   // MARK: - Extension tableview
 
 extension BrowserViewController : UITableViewDelegate, UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return cateList.count
     }
@@ -141,7 +140,7 @@ extension BrowserViewController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = categoriesTable.dequeueReusableCell(withIdentifier: "CategoriesTableViewCell", for: indexPath) as! CategoriesTableViewCell
         cell.lblName.text = cateList[indexPath.row].name
-        cell.imgIcon.image = UIImage(named: cateList[indexPath.row].icon)
+        cell.imgIcon.image = UIImage(named: listIcon[indexPath.row])
         return cell
     }
     
@@ -153,5 +152,8 @@ extension BrowserViewController : UITableViewDelegate, UITableViewDataSource {
         eventByCateVC.headerTitle = titleCategories
         navigationController?.pushViewController(eventByCateVC, animated: true)
     }
-
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 75
+    }
 }

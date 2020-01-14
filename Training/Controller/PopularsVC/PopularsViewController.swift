@@ -48,14 +48,14 @@ class PopularsViewController: UIViewController {
             print(statusConnect)
         }
         let status = Reach().connectionStatus()
-            switch status {
-                case .unknown, .offline:
-                    isLoadmore = false
-                case .online(.wwan):
-                    isLoadmore = true
-                case .online(.wiFi):
-                    isLoadmore = true
-            }
+        switch status {
+            case .unknown, .offline:
+                isLoadmore = false
+            case .online(.wwan):
+                isLoadmore = true
+            case .online(.wiFi):
+                isLoadmore = true
+        }
     }
     
     
@@ -69,15 +69,15 @@ class PopularsViewController: UIViewController {
     }
     
     private func detechDailyFirstLaunch() -> Bool {
-           let today = NSDate().formatted
-           if (UserDefaults.standard.string(forKey: "FIRSTLAUNCHPOPULARS") == today) {
-            print("alert.detechlaunched.already".localized)
-               return false
-           } else {
-            print("alert.detechlaunched.first".localized)
-               UserDefaults.standard.setValue(today, forKey:"FIRSTLAUNCHPOPULARS")
-               return true
-           }
+        let today = NSDate().formatted
+        if (UserDefaults.standard.string(forKey: "FIRSTLAUNCHPOPULARS") == today) {
+        print("alert.detechlaunched.already".localized)
+            return false
+        } else {
+        print("alert.detechlaunched.first".localized)
+            UserDefaults.standard.setValue(today, forKey:"FIRSTLAUNCHPOPULARS")
+            return true
+        }
     }
     
     
@@ -179,7 +179,6 @@ extension PopularsViewController : UITableViewDataSource, UITableViewDelegate {
                 cell.statusLabel.text = "join.label.text.canParticipate".localized
                 cell.statusLabel.textColor = UIColor(rgb: 0xC63636)
                 cell.backgroundStatusView.backgroundColor = UIColor(rgb: 0xF9EBEB)
-     
             case 2:
                 cell.statusImage.image = UIImage(named: "icon_starGreen")
                 cell.statusLabel.text = "join.label.text.joined".localized
@@ -190,7 +189,7 @@ extension PopularsViewController : UITableViewDataSource, UITableViewDelegate {
                 cell.statusLabel.text = "join.label.text.join".localized
                 cell.backgroundStatusView.backgroundColor = UIColor(rgb: 0xF6F6F6)
                 cell.statusLabel.textColor = UIColor.systemGray
-            }
+        }
         return cell
     }
     
@@ -208,12 +207,9 @@ extension PopularsViewController : UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let id = popularResponse[indexPath.row].id
-//        let eventDetailVC = EventDetailController(nibName: "EventDetailView", bundle: nil)
-//        eventDetailVC.id = id
         let detailVCV2 = EventDetailV2Controller(nibName: "EventDetailV2Controller", bundle: nil)
         detailVCV2.id = id
         present(detailVCV2, animated: true, completion: nil)
-//        navigationController?.pushViewController(detailVCV2, animated: true)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

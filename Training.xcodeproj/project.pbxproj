@@ -63,10 +63,10 @@
 		0D9E385923B5AFB600363C8B /* ImgDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D9E385723B5AFB600363C8B /* ImgDetailCell.xib */; };
 		0DA91BEC23BB03AE00515C7D /* LoginResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DA91BEB23BB03AE00515C7D /* LoginResponse.swift */; };
 		0DA988E623C4659D006B7E7A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0DAFD88823C42EF400828323 /* LaunchScreen.storyboard */; };
-		0DA988E723C465AD006B7E7A /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0DAFD8A023C4372E00828323 /* Home.storyboard */; };
 		0DA988EA23C466DA006B7E7A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0DA988EC23C466DA006B7E7A /* Localizable.strings */; };
 		0DB2FA6123CD56C300ABFD47 /* EventDetailV2Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB2FA5F23CD56C300ABFD47 /* EventDetailV2Controller.swift */; };
 		0DB2FA6223CD56C300ABFD47 /* EventDetailV2Controller.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0DB2FA6023CD56C300ABFD47 /* EventDetailV2Controller.xib */; };
+		0DB2FA6C23CDBFC900ABFD47 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0DB2FA6B23CDBFC900ABFD47 /* Home.storyboard */; };
 		0DC433BF239F3BF1000C9505 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DC433BE239F3BF1000C9505 /* AppDelegate.swift */; };
 		0DC433C8239F3BF4000C9505 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0DC433C7239F3BF4000C9505 /* Assets.xcassets */; };
 		0DC433DB239F3D67000C9505 /* ShowToastMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DC433DA239F3D67000C9505 /* ShowToastMessage.swift */; };
@@ -154,9 +154,9 @@
 		0DA988EB23C466DA006B7E7A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0DA988ED23C466F6006B7E7A /* vi-VN */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "vi-VN"; path = "vi-VN.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		0DAFD88823C42EF400828323 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
-		0DAFD8A023C4372E00828323 /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		0DB2FA5F23CD56C300ABFD47 /* EventDetailV2Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailV2Controller.swift; sourceTree = "<group>"; };
 		0DB2FA6023CD56C300ABFD47 /* EventDetailV2Controller.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventDetailV2Controller.xib; sourceTree = "<group>"; };
+		0DB2FA6B23CDBFC900ABFD47 /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		0DC433BB239F3BF1000C9505 /* Training.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Training.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0DC433BE239F3BF1000C9505 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0DC433C7239F3BF4000C9505 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -433,7 +433,8 @@
 		0DB2FA6423CDA20900ABFD47 /* HomeView */ = {
 			isa = PBXGroup;
 			children = (
-				0DAFD8A023C4372E00828323 /* Home.storyboard */,
+				0D6C31D823B0CD34007605D2 /* Tabbar */,
+				0DB2FA6B23CDBFC900ABFD47 /* Home.storyboard */,
 				0DC433E7239F43F7000C9505 /* HomeNewsViewController.swift */,
 			);
 			path = HomeView;
@@ -547,7 +548,6 @@
 				0D6C31D623B0CD15007605D2 /* ResetPassVC */,
 				0D6C31D023B0CC78007605D2 /* SearchVC */,
 				0D6C31D523B0CCEE007605D2 /* SignUpVC */,
-				0D6C31D823B0CD34007605D2 /* Tabbar */,
 				0D6C31D723B0CD1F007605D2 /* WebViewVC */,
 			);
 			path = Controller;
@@ -637,7 +637,6 @@
 				0D44379023AC56AD003A8D96 /* WebViewController.xib in Resources */,
 				0D45DC0123ACCCBB006C6CB7 /* DetailVenueCell.xib in Resources */,
 				0DB2FA6223CD56C300ABFD47 /* EventDetailV2Controller.xib in Resources */,
-				0DA988E723C465AD006B7E7A /* Home.storyboard in Resources */,
 				0D44379423AC6AB0003A8D96 /* MyPageGoingViewController.xib in Resources */,
 				0DD8F5F423A23C4100C50F22 /* SearchView.xib in Resources */,
 				0D9C320B23BF37A600F1726E /* CustomAlertViewController.xib in Resources */,
@@ -651,6 +650,7 @@
 				0D44379823AC6AC4003A8D96 /* MyPageWentViewController.xib in Resources */,
 				0D45DC0523ACCD90006C6CB7 /* DetailNearCell.xib in Resources */,
 				0D5E459123A875BA0029CE1A /* NewsCell.xib in Resources */,
+				0DB2FA6C23CDBFC900ABFD47 /* Home.storyboard in Resources */,
 				0D9E385923B5AFB600363C8B /* ImgDetailCell.xib in Resources */,
 				0DE3B8C423A0F05E00843C80 /* CategoriesTableViewCell.xib in Resources */,
 				0DA988EA23C466DA006B7E7A /* Localizable.strings in Resources */,
