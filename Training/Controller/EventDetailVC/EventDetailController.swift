@@ -20,13 +20,12 @@ class EventDetailController: UIViewController {
     var id : Int?
     private let userToken = UserDefaults.standard.string(forKey: "userToken")
     private var alertLogin = UIAlertController()
+    var expandCellHeight : CGFloat = 88.0
 
-    var headers : [String : String] = [:]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpView()
-        setHeaders()
         getDetailEvent(eventID: id!)
         getListEvent()
     }
@@ -51,15 +50,7 @@ class EventDetailController: UIViewController {
         self.view.addGestureRecognizer(swipeLeft)
     }
     
-    private func setHeaders() {
-        if userToken == nil {
-            headers = [ "Authorization": "No Auth",
-                        "Content-Type": "application/json"  ]
-        } else {
-            headers = [ "Authorization": "Bearer " + userToken!,
-                        "Content-Type": "application/json"  ]
-        }
-    }
+
     
     private func checkLoggedIn() -> Bool {
         if userToken != nil {
@@ -78,37 +69,37 @@ class EventDetailController: UIViewController {
     
 
     private func goingEvent() {
-        let params = ["status": 1, "event_id": id! ]
-        getDataService.getInstance.doUpdateEvent(params: params, headers: headers) { (json, errcode) in
-            if errcode == 1 {
-                self.showAlert(message: "Please re-login", titleBtn: "OK") {
-                    print("Login expired")
-                }
-            } else if errcode == 2 {
-                self.showAlert(message: "Success - You're going this event", titleBtn: "OK") {
-                    print("success")
-                }
-                 self.getDetailEvent(eventID: self.id!)
+        UpdateEventStatusAPI(status: 1, eventID: id!).excute(completionHandler: { [weak self] (response) in
+            if response?.updateModel.status == 1 {
+                self?.showAlert(message: "alert.goingThisEvent".localized, titleBtn: "alert.titleBtn.OK".localized, completion: {
+                     self!.getDetailEvent(eventID: self!.id!)
+                })
             } else {
-                ToastView.shared.short(self.view, txt_msg: "Check your connection")
+                self?.showAlert(message: "alert.reLogin".localized, titleBtn: "alert.titleBtn.OK".localized) {
+                    print(response!.updateModel.errorMessage)
+                }
+            }
+        }) { (err) in
+            self.showAlert(message: "alert.connectFailed.text".localized, titleBtn: "alert.titleBtn.OK".localized) {
+                print(err!)
             }
         }
     }
     
     private func wentEvent() {
-        let params = ["status": 2, "event_id": id!]
-        getDataService.getInstance.doUpdateEvent(params: params, headers: headers) { (json, errcode) in
-            if errcode == 1 {
-                self.showAlert(message: "Please re-login", titleBtn: "OK") {
-                    print("Login expired")
-                }
-            } else if errcode == 2 {
-                self.showAlert(message: "Success - You went this event", titleBtn: "OK") {
-                    print("success")
-                }
-                self.getDetailEvent(eventID: self.id!)
+        UpdateEventStatusAPI(status: 2, eventID: id!).excute(completionHandler: { [weak self] (response) in
+            if response?.updateModel.status == 1 {
+                self?.showAlert(message: "alert.wentThisEvent".localized, titleBtn: "alert.titleBtn.OK".localized, completion: {
+                     self!.getDetailEvent(eventID: self!.id!)
+                })
             } else {
-                ToastView.shared.short(self.view, txt_msg: "Check your connection")
+                self?.showAlert(message: "alert.reLogin".localized, titleBtn: "alert.titleBtn.OK".localized) {
+                    print(response!.updateModel.errorMessage)
+                }
+            }
+        }) { (err) in
+            self.showAlert(message: "alert.connectFailed.text".localized, titleBtn: "alert.titleBtn.OK".localized) {
+                print(err!)
             }
         }
     }
@@ -174,7 +165,7 @@ extension EventDetailController : UITableViewDelegate, UITableViewDataSource {
              cell.detailTitle.text = eventDetail.name
              cell.locationEvent.text = eventDetail.locationEvent
              let url = URL(string: eventDetail.photo)
-             cell.imgDetail.sd_setImage(with: url, completed: nil)
+             cell.imgDetail.sd_setImage(with: url, placeholderImage: UIImage(named: "noImage"),  completed: nil)
              if eventDetail.goingCount == 0 {
                  cell.detailDate.text = "\(eventDetail.scheduleStartDate) "
              } else {
@@ -200,6 +191,8 @@ extension EventDetailController : UITableViewDelegate, UITableViewDataSource {
         case 1:
             let cell = detailTable.dequeueReusableCell(withIdentifier: "TextAreaCell", for: indexPath) as! TextAreaCell
             cell.txtView.text = eventDetail.descriptionHtml.replacingOccurrences(of: "[|<>/]", with: "", options: [.regularExpression])
+            let tapGes = UITapGestureRecognizer(target: self, action: #selector(expand))
+            cell.txtView.addGestureRecognizer(tapGes)
             return cell
         case 2:
             let cell = detailTable.dequeueReusableCell(withIdentifier: "DetailVenueCell", for: indexPath) as! DetailVenueCell
@@ -257,9 +250,9 @@ extension EventDetailController : UITableViewDelegate, UITableViewDataSource {
         if indexPath.row == 0 {
             return UITableView.automaticDimension
         } else if indexPath.row == 1 {
-            return UITableView.automaticDimension
+            return expandCellHeight
         } else if indexPath.row == 2 {
-            return 100
+            return 120
         } else if indexPath.row == 7  {
             return 50
         } else if indexPath.row == 6  {
@@ -270,17 +263,32 @@ extension EventDetailController : UITableViewDelegate, UITableViewDataSource {
     }
     
     
+     
+    
+    @objc func expand() {
+        expandCellHeight = estimateFrameForText(text: eventDetail.descriptionHtml).height
+        detailTable.beginUpdates()
+        detailTable.endUpdates()
+    }
+    
+    func estimateFrameForText(text: String) -> CGRect {
+           let size = CGSize(width: 200, height: 400)
+           let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
+           return NSString(string: text).boundingRect(with: size, options: options, attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 16)], context: nil)
+    }
+ 
+    
     @objc func handleFollow() {
-         if checkLoggedIn() == false {
-            alertLogin.createAlertWithHandle(target: self, title: "Not logged in", message: "You have to login", titleBtn: "OK") {
+         if !checkLoggedIn() {
+            showAlert(message: "Not logged in".localized, titleBtn: "alert.titleBtn.OK".localized) {
                 self.handleLoginView()
             }
         }
     }
     
     @objc func handleGoing() {
-        if checkLoggedIn() == false {
-            alertLogin.createAlertWithHandle(target: self, title: "Not logged in", message: "You have to login", titleBtn: "LOGIN") {
+        if !checkLoggedIn() {
+            showAlert(message: "Not logged in".localized, titleBtn: "alert.titleBtn.OK".localized) {
                 self.handleLoginView()
             }
         } else {
@@ -293,8 +301,8 @@ extension EventDetailController : UITableViewDelegate, UITableViewDataSource {
     }
     
     @objc func handleWent() {
-        if checkLoggedIn() == false {
-            alertLogin.createAlertWithHandle(target: self, title: "Not logged in", message: "You have to login", titleBtn: "LOGIN") {
+        if !checkLoggedIn() {
+            showAlert(message: "Not logged in".localized, titleBtn: "alert.titleBtn.OK".localized) {
                 self.handleLoginView()
             }
         } else {
@@ -305,4 +313,6 @@ extension EventDetailController : UITableViewDelegate, UITableViewDataSource {
             }
         }
     }
+    
+   
 }

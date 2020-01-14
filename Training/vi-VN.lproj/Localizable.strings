@@ -17,6 +17,12 @@
 "alert.titleBtn.OK" = "Đồng ý";
 "alert.titleBtn.login" = "Đăng nhập";
 "alert.checkConnection" = "Kiểm tra kết nối mạng !" ;
+"alert.loginSuccess" = "Đăng nhập thành công !";
+"alert.registerSuccess" = "Đăng ký tài khoản thành công !";
+"alert.wentThisEvent" = "Bạn đã đi sự kiện này !" ;
+"alert.goingThisEvent" = "Bạn sẽ đi sự kiện này !";
+
+
 
 
 
@@ -50,6 +56,9 @@
 "not logged in" = "Chưa đăng nhập";
 "eventsGoing.text" = "Có thể tham gia";
 "eventsEnd.text" = "Đã đi";
+"eventsIsGoing.section.text" = "Sắp diễn ra";
+"eventsEnded.section.text" = "Đã kết thúc";
+
 
 
 

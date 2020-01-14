@@ -17,10 +17,26 @@ class SignUpMainViewController: UIViewController {
     @IBOutlet weak var incaditorLeading: NSLayoutConstraint!
     @IBOutlet weak var leftView: UIView!
     @IBOutlet weak var rightView: UIView!
+    var isLoginView : Bool!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpView()
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        checkLoginView()
+    }
+    
+    
+    private func checkLoginView() {
+        if isLoginView {
+            scrollView.setContentOffset(CGPoint(x: scrollView.frame.width , y: scrollView.contentOffset.y), animated: true)
+        } else {
+
+            scrollView.setContentOffset(CGPoint(x: 0.0, y: 0.0), animated: true)
+        }
     }
     
     // MARK: - Function setup views
@@ -32,7 +48,7 @@ class SignUpMainViewController: UIViewController {
         scrollView.delegate = self
         let loginVC = LoginViewController()
         let signUpVC = SignUpViewController()
-        setUpTabLayout(viewControllerLeft: loginVC, viewControllerRight: signUpVC, leftViewInput: leftView, rightViewInput: rightView)
+        setUpTabLayout(viewControllerLeft: signUpVC, viewControllerRight: loginVC, leftViewInput: leftView, rightViewInput: rightView)
     }
     
     // MARK: - Actions
@@ -43,7 +59,7 @@ class SignUpMainViewController: UIViewController {
     
     
     @IBAction func signUpBtn(_ sender: Any) {
-          scrollView.setContentOffset(CGPoint(x: scrollView.frame.width , y: scrollView.contentOffset.y), animated: true)
+        scrollView.setContentOffset(CGPoint(x: scrollView.frame.width , y: scrollView.contentOffset.y), animated: true)
     }
     
 }

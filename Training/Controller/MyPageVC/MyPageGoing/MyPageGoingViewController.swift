@@ -88,8 +88,9 @@ class MyPageGoingViewController: UIViewController {
     private func getListGoingEvent() {
         MyPageGoingsListAPI(status: self.status).excute(completionHandler: { [weak self] (response) in
              if response?.status == 0 {
-                self!.showAlert(message: "alert.cannotLoadData".localized, titleBtn: "OK", completion: {
-                    print(response?.errMessage ?? "Token expired")
+                self?.showAlert(message: response!.errMessage, titleBtn: "OK", completion: {
+                    print(response!.errMessage!)
+                    self?.handleLogOut()
                 })
              } else {
                 self?.deleteObject()
@@ -107,7 +108,6 @@ class MyPageGoingViewController: UIViewController {
             })
             self.updateObject()
             self.goingTable.reloadData()
-            
         }
          self.loading.handleLoading(isLoading: false)
     }
@@ -135,12 +135,12 @@ extension MyPageGoingViewController : UITableViewDelegate, UITableViewDataSource
             if goingEvents.count == 0 {
                 return ""
             }
-            return "Events is going"
+            return "eventsIsGoing.section.text".localized
         default:
             if goingEventsEnd.count == 0 {
                 return ""
             }
-            return "Events end"
+            return "eventsEnded.section.text".localized
         }
     }
     
@@ -159,7 +159,7 @@ extension MyPageGoingViewController : UITableViewDelegate, UITableViewDataSource
             cell.backgroundStatusView.backgroundColor = UIColor(rgb: 0xF9EBEB)
             cell.date.text = "\(goingEvents[indexPath.row].scheduleStartDate) - \(goingEvents[indexPath.row].goingCount) people going"
             cell.title.text = goingEvents[indexPath.row].name
-            cell.lblDes.text = goingEvents[indexPath.row].descriptionHtml
+            cell.lblDes.attributedText = goingEvents[indexPath.row].descriptionHtml.htmlToAttributedString
             return cell
         default:
             let cell = goingTable.dequeueReusableCell(withIdentifier: "NewsCell", for: indexPath) as! NewsCell
@@ -171,7 +171,7 @@ extension MyPageGoingViewController : UITableViewDelegate, UITableViewDataSource
             cell.date.textColor = UIColor(rgb: 0x5D20CD)
             cell.statusLabel.text = "Can participate"
             cell.statusLabel.textColor = UIColor(rgb: 0xC63636)
-            cell.date.text = "\(goingEventsEnd[indexPath.row].scheduleStartDate) - \(goingEventsEnd[indexPath.row].goingCount) people going"
+            cell.date.text = "\(goingEventsEnd[indexPath.row].scheduleStartDate) - \(goingEventsEnd[indexPath.row].goingCount) " + "peopleGoing.text".localized
             cell.title.text = goingEventsEnd[indexPath.row].name
             cell.lblDes.text = goingEventsEnd[indexPath.row].descriptionHtml
             return cell

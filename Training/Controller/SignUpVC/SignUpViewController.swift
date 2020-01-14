@@ -26,12 +26,16 @@ class SignUpViewController: UIViewController {
         super.viewDidLoad()
         setUpView()
         setUpKeyBoardObservers()
+        checkTextfiedToDisableButton()
     }
     
     
     // MARK: - Function setup view
     
     private func setUpView() {
+        fullName.addTarget(self, action: #selector(textFieldDidChange(sender:)), for: .editingChanged)
+        email.addTarget(self, action: #selector(textFieldDidChange(sender:)), for: .editingChanged)
+        password.addTarget(self, action: #selector(textFieldDidChange(sender:)), for: .editingChanged)
         loading.handleLoading(isLoading: false)
         nameView.setUpBorderView()
         emailView.setUpBorderView()
@@ -41,6 +45,10 @@ class SignUpViewController: UIViewController {
         password.delegate = self
         email.delegate = self
         fullName.tag = 0
+    }
+    
+  @objc func textFieldDidChange(sender: UITextField) {
+        checkTextfiedToDisableButton()
     }
     
     private func setUpKeyBoardObservers() {
@@ -84,40 +92,31 @@ class SignUpViewController: UIViewController {
     
     
     @IBAction func signUp(_ sender: Any) {
-        loading.handleLoading(isLoading: true)
         guard let mail = email.text , let name = fullName.text, let pass = password.text else { return }
         if ValidatedString.getInstance.isValidEmail(stringEmail: mail) == false {
-            ToastView.shared.short(self.view, txt_msg: "Email is not correct, Try again!")
-            email.text = ""
-            loading.handleLoading(isLoading: false)
+            ToastView.shared.short(self.view, txt_msg: "alert.validEmail.text".localized)
         } else if ValidatedString.getInstance.isValidPassword(stringPassword: pass) == false {
-                        ToastView.shared.short(self.view, txt_msg: "Password must be 6-16 character, Try again!")
-                        password.text = ""
-            loading.handleLoading(isLoading: false)
+            ToastView.shared.short(self.view, txt_msg: "alert.validPassword.text".localized)
         } else if email.text!.isEmpty || password.text!.isEmpty || fullName.text!.isEmpty {
-                        ToastView.shared.long(self.view, txt_msg: "Please fill your infomation")
-            loading.handleLoading(isLoading: false)
+            ToastView.shared.long(self.view, txt_msg: "alert.fillInfomation.text".localized)
         } else {
-            let params = [
-                "name": name,
-                "email": mail,
-                "password": pass
-                ]
-            let queue = DispatchQueue(label: "Register")
-            queue.async {
-                getDataService.getInstance.register(params: params) { (json, errcode) in
-                    if errcode == 1 {
-                        self.showAlert(message: "Register Success", titleBtn: "OK") {
-                             self.handleLoginView()
-                        }
-                       
-                        self.loading.handleLoading(isLoading: false)
-                    } else {
-                         self.showAlert(message: "Register Failed", titleBtn: "OK") {
-                                self.handleLoginView()
-                        }
-                        self.loading.handleLoading(isLoading: false)
+            loading.handleLoading(isLoading: true)
+            RegisterAPI(email: mail, password: pass, fullname: name).excute(completionHandler: { [weak self] (response) in
+                if response?.registerResponse.status == 1 {
+                    self?.loading.handleLoading(isLoading: false)
+                    self?.showAlert(message: "alert.registerSuccess".localized, titleBtn: "alert.titleBtn.OK".localized) {
+                         self?.handleLoginView()
                     }
+                } else {
+                    self?.showAlert(message: response!.registerResponse.errorMessage, titleBtn: "alert.titleBtn.OK".localized) {
+                        print(response!.registerResponse.errorMessage)
+                        self?.loading.handleLoading(isLoading: false)
+                    }
+                }
+            }) { (err) in
+                self.showAlert(message: "alert.alert.connectFailed.text".localized, titleBtn: "alert.titleBtn.OK".localized) {
+                    print(err!)
+                    self.loading.handleLoading(isLoading: false)
                 }
             }
         }
@@ -130,6 +129,8 @@ class SignUpViewController: UIViewController {
 
 
 extension SignUpViewController : UITextFieldDelegate {
+    
+
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == fullName {
@@ -144,4 +145,19 @@ extension SignUpViewController : UITextFieldDelegate {
         return false
     }
     
+   
+    
+    private func checkTextfiedToDisableButton() {
+        if email.text!.isEmpty || password.text!.isEmpty || fullName.text!.isEmpty {
+            uiBtn.isEnabled = false
+            if #available(iOS 13.0, *) {
+                uiBtn.backgroundColor = UIColor.systemGray6
+            } else {
+                uiBtn.backgroundColor = UIColor.systemGray
+            }
+        } else {
+            uiBtn.isEnabled = true
+            uiBtn.backgroundColor = UIColor(rgb: 0x5D20CD)
+        }
+    }
 }

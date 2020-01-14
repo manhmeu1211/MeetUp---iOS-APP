@@ -148,7 +148,7 @@ extension MyPageWentViewController : UITableViewDelegate, UITableViewDataSource 
             cell.imgNews.sd_setImage(with: url, completed: nil)
             cell.date.text = "\(wentEvents[indexPath.row].scheduleStartDate) - \(wentEvents[indexPath.row].goingCount) " + "peopleGoing.text".localized
             cell.title.text = wentEvents[indexPath.row].name
-            cell.lblDes.text = wentEvents[indexPath.row].descriptionHtml
+            cell.lblDes.attributedText = wentEvents[indexPath.row].descriptionHtml.htmlToAttributedString
             DispatchQueue.main.async {
                 cell.statusImage.image = UIImage(named: "icon_starGreen")
                 cell.statusLabel.text = "join.label.text.joined".localized

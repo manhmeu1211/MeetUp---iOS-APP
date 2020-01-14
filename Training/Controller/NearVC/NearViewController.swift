@@ -212,7 +212,7 @@ class NearViewController: UIViewController, CLLocationManagerDelegate {
             }
         }) { (err) in
             self.updateObject()
-            self.showAlert(message: "", titleBtn: "alert.titleBtn.OK".localized) {
+            self.showAlert(message: "alert.cannotLoadData".localized, titleBtn: "alert.titleBtn.OK".localized) {
                  self.collectionVIew.reloadData()
             }
             self.loading.handleLoading(isLoading: false)
@@ -253,7 +253,8 @@ extension NearViewController : UICollectionViewDataSource, UICollectionViewDeleg
         return cell
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath)
+        -> CGSize {
         return CGSize(width: self.collectionVIew.frame.width - 10, height: self.collectionVIew.frame.height)
     }
     

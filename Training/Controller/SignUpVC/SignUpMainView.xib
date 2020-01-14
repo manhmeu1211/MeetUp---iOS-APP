@@ -36,7 +36,7 @@
                                 <color key="titleColor" systemColor="systemPurpleColor" red="0.68627450980000004" green="0.32156862749999998" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
                             <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="string" keyPath="localizeTitle" value="login.loginBtn.title"/>
+                                <userDefinedRuntimeAttribute type="string" keyPath="localizeTitle" value="login.signUp.title"/>
                             </userDefinedRuntimeAttributes>
                             <connections>
                                 <action selector="loginBtn:" destination="-1" eventType="touchUpInside" id="xkN-jC-ESl"/>
@@ -49,7 +49,7 @@
                                 <color key="titleColor" systemColor="systemPurpleColor" red="0.68627450980000004" green="0.32156862749999998" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
                             <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="string" keyPath="localizeTitle" value="login.signUp.title"/>
+                                <userDefinedRuntimeAttribute type="string" keyPath="localizeTitle" value="login.loginBtn.title"/>
                             </userDefinedRuntimeAttributes>
                             <connections>
                                 <action selector="signUpBtn:" destination="-1" eventType="touchUpInside" id="0c3-6m-tr3"/>

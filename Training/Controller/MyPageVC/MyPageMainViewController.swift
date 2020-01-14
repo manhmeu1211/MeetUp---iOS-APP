@@ -45,14 +45,22 @@ class MyPageMainViewController: UIViewController {
     
     private func handleMainSignUp() {
         let mainSUp = SignUpMainViewController()
+        mainSUp.isLoginView = false
         navigationController?.pushViewController(mainSUp, animated: true)
     }
+
+    private func handleMainLogin() {
+          let mainSUp = SignUpMainViewController()
+          mainSUp.isLoginView = true
+          navigationController?.pushViewController(mainSUp, animated: true)
+    }
+      
     
     @IBAction func signUpHandle(_ sender: Any) {
        handleMainSignUp()
     }
 
     @IBAction func loginHandle(_ sender: Any) {
-        handleMainSignUp()
+        handleMainLogin()
     }
 }

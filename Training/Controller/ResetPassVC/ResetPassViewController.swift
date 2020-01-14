@@ -58,15 +58,20 @@ class ResetPassViewController: UIViewController {
             ToastView.shared.short(self.view, txt_msg: "Email is not correct")
             txtEmail.text = ""
         } else {
-            let params = ["email" : email!]
-            getDataService.getInstance.resetPassword(params: params) { (json, errCode) in
-                if errCode == 1 {
-                    self.alert.createAlert(target: self, title: "System error", message: "Email does not exits in system", titleBtn: "OK")
-                } else if errCode == 2 {
-                    self.alert.createAlert(target: self, title: "Reset password success", message: "Check your email to confirm", titleBtn: "OK")
+            ResetPassAPI(email: email!).excute(completionHandler: { [weak self] (response) in
+                if response?.resetPassResponse.status == 1 {
+                    self?.showAlert(message: "alert.ResetpassSuccess".localized, titleBtn: "alert.titleBtn.OK".localized, completion: {
+                        print("success")
+                    })
                 } else {
-                    ToastView.shared.short(self.view, txt_msg: "Check your network connection")
+                    self?.showAlert(message: "alert.ResetpassFailed".localized, titleBtn: "alert.titleBtn.OK".localized, completion: {
+                        print(response!.resetPassResponse.errorMessage)
+                    })
                 }
+            }) { (err) in
+                self.showAlert(message: "alert.ResetpassFailed".localized, titleBtn: "alert.titleBtn.OK".localized, completion: {
+                    print(err!)
+                })
             }
         }
     }

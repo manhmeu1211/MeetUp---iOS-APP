@@ -18,16 +18,19 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var txtPassword: UITextField!
     @IBOutlet weak var loading: UIActivityIndicatorView!
     
-    var alertLoginFailed = UIAlertController()
+    private var alertLoginFailed = UIAlertController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpItemBar()
         setupView()
+        checkTextfiedToDisableButton()
     }
     
     
-    func setupView() {
+    private func setupView() {
+        txtEmail.addTarget(self, action: #selector(textFieldDidChange(sender:)), for: .editingChanged)
+        txtPassword.addTarget(self, action: #selector(textFieldDidChange(sender:)), for: .editingChanged)
         loading.handleLoading(isLoading: false)
         uiBtnLogin.roundedButton()
         emailView.setUpBorderView()
@@ -35,7 +38,11 @@ class LoginViewController: UIViewController {
         uiBtnLogin.layoutIfNeeded()
     }
     
-    func setUpItemBar() {
+    @objc func textFieldDidChange(sender: UITextField) {
+          checkTextfiedToDisableButton()
+      }
+    
+    private func setUpItemBar() {
         self.title = "login.title.text".localized
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "SignUp", style: UIBarButtonItem.Style.plain, target: self, action: #selector(toRegister))
     }
@@ -45,12 +52,13 @@ class LoginViewController: UIViewController {
         navigationController?.pushViewController(regisVC, animated: true)
     }
 
-    func handleForgotPass() {
-        let resetPassVC = ResetPassViewController()
-        navigationController?.pushViewController(resetPassVC, animated: true)
+    private func handleForgotPass() {
+        let resetPassVC = EventDetailV2Controller()
+        present(resetPassVC, animated: true, completion: nil)
+//        navigationController?.pushViewController(resetPassVC, animated: true)
     }
     
-    func handleMyPage() {
+    private func handleMyPage() {
         let myPageVC = MyPageViewController()
         navigationController?.pushViewController(myPageVC, animated: true)
     }
@@ -60,54 +68,48 @@ class LoginViewController: UIViewController {
     }
     
     
-    func saveLogginRes(token : String) {
+    private func saveLogginRes(token : String) {
         UserDefaults.standard.set(true, forKey: "isLoggedIn")
         UserDefaults.standard.set(token, forKey: "userToken")
         UserDefaults.standard.synchronize()
     }
     
-    func saveToken(token : String) {
+    private func saveToken(token : String) {
           UserDefaults.standard.set(token, forKey: "userToken")
       }
 
-    func login() {
+    private func login() {
         loading.handleLoading(isLoading: true)
         guard let mail = txtEmail.text, let pass = txtPassword.text else { return }
-        let params = [  "email": mail,
-                        "password": pass ]
         if txtEmail.text!.isEmpty || txtPassword.text!.isEmpty  {
-            ToastView.shared.long(self.view, txt_msg: "Please fill your infomation")
+            ToastView.shared.long(self.view, txt_msg: "alert.fillInfomation.text".localized)
             loading.handleLoading(isLoading: false)
         } else if ValidatedString.getInstance.isValidPassword(stringPassword: pass) == false {
-            ToastView.shared.short(self.view, txt_msg: "Password must be 6-16 character, Try again!")
+            ToastView.shared.short(self.view, txt_msg: "Palert.validPassword.text".localized)
             txtPassword.text = ""
             loading.handleLoading(isLoading: false)
         } else if ValidatedString.getInstance.isValidEmail(stringEmail: mail) == false {
-            ToastView.shared.short(self.view, txt_msg: "Email is not correct, Try again!")
+            ToastView.shared.short(self.view, txt_msg: "alert.validEmail.text".localized)
             txtEmail.text = ""
             loading.handleLoading(isLoading: false)
         } else {
-            let queue = DispatchQueue(label: "Login")
-            queue.async {
-                getDataService.getInstance.login(params: params) { (json, errcode) in
-                    if errcode == 1 {
-                        self.showAlert(message: "alert.wrongInfomation.text".localized, titleBtn: "alert.titleBtn.OK".localized) {
-                            print("Login failed, wrong email or password ")
-                        }
-                        self.loading.handleLoading(isLoading: false)
-                        self.txtPassword.text = ""
-                    } else if errcode == 2 {
-                        let data = json!
-                        let token = data["token"].stringValue
-                        self.saveToken(token: token)
-                        self.handleMyPage()
-                    } else {
-                        self.showAlert(message: "alert.connectFailed.text".localized, titleBtn: "alert.titleBtn.OK".localized) {
-                            print("No internet")
-                        }
-                        self.loading.handleLoading(isLoading: false)
+            LoginAPI(email: mail, password: pass).excute(completionHandler: { [weak self] (response) in
+                if response?.loginResponse.status == 1 {
+                    let userToken = response?.userToken
+                    self?.showAlert(message: "alert.loginSuccess".localized, titleBtn: "alert.titleBtn.OK".localized) {
+                        self?.saveToken(token: userToken!)
+                        self?.handleMyPage()
+                    }
+                } else {
+                    self?.showAlert(message: "alert.wrongInfomation.text".localized, titleBtn: "alert.titleBtn.OK".localized) {
+                        print("Login failed, wrong email or password ")
                     }
                 }
+            }) { (err) in
+                self.showAlert(message: "alert.connectFailed.text".localized, titleBtn: "alert.titleBtn.OK".localized) {
+                    print(err!)
+                }
+                self.loading.handleLoading(isLoading: false)
             }
         }
     }
@@ -134,9 +136,25 @@ class LoginViewController: UIViewController {
 }
 
 extension LoginViewController : UITextFieldDelegate {
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         login()
         return true
+    }
+    
+    
+    private func checkTextfiedToDisableButton() {
+        if txtEmail.text!.isEmpty || txtPassword.text!.isEmpty  {
+            uiBtnLogin.isEnabled = false
+            if #available(iOS 13.0, *) {
+                uiBtnLogin.backgroundColor = UIColor.systemGray6
+            } else {
+                uiBtnLogin.backgroundColor = UIColor.systemGray
+            }
+        } else {
+            uiBtnLogin.isEnabled = true
+            uiBtnLogin.backgroundColor = UIColor(rgb: 0x5D20CD)
+        }
     }
 }
 

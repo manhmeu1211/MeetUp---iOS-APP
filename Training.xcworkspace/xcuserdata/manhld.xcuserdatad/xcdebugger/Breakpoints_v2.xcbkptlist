@@ -1176,24 +1176,8 @@
             filePath = "Training/Controller/EventDetailVC/EventDetailController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "109"
-            endingLineNumber = "109"
-            landmarkName = "wentEvent()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "3E195965-F5BE-4176-80AB-D8F98BC116B8"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Training/Controller/EventDetailVC/EventDetailController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "114"
-            endingLineNumber = "114"
+            startingLineNumber = "100"
+            endingLineNumber = "100"
             landmarkName = "wentEvent()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1384,10 +1368,10 @@
             filePath = "Training/Controller/EventDetailVC/EventDetailController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "134"
-            endingLineNumber = "134"
-            landmarkName = "EventDetailController"
-            landmarkType = "3">
+            startingLineNumber = "125"
+            endingLineNumber = "125"
+            landmarkName = "getListEvent()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1432,8 +1416,8 @@
             filePath = "Training/Controller/EventDetailVC/EventDetailController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "37"
-            endingLineNumber = "37"
+            startingLineNumber = "36"
+            endingLineNumber = "36"
             landmarkName = "setUpView()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1548,36 +1532,52 @@
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "86664436-C4B6-43E2-9326-1E54D403A23D - eef47d4d66cd7f1f"
+                  uuid = "86664436-C4B6-43E2-9326-1E54D403A23D - f889beb22b702300"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "Training.ImageLoader.imageForUrl(urlString: Swift.String, completionHandler: (Swift.Optional&lt;__C.UIImage&gt;, Swift.String) -&gt; ()) -&gt; ()"
                   moduleName = "Training"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/manhld/Desktop/MeetUpV2/Training/Libaries/ExtensionUIImageVIew.swift"
+                  urlString = "file:///Users/manhld/Desktop/MeetUpV2%20github/Training/Libaries/ExtensionUIImageVIew.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "49"
-                  endingLineNumber = "49"
+                  startingLineNumber = "90"
+                  endingLineNumber = "90"
                   offsetFromSymbolStart = "1467">
                </Location>
                <Location
-                  uuid = "86664436-C4B6-43E2-9326-1E54D403A23D - e48483bc05ec197e"
+                  uuid = "86664436-C4B6-43E2-9326-1E54D403A23D - f2f9404348514561"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "closure #2 (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Training.ImageLoader.imageForUrl(urlString: Swift.String, completionHandler: (Swift.Optional&lt;__C.UIImage&gt;, Swift.String) -&gt; ()) -&gt; ()"
                   moduleName = "Training"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/manhld/Desktop/MeetUpV2/Training/Libaries/ExtensionUIImageVIew.swift"
+                  urlString = "file:///Users/manhld/Desktop/MeetUpV2%20github/Training/Libaries/ExtensionUIImageVIew.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "50"
-                  endingLineNumber = "50"
-                  offsetFromSymbolStart = "359">
+                  startingLineNumber = "90"
+                  endingLineNumber = "90"
+                  offsetFromSymbolStart = "304">
                </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9470E976-62C4-4F0A-A26A-54EDC6ABBEAF"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Training/Controller/LoginVC/LoginViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "92"
+            endingLineNumber = "92"
+            landmarkName = "login()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

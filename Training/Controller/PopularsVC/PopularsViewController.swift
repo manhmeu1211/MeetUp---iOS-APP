@@ -171,7 +171,7 @@ extension PopularsViewController : UITableViewDataSource, UITableViewDelegate {
         cell.date.textColor = UIColor(rgb: 0x5D20CD)
         cell.date.text = "\(popularResponse[indexPath.row].scheduleStartDate) - \(popularResponse[indexPath.row].goingCount) " + "peopleGoing.text".localized
         cell.title.text = popularResponse[indexPath.row].name
-        cell.lblDes.text = popularResponse[indexPath.row].descriptionHtml
+        cell.lblDes.attributedText = popularResponse[indexPath.row].descriptionHtml.htmlToAttributedString
         cell.imgTimer.image = UIImage(named: "Group15")
         switch popularResponse[indexPath.row].myStatus {
             case 1:
@@ -208,9 +208,11 @@ extension PopularsViewController : UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let id = popularResponse[indexPath.row].id
-        let EventDetailVC = EventDetailController(nibName: "EventDetailView", bundle: nil)
-        EventDetailVC.id = id
-        present(EventDetailVC, animated: true, completion: nil)
+//        let eventDetailVC = EventDetailController(nibName: "EventDetailView", bundle: nil)
+//        EventDetailVC.id = id
+        let detailVCV2 = EventDetailV2Controller(nibName: "EventDetailV2Controller", bundle: nil)
+        detailVCV2.id = id
+        present(detailVCV2, animated: true, completion: nil)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
