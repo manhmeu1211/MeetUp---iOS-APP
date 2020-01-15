@@ -18,17 +18,7 @@
 		0D44379723AC6AC4003A8D96 /* MyPageWentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D44379523AC6AC4003A8D96 /* MyPageWentViewController.swift */; };
 		0D44379823AC6AC4003A8D96 /* MyPageWentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D44379623AC6AC4003A8D96 /* MyPageWentViewController.xib */; };
 		0D44379A23AC6F7B003A8D96 /* MyPageGoingResDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D44379923AC6F7B003A8D96 /* MyPageGoingResDatabase.swift */; };
-		0D44379D23AC7402003A8D96 /* TextAreaCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D44379B23AC7402003A8D96 /* TextAreaCell.swift */; };
-		0D44379E23AC7402003A8D96 /* TextAreaCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D44379C23AC7402003A8D96 /* TextAreaCell.xib */; };
 		0D4437A423AC886D003A8D96 /* MyPageWentResDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D4437A323AC886D003A8D96 /* MyPageWentResDatabase.swift */; };
-		0D45DC0023ACCCBB006C6CB7 /* DetailVenueCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D45DBFE23ACCCBB006C6CB7 /* DetailVenueCell.swift */; };
-		0D45DC0123ACCCBB006C6CB7 /* DetailVenueCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D45DBFF23ACCCBB006C6CB7 /* DetailVenueCell.xib */; };
-		0D45DC0423ACCD90006C6CB7 /* DetailNearCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D45DC0223ACCD90006C6CB7 /* DetailNearCell.swift */; };
-		0D45DC0523ACCD90006C6CB7 /* DetailNearCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D45DC0323ACCD90006C6CB7 /* DetailNearCell.xib */; };
-		0D45DC0C23ACD655006C6CB7 /* ButtonFooterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D45DC0A23ACD655006C6CB7 /* ButtonFooterCell.swift */; };
-		0D45DC0D23ACD655006C6CB7 /* ButtonFooterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D45DC0B23ACD655006C6CB7 /* ButtonFooterCell.xib */; };
-		0D45DC1023ACD951006C6CB7 /* EventDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D45DC0E23ACD951006C6CB7 /* EventDetailController.swift */; };
-		0D45DC1123ACD951006C6CB7 /* EventDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D45DC0F23ACD951006C6CB7 /* EventDetailView.xib */; };
 		0D462B1423A734B4000332F4 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D462B1223A734B4000332F4 /* MyPageViewController.swift */; };
 		0D462B1523A734B4000332F4 /* MyPageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D462B1323A734B4000332F4 /* MyPageView.xib */; };
 		0D462B1A23A76319000332F4 /* EventsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D462B1823A76319000332F4 /* EventsCell.swift */; };
@@ -59,15 +49,11 @@
 		0D9C320A23BF37A600F1726E /* CustomAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D9C320823BF37A600F1726E /* CustomAlertViewController.swift */; };
 		0D9C320B23BF37A600F1726E /* CustomAlertViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D9C320923BF37A600F1726E /* CustomAlertViewController.xib */; };
 		0D9C320D23BF3F5000F1726E /* ExtensionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D9C320C23BF3F5000F1726E /* ExtensionButton.swift */; };
-		0D9E385823B5AFB600363C8B /* ImageDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D9E385623B5AFB600363C8B /* ImageDetailCell.swift */; };
-		0D9E385923B5AFB600363C8B /* ImgDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D9E385723B5AFB600363C8B /* ImgDetailCell.xib */; };
 		0DA91BEC23BB03AE00515C7D /* LoginResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DA91BEB23BB03AE00515C7D /* LoginResponse.swift */; };
 		0DA988E623C4659D006B7E7A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0DAFD88823C42EF400828323 /* LaunchScreen.storyboard */; };
 		0DA988EA23C466DA006B7E7A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0DA988EC23C466DA006B7E7A /* Localizable.strings */; };
 		0DB09AF123CECCBA00AC793D /* EventDetailV3Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB09AEF23CECCBA00AC793D /* EventDetailV3Controller.swift */; };
 		0DB09AF223CECCBA00AC793D /* EventDetailV3Controller.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0DB09AF023CECCBA00AC793D /* EventDetailV3Controller.xib */; };
-		0DB2FA6123CD56C300ABFD47 /* EventDetailV2Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB2FA5F23CD56C300ABFD47 /* EventDetailV2Controller.swift */; };
-		0DB2FA6223CD56C300ABFD47 /* EventDetailV2Controller.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0DB2FA6023CD56C300ABFD47 /* EventDetailV2Controller.xib */; };
 		0DB2FA6C23CDBFC900ABFD47 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0DB2FA6B23CDBFC900ABFD47 /* Home.storyboard */; };
 		0DC433BF239F3BF1000C9505 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DC433BE239F3BF1000C9505 /* AppDelegate.swift */; };
 		0DC433C8239F3BF4000C9505 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0DC433C7239F3BF4000C9505 /* Assets.xcassets */; };
@@ -109,17 +95,7 @@
 		0D44379523AC6AC4003A8D96 /* MyPageWentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageWentViewController.swift; sourceTree = "<group>"; };
 		0D44379623AC6AC4003A8D96 /* MyPageWentViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyPageWentViewController.xib; sourceTree = "<group>"; };
 		0D44379923AC6F7B003A8D96 /* MyPageGoingResDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageGoingResDatabase.swift; sourceTree = "<group>"; };
-		0D44379B23AC7402003A8D96 /* TextAreaCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextAreaCell.swift; sourceTree = "<group>"; };
-		0D44379C23AC7402003A8D96 /* TextAreaCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TextAreaCell.xib; sourceTree = "<group>"; };
 		0D4437A323AC886D003A8D96 /* MyPageWentResDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageWentResDatabase.swift; sourceTree = "<group>"; };
-		0D45DBFE23ACCCBB006C6CB7 /* DetailVenueCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailVenueCell.swift; sourceTree = "<group>"; };
-		0D45DBFF23ACCCBB006C6CB7 /* DetailVenueCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailVenueCell.xib; sourceTree = "<group>"; };
-		0D45DC0223ACCD90006C6CB7 /* DetailNearCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailNearCell.swift; sourceTree = "<group>"; };
-		0D45DC0323ACCD90006C6CB7 /* DetailNearCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailNearCell.xib; sourceTree = "<group>"; };
-		0D45DC0A23ACD655006C6CB7 /* ButtonFooterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonFooterCell.swift; sourceTree = "<group>"; };
-		0D45DC0B23ACD655006C6CB7 /* ButtonFooterCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ButtonFooterCell.xib; sourceTree = "<group>"; };
-		0D45DC0E23ACD951006C6CB7 /* EventDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailController.swift; sourceTree = "<group>"; };
-		0D45DC0F23ACD951006C6CB7 /* EventDetailView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventDetailView.xib; sourceTree = "<group>"; };
 		0D462B1223A734B4000332F4 /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
 		0D462B1323A734B4000332F4 /* MyPageView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyPageView.xib; sourceTree = "<group>"; };
 		0D462B1823A76319000332F4 /* EventsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsCell.swift; sourceTree = "<group>"; };
@@ -150,16 +126,12 @@
 		0D9C320823BF37A600F1726E /* CustomAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlertViewController.swift; sourceTree = "<group>"; };
 		0D9C320923BF37A600F1726E /* CustomAlertViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomAlertViewController.xib; sourceTree = "<group>"; };
 		0D9C320C23BF3F5000F1726E /* ExtensionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionButton.swift; sourceTree = "<group>"; };
-		0D9E385623B5AFB600363C8B /* ImageDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDetailCell.swift; sourceTree = "<group>"; };
-		0D9E385723B5AFB600363C8B /* ImgDetailCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImgDetailCell.xib; sourceTree = "<group>"; };
 		0DA91BEB23BB03AE00515C7D /* LoginResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResponse.swift; sourceTree = "<group>"; };
 		0DA988EB23C466DA006B7E7A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0DA988ED23C466F6006B7E7A /* vi-VN */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "vi-VN"; path = "vi-VN.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		0DAFD88823C42EF400828323 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0DB09AEF23CECCBA00AC793D /* EventDetailV3Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailV3Controller.swift; sourceTree = "<group>"; };
 		0DB09AF023CECCBA00AC793D /* EventDetailV3Controller.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventDetailV3Controller.xib; sourceTree = "<group>"; };
-		0DB2FA5F23CD56C300ABFD47 /* EventDetailV2Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailV2Controller.swift; sourceTree = "<group>"; };
-		0DB2FA6023CD56C300ABFD47 /* EventDetailV2Controller.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventDetailV2Controller.xib; sourceTree = "<group>"; };
 		0DB2FA6B23CDBFC900ABFD47 /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		0DC433BB239F3BF1000C9505 /* Training.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Training.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0DC433BE239F3BF1000C9505 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -267,11 +239,6 @@
 		0D6C31CF23B0CC67007605D2 /* EventDetailVC */ = {
 			isa = PBXGroup;
 			children = (
-				0D6C31D923B0CD40007605D2 /* DetailEventCell */,
-				0D45DC0F23ACD951006C6CB7 /* EventDetailView.xib */,
-				0D45DC0E23ACD951006C6CB7 /* EventDetailController.swift */,
-				0DB2FA5F23CD56C300ABFD47 /* EventDetailV2Controller.swift */,
-				0DB2FA6023CD56C300ABFD47 /* EventDetailV2Controller.xib */,
 				0DB09AEF23CECCBA00AC793D /* EventDetailV3Controller.swift */,
 				0DB09AF023CECCBA00AC793D /* EventDetailV3Controller.xib */,
 			);
@@ -353,23 +320,6 @@
 				0D478DF123A9CFD70061644E /* TabbarViewController.swift */,
 			);
 			path = Tabbar;
-			sourceTree = "<group>";
-		};
-		0D6C31D923B0CD40007605D2 /* DetailEventCell */ = {
-			isa = PBXGroup;
-			children = (
-				0D44379B23AC7402003A8D96 /* TextAreaCell.swift */,
-				0D44379C23AC7402003A8D96 /* TextAreaCell.xib */,
-				0D45DBFE23ACCCBB006C6CB7 /* DetailVenueCell.swift */,
-				0D45DBFF23ACCCBB006C6CB7 /* DetailVenueCell.xib */,
-				0D45DC0223ACCD90006C6CB7 /* DetailNearCell.swift */,
-				0D45DC0323ACCD90006C6CB7 /* DetailNearCell.xib */,
-				0D45DC0A23ACD655006C6CB7 /* ButtonFooterCell.swift */,
-				0D45DC0B23ACD655006C6CB7 /* ButtonFooterCell.xib */,
-				0D9E385623B5AFB600363C8B /* ImageDetailCell.swift */,
-				0D9E385723B5AFB600363C8B /* ImgDetailCell.xib */,
-			);
-			path = DetailEventCell;
 			sourceTree = "<group>";
 		};
 		0D6C31DB23B0CD5C007605D2 /* CateCell */ = {
@@ -637,27 +587,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				0D020EF523B99DBB007826FD /* .swiftlint.yml in Resources */,
-				0D45DC1123ACD951006C6CB7 /* EventDetailView.xib in Resources */,
 				0D462B1B23A76319000332F4 /* EventsCell.xib in Resources */,
 				0D59676523A07D690060015E /* PopularsView.xib in Resources */,
 				0D44379023AC56AD003A8D96 /* WebViewController.xib in Resources */,
-				0D45DC0123ACCCBB006C6CB7 /* DetailVenueCell.xib in Resources */,
-				0DB2FA6223CD56C300ABFD47 /* EventDetailV2Controller.xib in Resources */,
 				0D44379423AC6AB0003A8D96 /* MyPageGoingViewController.xib in Resources */,
 				0DD8F5F423A23C4100C50F22 /* SearchView.xib in Resources */,
 				0D9C320B23BF37A600F1726E /* CustomAlertViewController.xib in Resources */,
-				0D44379E23AC7402003A8D96 /* TextAreaCell.xib in Resources */,
 				0D462B1523A734B4000332F4 /* MyPageView.xib in Resources */,
 				0DECAD9423AB2D10008BC805 /* EventsByCategoriesView.xib in Resources */,
 				0D0EE5F823C5DD2D003A1938 /* robot.png in Resources */,
 				0DE62E5823A370CF00D927FA /* ResetPassView.xib in Resources */,
 				0DE62E5223A34DB000D927FA /* LoginView.xib in Resources */,
-				0D45DC0D23ACD655006C6CB7 /* ButtonFooterCell.xib in Resources */,
 				0D44379823AC6AC4003A8D96 /* MyPageWentViewController.xib in Resources */,
-				0D45DC0523ACCD90006C6CB7 /* DetailNearCell.xib in Resources */,
 				0D5E459123A875BA0029CE1A /* NewsCell.xib in Resources */,
 				0DB2FA6C23CDBFC900ABFD47 /* Home.storyboard in Resources */,
-				0D9E385923B5AFB600363C8B /* ImgDetailCell.xib in Resources */,
 				0DB09AF223CECCBA00AC793D /* EventDetailV3Controller.xib in Resources */,
 				0DE3B8C423A0F05E00843C80 /* CategoriesTableViewCell.xib in Resources */,
 				0DA988EA23C466DA006B7E7A /* Localizable.strings in Resources */,
@@ -729,7 +672,6 @@
 				0DE62E5123A34DB000D927FA /* LoginViewController.swift in Sources */,
 				0D44379A23AC6F7B003A8D96 /* MyPageGoingResDatabase.swift in Sources */,
 				0D5509DD23C33F5800646D9B /* ExtensionUIImageVIew.swift in Sources */,
-				0D44379D23AC7402003A8D96 /* TextAreaCell.swift in Sources */,
 				0D478DF723AA18680061644E /* ValidatedString.swift in Sources */,
 				0DECAD9623AB3221008BC805 /* EventsByCategoriesDatabase.swift in Sources */,
 				0D44379723AC6AC4003A8D96 /* MyPageWentViewController.swift in Sources */,
@@ -739,7 +681,6 @@
 				0D020EF723B9D323007826FD /* APIRequest.swift in Sources */,
 				0DECAD9323AB2D10008BC805 /* EventsByCategoriesViewController.swift in Sources */,
 				0DE3B8B623A0CCAF00843C80 /* ExtensionDate.swift in Sources */,
-				0D45DC1023ACD951006C6CB7 /* EventDetailController.swift in Sources */,
 				0D44379323AC6AB0003A8D96 /* MyPageGoingViewController.swift in Sources */,
 				0DE62E5723A370CF00D927FA /* ResetPassViewController.swift in Sources */,
 				0D9C320D23BF3F5000F1726E /* ExtensionButton.swift in Sources */,
@@ -747,22 +688,17 @@
 				0D51DD2023A8B36000544A1B /* MyPageMainViewController.swift in Sources */,
 				0DCE199423C837EB005BEDE3 /* ArtworkViews.swift in Sources */,
 				0DC433E8239F43F7000C9505 /* HomeNewsViewController.swift in Sources */,
-				0D45DC0C23ACD655006C6CB7 /* ButtonFooterCell.swift in Sources */,
 				0D72CA7E23CC1E5100488205 /* UpdateEventStatus.swift in Sources */,
-				0D9E385823B5AFB600363C8B /* ImageDetailCell.swift in Sources */,
 				0D59676023A07D490060015E /* NewsViewController.swift in Sources */,
 				0DE3B8C023A0E9BE00843C80 /* BrowserViewController.swift in Sources */,
-				0DB2FA6123CD56C300ABFD47 /* EventDetailV2Controller.swift in Sources */,
 				0D44378F23AC56AD003A8D96 /* WebViewController.swift in Sources */,
 				0D020EF923B9D649007826FD /* APIResponse.swift in Sources */,
 				0D51DD2A23A8BF4A00544A1B /* SignUpViewController.swift in Sources */,
-				0D45DC0423ACCD90006C6CB7 /* DetailNearCell.swift in Sources */,
 				0DC433BF239F3BF1000C9505 /* AppDelegate.swift in Sources */,
 				0DE62E5423A3500700D927FA /* ExtensionView.swift in Sources */,
 				0DD8F5F323A23C4100C50F22 /* SearchViewController.swift in Sources */,
 				0D462B1A23A76319000332F4 /* EventsCell.swift in Sources */,
 				0D8CCEDA23B310A100EDE7F4 /* ExtensionAlert.swift in Sources */,
-				0D45DC0023ACCCBB006C6CB7 /* DetailVenueCell.swift in Sources */,
 				0DC433DB239F3D67000C9505 /* ShowToastMessage.swift in Sources */,
 				0D51DD2423A8B84500544A1B /* SignUpMainViewController.swift in Sources */,
 				0D462B1423A734B4000332F4 /* MyPageViewController.swift in Sources */,

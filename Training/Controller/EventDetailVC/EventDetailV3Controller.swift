@@ -39,7 +39,6 @@ class EventDetailV3Controller: UIViewController {
         setUpView()
         setUpCollectionView()
         getDetailEvent(eventID: id!)
-        getListEventNear()
     }
     
     private func setUpCollectionView() {
@@ -92,12 +91,12 @@ class EventDetailV3Controller: UIViewController {
         eventTitle.text = eventDetail.name
         eventDate.text = eventDetail.scheduleStartDate
         eventPeopleCount.text = "\(eventDetail.goingCount) " + "peopleGoing.text".localized
-        eventDetailLocation.text = eventDetail.locationEvent
+        eventDetailLocation.text = eventDetail.vnLocation
         eventDescription.attributedText = eventDetail.descriptionHtml.htmlToAttributedString
         eventContact.text = eventDetail.vnName
         eventGenre.text = eventDetail.nameGenre
         eventContact.text = eventDetail.vnContact
-        eventLocation.text = eventDetail.vnLocation
+        eventLocation.text = eventDetail.locationEvent
         if eventDetail.mystatus == 1 {
             btnGoing.backgroundColor = UIColor.red
         } else if eventDetail.mystatus == 2 {
@@ -106,6 +105,7 @@ class EventDetailV3Controller: UIViewController {
             btnGoing.isEnabled = false
             btnFollow.setTitle("Followed", for: .normal)
         }
+        getListEventNear()
     }
 
     

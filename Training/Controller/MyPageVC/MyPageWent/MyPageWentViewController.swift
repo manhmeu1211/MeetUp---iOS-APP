@@ -176,7 +176,7 @@ extension MyPageWentViewController : UITableViewDelegate, UITableViewDataSource 
     }
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        let eventDetailVC = EventDetailController(nibName: "EventDetailView", bundle: nil)
+        let eventDetailVC = EventDetailV3Controller(nibName: "EventDetailV3Controller", bundle: nil)
         switch indexPath.section {
         case 0:
             eventDetailVC.id = wentEvents[indexPath.row].id
