@@ -42,14 +42,7 @@ class MyPageWentResDatabase: Object {
 
 class MyPageWentListAPI: APIMeetUpService<MyPageWentData> {
     init(status: Int) {
-        let userToken = UserDefaults.standard.string(forKey: "userToken")
-        var headers = [String : String]()
-        if userToken != nil {
-            headers = [ "Authorization": "Bearer " + userToken! ]
-        } else {
-            headers = [ "Authorization": "No Auth" ]
-        }
-        super.init(request: APIMeetUpRequest(name: "API008  Get events wents ", path: "listMyEvents", method: .get, header: headers, parameters: ["status" : "\(status)"]))
+        super.init(request: APIMeetUpRequest(name: "API008  Get events wents ", path: "listMyEvents", method: .get, header: APIMeetUpRequest.header, parameters: ["status" : "\(status)"]))
     }
 }
 

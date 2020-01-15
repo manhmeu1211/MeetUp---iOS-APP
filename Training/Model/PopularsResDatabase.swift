@@ -45,14 +45,7 @@ class PopularsResDatabase: Object {
 
 class EventsListAPI: APIMeetUpService<PopularsData> {
     init(pageIndex: Int, pageSize : Int) {
-        let userToken = UserDefaults.standard.string(forKey: "userToken")
-        var headers = [String : String]()
-        if userToken != nil {
-            headers = [ "Authorization": "Bearer " + userToken! ]
-        } else {
-            headers = [ "Authorization": "No Auth" ]
-        }
-        super.init(request: APIMeetUpRequest(name: "API0002  Get events ", path: "listPopularEvents", method: .get, header: headers, parameters: ["pageIndex" : pageIndex, "pageSize" : pageSize]))
+        super.init(request: APIMeetUpRequest(name: "API0002  Get events ", path: "listPopularEvents", method: .get, header: APIMeetUpRequest.header, parameters: ["pageIndex" : pageIndex, "pageSize" : pageSize]))
     }
 }
 

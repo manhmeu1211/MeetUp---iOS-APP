@@ -207,7 +207,7 @@ extension PopularsViewController : UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let id = popularResponse[indexPath.row].id
-        let detailVCV2 = EventDetailV2Controller(nibName: "EventDetailV2Controller", bundle: nil)
+        let detailVCV2 = EventDetailV3Controller(nibName: "EventDetailV3Controller", bundle: nil)
         detailVCV2.id = id
         present(detailVCV2, animated: true, completion: nil)
     }

@@ -10,69 +10,78 @@
 // MARK: - News VỉewController
 
 "alert.message.loginExpired" = "Your login has been expired";
-"alert.token.avaible" = "Token is avaible";
-"alert.detechlaunched.already" = "Already launched in day";
-"alert.detechlaunched.first" = "First launch in day";
-"alert.cannotLoadData" = "Cannot load data from sever";
+"alert.token.avaible" = "Token avaible";
+"alert.detechlaunched.already" = "Already launched";
+"alert.detechlaunched.first" = "First launch";
+"alert.cannotLoadData" = "Can't load data from sever";
 "alert.titleBtn.OK" = "OK";
-"alert.titleBtn.login" = "LOGIN";
-"alert.checkConnection" = "Check your connetion !" ;
+"alert.titleBtn.login" = "Login";
+"alert.checkConnection" = "Please check your connection !" ;
+"alert.loginSuccess" = "Login success !";
+"alert.registerSuccess" = "Register success !";
+"alert.wentThisEvent" = "You have been went this event !" ;
+"alert.goingThisEvent" = "You are going to this event !";
+
+
 
 
 
 // MARK: - Populars VỉewController
 
 "join.label.text.canParticipate" = "Can participate";
-"join.label.text.joined" = "Joined";
-"join.label.text.join" = "Join";
+"join.label.text.joined" = "Participated";
+"join.label.text.join" = "Participate";
 
 
 
 // MARK: -  Near VỉewController
 
-"anootation.title" = "My Location";
-"anootation.name" = "My Location";
+"anootation.title" = "My location";
+"anootation.name" = "My location";
 "anootation.discipline" = "My discipline";
-"noEvent.label.text" = "No event near you";
+"alert.titleBtn.login" = "Login";
+"noEvent.label.text" = "No event near";
 "peopleGoing.text" = "people going";
 
 
 
 // MARK: -  My Page Main ViewController
 "btnLogin.tilte" = "Login";
-"btnSignUpNow.tilte" = "Sign Up Now !";
+"btnSignUpNow.tilte" = "Register now !";
 "myPage.label.text" = "My page";
 "haveToLogin.label.text" = "You have to login first";
 "dontHaveAccount.label.text" = "Don't have an account?";
-"pleaseLogin.label.text" = "Login to management your events";
 "Not logged in" = "Not logged in";
-"eventsGoing.text" = "Events is going";
-"eventsEnd.text" = "Events end";
+"pleaseLogin.label.text" = "Login to managed your events";
+"not logged in" = "Not logged in";
+"eventsGoing.text" = "Can participate";
+"eventsEnd.text" = "Participated";
+"eventsIsGoing.section.text" = "Incoming";
+"eventsEnded.section.text" = "Passed";
+
+
 
 
 
 // MARK: -  Categories - Event by Cate ViewController
 
 "categories.title" = "Categories";
-"refreshingData.text" = "Refreshing data";
-"noEvents.text" = "No Events";
-"myEvents.title" = "My events";
-"myEvents.logOut.title" = "Log out";
-
+"refreshingData.text" = "Refresing data";
+"noEvents.text" = "No events";
 
 
 // MARK: -  Login ViewController
 
 
 "login.title.text" = "Login";
-"signUp.title.barButtonItem" = "SignUp";
-"alert.fillInfomation.text" = "Please fill your infomation";
-"alert.validPassword.text" = "Password must be 6-16 character, Try again!";
-"alert.validEmail.text" = "Email is not correct, Try again!";
-"alert.wrongInfomation.text" = "Login failed, wrong email or password !";
-"alert.connectFailed.text" = "Connect failed, Check your internet connection !";
-"alert.needPermissionLocation.text" = "Please turn on location services !";
-"alert.Settings" = "Setting";
+"signUp.title.barButtonItem" = "Register";
+"alert.fillInfomation.text" = "Please fill your infomation ";
+"alert.validPassword.text" = "Pasword must be 6 - 16 characters";
+"alert.validEmail.text" = "Email is not correct";
+"alert.wrongInfomation.text" = "Login fail! Email or password is not correct";
+"alert.connectFailed.text" = "Connect fail, try again !";
+"alert.needPermissionLocation.text" = "This app need location permission !";
+"alert.Settings" = "Settings";
 
 // MARK: -  Label, button, ...
 
@@ -81,19 +90,25 @@
 "login.forgotPass.btnTitle" = "Forgot password";
 "login.loginBtn.title" = "Login";
 "login.skipBtn.title" = "Skip";
-"login.signUp.title" = "Sign Up";
+"login.signUp.title" = "Register";
 "signUp.fullName.title" = "Fullname";
 "signUp.passWord.title" = "Password";
-"signUp.fullName.placeholder" = "Type your fullname...";
-"categories.btnByPopulars.text" = "By Populars";
-"categories.btnByDate.text" = "By Date";
-"search.searclPlaceholeder.text" = "Search here...";
-"search.noResult.text" = "We didn't find any events :'(";
+"signUp.fullName.placeholder" = "Write your fullname";
+"categories.btnByPopulars.text" = "By populars";
+"categories.btnByDate.text" = "By date";
+"search.searclPlaceholeder.text" = "Type to search here...";
+"search.noResult.text" = "We can't find any events :'(";
 "resetPass.title" = "Forgot password?";
-"resetPass.inputInformation.text" = "Please input your email to reset password";
+"resetPass.inputInformation.text" = "Write your email to reset password";
 "eventDetai.title" = "Event detail";
-"eventNear.title" = "Events Near";
+"eventNear.title" = "Event near";
 "Please wait..." = "Please wait...";
-"search.noResultIncoming.text" = "No events is coming...:'(";
-"search.noResultPast.text" = "We didn't find any events... :'(";
+"myEvents.title" = "My events";
+"myEvents.logOut.title" = "Logout";
+"search.noResultIncoming.text" = "No event incoming...:'(";
+"search.noResultPast.text" = "No event passed...:'(";
+"eventsPast.text" = "Passed";
+"eventsIncoming.text" = "Incoming" ;
+
+
 

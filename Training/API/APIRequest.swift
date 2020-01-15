@@ -38,6 +38,15 @@ struct APIMeetUpRequest {
         self.keyValue = keyValue
     }
     
+    static var header : [String: String] {
+       let userToken = UserDefaults.standard.string(forKey: "userToken")
+       if userToken != nil {
+            return ["Authorization": "Bearer " + userToken!]
+        } else {
+            return ["Authorization": "Bearer "]
+        }
+    }
+    
     func printInfomationRequest() {
         print("Request name : \(name)")
         print("Request url : \(url)")

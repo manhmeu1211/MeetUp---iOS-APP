@@ -41,14 +41,7 @@ class SearchResponseDatabase: Object {
 
 class SearchListAPI: APIMeetUpService<SearchsData> {
     init(pageIndex: Int, pageSize : Int, keyword : String) {
-        let userToken = UserDefaults.standard.string(forKey: "userToken")
-        var headers = [String : String]()
-        if userToken != nil {
-            headers = [ "Authorization": "Bearer " + userToken! ]
-        } else {
-            headers = [ "Authorization": "No Auth" ]
-        }
-        super.init(request: APIMeetUpRequest(name: "API0006  Search ", path: "listPopularEvents", method: .get, header: headers, parameters: ["pageIndex" : pageIndex, "pageSize" : pageSize, "keyword" : keyword]))
+        super.init(request: APIMeetUpRequest(name: "API0006  Search ", path: "listPopularEvents", method: .get, header: APIMeetUpRequest.header, parameters: ["pageIndex" : pageIndex, "pageSize" : pageSize, "keyword" : keyword]))
     }
 }
 

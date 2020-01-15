@@ -43,14 +43,7 @@ class MyPageGoingResDatabase: Object {
 
 class MyPageGoingsListAPI: APIMeetUpService<MyPageGoingsData> {
     init(status: Int) {
-        let userToken = UserDefaults.standard.string(forKey: "userToken")
-        var headers = [String : String]()
-        if userToken != nil {
-            headers = [ "Authorization": "Bearer " + userToken! ]
-        } else {
-            headers = [ "Authorization": "No Auth" ]
-        }
-        super.init(request: APIMeetUpRequest(name: "API0007  Get events going ", path: "listMyEvents", method: .get, header: headers, parameters: ["status" : "\(status)"]))
+        super.init(request: APIMeetUpRequest(name: "API0007  Get events going ", path: "listMyEvents", method: .get, header: APIMeetUpRequest.header, parameters: ["status" : "\(status)"]))
     }
 }
 

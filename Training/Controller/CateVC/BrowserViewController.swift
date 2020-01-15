@@ -19,7 +19,7 @@ class BrowserViewController: UIViewController {
     private var cateList = [CategoriesResDatabase]()
     private let userToken = UserDefaults.standard.string(forKey: "userToken")
     private let realm = try! Realm()
-    private let listIcon = ["fan", "bag", "car", "grow", "dance", "mortarboard", "woman", "love", "food", "politics", "heart", "politics", "politics", "politics", "politics", "politics", "politics", "politics", "politics", "politics", "politics", "politics", "politics", "politics", "politics", "politics", "politics", "politics", "politics", "politics", "politics", "politics", "politics", "politics", "politics", "politics",]
+    private let listIcon = ["fan", "bag", "car", "grow", "dance", "mortarboard", "woman", "love", "food", "politics", "love", "politics", "heart", "Star", "language", "smile", "notebook", "film", "music", "newAge", "bike", "ghost", "family", "pet", "camera", "belief", "ufo", "profile-cate", "link", "football", "support", "artificial", "pen"]
     
     override func viewDidLoad() {
         super.viewDidLoad()

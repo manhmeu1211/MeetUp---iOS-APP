@@ -64,6 +64,8 @@
 		0DA91BEC23BB03AE00515C7D /* LoginResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DA91BEB23BB03AE00515C7D /* LoginResponse.swift */; };
 		0DA988E623C4659D006B7E7A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0DAFD88823C42EF400828323 /* LaunchScreen.storyboard */; };
 		0DA988EA23C466DA006B7E7A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0DA988EC23C466DA006B7E7A /* Localizable.strings */; };
+		0DB09AF123CECCBA00AC793D /* EventDetailV3Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB09AEF23CECCBA00AC793D /* EventDetailV3Controller.swift */; };
+		0DB09AF223CECCBA00AC793D /* EventDetailV3Controller.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0DB09AF023CECCBA00AC793D /* EventDetailV3Controller.xib */; };
 		0DB2FA6123CD56C300ABFD47 /* EventDetailV2Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB2FA5F23CD56C300ABFD47 /* EventDetailV2Controller.swift */; };
 		0DB2FA6223CD56C300ABFD47 /* EventDetailV2Controller.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0DB2FA6023CD56C300ABFD47 /* EventDetailV2Controller.xib */; };
 		0DB2FA6C23CDBFC900ABFD47 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0DB2FA6B23CDBFC900ABFD47 /* Home.storyboard */; };
@@ -154,6 +156,8 @@
 		0DA988EB23C466DA006B7E7A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0DA988ED23C466F6006B7E7A /* vi-VN */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "vi-VN"; path = "vi-VN.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		0DAFD88823C42EF400828323 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		0DB09AEF23CECCBA00AC793D /* EventDetailV3Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailV3Controller.swift; sourceTree = "<group>"; };
+		0DB09AF023CECCBA00AC793D /* EventDetailV3Controller.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventDetailV3Controller.xib; sourceTree = "<group>"; };
 		0DB2FA5F23CD56C300ABFD47 /* EventDetailV2Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailV2Controller.swift; sourceTree = "<group>"; };
 		0DB2FA6023CD56C300ABFD47 /* EventDetailV2Controller.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventDetailV2Controller.xib; sourceTree = "<group>"; };
 		0DB2FA6B23CDBFC900ABFD47 /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
@@ -268,6 +272,8 @@
 				0D45DC0E23ACD951006C6CB7 /* EventDetailController.swift */,
 				0DB2FA5F23CD56C300ABFD47 /* EventDetailV2Controller.swift */,
 				0DB2FA6023CD56C300ABFD47 /* EventDetailV2Controller.xib */,
+				0DB09AEF23CECCBA00AC793D /* EventDetailV3Controller.swift */,
+				0DB09AF023CECCBA00AC793D /* EventDetailV3Controller.xib */,
 			);
 			path = EventDetailVC;
 			sourceTree = "<group>";
@@ -652,6 +658,7 @@
 				0D5E459123A875BA0029CE1A /* NewsCell.xib in Resources */,
 				0DB2FA6C23CDBFC900ABFD47 /* Home.storyboard in Resources */,
 				0D9E385923B5AFB600363C8B /* ImgDetailCell.xib in Resources */,
+				0DB09AF223CECCBA00AC793D /* EventDetailV3Controller.xib in Resources */,
 				0DE3B8C423A0F05E00843C80 /* CategoriesTableViewCell.xib in Resources */,
 				0DA988EA23C466DA006B7E7A /* Localizable.strings in Resources */,
 				0DC433C8239F3BF4000C9505 /* Assets.xcassets in Resources */,
@@ -713,6 +720,7 @@
 			files = (
 				0DE62E5C23A37BBB00D927FA /* Artwork.swift in Sources */,
 				0D59676423A07D690060015E /* PopularsViewController.swift in Sources */,
+				0DB09AF123CECCBA00AC793D /* EventDetailV3Controller.swift in Sources */,
 				0D9C320A23BF37A600F1726E /* CustomAlertViewController.swift in Sources */,
 				0D478DF223A9CFD70061644E /* TabbarViewController.swift in Sources */,
 				0DE3B8CA23A0FB2800843C80 /* RealmDataBaseQuery.swift in Sources */,

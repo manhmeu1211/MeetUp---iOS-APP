@@ -85,14 +85,8 @@ class Artwork: NSObject, MKAnnotation {
 
 class ArtWorkListAPI: APIMeetUpService<ArtWorksData> {
     init(radius: Double, longitue : Double, latitude : Double) {
-        let userToken = UserDefaults.standard.string(forKey: "userToken")
-        var headers = [String : String]()
-        if userToken != nil {
-            headers = [ "Authorization": "Bearer " + userToken! ]
-        } else {
-            headers = [ "Authorization": "No Auth" ]
-        }
-        super.init(request: APIMeetUpRequest(name: "API0004  Get Events Near ", path: "listNearlyEvents", method: .get, header: headers, parameters: ["radius" : radius, "longitue" : longitue, "latitude" : latitude ]))
+
+        super.init(request: APIMeetUpRequest(name: "API0004  Get Events Near ", path: "listNearlyEvents", method: .get, header: APIMeetUpRequest.header, parameters: ["radius" : radius, "longitue" : longitue, "latitude" : latitude ]))
     }
 }
 
