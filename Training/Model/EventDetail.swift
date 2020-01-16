@@ -95,7 +95,6 @@ struct EventDetailData : MeetUpResponse {
             let detailVenue = data["venue"]
             let detailGenre = data["category"]
             eventDetail = EventDetail(detail: data, detailVenue: detailVenue, detailGenre: detailGenre)
-            print(detailVenue)
         }
     }
 }

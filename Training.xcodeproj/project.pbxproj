@@ -130,7 +130,7 @@
 		0DA988EB23C466DA006B7E7A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0DA988ED23C466F6006B7E7A /* vi-VN */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "vi-VN"; path = "vi-VN.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		0DAFD88823C42EF400828323 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
-		0DB09AEF23CECCBA00AC793D /* EventDetailV3Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailV3Controller.swift; sourceTree = "<group>"; };
+		0DB09AEF23CECCBA00AC793D /* EventDetailV3Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailV3Controller.swift; sourceTree = "<group>"; tabWidth = 3; };
 		0DB09AF023CECCBA00AC793D /* EventDetailV3Controller.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventDetailV3Controller.xib; sourceTree = "<group>"; };
 		0DB2FA6B23CDBFC900ABFD47 /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		0DC433BB239F3BF1000C9505 /* Training.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Training.app; sourceTree = BUILT_PRODUCTS_DIR; };

@@ -50,13 +50,6 @@ class EventDetailV3Controller: UIViewController {
 
 
     private func setUpView() {
-        backgroundView.roundCornersView(radius: 30)
-        btnWent.roundedButton()
-        btnGoing.roundedButton()
-        btnFollow.layer.borderColor = UIColor(rgb: 0x5D20CD).cgColor
-        btnFollow.layer.borderWidth = 0.5
-        btnFollow.layer.cornerRadius = 10
-        backgroundView.layoutIfNeeded()
         let swipeRight = UISwipeGestureRecognizer(target: self, action:  #selector(swiped))
         swipeRight.direction = UISwipeGestureRecognizer.Direction.right
         self.view.addGestureRecognizer(swipeRight)
@@ -65,24 +58,36 @@ class EventDetailV3Controller: UIViewController {
         self.view.addGestureRecognizer(swipeLeft)
     }
     
+    override func viewDidLayoutSubviews() {
+        backgroundView.roundCornersView(radius: 30)
+        btnWent.roundedButton()
+        btnGoing.roundedButton()
+        btnFollow.layer.borderColor = UIColor(rgb: 0x5D20CD).cgColor
+        btnFollow.layer.borderWidth = 0.5
+        btnFollow.layer.cornerRadius = 10
+        backgroundView.layoutIfNeeded()
+        btnGoing.layoutIfNeeded()
+        btnWent.layoutIfNeeded()
+    }
+    
     
     @objc func swiped(_ gesture: UISwipeGestureRecognizer) {
-          if gesture.direction == .left {
-              id! += 1
-              getDetailEvent(eventID: id!)
-          } else if gesture.direction == .right {
-              id! -= 1
-              getDetailEvent(eventID: id!)
-          }
-      }
+        if gesture.direction == .left {
+            id! += 1
+            getDetailEvent(eventID: id!)
+        } else if gesture.direction == .right {
+            id! -= 1
+            getDetailEvent(eventID: id!)
+        }
+    }
       
     
     private func checkLoggedIn() -> Bool {
-           if userToken == nil {
-               return true
-           }
-           return false
-       }
+        if userToken == nil {
+           return true
+        }
+        return false
+    }
       
 
     private func setUpDataForView() {
@@ -104,7 +109,11 @@ class EventDetailV3Controller: UIViewController {
             btnWent.isEnabled = false
             btnGoing.isEnabled = false
             btnFollow.setTitle("Followed", for: .normal)
+        } else {
+            btnGoing.backgroundColor = UIColor(rgb: 0x5D20CD)
+            btnWent.backgroundColor = UIColor(rgb: 0x5D20CD)
         }
+        print(eventDetail.mystatus)
         getListEventNear()
     }
 
@@ -112,7 +121,7 @@ class EventDetailV3Controller: UIViewController {
     private func getDetailEvent(eventID : Int) {
         EventsDetailAPI(eventID: eventID).excute(completionHandler: { [weak self] (response) in
             if response?.status == 0 {
-                let event = EventDetail(id: 0, photo: "", name: "Failed to load", descriptionHtml: "", scheduleStartDate: "", scheduleEndDate: "", scheduleStartTime: "", scheduleEndTime: "", schedulePermanent: "", goingCount: 0, nameGenre: "", vnLocation: "", vnContact: "", vnName: "", locationEvent: "")
+                let event = EventDetail(id: 0, photo: "", name: "alert.cannotLoadData".localized, descriptionHtml: "", scheduleStartDate: "", scheduleEndDate: "", scheduleStartTime: "", scheduleEndTime: "", schedulePermanent: "", goingCount: 0, nameGenre: "", vnLocation: "", vnContact: "", vnName: "", locationEvent: "")
                 self?.eventDetail = event
                 self?.setUpDataForView()
             } else {
@@ -120,7 +129,7 @@ class EventDetailV3Controller: UIViewController {
                 self?.setUpDataForView()
             }
         }) { (err) in
-            self.showAlert(message: "No internet connection", titleBtn: "OK") {
+            self.showAlert(message: "alert.cannotLoadData".localized, titleBtn: "alert.titleBtn.OK".localized) {
                 print("No connection")
             }
         }
@@ -205,20 +214,44 @@ class EventDetailV3Controller: UIViewController {
     
     
     @IBAction func handleFollow(_ sender: Any) {
-        
+        if checkLoggedIn() {
+            showAlert(message: "Not logged in".localized, titleBtn: "alert.titleBtn.OK".localized) {
+                self.handleLoginView()
+            }
+        }
     }
     
     @IBAction func handleGoing(_ sender: Any) {
-        
+        if checkLoggedIn() {
+            showAlert(message: "Not logged in".localized, titleBtn: "alert.titleBtn.OK".localized) {
+                self.handleLoginView()
+            }
+        } else {
+            if eventDetail.mystatus != 1 {
+                self.goingEvent()
+            } else {
+                ToastView.shared.short(self.view, txt_msg: "Already join this event")
+            }
+        }
     }
     
     
     @IBAction func handleWent(_ sender: Any) {
-        
+        if checkLoggedIn() {
+            showAlert(message: "Not logged in".localized, titleBtn: "alert.titleBtn.OK".localized) {
+                self.handleLoginView()
+            }
+        } else {
+            if eventDetail.mystatus != 2 {
+                self.wentEvent()
+            } else {
+                ToastView.shared.short(self.view, txt_msg: "Already join this event")
+            }
+        }
     }
     
     @IBAction func handleGoback(_ sender: Any) {
-        navigationController?.popViewController(animated: true)
+        dismiss(animated: true, completion: nil)
     }
 }
 
@@ -241,6 +274,6 @@ extension EventDetailV3Controller : UICollectionViewDataSource, UICollectionView
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: eventCollection.frame.width - 10, height: 150)
+        return CGSize(width: eventCollection.frame.width, height: eventCollection.frame.height)
     }
 }

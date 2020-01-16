@@ -95,13 +95,14 @@ class LoginViewController: UIViewController {
             LoginAPI(email: mail, password: pass).excute(completionHandler: { [weak self] (response) in
                 if response?.loginResponse.status == 1 {
                     let userToken = response?.userToken
+                    self?.saveToken(token: userToken!)
                     self?.showAlert(message: "alert.loginSuccess".localized, titleBtn: "alert.titleBtn.OK".localized) {
-                        self?.saveToken(token: userToken!)
                         self?.handleMyPage()
                     }
                 } else {
                     self?.showAlert(message: "alert.wrongInfomation.text".localized, titleBtn: "alert.titleBtn.OK".localized) {
                         print("Login failed, wrong email or password ")
+                        self?.loading.handleLoading(isLoading: false)
                     }
                 }
             }) { (err) in

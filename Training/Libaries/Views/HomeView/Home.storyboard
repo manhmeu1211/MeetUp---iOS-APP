@@ -37,7 +37,7 @@
                                 <color key="color" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </activityIndicatorView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="v9E-Pv-fbL">
-                                <rect key="frame" x="0.0" y="562.66666666666663" width="375" height="150"/>
+                                <rect key="frame" x="9.3333333333333428" y="562.66666666666663" width="356.33333333333326" height="150"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="150" id="Qep-1v-3L9"/>
@@ -66,7 +66,7 @@
                             <constraint firstItem="Gls-yg-VrB" firstAttribute="top" secondItem="TQZ-GV-pqR" secondAttribute="bottom" constant="8" symbolic="YES" id="Vti-wL-kc3"/>
                             <constraint firstItem="Gls-yg-VrB" firstAttribute="leading" secondItem="XDE-yE-qOn" secondAttribute="leading" id="Xl1-dc-4hF"/>
                             <constraint firstItem="TQZ-GV-pqR" firstAttribute="leading" secondItem="XDE-yE-qOn" secondAttribute="leading" constant="20" id="YEn-iq-26L"/>
-                            <constraint firstItem="v9E-Pv-fbL" firstAttribute="width" secondItem="3Ja-lj-Bro" secondAttribute="width" id="sOW-zA-Ymd"/>
+                            <constraint firstItem="v9E-Pv-fbL" firstAttribute="width" secondItem="3Ja-lj-Bro" secondAttribute="width" multiplier="0.95" id="sOW-zA-Ymd"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="XDE-yE-qOn"/>
                     </view>
