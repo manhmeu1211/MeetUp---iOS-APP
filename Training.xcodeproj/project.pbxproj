@@ -261,7 +261,6 @@
 				0D4DC2F623B21AE100CAA1F3 /* MyPageGoing */,
 				0D462B1323A734B4000332F4 /* MyPageView.xib */,
 				0D462B1223A734B4000332F4 /* MyPageViewController.swift */,
-				0D51DD1F23A8B36000544A1B /* MyPageMainViewController.swift */,
 			);
 			path = MyPageVC;
 			sourceTree = "<group>";
@@ -288,8 +287,7 @@
 		0D6C31D523B0CCEE007605D2 /* SignUpVC */ = {
 			isa = PBXGroup;
 			children = (
-				0D51DD2123A8B39200544A1B /* SignUpMainView.xib */,
-				0D51DD2323A8B84500544A1B /* SignUpMainViewController.swift */,
+				0DD3EA5323D063A200BBC60A /* SigUpMainVC */,
 				0D51DD2523A8B95F00544A1B /* SignUpView.xib */,
 				0D51DD2923A8BF4A00544A1B /* SignUpViewController.swift */,
 			);
@@ -317,6 +315,7 @@
 		0D6C31D823B0CD34007605D2 /* Tabbar */ = {
 			isa = PBXGroup;
 			children = (
+				0DB2FA6B23CDBFC900ABFD47 /* Home.storyboard */,
 				0D478DF123A9CFD70061644E /* TabbarViewController.swift */,
 			);
 			path = Tabbar;
@@ -389,8 +388,9 @@
 		0DB2FA6423CDA20900ABFD47 /* HomeView */ = {
 			isa = PBXGroup;
 			children = (
-				0D6C31D823B0CD34007605D2 /* Tabbar */,
-				0DB2FA6B23CDBFC900ABFD47 /* Home.storyboard */,
+				0D6C31DD23B0CD72007605D2 /* NewsCell */,
+				0D6C31CE23B0CC59007605D2 /* PopularsVC */,
+				0D6C31CD23B0CC24007605D2 /* NewsVC */,
 				0DC433E7239F43F7000C9505 /* HomeNewsViewController.swift */,
 			);
 			path = HomeView;
@@ -437,9 +437,8 @@
 		0DC433D4239F3C79000C9505 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				0DB2FA6423CDA20900ABFD47 /* HomeView */,
+				0D6C31D823B0CD34007605D2 /* Tabbar */,
 				0DB2FA6323CDA1FB00ABFD47 /* AlertView */,
-				0DC433ED239F4C25000C9505 /* Cell */,
 			);
 			name = Views;
 			path = Libaries/Views;
@@ -466,14 +465,6 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		0DC433ED239F4C25000C9505 /* Cell */ = {
-			isa = PBXGroup;
-			children = (
-				0D6C31DD23B0CD72007605D2 /* NewsCell */,
-			);
-			path = Cell;
-			sourceTree = "<group>";
-		};
 		0DCC2D4623C315450030F415 /* API */ = {
 			isa = PBXGroup;
 			children = (
@@ -491,16 +482,33 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
+		0DD3EA5223D0635800BBC60A /* MyPageMainView */ = {
+			isa = PBXGroup;
+			children = (
+				0D51DD1F23A8B36000544A1B /* MyPageMainViewController.swift */,
+			);
+			path = MyPageMainView;
+			sourceTree = "<group>";
+		};
+		0DD3EA5323D063A200BBC60A /* SigUpMainVC */ = {
+			isa = PBXGroup;
+			children = (
+				0D51DD2323A8B84500544A1B /* SignUpMainViewController.swift */,
+				0D51DD2123A8B39200544A1B /* SignUpMainView.xib */,
+			);
+			path = SigUpMainVC;
+			sourceTree = "<group>";
+		};
 		0DFBA8F023A22D2600C8BF31 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				0DD3EA5223D0635800BBC60A /* MyPageMainView */,
+				0DB2FA6423CDA20900ABFD47 /* HomeView */,
 				0D6C31D323B0CCBE007605D2 /* CateVC */,
 				0D6C31CF23B0CC67007605D2 /* EventDetailVC */,
 				0D4DC2F523B1F58C00CAA1F3 /* LoginVC */,
 				0D6C31D123B0CC88007605D2 /* MyPageVC */,
 				0D6C31D223B0CCA9007605D2 /* NearVC */,
-				0D6C31CD23B0CC24007605D2 /* NewsVC */,
-				0D6C31CE23B0CC59007605D2 /* PopularsVC */,
 				0D6C31D623B0CD15007605D2 /* ResetPassVC */,
 				0D6C31D023B0CC78007605D2 /* SearchVC */,
 				0D6C31D523B0CCEE007605D2 /* SignUpVC */,
