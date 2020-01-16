@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -26,6 +26,7 @@
                 <outlet property="eventPeopleCount" destination="xLt-b1-Ezb" id="yff-F3-QJE"/>
                 <outlet property="eventTitle" destination="CAi-Yr-Cjl" id="4hT-ay-6JD"/>
                 <outlet property="imgDetail" destination="8pH-Od-YT8" id="BUz-iN-8yB"/>
+                <outlet property="loading" destination="NXr-jh-zR3" id="Xg0-c8-Vha"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -38,7 +39,7 @@
                     <rect key="frame" x="0.0" y="44" width="414" height="1122"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xzW-2M-SQR">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="942"/>
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="921"/>
                             <subviews>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Mask Group" translatesAutoresizingMaskIntoConstraints="NO" id="8pH-Od-YT8">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="220"/>
@@ -356,21 +357,24 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="xWP-gC-JQJ">
-                                    <rect key="frame" x="16" y="705" width="382" height="180"/>
+                                    <rect key="frame" x="16" y="705" width="382" height="150"/>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="180" id="gXI-Kz-LHF"/>
+                                        <constraint firstAttribute="height" constant="150" id="gXI-Kz-LHF"/>
                                     </constraints>
                                     <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="UUW-jk-xIn">
-                                        <size key="itemSize" width="380" height="180"/>
+                                        <size key="itemSize" width="340" height="150"/>
                                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                         <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                     </collectionViewFlowLayout>
                                 </collectionView>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TrA-nN-vxH">
-                                    <rect key="frame" x="16" y="900" width="183.5" height="32"/>
+                                    <rect key="frame" x="16" y="870" width="183.5" height="41"/>
                                     <color key="backgroundColor" red="0.36470588240000001" green="0.12549019610000001" blue="0.80392156859999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="41" id="1cg-9h-H3F"/>
+                                    </constraints>
                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                     <state key="normal" title="I'm going">
                                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -380,8 +384,11 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ksS-28-mhZ">
-                                    <rect key="frame" x="214.5" y="900" width="183.5" height="32"/>
+                                    <rect key="frame" x="214.5" y="870" width="183.5" height="41"/>
                                     <color key="backgroundColor" red="0.36470588240000001" green="0.12549019610000001" blue="0.80392156859999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="41" id="apH-F4-1vI"/>
+                                    </constraints>
                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                     <state key="normal" title="I went">
                                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -390,6 +397,13 @@
                                         <action selector="handleWent:" destination="-1" eventType="touchUpInside" id="NtV-P9-c3b"/>
                                     </connections>
                                 </button>
+                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="NXr-jh-zR3">
+                                    <rect key="frame" x="187" y="763" width="40" height="40"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="40" id="aEf-5m-RZL"/>
+                                        <constraint firstAttribute="height" constant="40" id="sJM-Wc-J0M"/>
+                                    </constraints>
+                                </activityIndicatorView>
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             <constraints>
@@ -411,7 +425,9 @@
                                 <constraint firstItem="oZZ-Ap-LCW" firstAttribute="leading" secondItem="xzW-2M-SQR" secondAttribute="leading" constant="16" id="P9L-tB-HPC"/>
                                 <constraint firstItem="TrA-nN-vxH" firstAttribute="top" secondItem="xWP-gC-JQJ" secondAttribute="bottom" constant="15" id="QUC-D6-LPT"/>
                                 <constraint firstItem="RjD-re-m2b" firstAttribute="top" secondItem="w58-Uf-bNB" secondAttribute="bottom" id="SLc-HU-Hxp"/>
+                                <constraint firstItem="NXr-jh-zR3" firstAttribute="centerX" secondItem="xzW-2M-SQR" secondAttribute="centerX" id="TKQ-xl-hZp"/>
                                 <constraint firstItem="ksS-28-mhZ" firstAttribute="width" secondItem="TrA-nN-vxH" secondAttribute="width" id="UcD-Vm-slv"/>
+                                <constraint firstItem="NXr-jh-zR3" firstAttribute="centerY" secondItem="xzW-2M-SQR" secondAttribute="centerY" multiplier="1.7" id="V53-sP-F2Q"/>
                                 <constraint firstItem="8Kd-DH-24C" firstAttribute="centerX" secondItem="xzW-2M-SQR" secondAttribute="centerX" id="aEJ-yb-pYh"/>
                                 <constraint firstItem="vzw-wh-Dau" firstAttribute="top" secondItem="RjD-re-m2b" secondAttribute="bottom" constant="5" id="ayI-NN-JjF"/>
                                 <constraint firstItem="TrA-nN-vxH" firstAttribute="leading" secondItem="xzW-2M-SQR" secondAttribute="leading" constant="16" id="c3e-zU-z4M"/>

@@ -13,12 +13,12 @@ class EventsCell: UICollectionViewCell {
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var imgEvent: UIImageView!
     @IBOutlet weak var eventCount: UILabel!
-    @IBOutlet weak var eventDes: UILabel!
     @IBOutlet weak var eventName: UILabel!
+    
+    @IBOutlet weak var eventPeopleGoing: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        containerView.setUpCardView()
     }
 
 }

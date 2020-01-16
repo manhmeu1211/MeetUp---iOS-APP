@@ -17,7 +17,7 @@ class EventDetailV3Controller: UIViewController {
     @IBOutlet weak var eventDate: UILabel!
     @IBOutlet weak var eventLocation: UILabel!
     @IBOutlet weak var eventDetailLocation: UILabel!
-
+    @IBOutlet weak var loading: UIActivityIndicatorView!
     @IBOutlet weak var eventPeopleCount: UILabel!
     @IBOutlet weak var eventContact: UILabel!
     @IBOutlet weak var eventGenre: UILabel!
@@ -50,6 +50,7 @@ class EventDetailV3Controller: UIViewController {
 
 
     private func setUpView() {
+        loading.handleLoading(isLoading: true)
         let swipeRight = UISwipeGestureRecognizer(target: self, action:  #selector(swiped))
         swipeRight.direction = UISwipeGestureRecognizer.Direction.right
         self.view.addGestureRecognizer(swipeRight)
@@ -138,6 +139,7 @@ class EventDetailV3Controller: UIViewController {
     private func getListEventNear() {
           ArtWorkListAPI(radius: 10, longitue: self.eventDetail.longValue, latitude: self.eventDetail.latValue).excute(completionHandler: { [weak self] (response) in
               if response?.statusCode == 0 {
+                self?.loading.handleLoading(isLoading: false)
                   self?.showAlert(message: response!.errMessage, titleBtn: "alert.titleBtn.OK".localized) {
                       print(response!.errMessage!)
                   }
@@ -145,11 +147,13 @@ class EventDetailV3Controller: UIViewController {
                 self?.eventsNear.removeAll()
                 self?.eventsNear = response!.listEventsNear
                 self?.eventCollection.reloadData()
+                self?.loading.handleLoading(isLoading: false)
               }
           }) { (err) in
             self.showAlert(message: "alert.cannotLoadData".localized, titleBtn: "alert.titleBtn.OK".localized) {
                 print("Can't get data")
             }
+            self.loading.handleLoading(isLoading: false)
         }
     }
     
@@ -268,8 +272,8 @@ extension EventDetailV3Controller : UICollectionViewDataSource, UICollectionView
         let url = URL(string: eventsNear[indexPath.row].photo)
         cell.imgEvent!.sd_setImage(with: url, placeholderImage: UIImage(named: "noImage"), completed: nil)
         cell.eventName.text = eventsNear[indexPath.row].name
-        cell.eventDes.attributedText = eventsNear[indexPath.row].descriptionHtml.htmlToAttributedString
-        cell.eventCount.text = "\(eventsNear[indexPath.row].scheduleStartDate) - \(eventsNear[indexPath.row].goingCount) people going"
+        cell.eventCount.text = "\(eventsNear[indexPath.row].scheduleStartDate)"
+        cell.eventPeopleGoing.text = "\(eventsNear[indexPath.row].goingCount) " + "peopleGoing.text".localized
         return cell
     }
     
