@@ -30,6 +30,7 @@
 
 "join.label.text.canParticipate" = "Có thể tham gia";
 "join.label.text.joined" = "Đã tham gia";
+"join.label.text.willJoin" = "Sẽ tham gia";
 "join.label.text.join" = "Tham gia";
 
 

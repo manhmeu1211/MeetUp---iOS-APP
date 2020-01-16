@@ -29,6 +29,7 @@ class EventDetailV3Controller: UIViewController {
     @IBOutlet weak var btnReadmore: UIButton!
     @IBOutlet weak var btnFollow: UIButton!
     
+    @IBOutlet weak var eventContactDetail: UILabel!
     private var eventsNear = [EventsNearResponse]()
     private var eventDetail = EventDetail()
     var id : Int?
@@ -99,10 +100,9 @@ class EventDetailV3Controller: UIViewController {
         eventPeopleCount.text = "\(eventDetail.goingCount) " + "peopleGoing.text".localized
         eventDetailLocation.text = eventDetail.vnLocation
         eventDescription.attributedText = eventDetail.descriptionHtml.htmlToAttributedString
-        eventContact.text = eventDetail.vnName
         eventGenre.text = eventDetail.nameGenre
-        eventContact.text = eventDetail.vnContact
         eventLocation.text = eventDetail.locationEvent
+        eventContactDetail.text = eventDetail.vnContact
         if eventDetail.mystatus == 1 {
             btnGoing.backgroundColor = UIColor.red
         } else if eventDetail.mystatus == 2 {
@@ -141,7 +141,8 @@ class EventDetailV3Controller: UIViewController {
               if response?.statusCode == 0 {
                 self?.loading.handleLoading(isLoading: false)
                   self?.showAlert(message: response!.errMessage, titleBtn: "alert.titleBtn.OK".localized) {
-                      print(response!.errMessage!)
+                    self?.eventsNear.append(EventsNearResponse(id: 0, photo: "", name: response!.errMessage, descriptionHtml: "", scheduleStartDate: "", scheduleEndDate: "", scheduleStartTime: "", scheduleEndTime: "", schedulePermanent: "", goingCount:0))
+                    self?.eventCollection.reloadData()
                   }
               } else {
                 self?.eventsNear.removeAll()
@@ -151,7 +152,8 @@ class EventDetailV3Controller: UIViewController {
               }
           }) { (err) in
             self.showAlert(message: "alert.cannotLoadData".localized, titleBtn: "alert.titleBtn.OK".localized) {
-                print("Can't get data")
+                self.eventsNear.append(EventsNearResponse(id: 0, photo: "", name: "alert.cannotLoadData".localized, descriptionHtml: "", scheduleStartDate: "", scheduleEndDate: "", scheduleStartTime: "", scheduleEndTime: "", schedulePermanent: "", goingCount: 0))
+                self.eventCollection.reloadData()
             }
             self.loading.handleLoading(isLoading: false)
         }

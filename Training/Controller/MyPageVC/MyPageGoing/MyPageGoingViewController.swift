@@ -29,6 +29,7 @@ class MyPageGoingViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        loading.handleLoading(isLoading: true)
         setupView()
         getListGoingEvent()
     }
@@ -42,7 +43,6 @@ class MyPageGoingViewController: UIViewController {
     }
     
     private func setupView() {
-        loading.handleLoading(isLoading: true)
         noEvents.isHidden = true
         goingTable.delegate = self
         goingTable.dataSource = self
@@ -101,6 +101,7 @@ class MyPageGoingViewController: UIViewController {
                     self?.addObject(object: eventGoing)
                 }
                 self?.goingTable.reloadData()
+                self?.loading.handleLoading(isLoading: false)
             }
         }) { (err) in
             self.showAlert(message: "alert.cannotLoadData".localized, titleBtn: "OK", completion: {
@@ -108,8 +109,8 @@ class MyPageGoingViewController: UIViewController {
             })
             self.updateObject()
             self.goingTable.reloadData()
+            self.loading.handleLoading(isLoading: false)
         }
-         self.loading.handleLoading(isLoading: false)
     }
 }
 

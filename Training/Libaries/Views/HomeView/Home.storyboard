@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="h3c-fc-lvt">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="h3c-fc-lvt">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -31,10 +31,12 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="localizeText" value="eventNear.title"/>
                                 </userDefinedRuntimeAttributes>
                             </label>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="ldr-zh-5kQ">
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="ldr-zh-5kQ">
                                 <rect key="frame" x="167.66666666666666" y="366.66666666666669" width="40" height="40"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="color" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="Ben-mD-iXH"/>
+                                    <constraint firstAttribute="width" constant="40" id="Luo-yu-NRh"/>
+                                </constraints>
                             </activityIndicatorView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="v9E-Pv-fbL">
                                 <rect key="frame" x="9.3333333333333428" y="562.66666666666663" width="356.33333333333326" height="150"/>
@@ -53,6 +55,8 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="ldr-zh-5kQ" firstAttribute="centerX" secondItem="XDE-yE-qOn" secondAttribute="centerX" id="1xR-lL-rm6"/>
+                            <constraint firstItem="ldr-zh-5kQ" firstAttribute="centerY" secondItem="XDE-yE-qOn" secondAttribute="centerY" id="37Q-Ip-5JI"/>
                             <constraint firstItem="Q3r-Rq-ck8" firstAttribute="leading" secondItem="XDE-yE-qOn" secondAttribute="leading" id="6fn-Cr-sIZ"/>
                             <constraint firstItem="TQZ-GV-pqR" firstAttribute="top" secondItem="XDE-yE-qOn" secondAttribute="top" constant="20" id="9ft-qP-o4D"/>
                             <constraint firstItem="XDE-yE-qOn" firstAttribute="trailing" secondItem="TQZ-GV-pqR" secondAttribute="trailing" constant="20" id="BAa-NT-1WQ"/>

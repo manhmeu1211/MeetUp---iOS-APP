@@ -31,6 +31,7 @@
 "join.label.text.canParticipate" = "Can participate";
 "join.label.text.joined" = "Participated";
 "join.label.text.join" = "Participate";
+"join.label.text.willJoin" = "Will participate";
 
 
 
