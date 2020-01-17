@@ -28,6 +28,7 @@ class NewsViewController: UIViewController {
     private var isLoadmore : Bool!
     private var alert = UIAlertController()
     private let realm = try! Realm()
+    private let dateFormatter = Date()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -147,7 +148,6 @@ class NewsViewController: UIViewController {
                         self?.addObject(object: news)
                     }
                     self?.updateObject()
-                    self?.newsTable.reloadData()
                 }
             }
         }) { (err) in
@@ -171,6 +171,7 @@ extension NewsViewController: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = newsTable.dequeueReusableCell(withIdentifier: "NewsCell", for: indexPath) as! NewsCell
+        cell.readmoreBtn.isHidden = true
         cell.lblDes.text = "By \(newsResponse[indexPath.row].author) - From \(newsResponse[indexPath.row].feed)"
         cell.title.text = newsResponse[indexPath.row].title
         cell.date.text = "\(newsResponse[indexPath.row].publishdate)"

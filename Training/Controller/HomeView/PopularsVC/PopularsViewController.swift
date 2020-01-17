@@ -25,6 +25,7 @@ class PopularsViewController: UIViewController {
     private var userToken = UserDefaults.standard.string(forKey: "userToken")
     private var headers = [String : String]()
     private let realm = try! Realm()
+    let dateFormatter = Date()
     
     
     override func viewDidLoad() {
@@ -133,6 +134,7 @@ class PopularsViewController: UIViewController {
                     self?.popularResponse.removeAll()
                     self?.deleteObject()
                     for events in response!.listPopulars {
+  
                         self?.addObject(object: events)
                     }
                     self?.updateObject()

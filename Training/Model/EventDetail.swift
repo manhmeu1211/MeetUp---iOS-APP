@@ -31,6 +31,7 @@ class EventDetail: Object {
     @objc dynamic var longValue = 0.0
     @objc dynamic var mystatus = 0
     @objc dynamic var locationEvent = ""
+    let dateFormatter = Date()
     
     convenience init(id: Int, photo :String , name: String, descriptionHtml : String, scheduleStartDate : String, scheduleEndDate : String, scheduleStartTime: String, scheduleEndTime : String, schedulePermanent : String, goingCount: Int, nameGenre : String, vnLocation : String, vnContact : String, vnName : String, locationEvent : String ) {
         self.init()
@@ -58,7 +59,9 @@ class EventDetail: Object {
         self.photo = detail["photo"].stringValue
         self.name = detail["name"].stringValue
         self.descriptionHtml = detail["description_html"].stringValue
-        self.scheduleStartDate = detail["schedule_start_date"].stringValue
+        let date = self.dateFormatter.converStringToDate(formatter: .dateOnlyFromServer, dateString: detail["schedule_start_date"].stringValue)
+        let dateString = date?.convertDateToString(formatter: .dayAndDate, date: date!)
+        self.scheduleStartDate = dateString!
         self.scheduleEndDate = detail["schedule_end_date"].stringValue
         self.scheduleStartTime = detail["schedule_start_time"].stringValue
         self.scheduleEndTime = detail["schedule_end_time"].stringValue

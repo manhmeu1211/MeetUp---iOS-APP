@@ -19,6 +19,7 @@ class NewsCell: UITableViewCell {
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var statusImage: UIImageView!
     @IBOutlet weak var statusLabel: UILabel!
+    @IBOutlet weak var readmoreBtn: UIButton!
     
     
     override func awakeFromNib() {
@@ -27,6 +28,19 @@ class NewsCell: UITableViewCell {
         containerView.setUpCardView()
     }
 
+    @IBAction func handleReadmore(_ sender: Any) {
+        
+        if lblDes.numberOfLines == 0 {
+            readmoreBtn.setTitle("readmore.titleBtn".localized, for: .normal)
+            lblDes.numberOfLines = 4
+         } else {
+            lblDes.numberOfLines = 0
+            lblDes.lineBreakMode = .byWordWrapping
+            lblDes.sizeToFit()
+            readmoreBtn.setTitle("less.titleBtn".localized, for: .normal)
+         }
+    }
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         containerView.layoutIfNeeded()

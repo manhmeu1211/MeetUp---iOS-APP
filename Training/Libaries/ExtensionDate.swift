@@ -12,7 +12,8 @@ import UIKit
 extension Date {
     
     enum StyleDate: String {
-        case dayAndDate = "EEE yyyy/MM/dd"
+
+        case dayAndDate = "EEEE, MMM d, yyyy"
         case dateOnly = "yyyy/MM/dd"
         case hourOnly = "HH:mm a"
         case dateAndHour = "yyyy/MM/dd HH:mm"
@@ -31,10 +32,11 @@ extension Date {
         case concurrenceEvent = "yyyyMMdd'T'HHmmssZ"
     }
     
-    func convertDateToString(formatter: Date.StyleDate) -> String? {
+    func convertDateToString(formatter: Date.StyleDate, date : Date) -> String? {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = formatter.rawValue
-        let dateString = dateFormatter.string(from: self)
+        dateFormatter.locale = Locale(identifier: "locale".localized)
+        let dateString = dateFormatter.string(from: date)
         return dateString
     }
     
@@ -44,6 +46,10 @@ extension Date {
         let date = dateFormatter.date(from: dateString)
         return date
     }
+}
+
+extension DateFormatter {
+    
 }
 
 extension NSDate {

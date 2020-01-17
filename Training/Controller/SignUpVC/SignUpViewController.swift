@@ -29,6 +29,26 @@ class SignUpViewController: UIViewController {
         checkTextfiedToDisableButton()
     }
     
+  
+    
+    override func viewDidAppear(_ animated: Bool) {
+        nameView.center.x -= view.bounds.width
+        passwordView.center.x -= view.bounds.width
+        emailView.center.x -= view.bounds.width
+        
+        UIView.animate(withDuration: 0.6) {
+            self.nameView.center.x += self.view.bounds.width
+        }
+        UIView.animate(withDuration: 0.7) {
+            self.emailView.center.x += self.view.bounds.width
+        }
+        
+        UIView.animate(withDuration: 0.8) {
+            self.passwordView.center.x += self.view.bounds.width
+        }
+                  
+    }
+    
     
     // MARK: - Function setup view
     
@@ -46,6 +66,7 @@ class SignUpViewController: UIViewController {
         email.delegate = self
         fullName.tag = 0
     }
+    
     
   @objc func textFieldDidChange(sender: UITextField) {
         checkTextfiedToDisableButton()

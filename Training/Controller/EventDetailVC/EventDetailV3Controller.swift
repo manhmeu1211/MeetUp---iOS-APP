@@ -40,6 +40,28 @@ class EventDetailV3Controller: UIViewController {
         setUpView()
         setUpCollectionView()
         getDetailEvent(eventID: id!)
+
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+    
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        backgroundView.center.x -= view.bounds.width
+        eventDescription.center.y += view.bounds.height
+        UIView.animate(withDuration: 0.7, delay: 0.2, options: [],
+         animations: {
+           self.backgroundView.center.x += self.view.bounds.width
+         },
+         completion: nil
+        )
+        UIView.animate(withDuration: 1, delay: 0.4, options: [],
+         animations: {
+            self.eventDescription.center.y -= self.view.bounds.height
+         },
+         completion: nil
+        )
     }
     
     private func setUpCollectionView() {
@@ -67,9 +89,7 @@ class EventDetailV3Controller: UIViewController {
         btnFollow.layer.borderColor = UIColor(rgb: 0x5D20CD).cgColor
         btnFollow.layer.borderWidth = 0.5
         btnFollow.layer.cornerRadius = 10
-        backgroundView.layoutIfNeeded()
-        btnGoing.layoutIfNeeded()
-        btnWent.layoutIfNeeded()
+  
     }
     
     
@@ -116,6 +136,7 @@ class EventDetailV3Controller: UIViewController {
         }
         print(eventDetail.mystatus)
         getListEventNear()
+
     }
 
     

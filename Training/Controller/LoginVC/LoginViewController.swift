@@ -18,6 +18,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var txtPassword: UITextField!
     @IBOutlet weak var loading: UIActivityIndicatorView!
     
+    @IBOutlet weak var forgotPassbtn: UIButton!
     private var alertLoginFailed = UIAlertController()
     
     override func viewDidLoad() {
@@ -25,6 +26,20 @@ class LoginViewController: UIViewController {
         setUpItemBar()
         setupView()
         checkTextfiedToDisableButton()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        forgotPassbtn.center.y += view.bounds.height
+        passwordView.center.y -= view.bounds.height
+        emailView.center.x += view.bounds.width
+        UIView.animate(withDuration: 0.7, delay: 0.2, options: [],
+            animations: {
+              self.emailView.center.x -= self.view.bounds.width
+                self.passwordView.center.y += self.view.bounds.height
+                self.forgotPassbtn.center.y -= self.view.bounds.height
+            },
+            completion: nil
+           )
     }
     
     

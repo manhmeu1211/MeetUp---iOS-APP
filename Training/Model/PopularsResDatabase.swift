@@ -24,7 +24,7 @@ class PopularsResDatabase: Object {
     @objc dynamic var schedulePermanent = ""
     @objc dynamic var goingCount = 0
     @objc dynamic var myStatus = 0
-
+    let dateFormatter = Date()
     
     convenience init(populars : JSON) {
         self.init()
@@ -32,7 +32,9 @@ class PopularsResDatabase: Object {
         self.photo = populars["photo"].stringValue
         self.name = populars["name"].stringValue
         self.descriptionHtml = populars["description_html"].stringValue
-        self.scheduleStartDate = populars["schedule_start_date"].stringValue
+        let date = self.dateFormatter.converStringToDate(formatter: .dateOnlyFromServer, dateString: populars["schedule_start_date"].stringValue)
+        let dateString = date?.convertDateToString(formatter: .dayAndDate, date: date!)
+        self.scheduleStartDate = dateString!
         self.scheduleEndDate = populars["schedule_end_date"].stringValue
         self.scheduleStartTime = populars["schedule_start_time"].stringValue
         self.scheduleEndTime = populars["schedule_end_time"].stringValue

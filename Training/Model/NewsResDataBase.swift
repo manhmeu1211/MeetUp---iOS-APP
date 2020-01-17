@@ -17,10 +17,10 @@ class NewsDataResponse: Object {
     @objc dynamic var feed = ""
     @objc dynamic var title = ""
     @objc dynamic var thumbImg = ""
-    
     @objc dynamic var author = ""
     @objc dynamic var publishdate = ""
     @objc dynamic var url = ""
+    let dateFormatter = Date()
 
    
     convenience init(news : JSON) {
@@ -30,14 +30,19 @@ class NewsDataResponse: Object {
         self.title = news["title"].stringValue
         self.thumbImg = news["thumb_img"].stringValue
         self.author = news["author"].stringValue
-        self.publishdate = news["publish_date"].stringValue
+        let date = self.dateFormatter.converStringToDate(formatter: .dateTimeFromServer, dateString: news["publish_date"].stringValue)
+        let dateString = date?.convertDateToString(formatter: .dayAndDate, date: date!)
+        self.publishdate = dateString!
         self.url = news["detail_url"].stringValue
     }
 }
 
 class NewsListAPI: APIMeetUpService<NewsData> {
     init(pageIndex: Int, pageSize : Int) {
-        super.init(request: APIMeetUpRequest(name: "API0001  Get news ", path: "listNews", method: .get, parameters: ["pageIndex": pageIndex, "pageSize": pageSize]))
+        super.init(request: APIMeetUpRequest(name: "API0001  Get news ",
+                                             path: "listNews",
+                                             method: .get,
+                                             parameters: ["pageIndex": pageIndex, "pageSize": pageSize]))
     }
 }
 

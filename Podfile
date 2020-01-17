@@ -11,5 +11,4 @@ target 'Training' do
   	pod 'RealmSwift'
 	pod 'SwiftLint'
 	pod 'SDWebImage', '~> 5.0'
-	pod 'ReadMoreTextView'
 end

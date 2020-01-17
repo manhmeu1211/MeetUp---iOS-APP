@@ -12,6 +12,7 @@
             <connections>
                 <outlet property="containerView" destination="SCP-PW-qPk" id="j3R-Xh-MyU"/>
                 <outlet property="emailView" destination="yKK-GB-8aW" id="iWM-At-fKY"/>
+                <outlet property="forgotPassbtn" destination="ynZ-hf-QYI" id="OQR-lN-yg1"/>
                 <outlet property="loading" destination="Yho-Eo-B2k" id="ZYv-Uu-AZA"/>
                 <outlet property="passwordView" destination="Z0a-jB-gXk" id="JRl-vS-NhL"/>
                 <outlet property="txtEmail" destination="u01-m7-XL4" id="Opb-aV-A6Q"/>
