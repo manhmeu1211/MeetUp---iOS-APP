@@ -206,7 +206,7 @@ class EventDetailV3Controller: UIViewController {
     
     @IBAction func handleReadmore(_ sender: Any) {
         if eventDescription.numberOfLines == 0 {
-             btnReadmore.setTitle("Read more..", for: .normal)
+            btnReadmore.setTitle("readmore.titleBtn".localized, for: .normal)
              eventDescription.numberOfLines = 4
              eventDescription.lineBreakMode = .byWordWrapping
              eventDescription.sizeToFit()
@@ -214,7 +214,7 @@ class EventDetailV3Controller: UIViewController {
              eventDescription.numberOfLines = 0
              eventDescription.lineBreakMode = .byWordWrapping
              eventDescription.sizeToFit()
-             btnReadmore.setTitle("Less...", for: .normal)
+            btnReadmore.setTitle("less.titleBtn".localized, for: .normal)
          }
     }
     

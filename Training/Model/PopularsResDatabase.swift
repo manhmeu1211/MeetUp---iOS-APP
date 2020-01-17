@@ -57,10 +57,9 @@ struct PopularsData : MeetUpResponse {
         let data = json["response"]["events"].array
         status = json["status"].intValue
         if status == 1 {
-            for item in data! {
-                let populars = PopularsResDatabase(populars: item)
-                listPopulars.append(populars)
-            }
+            listPopulars = data!.map({ (value) -> PopularsResDatabase in
+                return PopularsResDatabase(populars: value)
+            })
         } else {
             errMessage = json["error_message"].stringValue
         }

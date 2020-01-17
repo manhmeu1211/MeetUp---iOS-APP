@@ -28,7 +28,10 @@ class PostAPIResponse {
 
 class LoginAPI : APIMeetUpService<LoginResponse> {
     init(email : String, password : String) {
-        super.init(request: APIMeetUpRequest(name: "API00010  Login ", path: "login", method: .post, parameters: ["email" : email, "password" : password]))
+        super.init(request: APIMeetUpRequest(name: "API00010  Login ",
+                                             path: "login",
+                                             method: .post,
+                                             parameters: ["email" : email, "password" : password]))
     }
 }
 

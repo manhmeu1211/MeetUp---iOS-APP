@@ -46,10 +46,9 @@ struct CategoriesData : MeetUpResponse {
             errMessage = json["error_mesage"].stringValue
         } else {
             let data = json["response"]["categories"].array
-            for item in data! {
-                let categories = CategoriesResDatabase(cate : item)
-                listCategories.append(categories)
-            }
+            listCategories = data!.map({ (value) -> CategoriesResDatabase in
+                return CategoriesResDatabase(cate: value)
+            })
         }
     }
 }

@@ -138,7 +138,7 @@ class NewsViewController: UIViewController {
                 if shoudLoadmore == false {
                     self?.newsResponse.removeAll()
                     self?.deleteObject()
-                    for news in response!.listNews {
+                    response!.listNews.forEach { (news) in
                         self?.addObject(object: news)
                     }
                     self?.updateObject()

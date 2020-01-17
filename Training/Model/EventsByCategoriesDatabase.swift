@@ -60,10 +60,9 @@ struct EventsByCategoriesData : MeetUpResponse {
             if data!.isEmpty {
                 errMessage = "Empty"
             } else {
-                for item in data! {
-                    let events = EventsByCategoriesDatabase(event: item)
-                    listEventsByCate.append(events)
-                }
+                listEventsByCate = data!.map({ (value) -> EventsByCategoriesDatabase in
+                    return EventsByCategoriesDatabase(event: value)
+                })
             }
         }
     }

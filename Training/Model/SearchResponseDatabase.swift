@@ -55,10 +55,9 @@ struct SearchsData : MeetUpResponse {
             errMessage = json["error_message"].stringValue
         } else {
             let data = json["response"]["events"].array
-            for item in data! {
-                let events = SearchResponseDatabase(search: item)
-                listSearch.append(events)
-            }
+            data?.forEach({ (value) in
+                listSearch.append(SearchResponseDatabase(search: value))
+            })
         }
     }
 }

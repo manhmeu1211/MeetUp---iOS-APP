@@ -110,6 +110,11 @@
 "search.noResultPast.text" = "No event passed...:'(";
 "eventsPast.text" = "Passed";
 "eventsIncoming.text" = "Incoming" ;
+"title" = "Title";
+"description" = "Description";
+"eventNear" = "Event near";
+"readmore.titleBtn" = "Read more";
+"less.titleBtn" = "Less...";
 
 
 

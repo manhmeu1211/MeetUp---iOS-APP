@@ -49,10 +49,9 @@ struct NewsData : MeetUpResponse {
         status = json["status"].intValue
         if status == 1 {
             let data = json["response"]["news"].array
-            for item in data! {
-                let news = NewsDataResponse(news: item)
-                listNews.append(news)
-            }
+            listNews = data!.map({ (value) -> NewsDataResponse in
+                return NewsDataResponse(news: value)
+            })
         } else {
             errMessage = json["error_message"].stringValue
         }

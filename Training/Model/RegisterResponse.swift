@@ -12,7 +12,10 @@ import UIKit
 
 class RegisterAPI : APIMeetUpService<RegisterResponse> {
     init(email : String, password : String, fullname : String) {
-        super.init(request: APIMeetUpRequest(name: "API00012  Register ", path: "register", method: .post, parameters: ["email" : email, "password" : password, "name" : fullname]))
+        super.init(request: APIMeetUpRequest(name: "API00012  Register ",
+                                             path: "register",
+                                             method: .post,
+                                             parameters: ["email" : email, "password" : password, "name" : fullname]))
     }
 }
 
@@ -30,7 +33,10 @@ struct RegisterResponse : MeetUpResponse {
 
 class ResetPassAPI : APIMeetUpService<ResetPassResponse> {
     init(email : String) {
-        super.init(request: APIMeetUpRequest(name: "API00013  Resetpass ", path: "resetPassword", method: .post, parameters: ["email" : email]))
+        super.init(request: APIMeetUpRequest(name: "API00013  Resetpass ",
+                                             path: "resetPassword",
+                                             method: .post,
+                                             parameters: ["email" : email]))
     }
 }
 

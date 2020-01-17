@@ -56,10 +56,9 @@ struct MyPageWentData : MeetUpResponse {
             errMessage = json["error_message"].stringValue
         } else {
             let data = json["response"]["events"].array
-            for item in data! {
-                let events = MyPageWentResDatabase(goingEvents: item)
-                listEventsWent.append(events)
-            }
+            listEventsWent = data!.map({ (value) -> MyPageWentResDatabase in
+                return MyPageWentResDatabase(goingEvents: value)
+            })
         }
     }
 }

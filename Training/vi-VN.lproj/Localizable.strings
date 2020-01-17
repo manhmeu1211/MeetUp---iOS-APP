@@ -110,6 +110,10 @@
 "search.noResultPast.text" = "Không có sự kiện nào đã diễn ra...:'(";
 "eventsPast.text" = "Đã diễn ra";
 "eventsIncoming.text" = "Sắp diễn ra" ;
-
+"title" = "Tiêu đề";
+"description" = "Mô tả";
+"eventNear" = "Sự kiện quanh đây";
+"readmore.titleBtn" = "Đọc thêm";
+"less.titleBtn" = "Ẩn bớt...";
 
 

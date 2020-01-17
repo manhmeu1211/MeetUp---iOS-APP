@@ -103,10 +103,9 @@ struct ArtWorksData : MeetUpResponse {
         } else {
             anotion = json["response"]["events"]
             let events = json["response"]["events"].array
-            for item in events! {
-                let eventsNear = EventsNearResponse(events : item)
-                listEventsNear.append(eventsNear)
-            }
+            listEventsNear = events!.map({ (value) -> EventsNearResponse in
+                return EventsNearResponse(events: value)
+            })
         }
     }
 }
