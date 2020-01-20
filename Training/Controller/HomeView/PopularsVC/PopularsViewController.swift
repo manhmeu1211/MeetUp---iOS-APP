@@ -169,6 +169,7 @@ extension PopularsViewController : UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "NewsCell", for: indexPath) as! NewsCell
         let url = URL(string: popularResponse[indexPath.row].photo)
+        let idEvent = popularResponse[indexPath.row].id
         cell.imgNews.sd_setImage(with: url, placeholderImage: UIImage(named: "noImage"), completed: nil)
         cell.date.textColor = UIColor(rgb: 0x5D20CD)
         cell.date.text = "\(popularResponse[indexPath.row].scheduleStartDate) - \(popularResponse[indexPath.row].goingCount) " + "peopleGoing.text".localized
@@ -207,14 +208,20 @@ extension PopularsViewController : UITableViewDataSource, UITableViewDelegate {
         }
     }
     
+    
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let id = popularResponse[indexPath.row].id
-        let detailVCV2 = EventDetailV3Controller(nibName: "EventDetailV3Controller", bundle: nil)
-        detailVCV2.id = id
-        present(detailVCV2, animated: true, completion: nil)
+        let idEvent = popularResponse[indexPath.row].id
+        getDetailVC(id: idEvent)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
+    }
+    
+    private func getDetailVC(id : Int) {
+        let detailVCV2 = EventDetailV3Controller(nibName: "EventDetailV3Controller", bundle: nil)
+        detailVCV2.id = id
+        present(detailVCV2, animated: true, completion: nil)
     }
 }

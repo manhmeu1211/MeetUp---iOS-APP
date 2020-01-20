@@ -22,6 +22,12 @@ class CustomAlertViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpView()
+        let tapGes = UITapGestureRecognizer(target: self, action: #selector(dismissVC))
+        view.addGestureRecognizer(tapGes)
+    }
+    
+    @objc private func dismissVC() {
+        dismiss(animated: true, completion: nil)
     }
     
     private func setUpView() {
@@ -33,7 +39,7 @@ class CustomAlertViewController: UIViewController {
 
     @IBAction func handleAlert(_ sender: Any) {
         handle?()
-        dismiss(animated: true, completion: nil)
+        dismissVC()
     }
     
 }

@@ -36,11 +36,11 @@ class Artwork: NSObject, MKAnnotation {
     var imageName: String? {
         switch discipline {
             case "yellow":
-                return "Flag"
+                return "icon-lcpurple"
             case "Sculpture":
                 return "X"
             default:
-                return "yellowMarker"
+                return "icon-located"
         }
     }
 

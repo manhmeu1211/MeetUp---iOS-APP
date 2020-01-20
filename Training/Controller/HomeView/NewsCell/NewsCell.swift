@@ -29,16 +29,7 @@ class NewsCell: UITableViewCell {
     }
 
     @IBAction func handleReadmore(_ sender: Any) {
-        
-        if lblDes.numberOfLines == 0 {
-            readmoreBtn.setTitle("readmore.titleBtn".localized, for: .normal)
-            lblDes.numberOfLines = 4
-         } else {
-            lblDes.numberOfLines = 0
-            lblDes.lineBreakMode = .byWordWrapping
-            lblDes.sizeToFit()
-            readmoreBtn.setTitle("less.titleBtn".localized, for: .normal)
-         }
+ 
     }
     
     override func layoutSubviews() {

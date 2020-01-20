@@ -52,7 +52,7 @@
 "myPage.label.text" = "Trang của tôi";
 "haveToLogin.label.text" = "Bạn cần đăng nhập trước";
 "dontHaveAccount.label.text" = "Không có tài khoản?";
-"Not logged in" = "Chưa đăng nhập";
+"Not logged in" = "Bạn phải đăng nhập để sử dụng chức năng này";
 "pleaseLogin.label.text" = "Đăng nhập để quản lý sự kiện của bạn";
 "not logged in" = "Chưa đăng nhập";
 "eventsGoing.text" = "Có thể tham gia";

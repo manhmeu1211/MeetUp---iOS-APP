@@ -52,7 +52,7 @@
 "myPage.label.text" = "My page";
 "haveToLogin.label.text" = "You have to login first";
 "dontHaveAccount.label.text" = "Don't have an account?";
-"Not logged in" = "Not logged in";
+"Not logged in" = "You have to login";
 "pleaseLogin.label.text" = "Login to managed your events";
 "not logged in" = "Not logged in";
 "eventsGoing.text" = "Can participate";

@@ -130,7 +130,11 @@ class EventDetailV3Controller: UIViewController {
             btnWent.isEnabled = false
             btnGoing.isEnabled = false
             btnFollow.setTitle("Followed", for: .normal)
-        } else {
+        } else if userToken == nil {
+            btnGoing.backgroundColor = UIColor(rgb: 0xC8C5CD)
+            btnWent.backgroundColor = UIColor(rgb: 0xC8C5CD)
+        }
+        else {
             btnGoing.backgroundColor = UIColor(rgb: 0x5D20CD)
             btnWent.backgroundColor = UIColor(rgb: 0x5D20CD)
         }
