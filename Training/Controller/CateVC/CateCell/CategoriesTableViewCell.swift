@@ -9,7 +9,7 @@
 import UIKit
 
 class CategoriesTableViewCell: UITableViewCell {
-
+    
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var lblName: UILabel!
     @IBOutlet weak var imgIcon: UIImageView!
@@ -19,7 +19,7 @@ class CategoriesTableViewCell: UITableViewCell {
         super.awakeFromNib()
         containerView.setUpCardView()
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }

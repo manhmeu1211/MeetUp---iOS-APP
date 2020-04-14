@@ -13,16 +13,16 @@ import SwiftyJSON
 
 class MyPageGoingResDatabase: Object {
     
-    @objc dynamic var id = 0
-    @objc dynamic var photo = ""
-    @objc dynamic var name = ""
-    @objc dynamic var descriptionHtml = ""
-    @objc dynamic var scheduleStartDate = ""
-    @objc dynamic var scheduleEndDate = ""
-    @objc dynamic var scheduleStartTime = ""
-    @objc dynamic var scheduleEndTime = ""
-    @objc dynamic var schedulePermanent = ""
-    @objc dynamic var goingCount = 0
+    @objc dynamic var id: Int  = 0
+    @objc dynamic var photo: String  = ""
+    @objc dynamic var name: String  = ""
+    @objc dynamic var descriptionHtml: String  = ""
+    @objc dynamic var scheduleStartDate: String  = ""
+    @objc dynamic var scheduleEndDate: String  = ""
+    @objc dynamic var scheduleStartTime: String  = ""
+    @objc dynamic var scheduleEndTime: String  = ""
+    @objc dynamic var schedulePermanent: String  = ""
+    @objc dynamic var goingCount: Int  = 0
     
     convenience init(goingEvents : JSON) {
         self.init()
@@ -49,12 +49,12 @@ class MyPageGoingsListAPI: APIMeetUpService<MyPageGoingsData> {
 
 struct MyPageGoingsData : MeetUpResponse {
     var listEventsGoings = [MyPageGoingResDatabase]()
-    var status : Int!
-    var errMessage : String!
+    var status : Int = 0
+    var errMessage : String?
     init(json: JSON) {
         status = json["status"].intValue
         if status == 0 {
-            errMessage = json["error_message"].stringValue
+            errMessage = json["error_message"].stringValue ?? ""
         } else {
             let data = json["response"]["events"].array
             listEventsGoings = data!.map({ (value) -> MyPageGoingResDatabase in

@@ -26,7 +26,7 @@ class SearchViewController: UIViewController {
     private var searchResultPast = [SearchResponseDatabase]()
     private var searchResultInComing = [SearchResponseDatabase]()
     private var alertLoading = UIAlertController()
-    private var isHaveConnection : Bool!
+    private var isHaveConnection : Bool = false
     private var today = Date()
     private let dateFormatter = Date()
     private var isToggleResult = true

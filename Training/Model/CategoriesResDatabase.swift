@@ -12,11 +12,11 @@ import SwiftyJSON
 
 
 class CategoriesResDatabase: Object {
-    @objc dynamic var id = 0
-    @objc dynamic var name = ""
-    @objc dynamic var slug = ""
-    @objc dynamic var parentId = 0
-    @objc dynamic var icon = ""
+    @objc dynamic var id: Int = 0
+    @objc dynamic var name: String = ""
+    @objc dynamic var slug: String = ""
+    @objc dynamic var parentId: Int = 0
+    @objc dynamic var icon: String = ""
   
  
     convenience init(cate: JSON) {
@@ -38,12 +38,12 @@ class CategoriesListAPI: APIMeetUpService<CategoriesData> {
 
 struct CategoriesData : MeetUpResponse {
     var listCategories = [CategoriesResDatabase]()
-    var status : Int!
-    var errMessage : String!
+    var status : Int = 0
+    var errMessage : String?
     init(json: JSON) {
         status = json["status"].intValue
         if status == 0 {
-            errMessage = json["error_mesage"].stringValue
+            errMessage = json["error_mesage"].stringValue ?? ""
         } else {
             let data = json["response"]["categories"].array
             listCategories = data!.map({ (value) -> CategoriesResDatabase in

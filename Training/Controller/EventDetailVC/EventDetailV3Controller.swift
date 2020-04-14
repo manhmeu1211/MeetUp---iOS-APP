@@ -32,7 +32,7 @@ class EventDetailV3Controller: UIViewController {
     @IBOutlet weak var eventContactDetail: UILabel!
     private var eventsNear = [EventsNearResponse]()
     private var eventDetail = EventDetail()
-    var id : Int?
+    var id : Int = 0
     private let userToken = UserDefaults.standard.string(forKey: "userToken")
     
     override func viewDidLoad() {
@@ -119,7 +119,7 @@ class EventDetailV3Controller: UIViewController {
         eventDate.text = eventDetail.scheduleStartDate
         eventPeopleCount.text = "\(eventDetail.goingCount) " + "peopleGoing.text".localized
         eventDetailLocation.text = eventDetail.vnLocation
-        eventDescription.attributedText = eventDetail.descriptionHtml.htmlToAttributedString
+        eventDescription.text = eventDetail.descriptionHtml.htmlToString
         eventGenre.text = eventDetail.nameGenre
         eventLocation.text = eventDetail.locationEvent
         eventContactDetail.text = eventDetail.vnContact

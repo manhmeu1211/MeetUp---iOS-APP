@@ -21,10 +21,10 @@ class RegisterAPI : APIMeetUpService<RegisterResponse> {
 
 struct RegisterResponse : MeetUpResponse {
     var registerResponse = PostAPIResponse()
-    var userToken : String!
+    var userToken : String?
     init(json: JSON) {
         let data = json
-        userToken = data["respons"]["token"].stringValue
+        userToken = data["respons"]["token"].stringValue ?? ""
         registerResponse = PostAPIResponse(data: data)
     }
 }

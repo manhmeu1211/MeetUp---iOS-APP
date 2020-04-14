@@ -13,24 +13,24 @@ import SwiftyJSON
 
 class EventDetail: Object {
     
-    @objc dynamic var id = 0
-    @objc dynamic var photo = ""
-    @objc dynamic var name = ""
-    @objc dynamic var descriptionHtml = ""
-    @objc dynamic var scheduleStartDate = ""
-    @objc dynamic var scheduleEndDate = ""
-    @objc dynamic var scheduleStartTime = ""
-    @objc dynamic var scheduleEndTime = ""
-    @objc dynamic var schedulePermanent = ""
-    @objc dynamic var goingCount = 0
-    @objc dynamic var nameGenre = ""
-    @objc dynamic var vnLocation = ""
-    @objc dynamic var vnContact = ""
-    @objc dynamic var vnName = ""
-    @objc dynamic var latValue = 0.0
-    @objc dynamic var longValue = 0.0
-    @objc dynamic var mystatus = 0
-    @objc dynamic var locationEvent = ""
+    @objc dynamic var id: Int = 0
+    @objc dynamic var photo: String = ""
+    @objc dynamic var name: String = ""
+    @objc dynamic var descriptionHtml: String = ""
+    @objc dynamic var scheduleStartDate: String = ""
+    @objc dynamic var scheduleEndDate: String = ""
+    @objc dynamic var scheduleStartTime: String = ""
+    @objc dynamic var scheduleEndTime: String = ""
+    @objc dynamic var schedulePermanent: String = ""
+    @objc dynamic var goingCount: Int = 0
+    @objc dynamic var nameGenre: String = ""
+    @objc dynamic var vnLocation: String = ""
+    @objc dynamic var vnContact: String = ""
+    @objc dynamic var vnName: String = ""
+    @objc dynamic var latValue: Double = 0.0
+    @objc dynamic var longValue: Double = 0.0
+    @objc dynamic var mystatus: Int = 0
+    @objc dynamic var locationEvent: String = ""
     let dateFormatter = Date()
     
     convenience init(id: Int, photo :String , name: String, descriptionHtml : String, scheduleStartDate : String, scheduleEndDate : String, scheduleStartTime: String, scheduleEndTime : String, schedulePermanent : String, goingCount: Int, nameGenre : String, vnLocation : String, vnContact : String, vnName : String, locationEvent : String ) {
@@ -87,12 +87,12 @@ class EventsDetailAPI: APIMeetUpService<EventDetailData> {
 
 struct EventDetailData : MeetUpResponse {
     var eventDetail = EventDetail()
-    var status : Int!
-    var errMessage : String!
+    var status : Int = 0
+    var errMessage : String?
     init(json: JSON) {
         status = json["status"].intValue
         if status == 0 {
-            errMessage = json["error_message"].stringValue
+            errMessage = json["error_message"].stringValue ?? ""
         } else {
             let data = json["response"]["events"]
             let detailVenue = data["venue"]

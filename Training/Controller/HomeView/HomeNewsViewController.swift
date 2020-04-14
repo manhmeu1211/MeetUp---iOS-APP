@@ -21,6 +21,8 @@ class HomeNewsViewController: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var leftView: UIView!
     @IBOutlet weak var rightView: UIView!
+    
+    
     let newsView = NewsViewController()
     let popularsView = PopularsViewController()
     
@@ -41,7 +43,7 @@ class HomeNewsViewController: UIViewController {
     
     
     @IBAction func btnNews(_ sender: Any) {
-         scrollView.setContentOffset(CGPoint(x: 0.0, y: 0.0), animated: true)
+        scrollView.setContentOffset(CGPoint(x: 0.0, y: 0.0), animated: true)
     }
     
     

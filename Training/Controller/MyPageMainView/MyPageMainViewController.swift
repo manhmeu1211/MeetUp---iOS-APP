@@ -9,7 +9,7 @@
 import UIKit
 
 class MyPageMainViewController: UIViewController {
-
+    
     @IBOutlet weak var btnLoginUI: UIButton!
     
     
@@ -46,18 +46,18 @@ class MyPageMainViewController: UIViewController {
         mainSUp.isLoginView = false
         navigationController?.pushViewController(mainSUp, animated: true)
     }
-
+    
     private func handleMainLogin() {
-          let mainSUp = SignUpMainViewController()
-          mainSUp.isLoginView = true
-          navigationController?.pushViewController(mainSUp, animated: true)
+        let mainSUp = SignUpMainViewController()
+        mainSUp.isLoginView = true
+        navigationController?.pushViewController(mainSUp, animated: true)
     }
-      
+    
     
     @IBAction func signUpHandle(_ sender: Any) {
-       handleMainSignUp()
+        handleMainSignUp()
     }
-
+    
     @IBAction func loginHandle(_ sender: Any) {
         handleMainLogin()
     }

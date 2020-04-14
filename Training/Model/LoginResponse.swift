@@ -12,9 +12,9 @@ import SwiftyJSON
 
 class PostAPIResponse {
     
-    var status = 0
-    var errorCode = 0
-    var errorMessage = ""
+    var status: Int = 0
+    var errorCode: Int = 0
+    var errorMessage: String = ""
     
     convenience init(data : JSON) {
         self.init()
@@ -37,10 +37,10 @@ class LoginAPI : APIMeetUpService<LoginResponse> {
 
 struct LoginResponse : MeetUpResponse {
     var loginResponse = PostAPIResponse()
-    var userToken : String!
+    var userToken : String?
     init(json: JSON) {
         let data = json
-        userToken = data["response"]["token"].stringValue
+        userToken = data["response"]["token"].stringValue ?? ""
         loginResponse = PostAPIResponse(data: data)
     }
 }

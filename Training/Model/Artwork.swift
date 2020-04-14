@@ -13,11 +13,12 @@ import RealmSwift
 import MapKit
 
 class Artwork: NSObject, MKAnnotation {
+    
     let title: String?
     let locationName: String
     let discipline: String
     let coordinate: CLLocationCoordinate2D
-    let myStatus : Int
+    let myStatus : Int = 0
     
     var markerTintColor: UIColor  {
         switch discipline {
@@ -93,13 +94,13 @@ class ArtWorkListAPI: APIMeetUpService<ArtWorksData> {
 struct ArtWorksData : MeetUpResponse {
     var listEventsNear = [EventsNearResponse]()
     var anotion : JSON!
-    var statusCode : Int!
-    var errMessage : String!
+    var statusCode : Int = 0
+    var errMessage : String?
     init(json: JSON) {
         let status = json["status"]
         statusCode = status.intValue
         if statusCode == 0 {
-            errMessage = json["error_message"].stringValue
+            errMessage = json["error_message"].stringValue ?? ""
         } else {
             anotion = json["response"]["events"]
             let events = json["response"]["events"].array

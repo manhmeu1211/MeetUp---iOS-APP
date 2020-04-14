@@ -13,16 +13,16 @@ import SwiftyJSON
 
 class EventsNearResponse: Object {
     
-    @objc dynamic var id = 0
-    @objc dynamic var photo = ""
-    @objc dynamic var name = ""
-    @objc dynamic var descriptionHtml = ""
-    @objc dynamic var scheduleStartDate = ""
-    @objc dynamic var scheduleEndDate = ""
-    @objc dynamic var scheduleStartTime = ""
-    @objc dynamic var scheduleEndTime = ""
-    @objc dynamic var schedulePermanent = ""
-    @objc dynamic var goingCount = 0
+    @objc dynamic var id: Int  = 0
+    @objc dynamic var photo: String  = ""
+    @objc dynamic var name: String  = ""
+    @objc dynamic var descriptionHtml: String  = ""
+    @objc dynamic var scheduleStartDate: String  = ""
+    @objc dynamic var scheduleEndDate: String  = ""
+    @objc dynamic var scheduleStartTime: String  = ""
+    @objc dynamic var scheduleEndTime: String  = ""
+    @objc dynamic var schedulePermanent: String  = ""
+    @objc dynamic var goingCount: Int  = 0
     
    convenience init(id: Int, photo :String , name: String, descriptionHtml : String, scheduleStartDate : String, scheduleEndDate : String, scheduleStartTime: String, scheduleEndTime : String, schedulePermanent : String, goingCount: Int ) {
         self.init()

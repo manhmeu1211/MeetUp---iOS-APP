@@ -20,9 +20,10 @@ class NewsDataResponse: Object {
     @objc dynamic var author = ""
     @objc dynamic var publishdate = ""
     @objc dynamic var url = ""
+    
     let dateFormatter = Date()
-
-   
+    
+    
     convenience init(news : JSON) {
         self.init()
         self.id = news["id"].intValue
@@ -48,9 +49,12 @@ class NewsListAPI: APIMeetUpService<NewsData> {
 
 struct NewsData : MeetUpResponse {
     var listNews = [NewsDataResponse]()
-    var status : Int!
-    var errMessage : String!
+    var status : Int = 0
+    var errMessage : String?
     init(json: JSON) {
+        for (key, value) in json["response"] {
+            print(key, value)
+        }
         status = json["status"].intValue
         if status == 1 {
             let data = json["response"]["news"].array
@@ -58,7 +62,7 @@ struct NewsData : MeetUpResponse {
                 return NewsDataResponse(news: value)
             })
         } else {
-            errMessage = json["error_message"].stringValue
+            errMessage = json["error_message"].stringValue ?? ""
         }
     }
 }

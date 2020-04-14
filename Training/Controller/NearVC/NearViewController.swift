@@ -30,8 +30,8 @@ class NearViewController: UIViewController, CLLocationManagerDelegate {
     private var initLong, initLat : Double?
     private var eventLong = [Double]()
     private var eventLat = [Double]()
-    private var indexRow : Int!
-    private var isConnected : Bool!
+    private var indexRow : Int = 0
+    private var isConnected : Bool = false
     
     
     override func viewDidLoad() {

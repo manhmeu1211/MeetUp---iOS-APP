@@ -9,7 +9,7 @@
 import UIKit
 
 class NewsCell: UITableViewCell {
-
+    
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var imgTimer: UIImageView!
     @IBOutlet weak var imgNews: UIImageView!
@@ -27,9 +27,9 @@ class NewsCell: UITableViewCell {
         imgNews.roundCorners()
         containerView.setUpCardView()
     }
-
+    
     @IBAction func handleReadmore(_ sender: Any) {
- 
+        
     }
     
     override func layoutSubviews() {
@@ -40,7 +40,7 @@ class NewsCell: UITableViewCell {
         backgroundStatusView.setUpBGView()
         backgroundStatusView.layoutIfNeeded()
     }
-   
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         if selected {
