@@ -18,7 +18,7 @@ class Artwork: NSObject, MKAnnotation {
     let locationName: String
     let discipline: String
     let coordinate: CLLocationCoordinate2D
-    let myStatus : Int = 0
+    var myStatus : Int = 0
     
     var markerTintColor: UIColor  {
         switch discipline {
@@ -100,7 +100,7 @@ struct ArtWorksData : MeetUpResponse {
         let status = json["status"]
         statusCode = status.intValue
         if statusCode == 0 {
-            errMessage = json["error_message"].stringValue ?? ""
+            errMessage = json["error_message"].stringValue 
         } else {
             anotion = json["response"]["events"]
             let events = json["response"]["events"].array

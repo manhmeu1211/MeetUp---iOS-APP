@@ -189,7 +189,7 @@ class NearViewController: UIViewController, CLLocationManagerDelegate {
     private func getListEvent() {
         ArtWorkListAPI(radius: 10, longitue: self.initLong!, latitude: self.initLat!).excute(completionHandler: { [weak self] (response) in
             if response?.statusCode == 0 {
-                self?.showAlert(message: response!.errMessage, titleBtn: "alert.titleBtn.OK".localized, completion: {
+                self?.showAlert(message: response?.errMessage ?? "", titleBtn: "alert.titleBtn.OK".localized, completion: {
                     print(response!.errMessage!)
                 })
             } else {

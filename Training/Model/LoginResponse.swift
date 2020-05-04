@@ -40,7 +40,7 @@ struct LoginResponse : MeetUpResponse {
     var userToken : String?
     init(json: JSON) {
         let data = json
-        userToken = data["response"]["token"].stringValue ?? ""
+        userToken = data["response"]["token"].stringValue 
         loginResponse = PostAPIResponse(data: data)
     }
 }

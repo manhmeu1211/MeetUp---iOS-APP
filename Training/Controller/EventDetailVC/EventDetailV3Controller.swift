@@ -39,7 +39,7 @@ class EventDetailV3Controller: UIViewController {
         super.viewDidLoad()
         setUpView()
         setUpCollectionView()
-        getDetailEvent(eventID: id!)
+        getDetailEvent(eventID: id)
 
     }
     
@@ -95,11 +95,11 @@ class EventDetailV3Controller: UIViewController {
     
     @objc func swiped(_ gesture: UISwipeGestureRecognizer) {
         if gesture.direction == .left {
-            id! += 1
-            getDetailEvent(eventID: id!)
+            id += 1
+            getDetailEvent(eventID: id)
         } else if gesture.direction == .right {
-            id! -= 1
-            getDetailEvent(eventID: id!)
+            id -= 1
+            getDetailEvent(eventID: id)
         }
     }
       
@@ -165,8 +165,8 @@ class EventDetailV3Controller: UIViewController {
           ArtWorkListAPI(radius: 10, longitue: self.eventDetail.longValue, latitude: self.eventDetail.latValue).excute(completionHandler: { [weak self] (response) in
               if response?.statusCode == 0 {
                 self?.loading.handleLoading(isLoading: false)
-                  self?.showAlert(message: response!.errMessage, titleBtn: "alert.titleBtn.OK".localized) {
-                    self?.eventsNear.append(EventsNearResponse(id: 0, photo: "", name: response!.errMessage, descriptionHtml: "", scheduleStartDate: "", scheduleEndDate: "", scheduleStartTime: "", scheduleEndTime: "", schedulePermanent: "", goingCount:0))
+                  self?.showAlert(message: response?.errMessage ?? "", titleBtn: "alert.titleBtn.OK".localized) {
+                    self?.eventsNear.append(EventsNearResponse(id: 0, photo: "", name: response?.errMessage ?? "", descriptionHtml: "", scheduleStartDate: "", scheduleEndDate: "", scheduleStartTime: "", scheduleEndTime: "", schedulePermanent: "", goingCount:0))
                     self?.eventCollection.reloadData()
                   }
               } else {
@@ -193,10 +193,10 @@ class EventDetailV3Controller: UIViewController {
 
     
     private func goingEvent() {
-        UpdateEventStatusAPI(status: 1, eventID: id!).excute(completionHandler: { [weak self] (response) in
+        UpdateEventStatusAPI(status: 1, eventID: id).excute(completionHandler: { [weak self] (response) in
             if response?.updateModel.status == 1 {
                 self?.showAlert(message: "alert.goingThisEvent".localized, titleBtn: "alert.titleBtn.OK".localized, completion: {
-                     self!.getDetailEvent(eventID: self!.id!)
+                    self?.getDetailEvent(eventID: self?.id ?? 0)
                 })
             } else {
                 self?.showAlert(message: "alert.reLogin".localized, titleBtn: "alert.titleBtn.OK".localized) {
@@ -211,10 +211,10 @@ class EventDetailV3Controller: UIViewController {
     }
     
     private func wentEvent() {
-        UpdateEventStatusAPI(status: 2, eventID: id!).excute(completionHandler: { [weak self] (response) in
+        UpdateEventStatusAPI(status: 2, eventID: id).excute(completionHandler: { [weak self] (response) in
             if response?.updateModel.status == 1 {
                 self?.showAlert(message: "alert.wentThisEvent".localized, titleBtn: "alert.titleBtn.OK".localized, completion: {
-                     self!.getDetailEvent(eventID: self!.id!)
+                     self?.getDetailEvent(eventID: self?.id ?? 0)
                 })
             } else {
                 self?.showAlert(message: "alert.reLogin".localized, titleBtn: "alert.titleBtn.OK".localized) {

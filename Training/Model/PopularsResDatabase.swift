@@ -63,7 +63,7 @@ struct PopularsData : MeetUpResponse {
                 return PopularsResDatabase(populars: value)
             })
         } else {
-            errMessage = json["error_message"].stringValue ?? ""
+            errMessage = json["error_message"].stringValue 
         }
     }
 }

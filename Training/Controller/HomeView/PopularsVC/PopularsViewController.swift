@@ -127,7 +127,7 @@ class PopularsViewController: UIViewController {
     private func getListPopularData(isLoadMore : Bool, page : Int) {
         EventsListAPI(pageIndex: page, pageSize: 10).excute(completionHandler: { [weak self] (response) in
             if response?.status == 0 {
-                self?.showAlert(message: response!.errMessage, titleBtn: "OK", completion: {
+                self?.showAlert(message: response?.errMessage ?? "", titleBtn: "OK", completion: {
                     print(response!.errMessage!)
                 })
             } else {

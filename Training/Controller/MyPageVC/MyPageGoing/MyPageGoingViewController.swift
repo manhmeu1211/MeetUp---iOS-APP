@@ -88,7 +88,7 @@ class MyPageGoingViewController: UIViewController {
     private func getListGoingEvent() {
         MyPageGoingsListAPI(status: self.status).excute(completionHandler: { [weak self] (response) in
              if response?.status == 0 {
-                self?.showAlert(message: response!.errMessage, titleBtn: "OK", completion: {
+                self?.showAlert(message: response?.errMessage ?? "", titleBtn: "OK", completion: {
                     print(response!.errMessage!)
                     self?.handleLogOut()
                 })

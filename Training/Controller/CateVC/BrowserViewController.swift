@@ -97,7 +97,7 @@ class BrowserViewController: UIViewController {
         CategoriesListAPI().excute(completionHandler: { [weak self] (response) in
             if response?.status == 0 {
                 self?.dismiss(animated: true, completion: nil)
-                self?.showAlert(message: response!.errMessage, titleBtn: "alert.titleBtn.OK".localized) {
+                self?.showAlert(message: response?.errMessage ?? "", titleBtn: "alert.titleBtn.OK".localized) {
                     print(response!.errMessage!)
                 }
             } else {

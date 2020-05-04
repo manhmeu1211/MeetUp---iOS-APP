@@ -82,7 +82,7 @@ class SearchViewController: UIViewController {
                 self.noResults.isHidden = true
                 isHaveConnection = true
         }
-        print(isHaveConnection!)
+        print(isHaveConnection)
      }
     
 
@@ -92,7 +92,7 @@ class SearchViewController: UIViewController {
         SearchListAPI(pageIndex: page, pageSize: 10, keyword: keyword).excute(completionHandler: { [weak self] (response) in
             if response?.status == 0 {
                 self?.loading.handleLoading(isLoading: false)
-                self?.showAlert(message: response!.errMessage, titleBtn: "alert.titleBtn.OK".localized, completion: {
+                self?.showAlert(message: response?.errMessage ?? "", titleBtn: "alert.titleBtn.OK".localized, completion: {
                     self?.noResults.isHidden = false
                     self?.imgNoResult.isHidden = false
                 })

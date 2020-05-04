@@ -120,7 +120,7 @@ class EventsByCategoriesViewController: UIViewController {
     func getDataEventsByCategories(isLoadMore : Bool, page: Int) {
         EventsByCategoriesListAPI(pageIndex: page, pageSize: 10, categoriesID: categoriesID!).excute(completionHandler: { [weak self] (response) in
             if response?.status == 0 {
-                self?.showAlert(message: response!.errMessage, titleBtn: "alert.titleBtn.OK".localized, completion: {
+                self?.showAlert(message: response?.errMessage ?? "", titleBtn: "alert.titleBtn.OK".localized, completion: {
                     self?.loading.handleLoading(isLoading: false)
                 })
             } else {
