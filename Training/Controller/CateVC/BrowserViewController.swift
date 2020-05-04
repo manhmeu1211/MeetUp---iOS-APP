@@ -98,12 +98,12 @@ class BrowserViewController: UIViewController {
             if response?.status == 0 {
                 self?.dismiss(animated: true, completion: nil)
                 self?.showAlert(message: response?.errMessage ?? "", titleBtn: "alert.titleBtn.OK".localized) {
-                    print(response!.errMessage!)
+                    print(response?.errMessage ?? "")
                 }
             } else {
                 self?.cateList.removeAll()
                 self?.deleteObject()
-                for categories in response!.listCategories {
+                for categories in response?.listCategories ?? [] {
                     self?.addObject(object: categories)
                 }
                 self?.updateObject()
@@ -139,7 +139,9 @@ extension BrowserViewController : UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = categoriesTable.dequeueReusableCell(withIdentifier: "CategoriesTableViewCell", for: indexPath) as! CategoriesTableViewCell
+        guard let cell = categoriesTable.dequeueReusableCell(withIdentifier: "CategoriesTableViewCell", for: indexPath) as? CategoriesTableViewCell else {
+            return UITableViewCell()
+        }
         cell.lblName.text = cateList[indexPath.row].name
         cell.imgIcon.image = UIImage(named: listIcon[indexPath.row])
         return cell

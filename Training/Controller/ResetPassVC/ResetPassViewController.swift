@@ -53,25 +53,26 @@ class ResetPassViewController: UIViewController {
      }
     
     private func resetPassword() {
-        let email = txtEmail.text
-        if ValidatedString.getInstance.isValidEmail(stringEmail: email!) == false || email!.isEmpty  {
-            ToastView.shared.short(self.view, txt_msg: "Email is not correct")
-            txtEmail.text = ""
-        } else {
-            ResetPassAPI(email: email!).excute(completionHandler: { [weak self] (response) in
-                if response?.resetPassResponse.status == 1 {
-                    self?.showAlert(message: "alert.ResetpassSuccess".localized, titleBtn: "alert.titleBtn.OK".localized, completion: {
-                        print("success")
-                    })
-                } else {
-                    self?.showAlert(message: "alert.ResetpassFailed".localized, titleBtn: "alert.titleBtn.OK".localized, completion: {
-                        print(response!.resetPassResponse.errorMessage)
+        if let email = txtEmail.text {
+            if ValidatedString.getInstance.isValidEmail(stringEmail: email) == false || email.isEmpty  {
+                ToastView.shared.short(self.view, txt_msg: "Email is not correct")
+                txtEmail.text = ""
+            } else {
+                ResetPassAPI(email: email).excute(completionHandler: { [weak self] (response) in
+                    if response?.resetPassResponse.status == 1 {
+                        self?.showAlert(message: "alert.ResetpassSuccess".localized, titleBtn: "alert.titleBtn.OK".localized, completion: {
+                            print("success")
+                        })
+                    } else {
+                        self?.showAlert(message: "alert.ResetpassFailed".localized, titleBtn: "alert.titleBtn.OK".localized, completion: {
+                            print(response?.resetPassResponse.errorMessage ?? "")
+                        })
+                    }
+                }) { (err) in
+                    self.showAlert(message: "alert.ResetpassFailed".localized, titleBtn: "alert.titleBtn.OK".localized, completion: {
+                        print(err ?? "")
                     })
                 }
-            }) { (err) in
-                self.showAlert(message: "alert.ResetpassFailed".localized, titleBtn: "alert.titleBtn.OK".localized, completion: {
-                    print(err!)
-                })
             }
         }
     }

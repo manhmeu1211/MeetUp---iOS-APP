@@ -109,8 +109,9 @@ class LoginViewController: UIViewController {
         } else {
             LoginAPI(email: mail, password: pass).excute(completionHandler: { [weak self] (response) in
                 if response?.loginResponse.status == 1 {
-                    let userToken = response?.userToken
-                    self?.saveToken(token: userToken!)
+                    if let userToken = response?.userToken {
+                        self?.saveToken(token: userToken)
+                    }
                     self?.showAlert(message: "alert.loginSuccess".localized, titleBtn: "alert.titleBtn.OK".localized) {
                         self?.handleMyPage()
                     }
@@ -122,7 +123,7 @@ class LoginViewController: UIViewController {
                 }
             }) { (err) in
                 self.showAlert(message: "alert.connectFailed.text".localized, titleBtn: "alert.titleBtn.OK".localized) {
-                    print(err!)
+                    print(err ?? "")
                 }
                 self.loading.handleLoading(isLoading: false)
             }

@@ -27,7 +27,8 @@ class NearViewController: UIViewController, CLLocationManagerDelegate {
     private let regionRadius: CLLocationDistance = 1000
     private var centralLocationCoordinate : CLLocationCoordinate2D!
     private var currentLocation: CLLocation!
-    private var initLong, initLat : Double?
+    private var initLong : Double = 0.0
+    private var initLat : Double = 0.0
     private var eventLong = [Double]()
     private var eventLat = [Double]()
     private var indexRow : Int = 0
@@ -59,7 +60,7 @@ class NearViewController: UIViewController, CLLocationManagerDelegate {
                     currentLocation = locationManager.location
                     initLong = currentLocation.coordinate.longitude
                     initLat = currentLocation.coordinate.latitude
-                    centerMapOnLocation(location: CLLocation(latitude: initLat!, longitude: initLong!))
+                    centerMapOnLocation(location: CLLocation(latitude: initLat, longitude: initLong))
                 @unknown default:
                 break
             }
@@ -79,7 +80,7 @@ class NearViewController: UIViewController, CLLocationManagerDelegate {
                 currentLocation = locationManager.location
                 initLong = currentLocation.coordinate.longitude
                 initLat = currentLocation.coordinate.latitude
-                centerMapOnLocation(location: CLLocation(latitude: initLat!, longitude: initLong!))
+                centerMapOnLocation(location: CLLocation(latitude: initLat, longitude: initLong))
             } else {
                 initLong = 105.874993
                 initLat =  21.044895
@@ -92,7 +93,7 @@ class NearViewController: UIViewController, CLLocationManagerDelegate {
         let artwork = Artwork(title: "anootation.title".localized,
                               locationName: "My Location".localized,
                               discipline: "My Location".localized,
-                 coordinate: CLLocationCoordinate2D(latitude: initLat!, longitude: initLong!),
+                 coordinate: CLLocationCoordinate2D(latitude: initLat, longitude: initLong),
                  myStatus: 0)
           map.addAnnotation(artwork)
     }
@@ -187,10 +188,10 @@ class NearViewController: UIViewController, CLLocationManagerDelegate {
      }
       
     private func getListEvent() {
-        ArtWorkListAPI(radius: 10, longitue: self.initLong!, latitude: self.initLat!).excute(completionHandler: { [weak self] (response) in
+        ArtWorkListAPI(radius: 10, longitue: initLong, latitude: initLat).excute(completionHandler: { [weak self] (response) in
             if response?.statusCode == 0 {
                 self?.showAlert(message: response?.errMessage ?? "", titleBtn: "alert.titleBtn.OK".localized, completion: {
-                    print(response!.errMessage!)
+                    print(response?.errMessage ?? "")
                 })
             } else {
                 self?.deleteListNear()
@@ -203,8 +204,8 @@ class NearViewController: UIViewController, CLLocationManagerDelegate {
                      self?.eventLong.append(anotion["venue"]["geo_long"].doubleValue)
                      self?.eventLat.append(anotion["venue"]["geo_lat"].doubleValue)
                  })
-                self?.map.addAnnotations(self!.anotion)
-                self?.events = response!.listEventsNear
+                self?.map.addAnnotations(self?.anotion ?? [])
+                self?.events = response?.listEventsNear ?? []
                 self?.updateObject()
                 self?.collectionVIew.reloadData()
                 self?.loading.handleLoading(isLoading: false)
@@ -243,7 +244,9 @@ extension NearViewController : UICollectionViewDataSource, UICollectionViewDeleg
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "EventsCell", for: indexPath) as! EventsCell
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "EventsCell", for: indexPath) as? EventsCell else {
+            return UICollectionViewCell()
+        }
         let url = URL(string: self.events[indexPath.row].photo)
         cell.imgEvent.sd_setImage(with: url, placeholderImage: UIImage(named: "noImage"), completed: nil)
         cell.eventName.text = events[indexPath.row].name
@@ -279,8 +282,9 @@ extension NearViewController : UICollectionViewDataSource, UICollectionViewDeleg
                 print(eventLat, eventLong)
             } else {
                 for cell in collectionVIew.visibleCells {
-                    let indexPath = collectionVIew.indexPath(for: cell)
-                    centerMapOnLocation(location: CLLocation(latitude: eventLat[indexPath!.row], longitude: eventLong[indexPath!.row]))
+                    if let indexPath = collectionVIew.indexPath(for: cell) {
+                         centerMapOnLocation(location: CLLocation(latitude: eventLat[indexPath.row], longitude: eventLong[indexPath.row]))
+                    }
                 }
             }
         }
@@ -301,13 +305,13 @@ extension NearViewController : MKMapViewDelegate {
     
     internal func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         if isConnected {
-            let latValue = view.annotation?.coordinate.latitude
-            let longValue = view.annotation?.coordinate.longitude
-            centerMapOnLocation(location: CLLocation(latitude: latValue!, longitude: longValue!))
-            for i in eventLat {
-                if latValue == i {
-                    print(eventLat.firstIndex(of: i)!)
-                    collectionVIew.scrollToItem(at: IndexPath(row: eventLat.firstIndex(of: i)!, section: 0), at: .right, animated: true)
+            if let latValue = view.annotation?.coordinate.latitude, let longValue = view.annotation?.coordinate.longitude {
+                 centerMapOnLocation(location: CLLocation(latitude: latValue, longitude: longValue))
+                for i in eventLat {
+                    if latValue == i {
+                        print(eventLat.firstIndex(of: i) ?? 0)
+                        collectionVIew.scrollToItem(at: IndexPath(row: eventLat.firstIndex(of: i) ?? 0, section: 0), at: .right, animated: true)
+                    }
                 }
             }
         }

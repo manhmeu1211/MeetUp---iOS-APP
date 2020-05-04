@@ -21,9 +21,10 @@ class WebViewController: UIViewController {
     }
     
     private func requestToUrlNews(url: String) {
-        let url = URL(string: url)
-        let request = URLRequest(url: url!)
-        webViewV2.load(request)
+        if let url = URL(string: url) {
+            let request = URLRequest(url: url)
+            webViewV2.load(request)
+        }
     }
 }
 

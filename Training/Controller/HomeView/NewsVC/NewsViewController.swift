@@ -132,7 +132,7 @@ class NewsViewController: UIViewController {
         NewsListAPI(pageIndex: page, pageSize: 10).excute(completionHandler: { [weak self] (response) in
             if response?.status == 0 {
                 self?.showAlert(message: response?.errMessage ?? "", titleBtn: "OK", completion: {
-                    print(response!.errMessage!)
+                    print(response?.errMessage ?? "")
                 })
             } else {
                 if shoudLoadmore == false {

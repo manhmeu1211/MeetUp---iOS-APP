@@ -23,7 +23,7 @@ class EventsByCategoriesViewController: UIViewController {
     
     // MARK: - Varribles
     
-    var categoriesID : Int?
+    var categoriesID : Int = 0
     var headerTitle : String?
     private var currentPage = 1
     private var eventsByCate = [EventsByCategoriesDatabase]()
@@ -63,7 +63,7 @@ class EventsByCategoriesViewController: UIViewController {
         eventTable.delegate = self
         eventTable.rowHeight = UITableView.automaticDimension
         eventTable.register(UINib(nibName: "NewsCell", bundle: nil), forCellReuseIdentifier: "NewsCell")
-        titleCategories.text = "\(headerTitle!)(\(eventsByCate.count))"
+        titleCategories.text = "\(headerTitle ?? "")(\(eventsByCate.count))"
         if #available(iOS 10.0, *) {
             self.eventTable.refreshControl = refreshControl
         } else {
@@ -84,7 +84,7 @@ class EventsByCategoriesViewController: UIViewController {
         self.eventsByCate = listEventByGoingCount
         checkEvent()
         eventTable.reloadData()
-        self.titleCategories.text = "\(self.headerTitle!)(\(self.eventsByCate.count))"
+        self.titleCategories.text = "\(self.headerTitle ?? "")(\(self.eventsByCate.count))"
     }
     
     private func checkEvent() {
@@ -101,7 +101,7 @@ class EventsByCategoriesViewController: UIViewController {
         eventsByCate = listEventByDate
         checkEvent()
         eventTable.reloadData()
-        self.titleCategories.text = "\(self.headerTitle!)(\(self.eventsByCate.count))"
+        self.titleCategories.text = "\(self.headerTitle ?? "")(\(self.eventsByCate.count))"
     }
 
     private func deleteObject() {
@@ -118,7 +118,7 @@ class EventsByCategoriesViewController: UIViewController {
      }
 
     func getDataEventsByCategories(isLoadMore : Bool, page: Int) {
-        EventsByCategoriesListAPI(pageIndex: page, pageSize: 10, categoriesID: categoriesID!).excute(completionHandler: { [weak self] (response) in
+        EventsByCategoriesListAPI(pageIndex: page, pageSize: 10, categoriesID: categoriesID).excute(completionHandler: { [weak self] (response) in
             if response?.status == 0 {
                 self?.showAlert(message: response?.errMessage ?? "", titleBtn: "alert.titleBtn.OK".localized, completion: {
                     self?.loading.handleLoading(isLoading: false)
@@ -127,13 +127,13 @@ class EventsByCategoriesViewController: UIViewController {
                 if isLoadMore == false {
                     self?.eventsByCate.removeAll()
                     self?.deleteObject()
-                    for eventByCate in response!.listEventsByCate {
+                    for eventByCate in response?.listEventsByCate ?? [] {
                         self?.addObject(object: eventByCate)
                     }
                     self?.updateObjectByDate()
                     self?.eventTable.reloadData()
                 } else {
-                    for eventByCate in response!.listEventsByCate {
+                    for eventByCate in response?.listEventsByCate ?? [] {
                         self?.addObject(object: eventByCate)
                     }
                     self?.updateObjectByDate()
@@ -190,7 +190,9 @@ extension EventsByCategoriesViewController : UITableViewDataSource, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = eventTable.dequeueReusableCell(withIdentifier: "NewsCell", for: indexPath) as! NewsCell
+        guard let cell = eventTable.dequeueReusableCell(withIdentifier: "NewsCell", for: indexPath) as? NewsCell else {
+            return UITableViewCell()
+        }
         let url = URL(string: eventsByCate[indexPath.row].photo)
         cell.imgTimer.image = UIImage(named: "Group15")
         cell.imgNews.sd_setImage(with: url, completed: nil)

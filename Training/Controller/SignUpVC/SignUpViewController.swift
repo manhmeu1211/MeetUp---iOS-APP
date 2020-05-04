@@ -129,14 +129,14 @@ class SignUpViewController: UIViewController {
                          self?.handleLoginView()
                     }
                 } else {
-                    self?.showAlert(message: response!.registerResponse.errorMessage, titleBtn: "alert.titleBtn.OK".localized) {
-                        print(response!.registerResponse.errorMessage)
+                    self?.showAlert(message: response?.registerResponse.errorMessage ?? "", titleBtn: "alert.titleBtn.OK".localized) {
+                        print(response?.registerResponse.errorMessage ?? "")
                         self?.loading.handleLoading(isLoading: false)
                     }
                 }
             }) { (err) in
                 self.showAlert(message: "alert.alert.connectFailed.text".localized, titleBtn: "alert.titleBtn.OK".localized) {
-                    print(err!)
+                    print(err ?? "")
                     self.loading.handleLoading(isLoading: false)
                 }
             }

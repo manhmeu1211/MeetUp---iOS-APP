@@ -9,7 +9,7 @@
 import UIKit
 
 class EventDetailV3Controller: UIViewController {
-
+    
     @IBOutlet weak var imgDetail: UIImageView!
     @IBOutlet weak var backgroundView: UIView!
     
@@ -40,38 +40,37 @@ class EventDetailV3Controller: UIViewController {
         setUpView()
         setUpCollectionView()
         getDetailEvent(eventID: id)
+        
+    }
+    
 
-    }
     
-    override func viewWillAppear(_ animated: Bool) {
-    
-    }
     
     override func viewDidAppear(_ animated: Bool) {
         backgroundView.center.x -= view.bounds.width
         eventDescription.center.y += view.bounds.height
         UIView.animate(withDuration: 0.7, delay: 0.2, options: [],
-         animations: {
-           self.backgroundView.center.x += self.view.bounds.width
-         },
-         completion: nil
+                       animations: {
+                        self.backgroundView.center.x += self.view.bounds.width
+        },
+                       completion: nil
         )
         UIView.animate(withDuration: 1, delay: 0.4, options: [],
-         animations: {
-            self.eventDescription.center.y -= self.view.bounds.height
-         },
-         completion: nil
+                       animations: {
+                        self.eventDescription.center.y -= self.view.bounds.height
+        },
+                       completion: nil
         )
     }
     
     private func setUpCollectionView() {
-           eventCollection.delegate = self
-           eventCollection.dataSource = self
-           eventCollection.register(UINib(nibName: "EventsCell", bundle: nil), forCellWithReuseIdentifier: "EventsCell")
-           eventCollection.showsHorizontalScrollIndicator = false
-       }
-
-
+        eventCollection.delegate = self
+        eventCollection.dataSource = self
+        eventCollection.register(UINib(nibName: "EventsCell", bundle: nil), forCellWithReuseIdentifier: "EventsCell")
+        eventCollection.showsHorizontalScrollIndicator = false
+    }
+    
+    
     private func setUpView() {
         loading.handleLoading(isLoading: true)
         let swipeRight = UISwipeGestureRecognizer(target: self, action:  #selector(swiped))
@@ -89,7 +88,7 @@ class EventDetailV3Controller: UIViewController {
         btnFollow.layer.borderColor = UIColor(rgb: 0x5D20CD).cgColor
         btnFollow.layer.borderWidth = 0.5
         btnFollow.layer.cornerRadius = 10
-  
+        
     }
     
     
@@ -102,16 +101,16 @@ class EventDetailV3Controller: UIViewController {
             getDetailEvent(eventID: id)
         }
     }
-      
+    
     
     private func checkLoggedIn() -> Bool {
         if userToken == nil {
-           return true
+            return true
         }
         return false
     }
-      
-
+    
+    
     private func setUpDataForView() {
         let url = URL(string: eventDetail.photo)
         imgDetail.sd_setImage(with: url, placeholderImage: UIImage(named: "noImage"), completed: nil)
@@ -140,9 +139,9 @@ class EventDetailV3Controller: UIViewController {
         }
         print(eventDetail.mystatus)
         getListEventNear()
-
+        
     }
-
+    
     
     private func getDetailEvent(eventID : Int) {
         EventsDetailAPI(eventID: eventID).excute(completionHandler: { [weak self] (response) in
@@ -151,7 +150,9 @@ class EventDetailV3Controller: UIViewController {
                 self?.eventDetail = event
                 self?.setUpDataForView()
             } else {
-                self?.eventDetail = response!.eventDetail
+                if let detail = response?.eventDetail {
+                    self?.eventDetail = detail
+                }
                 self?.setUpDataForView()
             }
         }) { (err) in
@@ -162,20 +163,20 @@ class EventDetailV3Controller: UIViewController {
     }
     
     private func getListEventNear() {
-          ArtWorkListAPI(radius: 10, longitue: self.eventDetail.longValue, latitude: self.eventDetail.latValue).excute(completionHandler: { [weak self] (response) in
-              if response?.statusCode == 0 {
+        ArtWorkListAPI(radius: 10, longitue: self.eventDetail.longValue, latitude: self.eventDetail.latValue).excute(completionHandler: { [weak self] (response) in
+            if response?.statusCode == 0 {
                 self?.loading.handleLoading(isLoading: false)
-                  self?.showAlert(message: response?.errMessage ?? "", titleBtn: "alert.titleBtn.OK".localized) {
+                self?.showAlert(message: response?.errMessage ?? "", titleBtn: "alert.titleBtn.OK".localized) {
                     self?.eventsNear.append(EventsNearResponse(id: 0, photo: "", name: response?.errMessage ?? "", descriptionHtml: "", scheduleStartDate: "", scheduleEndDate: "", scheduleStartTime: "", scheduleEndTime: "", schedulePermanent: "", goingCount:0))
                     self?.eventCollection.reloadData()
-                  }
-              } else {
+                }
+            } else {
                 self?.eventsNear.removeAll()
-                self?.eventsNear = response!.listEventsNear
+                self?.eventsNear = response?.listEventsNear ?? []
                 self?.eventCollection.reloadData()
                 self?.loading.handleLoading(isLoading: false)
-              }
-          }) { (err) in
+            }
+        }) { (err) in
             self.showAlert(message: "alert.cannotLoadData".localized, titleBtn: "alert.titleBtn.OK".localized) {
                 self.eventsNear.append(EventsNearResponse(id: 0, photo: "", name: "alert.cannotLoadData".localized, descriptionHtml: "", scheduleStartDate: "", scheduleEndDate: "", scheduleStartTime: "", scheduleEndTime: "", schedulePermanent: "", goingCount: 0))
                 self.eventCollection.reloadData()
@@ -185,12 +186,12 @@ class EventDetailV3Controller: UIViewController {
     }
     
     private func handleLoginView() {
-         let tabbarController = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(withIdentifier: "Home") as! TabbarViewController
-         tabbarController.isLoginVC = true
-         UIApplication.shared.windows.first?.rootViewController = tabbarController
-         UIApplication.shared.windows.first?.makeKeyAndVisible()
+        let tabbarController = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(withIdentifier: "Home") as! TabbarViewController
+        tabbarController.isLoginVC = true
+        UIApplication.shared.windows.first?.rootViewController = tabbarController
+        UIApplication.shared.windows.first?.makeKeyAndVisible()
     }
-
+    
     
     private func goingEvent() {
         UpdateEventStatusAPI(status: 1, eventID: id).excute(completionHandler: { [weak self] (response) in
@@ -200,12 +201,12 @@ class EventDetailV3Controller: UIViewController {
                 })
             } else {
                 self?.showAlert(message: "alert.reLogin".localized, titleBtn: "alert.titleBtn.OK".localized) {
-                    print(response!.updateModel.errorMessage)
+                    print(response?.updateModel.errorMessage ?? "")
                 }
             }
         }) { (err) in
             self.showAlert(message: "alert.connectFailed.text".localized, titleBtn: "alert.titleBtn.OK".localized) {
-                print(err!)
+                print(err ?? "")
             }
         }
     }
@@ -214,16 +215,16 @@ class EventDetailV3Controller: UIViewController {
         UpdateEventStatusAPI(status: 2, eventID: id).excute(completionHandler: { [weak self] (response) in
             if response?.updateModel.status == 1 {
                 self?.showAlert(message: "alert.wentThisEvent".localized, titleBtn: "alert.titleBtn.OK".localized, completion: {
-                     self?.getDetailEvent(eventID: self?.id ?? 0)
+                    self?.getDetailEvent(eventID: self?.id ?? 0)
                 })
             } else {
                 self?.showAlert(message: "alert.reLogin".localized, titleBtn: "alert.titleBtn.OK".localized) {
-                    print(response!.updateModel.errorMessage)
+                    print(response?.updateModel.errorMessage ?? "")
                 }
             }
         }) { (err) in
             self.showAlert(message: "alert.connectFailed.text".localized, titleBtn: "alert.titleBtn.OK".localized) {
-                print(err!)
+                print(err ?? "")
             }
         }
     }
@@ -232,15 +233,15 @@ class EventDetailV3Controller: UIViewController {
     @IBAction func handleReadmore(_ sender: Any) {
         if eventDescription.numberOfLines == 0 {
             btnReadmore.setTitle("readmore.titleBtn".localized, for: .normal)
-             eventDescription.numberOfLines = 4
-             eventDescription.lineBreakMode = .byWordWrapping
-             eventDescription.sizeToFit()
-         } else {
-             eventDescription.numberOfLines = 0
-             eventDescription.lineBreakMode = .byWordWrapping
-             eventDescription.sizeToFit()
+            eventDescription.numberOfLines = 4
+            eventDescription.lineBreakMode = .byWordWrapping
+            eventDescription.sizeToFit()
+        } else {
+            eventDescription.numberOfLines = 0
+            eventDescription.lineBreakMode = .byWordWrapping
+            eventDescription.sizeToFit()
             btnReadmore.setTitle("less.titleBtn".localized, for: .normal)
-         }
+        }
     }
     
     
@@ -295,9 +296,11 @@ extension EventDetailV3Controller : UICollectionViewDataSource, UICollectionView
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = eventCollection.dequeueReusableCell(withReuseIdentifier: "EventsCell", for: indexPath) as! EventsCell
+        guard let cell = eventCollection.dequeueReusableCell(withReuseIdentifier: "EventsCell", for: indexPath) as? EventsCell else {
+            return UICollectionViewCell()
+        }
         let url = URL(string: eventsNear[indexPath.row].photo)
-        cell.imgEvent!.sd_setImage(with: url, placeholderImage: UIImage(named: "noImage"), completed: nil)
+        cell.imgEvent.sd_setImage(with: url, placeholderImage: UIImage(named: "noImage"), completed: nil)
         cell.eventName.text = eventsNear[indexPath.row].name
         cell.eventCount.text = "\(eventsNear[indexPath.row].scheduleStartDate)"
         cell.eventPeopleGoing.text = "\(eventsNear[indexPath.row].goingCount) " + "peopleGoing.text".localized

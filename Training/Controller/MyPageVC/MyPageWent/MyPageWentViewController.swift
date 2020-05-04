@@ -81,14 +81,18 @@ class MyPageWentViewController: UIViewController {
                     print(response?.errMessage ?? "Token expired")
                 })
             } else {
-                let list = self?.realm.objects(MyPageWentResDatabase.self).toArray(ofType: MyPageWentResDatabase.self)
-                try! self?.realm.write {
-                    self?.realm.delete(list!)
+                if let list = self?.realm.objects(MyPageWentResDatabase.self).toArray(ofType: MyPageWentResDatabase.self) {
+                    try! self?.realm.write {
+                        self?.realm.delete(list)
+                    }
                 }
+
                 self?.wentEvents.removeAll()
-                let data = response?.listEventsWent
-                self?.wentEvents = data!
-                for eventWent in self!.wentEvents {
+                if let data = response?.listEventsWent {
+                     self?.wentEvents = data
+                }
+                
+                for eventWent in self?.wentEvents ?? [] {
                     try! self?.realm.write {
                         self?.realm.add(eventWent)
                     }
@@ -97,7 +101,7 @@ class MyPageWentViewController: UIViewController {
             }
         }) { (err) in
             self.showAlert(message: "alert.cannotLoadData".localized, titleBtn: "OK", completion: {
-                print(err!)
+                print(err ?? "")
             })
             self.updateObject()
             self.wentTable.reloadData()
@@ -139,9 +143,12 @@ extension MyPageWentViewController : UITableViewDelegate, UITableViewDataSource 
 
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = wentTable.dequeueReusableCell(withIdentifier: "NewsCell", for: indexPath) as? NewsCell else {
+            return UITableViewCell()
+        }
         switch indexPath.section {
+          
         case 0:
-            let cell = wentTable.dequeueReusableCell(withIdentifier: "NewsCell", for: indexPath) as! NewsCell
             let url = URL(string: wentEvents[indexPath.row].photo)
             cell.imgTimer.image = UIImage(named: "Group15")
             cell.date.textColor = UIColor(rgb: 0x5D20CD)
@@ -155,9 +162,8 @@ extension MyPageWentViewController : UITableViewDelegate, UITableViewDataSource 
                 cell.backgroundStatusView.backgroundColor = UIColor(rgb: 0xE5F9F4)
                 cell.statusLabel.textColor = UIColor(rgb: 0x00C491)
             }
-            return cell
+            
         default:
-            let cell = wentTable.dequeueReusableCell(withIdentifier: "NewsCell", for: indexPath) as! NewsCell
             let url = URL(string: wentEventsEnd[indexPath.row].photo)
             cell.imgTimer.image = UIImage(named: "Group15")
             cell.date.textColor = UIColor(rgb: 0x5D20CD)
@@ -171,8 +177,10 @@ extension MyPageWentViewController : UITableViewDelegate, UITableViewDataSource 
                 cell.backgroundStatusView.backgroundColor = UIColor(rgb: 0xE5F9F4)
                 cell.statusLabel.textColor = UIColor(rgb: 0x00C491)
             }
-            return cell
+           
         }
+        
+        return cell
     }
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {

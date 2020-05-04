@@ -89,23 +89,29 @@ class MyPageGoingViewController: UIViewController {
         MyPageGoingsListAPI(status: self.status).excute(completionHandler: { [weak self] (response) in
              if response?.status == 0 {
                 self?.showAlert(message: response?.errMessage ?? "", titleBtn: "OK", completion: {
-                    print(response!.errMessage!)
+                    print(response?.errMessage ?? "")
                     self?.handleLogOut()
                 })
              } else {
+                
                 self?.deleteObject()
                 self?.goingEvents.removeAll()
-                let data = response?.listEventsGoings
-                self?.goingEvents = data!
-                for eventGoing in self!.goingEvents {
+                
+                if let data = response?.listEventsGoings {
+                    self?.goingEvents = data
+                }
+        
+                for eventGoing in self?.goingEvents ?? [] {
                     self?.addObject(object: eventGoing)
                 }
+                
                 self?.goingTable.reloadData()
                 self?.loading.handleLoading(isLoading: false)
+                
             }
         }) { (err) in
             self.showAlert(message: "alert.cannotLoadData".localized, titleBtn: "OK", completion: {
-                print(err!)
+                print(err ?? "")
             })
             self.updateObject()
             self.goingTable.reloadData()
@@ -147,9 +153,13 @@ extension MyPageGoingViewController : UITableViewDelegate, UITableViewDataSource
     
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard  let cell = goingTable.dequeueReusableCell(withIdentifier: "NewsCell", for: indexPath) as? NewsCell else {
+            return UITableViewCell()
+        }
+        
         switch indexPath.section {
         case 0:
-            let cell = goingTable.dequeueReusableCell(withIdentifier: "NewsCell", for: indexPath) as! NewsCell
+           
             let url = URL(string: goingEvents[indexPath.row].photo)
             cell.statusImage.image = UIImage(named: "icon_starRed")
             cell.imgTimer.image = UIImage(named: "Group15")
@@ -161,9 +171,8 @@ extension MyPageGoingViewController : UITableViewDelegate, UITableViewDataSource
             cell.date.text = "\(goingEvents[indexPath.row].scheduleStartDate) - \(goingEvents[indexPath.row].goingCount) people going"
             cell.title.text = goingEvents[indexPath.row].name
             cell.lblDes.attributedText = goingEvents[indexPath.row].descriptionHtml.htmlToAttributedString
-            return cell
+            
         default:
-            let cell = goingTable.dequeueReusableCell(withIdentifier: "NewsCell", for: indexPath) as! NewsCell
             let url = URL(string: goingEventsEnd[indexPath.row].photo)
             cell.statusImage.image = UIImage(named: "icon_starRed")
             cell.imgTimer.image = UIImage(named: "Group15")
@@ -175,8 +184,11 @@ extension MyPageGoingViewController : UITableViewDelegate, UITableViewDataSource
             cell.date.text = "\(goingEventsEnd[indexPath.row].scheduleStartDate) - \(goingEventsEnd[indexPath.row].goingCount) " + "peopleGoing.text".localized
             cell.title.text = goingEventsEnd[indexPath.row].name
             cell.lblDes.text = goingEventsEnd[indexPath.row].descriptionHtml
-            return cell
+           
         }
+        
+        
+        return cell
     }
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {

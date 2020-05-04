@@ -10,7 +10,6 @@
 		0D020EF523B99DBB007826FD /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 0D020EF423B99DBB007826FD /* .swiftlint.yml */; };
 		0D020EF723B9D323007826FD /* APIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D020EF623B9D323007826FD /* APIRequest.swift */; };
 		0D020EF923B9D649007826FD /* APIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D020EF823B9D649007826FD /* APIResponse.swift */; };
-		0D0EE5F823C5DD2D003A1938 /* robot.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D0EE5F723C5DD2D003A1938 /* robot.png */; };
 		0D44378F23AC56AD003A8D96 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D44378D23AC56AD003A8D96 /* WebViewController.swift */; };
 		0D44379023AC56AD003A8D96 /* WebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D44378E23AC56AD003A8D96 /* WebViewController.xib */; };
 		0D44379323AC6AB0003A8D96 /* MyPageGoingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D44379123AC6AB0003A8D96 /* MyPageGoingViewController.swift */; };
@@ -46,6 +45,7 @@
 		0D72CA8023CC1F2E00488205 /* RegisterResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D72CA7F23CC1F2E00488205 /* RegisterResponse.swift */; };
 		0D8CCED823B3106F00EDE7F4 /* ExtensionColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D8CCED723B3106F00EDE7F4 /* ExtensionColor.swift */; };
 		0D8CCEDA23B310A100EDE7F4 /* ExtensionAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D8CCED923B310A100EDE7F4 /* ExtensionAlert.swift */; };
+		0D90FAFB245FF9EF00E6FDFA /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D90FAFA245FF9EF00E6FDFA /* icon.png */; };
 		0D9C320A23BF37A600F1726E /* CustomAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D9C320823BF37A600F1726E /* CustomAlertViewController.swift */; };
 		0D9C320B23BF37A600F1726E /* CustomAlertViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D9C320923BF37A600F1726E /* CustomAlertViewController.xib */; };
 		0D9C320D23BF3F5000F1726E /* ExtensionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D9C320C23BF3F5000F1726E /* ExtensionButton.swift */; };
@@ -87,7 +87,6 @@
 		0D020EF423B99DBB007826FD /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		0D020EF623B9D323007826FD /* APIRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequest.swift; sourceTree = "<group>"; };
 		0D020EF823B9D649007826FD /* APIResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIResponse.swift; sourceTree = "<group>"; };
-		0D0EE5F723C5DD2D003A1938 /* robot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = robot.png; sourceTree = "<group>"; };
 		0D44378D23AC56AD003A8D96 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		0D44378E23AC56AD003A8D96 /* WebViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WebViewController.xib; sourceTree = "<group>"; };
 		0D44379123AC6AB0003A8D96 /* MyPageGoingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageGoingViewController.swift; sourceTree = "<group>"; };
@@ -123,6 +122,7 @@
 		0D72CA7F23CC1F2E00488205 /* RegisterResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterResponse.swift; sourceTree = "<group>"; };
 		0D8CCED723B3106F00EDE7F4 /* ExtensionColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionColor.swift; sourceTree = "<group>"; };
 		0D8CCED923B310A100EDE7F4 /* ExtensionAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionAlert.swift; sourceTree = "<group>"; };
+		0D90FAFA245FF9EF00E6FDFA /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		0D9C320823BF37A600F1726E /* CustomAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlertViewController.swift; sourceTree = "<group>"; };
 		0D9C320923BF37A600F1726E /* CustomAlertViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomAlertViewController.xib; sourceTree = "<group>"; };
 		0D9C320C23BF3F5000F1726E /* ExtensionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionButton.swift; sourceTree = "<group>"; };
@@ -426,8 +426,8 @@
 				0DFBA8F023A22D2600C8BF31 /* Controller */,
 				0DC433D4239F3C79000C9505 /* Views */,
 				0DC433CC239F3BF4000C9505 /* Info.plist */,
+				0D90FAFA245FF9EF00E6FDFA /* icon.png */,
 				0DA988EC23C466DA006B7E7A /* Localizable.strings */,
-				0D0EE5F723C5DD2D003A1938 /* robot.png */,
 				0D020EF423B99DBB007826FD /* .swiftlint.yml */,
 				0DC433C7239F3BF4000C9505 /* Assets.xcassets */,
 			);
@@ -603,11 +603,11 @@
 				0D9C320B23BF37A600F1726E /* CustomAlertViewController.xib in Resources */,
 				0D462B1523A734B4000332F4 /* MyPageView.xib in Resources */,
 				0DECAD9423AB2D10008BC805 /* EventsByCategoriesView.xib in Resources */,
-				0D0EE5F823C5DD2D003A1938 /* robot.png in Resources */,
 				0DE62E5823A370CF00D927FA /* ResetPassView.xib in Resources */,
 				0DE62E5223A34DB000D927FA /* LoginView.xib in Resources */,
 				0D44379823AC6AC4003A8D96 /* MyPageWentViewController.xib in Resources */,
 				0D5E459123A875BA0029CE1A /* NewsCell.xib in Resources */,
+				0D90FAFB245FF9EF00E6FDFA /* icon.png in Resources */,
 				0DB2FA6C23CDBFC900ABFD47 /* Home.storyboard in Resources */,
 				0DB09AF223CECCBA00AC793D /* EventDetailV3Controller.xib in Resources */,
 				0DE3B8C423A0F05E00843C80 /* CategoriesTableViewCell.xib in Resources */,

@@ -100,33 +100,43 @@ class SearchViewController: UIViewController {
                 if isLoadMore == false {
                     self?.searchResultPast.removeAll()
                     self?.searchResultInComing.removeAll()
-                    for item in response!.listSearch {
-                        let date = self?.dateFormatter.converStringToDate(formatter: Date.StyleDate.dateOnly, dateString: item.scheduleStartDate)
-                        if date! < self!.today {
-                            self?.searchResultPast.append(item)
-                         } else {
-                            self?.searchResultInComing.append(item)
+                    for item in response?.listSearch ?? [] {
+                        if let date = self?.dateFormatter.converStringToDate(formatter: Date.StyleDate.dateOnly, dateString: item.scheduleStartDate) {
+                            if let today = self?.today {
+                                if date < today {
+                                    self?.searchResultPast.append(item)
+                                } else {
+                                    self?.searchResultInComing.append(item)
+                                }
+                            }
                         }
                     }
                 } else {
-                    for item in response!.listSearch {
-                        let date = self?.dateFormatter.converStringToDate(formatter: Date.StyleDate.dateOnly, dateString: item.scheduleStartDate)
-                        if date! < self!.today {
-                            self?.searchResultPast.append(item)
-                         } else {
-                            self?.searchResultInComing.append(item)
+                    for item in response?.listSearch ?? [] {
+         
+                        if let date = self?.dateFormatter.converStringToDate(formatter: Date.StyleDate.dateOnly, dateString: item.scheduleStartDate) {
+                            if let today = self?.today {
+                                if date < today {
+                                    self?.searchResultPast.append(item)
+                                } else {
+                                    self?.searchResultInComing.append(item)
+                                }
+                            }
                         }
                     }
                 }
                 self?.searchTable.reloadData()
-                if self!.searchResultInComing.isEmpty && self!.isToggleResult {
-                    self?.noResults.isHidden = false
-                    self?.imgNoResult.isHidden = false
-                    self?.noResults.text = "search.noResultIncoming.text".localized
-                } else {
-                    self?.noResults.isHidden = true
-                    self?.imgNoResult.isHidden = true
+                if let searchRes = self?.searchResultInComing {
+                    if searchRes.isEmpty && self?.isToggleResult ?? false {
+                        self?.noResults.isHidden = false
+                        self?.imgNoResult.isHidden = false
+                        self?.noResults.text = "search.noResultIncoming.text".localized
+                    } else {
+                        self?.noResults.isHidden = true
+                        self?.imgNoResult.isHidden = true
+                    }
                 }
+
                 self?.loading.handleLoading(isLoading: false)
             }
         }) { (err) in
@@ -236,7 +246,11 @@ extension SearchViewController : UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = searchTable.dequeueReusableCell(withIdentifier: "NewsCell", for: indexPath) as! NewsCell
+        
+        guard let cell = searchTable.dequeueReusableCell(withIdentifier: "NewsCell", for: indexPath) as? NewsCell else {
+            return UITableViewCell()
+        }
+        
         switch isToggleResult {
         case true:
             let url = URL(string: searchResultInComing[indexPath.row].photo)
@@ -268,7 +282,7 @@ extension SearchViewController : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
             return UITableView.automaticDimension
-        }
+    }
       
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         switch isToggleResult {
