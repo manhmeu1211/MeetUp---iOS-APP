@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -20,7 +20,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nIf-QQ-kJB">
                         <rect key="frame" x="0.0" y="5" width="546" height="254"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="noImage" translatesAutoresizingMaskIntoConstraints="NO" id="8kL-KK-EA4">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="noImage" translatesAutoresizingMaskIntoConstraints="NO" id="8kL-KK-EA4">
                                 <rect key="frame" x="0.0" y="0.0" width="546" height="154"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="154" id="0JG-Ad-wQu"/>
@@ -47,7 +47,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6f7-q2-MSF">
-                                <rect key="frame" x="17" y="204.5" width="509" height="19.5"/>
+                                <rect key="frame" x="17" y="204.5" width="509" height="39.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <color key="textColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -69,20 +69,6 @@
                                     <constraint firstAttribute="width" constant="14" id="woA-A5-waB"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EvE-Gu-TkT">
-                                <rect key="frame" x="389" y="229" width="150" height="20"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="20" id="MoH-az-ePt"/>
-                                    <constraint firstAttribute="width" constant="150" id="Ypj-Aj-Qlb"/>
-                                </constraints>
-                                <state key="normal" title="Read more..."/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="localizeTitle" value="readmore.titleBtn"/>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="handleReadmore:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Zsa-Zh-sbt"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -94,6 +80,7 @@
                             <constraint firstAttribute="trailing" secondItem="DE8-MO-f6I" secondAttribute="trailing" constant="20" id="Aug-Ao-8ux"/>
                             <constraint firstItem="urS-by-Q7D" firstAttribute="bottom" secondItem="blm-kh-oNL" secondAttribute="bottom" constant="5" id="Dag-CR-iHf"/>
                             <constraint firstAttribute="trailing" secondItem="6f7-q2-MSF" secondAttribute="trailing" constant="20" id="Fe1-7r-F49"/>
+                            <constraint firstAttribute="bottom" secondItem="6f7-q2-MSF" secondAttribute="bottom" constant="10" id="Fqh-hc-hAj"/>
                             <constraint firstItem="blm-kh-oNL" firstAttribute="top" secondItem="8kL-KK-EA4" secondAttribute="top" constant="20" id="Iab-CW-qP1"/>
                             <constraint firstItem="59M-ut-zgA" firstAttribute="top" secondItem="8kL-KK-EA4" secondAttribute="bottom" constant="10" id="M7Q-4r-WyT"/>
                             <constraint firstAttribute="trailing" secondItem="8kL-KK-EA4" secondAttribute="trailing" id="MoE-WL-R1b"/>
@@ -101,12 +88,9 @@
                             <constraint firstItem="blm-kh-oNL" firstAttribute="trailing" secondItem="8kL-KK-EA4" secondAttribute="trailing" constant="-25" id="Z3q-0w-mml"/>
                             <constraint firstItem="8kL-KK-EA4" firstAttribute="top" secondItem="nIf-QQ-kJB" secondAttribute="top" id="a9g-CU-e33"/>
                             <constraint firstItem="59M-ut-zgA" firstAttribute="centerY" secondItem="Y9K-5e-W6N" secondAttribute="centerY" multiplier="1.003" id="adJ-U4-I62"/>
-                            <constraint firstItem="EvE-Gu-TkT" firstAttribute="top" secondItem="6f7-q2-MSF" secondAttribute="bottom" constant="5" id="eAQ-kG-7lp"/>
                             <constraint firstItem="urS-by-Q7D" firstAttribute="trailing" secondItem="blm-kh-oNL" secondAttribute="trailing" constant="9" id="gO7-oK-9SH"/>
                             <constraint firstAttribute="trailing" secondItem="59M-ut-zgA" secondAttribute="trailing" constant="20" id="hfm-NF-EX0"/>
                             <constraint firstItem="urS-by-Q7D" firstAttribute="leading" secondItem="IaK-qS-skV" secondAttribute="leading" constant="-10" id="hg8-GL-5uJ"/>
-                            <constraint firstItem="EvE-Gu-TkT" firstAttribute="centerX" secondItem="nIf-QQ-kJB" secondAttribute="centerX" multiplier="1.7" id="jm8-2t-AxN"/>
-                            <constraint firstAttribute="bottom" secondItem="EvE-Gu-TkT" secondAttribute="bottom" constant="5" id="oPc-cu-gDD"/>
                             <constraint firstItem="IaK-qS-skV" firstAttribute="centerY" secondItem="blm-kh-oNL" secondAttribute="centerY" id="q7p-dF-YRR"/>
                             <constraint firstItem="DE8-MO-f6I" firstAttribute="top" secondItem="Y9K-5e-W6N" secondAttribute="bottom" constant="3" id="uiy-46-BLb"/>
                             <constraint firstItem="6f7-q2-MSF" firstAttribute="top" secondItem="DE8-MO-f6I" secondAttribute="bottom" constant="3" id="xYv-fE-wm4"/>
@@ -129,7 +113,6 @@
                 <outlet property="imgNews" destination="8kL-KK-EA4" id="W5j-3R-zIC"/>
                 <outlet property="imgTimer" destination="Y9K-5e-W6N" id="dv8-Ck-n3X"/>
                 <outlet property="lblDes" destination="6f7-q2-MSF" id="uXN-Ce-c7Z"/>
-                <outlet property="readmoreBtn" destination="EvE-Gu-TkT" id="lWI-AH-zJ0"/>
                 <outlet property="statusImage" destination="IaK-qS-skV" id="V8k-YI-bYR"/>
                 <outlet property="statusLabel" destination="blm-kh-oNL" id="bcr-NR-gfd"/>
                 <outlet property="title" destination="DE8-MO-f6I" id="hcT-Gj-PFq"/>

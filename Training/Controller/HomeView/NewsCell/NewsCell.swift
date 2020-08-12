@@ -22,6 +22,8 @@ class NewsCell: UITableViewCell {
     @IBOutlet weak var readmoreBtn: UIButton!
     
     
+    var didCLickReadMore: (() -> Void)?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         imgNews.roundCorners()

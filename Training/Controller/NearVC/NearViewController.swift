@@ -26,7 +26,7 @@ class NearViewController: UIViewController, CLLocationManagerDelegate {
     private let locationManager = CLLocationManager()
     private let regionRadius: CLLocationDistance = 1000
     private var centralLocationCoordinate : CLLocationCoordinate2D!
-    private var currentLocation: CLLocation!
+    private var currentLocation: CLLocation?
     private var initLong : Double = 0.0
     private var initLat : Double = 0.0
     private var eventLong = [Double]()
@@ -58,8 +58,13 @@ class NearViewController: UIViewController, CLLocationManagerDelegate {
                     }
                 case .authorizedAlways, .authorizedWhenInUse:
                     currentLocation = locationManager.location
-                    initLong = currentLocation.coordinate.longitude
-                    initLat = currentLocation.coordinate.latitude
+                    if let long = currentLocation?.coordinate.longitude, let lat = currentLocation?.coordinate.latitude {
+                        initLong = long
+                        initLat = lat
+                    } else {
+                        initLong = 105.7804458
+                        initLat =  21.0176832
+                    }
                     centerMapOnLocation(location: CLLocation(latitude: initLat, longitude: initLong))
                 @unknown default:
                 break
@@ -77,13 +82,18 @@ class NearViewController: UIViewController, CLLocationManagerDelegate {
         locationManager.requestWhenInUseAuthorization()
         if( CLLocationManager.authorizationStatus() == .authorizedWhenInUse ||
         CLLocationManager.authorizationStatus() ==  .authorizedAlways) {
-                currentLocation = locationManager.location
-                initLong = currentLocation.coordinate.longitude
-                initLat = currentLocation.coordinate.latitude
+            currentLocation = locationManager.location
+            if let long = currentLocation?.coordinate.longitude, let lat = currentLocation?.coordinate.latitude {
+                initLong = long
+                initLat = lat
+            } else {
+                initLong = 105.7804458
+                initLat =  21.0176832
+            }
                 centerMapOnLocation(location: CLLocation(latitude: initLat, longitude: initLong))
             } else {
-                initLong = 105.874993
-                initLat =  21.044895
+                initLong = 105.7804458
+                initLat =  21.0176832
             }
         addArtwork()
     }
